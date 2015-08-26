@@ -1,0 +1,5 @@
+package jugador
+
+class Jugador {
+	
+}
