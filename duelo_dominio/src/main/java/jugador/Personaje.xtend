@@ -1,5 +1,5 @@
 package jugador
-
+//firepropertychange()
 class Personaje {
 	
 	//especialidad
