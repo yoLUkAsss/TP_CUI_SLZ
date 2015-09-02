@@ -6,11 +6,18 @@ import java.util.Collection
 @Accessors
 class Jugador {
 	
-	EstadisticasPj est
+	Collection<EstadisticasPj> est
 	Collection<Denuncia> denuncias
+	Integer cantPeleasGanadas
 	
-	def ranking(){
-		avgPeso(denuncias)
+	new(){
+		denuncias = newArrayList
+		cantPeleasGanadas=0
+	}
+	
+	def Double ranking(){
+		(avgCalifPers(est) - avgPeso(denuncias)) 
+		* cantPeleasGanadas
 	}
 	
 	def private avgPeso(Collection<Denuncia> denuncias) {
@@ -19,11 +26,33 @@ class Jugador {
 			avg += d.peso
 		}
 		
+		
 		return avg / denuncias.size
 	}
 	
-	def denunciar(String motivo,String descripcion,Jugador j){
+	def private avgCalifPers(Collection<EstadisticasPj> est) {
+		var avg = 0D
+		for(e:est){
+			avg += e.puntaje
+		}
 		
+		
+		return avg / denuncias.size
 	}
+	
+	def addDenuncia(Denuncia d){
+		denuncias.add(d)
+	}
+	
+	def Integer escalon(){
+		var i = this.ranking()
+		var j = 1
+		while(i>0){
+			i= i - 500
+			j++
+		}
+		return j;
+	}
+
 	
 }
