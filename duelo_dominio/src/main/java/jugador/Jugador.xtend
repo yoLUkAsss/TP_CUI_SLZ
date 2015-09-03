@@ -6,6 +6,7 @@ import java.util.Collection
 @Accessors
 class Jugador {
 	
+	String nombre
 	Collection<EstadisticasPj> est
 	Collection<Denuncia> denuncias
 	Integer cantPeleasGanadas
@@ -52,6 +53,12 @@ class Jugador {
 			j++
 		}
 		return j;
+	}
+	
+	override toString(){
+		return "Jugador: " + nombre + " Denuncias: "
+		+ denuncias.size.toString() + " ranking: " + ranking().toString()
+		+ "=> escalon: " + escalon().toString()
 	}
 
 	

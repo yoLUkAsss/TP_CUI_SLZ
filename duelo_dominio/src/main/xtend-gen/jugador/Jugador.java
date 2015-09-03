@@ -11,6 +11,8 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @Accessors
 @SuppressWarnings("all")
 public class Jugador {
+  private String nombre;
+  
   private Collection<EstadisticasPj> est;
   
   private Collection<Denuncia> denuncias;
@@ -66,6 +68,29 @@ public class Jugador {
       }
     }
     return Integer.valueOf(j);
+  }
+  
+  public String toString() {
+    int _size = this.denuncias.size();
+    String _string = Integer.valueOf(_size).toString();
+    String _plus = ((("Jugador: " + this.nombre) + " Denuncias: ") + _string);
+    String _plus_1 = (_plus + " ranking: ");
+    Double _ranking = this.ranking();
+    String _string_1 = _ranking.toString();
+    String _plus_2 = (_plus_1 + _string_1);
+    String _plus_3 = (_plus_2 + "=> escalon: ");
+    Integer _escalon = this.escalon();
+    String _string_2 = _escalon.toString();
+    return (_plus_3 + _string_2);
+  }
+  
+  @Pure
+  public String getNombre() {
+    return this.nombre;
+  }
+  
+  public void setNombre(final String nombre) {
+    this.nombre = nombre;
   }
   
   @Pure
