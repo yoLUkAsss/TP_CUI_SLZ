@@ -9,16 +9,14 @@ class Jugador {
 	String nombre
 	Collection<EstadisticasPj> est
 	Collection<Denuncia> denuncias
-	Integer cantPeleasGanadas
 	
 	new(){
 		denuncias = newArrayList
-		cantPeleasGanadas=0
 	}
 	
 	def Double ranking(){
 		(avgCalifPers(est) - avgPeso(denuncias)) 
-		* cantPeleasGanadas
+		* cantPeleasGanadas(est)
 	}
 	
 	def private avgPeso(Collection<Denuncia> denuncias) {
@@ -41,7 +39,12 @@ class Jugador {
 		return avg / denuncias.size
 	}
 	
-	def void addDenuncia(Denuncia d){
+
+	def cantPeleasGanadas(Collection<EstadisticasPj> est) {
+		est.fold(0 , [wins , pj | wins + pj.duelosGanados ])
+	}
+	
+	def addDenuncia(Denuncia d){
 		denuncias.add(d)
 	}
 	
