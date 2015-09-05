@@ -4,5 +4,7 @@ target
 /src/main/generated-sources
 /src/test/generated-sources
 .settings
-**.java
+xtend-gen
+xtend-gen/**
+
 
