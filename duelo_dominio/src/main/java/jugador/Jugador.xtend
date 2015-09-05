@@ -41,7 +41,7 @@ class Jugador {
 		return avg / denuncias.size
 	}
 	
-	def addDenuncia(Denuncia d){
+	def void addDenuncia(Denuncia d){
 		denuncias.add(d)
 	}
 	
