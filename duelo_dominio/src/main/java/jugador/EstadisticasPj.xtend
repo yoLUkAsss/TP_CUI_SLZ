@@ -8,7 +8,7 @@ class EstadisticasPj {
 	
 	//Nombre del personaje
 	String nombre
-	
+	 
 	Integer duelosIniciados
 	Integer duelosGanados
 	Integer duelosGanadosNoIniciados
@@ -16,7 +16,7 @@ class EstadisticasPj {
 	Integer duelosEmpatados
 	
 	//Posiciones de los duelos iniciados por el jugador
-	ArrayList posicionesUsadas
+	ArrayList<String> posicionesUsadas
 	
 	//Posicion de la ultima victoria obtenida en un duelo iniciado
 	String mejorUbicacion
