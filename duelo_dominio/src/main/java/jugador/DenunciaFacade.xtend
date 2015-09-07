@@ -17,7 +17,7 @@ class DenunciaFacade {
 			from.addDenuncia(this.abusoDelSistema());
 		}
 		
-	}
+	} 
 	
 	def Denuncia abusoDelSistema() {
 		return new DAbusoDelSisDeDenuncias("El Jugador " +from.nombre
