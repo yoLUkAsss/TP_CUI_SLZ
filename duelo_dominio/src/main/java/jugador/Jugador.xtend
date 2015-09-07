@@ -1,5 +1,5 @@
 package jugador
-
+ 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Collection
 
@@ -29,19 +29,14 @@ class Jugador {
 		return avg / denuncias.size
 	}
 	
-	def private avgCalifPers(Collection<EstadisticasPj> est) {
-		var avg = 0D
-		for(e:est){
-			avg += e.puntaje
-		}
-		
-		
+	def private Double avgCalifPers(Collection<EstadisticasPj> est) {
+		var avg = est.fold(0D , [wins , pj | wins + pj.duelosGanados ])
 		return avg / denuncias.size
 	}
 	
 
-	def cantPeleasGanadas(Collection<EstadisticasPj> est) {
-		est.fold(0 , [wins , pj | wins + pj.duelosGanados ])
+	def Double cantPeleasGanadas(Collection<EstadisticasPj> est) {
+		est.fold(0D , [wins , pj | wins + pj.duelosGanados ])
 	}
 	
 	def addDenuncia(Denuncia d){
