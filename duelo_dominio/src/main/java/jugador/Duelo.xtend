@@ -12,9 +12,12 @@ class Duelo {
 	//personajes 
 	Personaje personajeRetador
 	Personaje personajeRival
+	//tengo las posiciones en el juego 
+	 val col =#["TOP","BOTTON / BOT","MIDDLE / MID","JUNGLE"]
+	
 	//posiciones	
-	Posicion  posicionRetador
-	Posicion  posicionRival
+	String  posicionRetador
+	String  posicionRival
 	//otros
 	ArrayList<Jugador>jugadores
 	ArrayList<Personaje>personajes 
@@ -30,7 +33,7 @@ class Duelo {
 		
 	}
 	
-	def elegirPosicionRetador(Posicion posicion){
+	def elegirPosicionRetador(String posicion){
 		
 		this.posicionRetador=posicion
 	}
@@ -86,7 +89,7 @@ class Duelo {
 		
 	}
 	
-	 def  float resultados(Jugador jugador,Personaje per,Posicion pos){
+	 def  float resultados(Jugador jugador,Personaje per,String pos){
 		
 		analizador.poderDeAtaque(jugador,per,pos)*factorDeSuerte()
 		
