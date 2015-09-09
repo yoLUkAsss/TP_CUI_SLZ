@@ -41,8 +41,8 @@ class Duelo {
 	//elecciones del rival
 	
 	def determinarRival(){
-		if (hayJugadores(jugadoresDelMismoRanking())){
-			rival=jugadoresDelMismoRanking().get(0)
+		if (hayJugadores(jugadoresDelMismoEscalon())){
+			rival=jugadoresDelMismoEscalon().get(0)
 			
 		}
 		else{
@@ -63,19 +63,18 @@ class Duelo {
 		!jugadors.empty
 	}
 	
-	def jugadoresDelMismoRanking(){
+	def jugadoresDelMismoEscalon(){
 		
-		jugadores.filter[jugador|jugador.ranking()==retador.ranking()]
+		jugadores.filter[jugador|jugador.ranking()==jugador.escalon]
 	}
 	
-	def jugarContraJugadorFantasma(){
+	def jugarContraMRX(){
 		
-        //jugarContraJugadorFantasma
+		rival= new MRX() 
+         
 	}
 	
-	def cancelarDuelo(){
-		
-	}
+	
 	def Jugador realizarDuelo()
 	{
 		if(resultados(retador,personajeRetador,posicionRetador)>resultados(rival,personajeRival,posicionRival)){
