@@ -1,18 +1,20 @@
 package jugador
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class DenunciaFacade {
 	
 	Jugador from
 	Jugador to
-	Denuncia d
+	Denuncia denuncia
 	
 	def hacerDenuncia(){
 		
 		if(this.denunciaValida()){
-			to.addDenuncia(d);
+			to.addDenuncia(denuncia);
 		}else{
 			from.addDenuncia(this.abusoDelSistema());
 		}
@@ -20,12 +22,17 @@ class DenunciaFacade {
 	} 
 	
 	def Denuncia abusoDelSistema() {
-		return new DAbusoDelSisDeDenuncias("El Jugador " +from.nombre
-			 + "intenta denunciar a " + to.nombre + "por: " + d.getMotivo());
+		return new DAbusoDelSisDeDenuncias('''El Jugador «from.nombre» intenta denunciar a «to.nombre» por: «denuncia.motivo»''')
 	}
 	
 	def denunciaValida() {
-		return d.sizeDescripcion()<=3;
+		return denuncia.sizeDescripcion()<=3
+	}
+	
+
+	
+	def getMotivosPosibles(){
+		#[new DAbusoDeHabilidad(""),new DAbusoDeLenguaje(""),new DFeedIntencional("")]
 	}
 	
 	
