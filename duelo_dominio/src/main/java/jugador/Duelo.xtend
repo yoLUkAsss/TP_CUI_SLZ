@@ -65,7 +65,7 @@ class Duelo {
 	
 	def jugadoresDelMismoEscalon(){
 		
-		jugadores.filter[jugador|jugador.ranking()==jugador.escalon]
+		//filtrar 
 	}
 	
 	def jugarContraMRX(){

@@ -1,6 +1,8 @@
 package jugador
 
-class NoHayRivalException extends Exception{
+import org.omg.CORBA.UserException
+
+class NoHayRivalException extends UserException{
 	
 	new(String msg) {
 	super(msg)
