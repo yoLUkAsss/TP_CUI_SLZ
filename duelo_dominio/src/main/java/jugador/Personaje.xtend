@@ -10,7 +10,7 @@ class Personaje {
 	String nombre
 	//especialidad
 	//debilidad
-	Posicion posIdeal
+	String posIdeal
 	
 	
 	

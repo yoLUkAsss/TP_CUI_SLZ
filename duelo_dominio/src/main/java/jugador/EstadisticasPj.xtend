@@ -16,7 +16,7 @@ class EstadisticasPj {
 	Integer duelosEmpatados
 	
 	//Posiciones de los duelos iniciados por el jugador
-	ArrayList<Posicion> posicionesUsadas
+	ArrayList<String> posicionesUsadas
 	
 	//Posicion de la ultima victoria obtenida en un duelo iniciado
 	String mejorUbicacion
