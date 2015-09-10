@@ -41,8 +41,8 @@ class Duelo {
 	//elecciones del rival
 	
 	def determinarRival(){
-		if (hayJugadores(jugadoresDelMismoEscalon())){
-			rival=jugadoresDelMismoEscalon().get(0)
+		if (hayJugadores(rivales())) {
+			rival=rivales().get(0)
 			
 		}
 		else{
@@ -52,20 +52,26 @@ class Duelo {
 		
 	}
 	
+	def hayJugadores(Iterable<Jugador> jugadors) {
+		!jugadors.empty
+	}
+	
+
 	def determinarPersonajeRival(){
 		personajes.remove(personajeRetador)
 		personajeRival= personajes.get(0)
 	}
 	
-
 	
-	def hayJugadores(Iterable<Jugador> jugadors) {
-		!jugadors.empty
+	def rivales(){
+		
+		val rivales= jugadores.filter[jugador|puedeJugar(jugador.ranking())]
+		rivales
 	}
 	
-	def jugadoresDelMismoEscalon(){
+	def puedeJugar(Double calificacion) {
 		
-		//filtrar 
+		calificacion >= retador.ranking()-100 && calificacion <= retador.ranking()+100 
 	}
 	
 	def jugarContraMRX(){
