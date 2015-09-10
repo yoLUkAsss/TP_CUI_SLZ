@@ -7,7 +7,7 @@ class DAbusoDelSisDeDenuncias extends Denuncia{
 	}
 	
 	override getPeso() {
-		return 25;s
+		return 25;
 	}
 	
 	override getMotivo() {

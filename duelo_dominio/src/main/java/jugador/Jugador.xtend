@@ -15,25 +15,13 @@ class Jugador {
 	}
 	
 	def Double ranking(){
-		(avgCalifPers(est) - avgPeso(denuncias)) 
+		totPeso(denuncias)
 		* cantPeleasGanadas(est)
 	}
 	
-	def private avgPeso(Collection<Denuncia> denuncias) {
-		var avg = 0D
-		for(d:denuncias){
-			avg += d.peso
-		}
-		
-		
-		return avg / denuncias.size
+	def private totPeso(Collection<Denuncia> denuncias) {
+		denuncias.fold(0,[peso , den | peso +den.peso ])
 	}
-	
-	def private Double avgCalifPers(Collection<EstadisticasPj> est) {
-		var avg = est.fold(0D , [wins , pj | wins + pj.duelosGanados ])
-		return avg / denuncias.size
-	}
-	
 
 	def Double cantPeleasGanadas(Collection<EstadisticasPj> est) {
 		est.fold(0D , [wins , pj | wins + pj.duelosGanados ])

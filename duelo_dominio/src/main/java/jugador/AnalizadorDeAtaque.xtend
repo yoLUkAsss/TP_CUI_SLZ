@@ -1,10 +1,44 @@
 package jugador
 
+import java.util.Random
+
 class AnalizadorDeAtaque {
 	
 	def poderDeAtaque(Jugador jugador, Personaje personaje, Posicion posicion) {
-		    0
-		}
-		
+		var rand = new Random().nextInt(100)
+		if (expPreviaIdealPers(jugador,personaje,posicion) > 5 && rand >90)
+			return 100
+		if (expPrevPosi(jugador,posicion) > 2 && rand >70)
+			return 75
+		if (rand >50)
+			return 60
+		if (mejorPosi(personaje,posicion) && rand >30)
+			return 15
+		return 5
+	}
 	
+	//Determina si la posicion es la posicion ideal del personaje
+	def mejorPosi(Personaje personaje, Posicion posicion) {
+		personaje.posIdeal.equals(posicion)	
+	}
+	
+	//Retorna la cantidad de veces que utilizo independientemente del personaje
+	//en la posicion indicada
+	def expPrevPosi(Jugador jugador, Posicion posicion) {
+		var estadisticas = jugador.est
+		estadisticas.fold(0 ,[cant , estad | cant+ posicionesUsadas(estad,posicion)])
+	}
+	
+	//Retorna dada una EstadisticaPj, cuantas veces lo utilizo en la posicion indicada
+	def posicionesUsadas(EstadisticasPj pj, Posicion posicion) {
+		(pj.posicionesUsadas.filter[name | name.equals(posicion)]).size
+	}
+	
+	//Retorna la cantidad de veces que jugo con el personaje, en su pocicion ideal
+	def expPreviaIdealPers(Jugador jugador, Personaje personaje, Posicion posicion) {
+		var estadistica = jugador.est.findFirst[esta | esta.nombre.equals(personaje.nombre)]
+		if (estadistica == null)
+			return 0
+		return (estadistica.posicionesUsadas.filter[name | name.equals(personaje.posIdeal)]).size
+	}
 }

@@ -8,6 +8,8 @@ class DAbusoDeHabilidad extends Denuncia {
 		super(descripcion)
 	}
 	
+	
+	
 	override getPeso() {
 		return 5
 	}
