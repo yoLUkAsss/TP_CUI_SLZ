@@ -25,6 +25,17 @@ class EstadisticasPj {
 	Integer calificacion
 	
 	
+	new (String nombre) {
+		this.nombre=nombre
+		duelosIniciados=0
+		duelosGanados=0
+		duelosGanadosNoIniciados=0
+		derrotasNoIniciadas=0
+		duelosEmpatados=0
+		posicionesUsadas=newArrayList		
+		calificacion=0
+	}
+		
 	def Integer puntaje(){
 		calificacion
 	}
