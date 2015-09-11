@@ -12,6 +12,7 @@ class Jugador {
 	
 	new(){
 		denuncias = newArrayList
+		est = newArrayList
 	}
 	
 	def Double ranking(){
@@ -31,21 +32,8 @@ class Jugador {
 		denuncias.add(d)
 	}
 	
-	def Integer escalon(){
-		var i = this.ranking()
-		var j = 1
-		while(i>0){
-			i= i - 500
-			j++
-		}
-		return j;
-	}
-	
 	override toString(){
 		return "Jugador: " + nombre + " Denuncias: "
 		+ denuncias.size.toString() + " ranking: " + ranking().toString()
-		+ "=> escalon: " + escalon().toString()
 	}
-
-	
 }
