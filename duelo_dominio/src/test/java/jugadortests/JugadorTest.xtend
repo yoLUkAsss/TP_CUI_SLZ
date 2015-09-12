@@ -1,13 +1,14 @@
 package jugadortests
 
+import denuncias.DAbusoDeHabilidad
+import denuncias.DAbusoDeLenguaje
+import denuncias.DFeedIntencional
 import jugador.Jugador
-
-import static org.junit.Assert.*;
+import jugador.Personaje
 import org.junit.Before
 import org.junit.Test
-import denuncias.*
-import jugador.EstadisticasPj
-import jugador.Personaje
+
+import static org.junit.Assert.*
 
 class JugadorTest {
 	
@@ -26,8 +27,6 @@ class JugadorTest {
 	 	denuncia1= new DAbusoDeHabilidad("denunci1")
 	 	denuncia2= new DFeedIntencional("dencia2")
 	 	denuncia3= new DAbusoDeLenguaje("denunci3")
-	 //	pj1= new EstadisticasPj("personaje1")
-	 //	pj2= new EstadisticasPj("personaje2")
 	    personaje1=new Personaje("personaje3")
 	 	personaje= new Personaje("personaje1")
 	 	jugador= new Jugador("pepita")
