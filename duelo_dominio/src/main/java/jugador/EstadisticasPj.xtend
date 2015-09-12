@@ -1,5 +1,5 @@
 package jugador 
-
+ 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
 
@@ -32,6 +32,7 @@ class EstadisticasPj {
 		duelosGanadosNoIniciados=0
 		derrotasNoIniciadas=0
 		duelosEmpatados=0
+		mejorUbicacion=this.nombre+" aun no gano un duelo iniciado... NOOB!!!";
 		posicionesUsadas=newArrayList		
 		calificacion=0
 	}
@@ -40,6 +41,30 @@ class EstadisticasPj {
 		calificacion
 	}
 	
+	def ganoComoRetador(String pos , Integer nuevaCalificacion) {
+		duelosIniciados++
+		duelosGanados++
+		posicionesUsadas.add(pos)
+		mejorUbicacion = pos;
+		calificacion = nuevaCalificacion
+	}
 	
+	def perdioComoRetador(String pos , Integer nuevaCalificacion) {
+		duelosIniciados++
+		posicionesUsadas.add(pos)
+		calificacion = nuevaCalificacion
+	}
 	
+	def ganoComoRival(String pos , Integer nuevaCalificacion) {
+		duelosGanados++
+		duelosGanadosNoIniciados++
+	}
+	
+	def perdioComoRival(String pos , Integer nuevaCalificacion) {
+		derrotasNoIniciadas++
+	}
+	
+	def empato() {
+		duelosEmpatados++
+	}
 }

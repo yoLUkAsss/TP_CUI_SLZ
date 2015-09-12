@@ -10,7 +10,7 @@ class Jugador {
 	Collection<EstadisticasPj> est
 	Collection<Denuncia> denuncias
 	
-	new(){
+	new(String nombre){
 		denuncias = newArrayList
 		est = newArrayList
 	}
@@ -36,4 +36,39 @@ class Jugador {
 		return "Jugador: " + nombre + " Denuncias: "
 		+ denuncias.size.toString() + " ranking: " + ranking().toString()
 	}
+	
+	
+///////////////////
+//Actualizaciones//
+///////////////////
+
+	def ganeYSoyRival(Personaje p , String pos , Integer califi) {
+		buscarEst.apply(p).ganoComoRival(pos,califi)
+	}
+	
+	def perdiYSoyRival(Personaje p , String pos , Integer califi) {
+		buscarEst.apply(p).perdioComoRival(pos,califi)
+	}
+	
+	def ganeYSoyRetador(Personaje p , String pos , Integer califi) {
+		buscarEst.apply(p).ganoComoRetador(pos,califi)
+	}
+	
+	def perdiYSoyRetador(Personaje p , String pos , Integer califi) {
+		buscarEst.apply(p).perdioComoRetador(pos,califi)
+	}
+	
+	def empate(Personaje p , String pos , Integer califi) {
+		buscarEst.apply(p).empato()	
+	}
+	
+	val buscarEst = [ Personaje p | 
+		var estad = est.findFirst[estadistica | estadistica.nombre.equals(p.nombre)]
+		if ((est.findFirst[estadistica | estadistica.nombre.equals(p.nombre)]) == null) {
+			estad = new EstadisticasPj(p.nombre)
+			this.est.add(estad)
+		}
+		return estad
+	]
+	
 }

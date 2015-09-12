@@ -8,4 +8,4 @@ class NoHayRivalException extends UserException{
 	super(msg)
 }
 	
-}
+} 

@@ -86,7 +86,7 @@ class Duelo {
 	
 	def jugarContraMRX(){
 		
-		rival= new MRX() 
+		rival= new MRX("MR-X") 
          
 	}
 	
