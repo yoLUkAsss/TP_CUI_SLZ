@@ -91,12 +91,12 @@ class Duelo {
 	}
 	
 	
-	def ganador()
+	def realizarDuelo()
 	{   
 		val resultadoRetador=resultados(retador,personajeRetador,posicionRetador)
 		val resultadoRival= resultados(rival,personajeRival,posicionRival)
 		
-		if(resultadoRetador<resultadoRival){
+		if(resultadoRetador>resultadoRival){
 			
 			retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
 			rival.perdiYSoyRival(personajeRival,posicionRival,resultadoRival)
