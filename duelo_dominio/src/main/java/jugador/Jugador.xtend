@@ -2,6 +2,7 @@ package jugador
  
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Collection
+import denuncias.Denuncia
 
 @Accessors
 class Jugador {
@@ -15,7 +16,7 @@ class Jugador {
 		est = newArrayList
 	}
 	
-	def Double ranking(){
+	def ranking(){
 		totPeso(denuncias)
 		* cantPeleasGanadas(est)
 	}
@@ -24,13 +25,15 @@ class Jugador {
 		denuncias.fold(0,[peso , den | peso +den.peso ])
 	}
 
-	def Double cantPeleasGanadas(Collection<EstadisticasPj> est) {
-		est.fold(0D , [wins , pj | wins + pj.duelosGanados ])
+	def cantPeleasGanadas(Collection<EstadisticasPj> est) {
+		est.fold(0 , [wins , pj | wins + pj.duelosGanados ])
 	}
 	
 	def addDenuncia(Denuncia d){
 		denuncias.add(d)
 	}
+	
+	
 	
 	override toString(){
 		return "Jugador: " + nombre + " Denuncias: "

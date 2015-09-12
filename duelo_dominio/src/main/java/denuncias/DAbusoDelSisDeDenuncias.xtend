@@ -1,4 +1,4 @@
-package jugador
+package denuncias
 
 class DAbusoDelSisDeDenuncias extends Denuncia{
 	

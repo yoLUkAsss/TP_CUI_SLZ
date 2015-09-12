@@ -1,6 +1,9 @@
-package jugador
+package appModel
 
 import java.util.Random
+import jugador.Jugador
+import jugador.Personaje
+import jugador.EstadisticasPj
 
 class AnalizadorDeAtaque {
 	

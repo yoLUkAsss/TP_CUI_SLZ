@@ -1,4 +1,4 @@
-package jugador
+package excepciones
 
 import org.omg.CORBA.UserException
 

@@ -1,6 +1,4 @@
-package jugador
-
-import jugador.Denuncia
+package denuncias
 
 class DAbusoDeHabilidad extends Denuncia {
 	

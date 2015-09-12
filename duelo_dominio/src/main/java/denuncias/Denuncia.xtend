@@ -1,4 +1,4 @@
-package jugador
+package denuncias
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable

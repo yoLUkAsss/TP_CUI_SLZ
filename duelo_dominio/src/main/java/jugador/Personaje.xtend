@@ -12,6 +12,10 @@ class Personaje {
 	//debilidad
 	String posIdeal
 	
+	new(String nombre) {
+		this.nombre=nombre
+	}
+	
 	
 	
 }
