@@ -1,10 +1,11 @@
 package jugador
 
 import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.ArrayList
 import java.util.Random
+import java.util.List
 
 @Accessors
+
 class Duelo {
 	//jugadores
 	Jugador retador
@@ -19,12 +20,19 @@ class Duelo {
 	String  posicionRetador
 	String  posicionRival
 	//otros
-	ArrayList<Jugador>jugadores
-	ArrayList<Personaje>personajes 
+	List<Jugador>jugadores
+	List<Personaje>personajes 
 	AnalizadorDeAtaque analizador
+	
+	String ganador
+	String perdedor 
+	String empate
 	
 	new(Jugador jugador){
 		retador=jugador
+	    jugadores= newArrayList
+	    personajes= newArrayList	
+	    analizador= new AnalizadorDeAtaque
 	}
 	
 	//Elecciones del retador
@@ -52,10 +60,10 @@ class Duelo {
 		
 	}
 	
-	def hayJugadores(Iterable<Jugador> jugadors) {
-		!jugadors.empty
+	def hayJugadores(List<Jugador> jugadors) {
+	    !jugadors.empty
 	}
-	
+
 
 	def determinarPersonajeRival(){
 		personajes.remove(personajeRetador)
@@ -65,8 +73,10 @@ class Duelo {
 	
 	def rivales(){
 		
-		val rivales= jugadores.filter[jugador|puedeJugar(jugador.ranking())]
+		val rivales= (jugadores.filter[jugador|puedeJugar(jugador.ranking())]) as List<Jugador>
 		rivales
+		
+		
 	}
 	
 	def puedeJugar(Double calificacion) {
@@ -81,38 +91,71 @@ class Duelo {
 	}
 	
 	
-	def Jugador realizarDuelo()
-	{
-		if(resultados(retador,personajeRetador,posicionRetador)>resultados(rival,personajeRival,posicionRival)){
+	def ganador()
+	{   
+		val resultadoRetador=resultados(retador,personajeRetador,posicionRetador)
+		val resultadoRival= resultados(rival,personajeRival,posicionRival)
+		
+		if(resultadoRetador<resultadoRival){
 			
-			retador
+			retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
+			rival.perdiYSoyRival(personajeRival,posicionRival,resultadoRival)
+			
+			ganador= retador.nombre
+			perdedor= rival.nombre
 		}
 		else
 		{
-			rival 
+			if (resultadoRetador==resultadoRival){
+				
+				retador.empate(personajeRetador,posicionRetador,resultadoRetador)
+				rival.empate(personajeRival,posicionRival,resultadoRival)
+				
+				empate= retador.nombre + " " + rival.nombre
+			}
+			else{
+				
+				rival.ganeYSoyRival(personajeRival,posicionRival,resultadoRival)
+			    retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
+			    ganador= rival.nombre
+			    perdedor=retador.nombre 
+			}
 		}
 		
 	}
-	
-	 def  float resultados(Jugador jugador,Personaje per,String pos){
+
+	 def  Integer resultados(Jugador jugador,Personaje per,String pos){
 		
 		analizador.poderDeAtaque(jugador,per,pos)*factorDeSuerte()
 		
 	}
 	
 	
-	 def float factorDeSuerte(){
+	 def Integer factorDeSuerte(){
 	 	
 	 	   new Random().nextInt(1)
 	 }
 	
-	def elegirElementoAlAzar(ArrayList<Object>lista){
+	def elegirElementoAlAzar(List<Object>lista){
 		
 		 new Random().nextInt(lista.size()-1)
 	}
 	
 	
+	
+	
+	def getRetador(){
+		
+		retador
+	} 
+	
+	
+	def agregarJugador(Jugador jugador){
+		jugadores.add(jugador)
 	}
 	
+	def agregarPersonaje(Personaje personaje){
+		personajes.add(personaje)
+	}
 	
-	
+	}
