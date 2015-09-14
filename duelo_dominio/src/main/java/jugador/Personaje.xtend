@@ -5,7 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 //firepropertychange()
 
 @Accessors
-class Personaje {
+class Personaje { 
 	
 	String nombre
 	String especialidad
