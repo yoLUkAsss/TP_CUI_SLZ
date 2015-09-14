@@ -73,7 +73,7 @@ class Duelo {
 		personajes.remove(personajeRetador)
 		personajeRival= personajes.get(0)
 	}
-	
+	 
 	
 	def rivales(){
 		

@@ -103,7 +103,7 @@ public class Duelo {
       final Function1<Jugador, Boolean> _function = new Function1<Jugador, Boolean>() {
         public Boolean apply(final Jugador jugador) {
           int _ranking = jugador.ranking();
-          return Boolean.valueOf(Duelo.this.puedeJugar(_ranking));
+          return Boolean.valueOf(Duelo.this.puedeJugar(Integer.valueOf(_ranking)));
         }
       };
       Iterable<Jugador> _filter = IterableExtensions.<Jugador>filter(this.jugadores, _function);
@@ -113,17 +113,17 @@ public class Duelo {
     return _xblockexpression;
   }
   
-  public boolean puedeJugar(final int calificacion) {
+  public boolean puedeJugar(final Integer calificacion) {
     boolean _and = false;
     int _ranking = this.retador.ranking();
     int _minus = (_ranking - 100);
-    boolean _greaterEqualsThan = (calificacion >= _minus);
+    boolean _greaterEqualsThan = ((calificacion).intValue() >= _minus);
     if (!_greaterEqualsThan) {
       _and = false;
     } else {
       int _ranking_1 = this.retador.ranking();
       int _plus = (_ranking_1 + 100);
-      boolean _lessEqualsThan = (calificacion <= _plus);
+      boolean _lessEqualsThan = ((calificacion).intValue() <= _plus);
       _and = _lessEqualsThan;
     }
     return _and;
@@ -214,6 +214,10 @@ public class Duelo {
   
   public boolean agregarPersonaje(final Personaje personaje) {
     return this.personajes.add(personaje);
+  }
+  
+  public Object determinarPosicionRival() {
+    return null;
   }
   
   public void setRetador(final Jugador retador) {

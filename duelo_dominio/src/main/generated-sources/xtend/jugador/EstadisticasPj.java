@@ -2,6 +2,7 @@ package jugador;
 
 import java.util.ArrayList;
 import org.eclipse.xtend.lib.annotations.Accessors;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Pure;
 
 @Accessors
@@ -25,8 +26,60 @@ public class EstadisticasPj {
   
   private Integer calificacion;
   
+  public EstadisticasPj(final String nombre) {
+    this.nombre = nombre;
+    this.duelosIniciados = Integer.valueOf(0);
+    this.duelosGanados = Integer.valueOf(0);
+    this.duelosGanadosNoIniciados = Integer.valueOf(0);
+    this.derrotasNoIniciadas = Integer.valueOf(0);
+    this.duelosEmpatados = Integer.valueOf(0);
+    this.mejorUbicacion = (this.nombre + " aun no gano un duelo iniciado... NOOB!!!");
+    ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList();
+    this.posicionesUsadas = _newArrayList;
+    this.calificacion = Integer.valueOf(0);
+  }
+  
   public Integer puntaje() {
     return this.calificacion;
+  }
+  
+  public Integer ganoComoRetador(final String pos, final Integer nuevaCalificacion) {
+    Integer _xblockexpression = null;
+    {
+      this.duelosIniciados++;
+      this.duelosGanados++;
+      this.posicionesUsadas.add(pos);
+      this.mejorUbicacion = pos;
+      _xblockexpression = this.calificacion = nuevaCalificacion;
+    }
+    return _xblockexpression;
+  }
+  
+  public Integer perdioComoRetador(final String pos, final Integer nuevaCalificacion) {
+    Integer _xblockexpression = null;
+    {
+      this.duelosIniciados++;
+      this.posicionesUsadas.add(pos);
+      _xblockexpression = this.calificacion = nuevaCalificacion;
+    }
+    return _xblockexpression;
+  }
+  
+  public Integer ganoComoRival(final String pos, final Integer nuevaCalificacion) {
+    Integer _xblockexpression = null;
+    {
+      this.duelosGanados++;
+      _xblockexpression = this.duelosGanadosNoIniciados++;
+    }
+    return _xblockexpression;
+  }
+  
+  public Integer perdioComoRival(final String pos, final Integer nuevaCalificacion) {
+    return this.derrotasNoIniciadas++;
+  }
+  
+  public Integer empato() {
+    return this.duelosEmpatados++;
   }
   
   @Pure

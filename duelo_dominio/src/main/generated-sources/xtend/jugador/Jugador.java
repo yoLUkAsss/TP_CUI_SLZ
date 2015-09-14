@@ -1,12 +1,14 @@
 package jugador;
 
+import com.google.common.base.Objects;
+import denuncias.Denuncia;
 import java.util.ArrayList;
 import java.util.Collection;
-import jugador.Denuncia;
 import jugador.EstadisticasPj;
+import jugador.Personaje;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.DoubleExtensions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pure;
@@ -20,66 +22,41 @@ public class Jugador {
   
   private Collection<Denuncia> denuncias;
   
-  public Jugador() {
+  public Jugador(final String nombre) {
     ArrayList<Denuncia> _newArrayList = CollectionLiterals.<Denuncia>newArrayList();
     this.denuncias = _newArrayList;
+    ArrayList<EstadisticasPj> _newArrayList_1 = CollectionLiterals.<EstadisticasPj>newArrayList();
+    this.est = _newArrayList_1;
   }
   
-  public Double ranking() {
-    Double _avgCalifPers = this.avgCalifPers(this.est);
-    double _avgPeso = this.avgPeso(this.denuncias);
-    double _minus = ((_avgCalifPers).doubleValue() - _avgPeso);
-    Double _cantPeleasGanadas = this.cantPeleasGanadas(this.est);
-    return Double.valueOf((_minus * (_cantPeleasGanadas).doubleValue()));
+  public int ranking() {
+    Integer _tPeso = this.totPeso(this.denuncias);
+    Integer _cantPeleasGanadas = this.cantPeleasGanadas(this.est);
+    return ((_tPeso).intValue() * (_cantPeleasGanadas).intValue());
   }
   
-  private double avgPeso(final Collection<Denuncia> denuncias) {
-    double avg = 0D;
-    for (final Denuncia d : denuncias) {
-      double _avg = avg;
-      Integer _peso = d.getPeso();
-      avg = (_avg + (_peso).intValue());
-    }
-    int _size = denuncias.size();
-    return (avg / _size);
-  }
-  
-  private Double avgCalifPers(final Collection<EstadisticasPj> est) {
-    final Function2<Double, EstadisticasPj, Double> _function = new Function2<Double, EstadisticasPj, Double>() {
-      public Double apply(final Double wins, final EstadisticasPj pj) {
-        Integer _duelosGanados = pj.getDuelosGanados();
-        return Double.valueOf(DoubleExtensions.operator_plus(wins, _duelosGanados));
+  private Integer totPeso(final Collection<Denuncia> denuncias) {
+    final Function2<Integer, Denuncia, Integer> _function = new Function2<Integer, Denuncia, Integer>() {
+      public Integer apply(final Integer peso, final Denuncia den) {
+        Integer _peso = den.getPeso();
+        return Integer.valueOf(((peso).intValue() + (_peso).intValue()));
       }
     };
-    Double avg = IterableExtensions.<EstadisticasPj, Double>fold(est, Double.valueOf(0D), _function);
-    int _size = this.denuncias.size();
-    return Double.valueOf(((avg).doubleValue() / _size));
+    return IterableExtensions.<Denuncia, Integer>fold(denuncias, Integer.valueOf(0), _function);
   }
   
-  public Double cantPeleasGanadas(final Collection<EstadisticasPj> est) {
-    final Function2<Double, EstadisticasPj, Double> _function = new Function2<Double, EstadisticasPj, Double>() {
-      public Double apply(final Double wins, final EstadisticasPj pj) {
+  public Integer cantPeleasGanadas(final Collection<EstadisticasPj> est) {
+    final Function2<Integer, EstadisticasPj, Integer> _function = new Function2<Integer, EstadisticasPj, Integer>() {
+      public Integer apply(final Integer wins, final EstadisticasPj pj) {
         Integer _duelosGanados = pj.getDuelosGanados();
-        return Double.valueOf(DoubleExtensions.operator_plus(wins, _duelosGanados));
+        return Integer.valueOf(((wins).intValue() + (_duelosGanados).intValue()));
       }
     };
-    return IterableExtensions.<EstadisticasPj, Double>fold(est, Double.valueOf(0D), _function);
+    return IterableExtensions.<EstadisticasPj, Integer>fold(est, Integer.valueOf(0), _function);
   }
   
   public boolean addDenuncia(final Denuncia d) {
     return this.denuncias.add(d);
-  }
-  
-  public Integer escalon() {
-    Double i = this.ranking();
-    int j = 1;
-    while (((i).doubleValue() > 0)) {
-      {
-        i = Double.valueOf(((i).doubleValue() - 500));
-        j++;
-      }
-    }
-    return Integer.valueOf(j);
   }
   
   public String toString() {
@@ -87,14 +64,64 @@ public class Jugador {
     String _string = Integer.valueOf(_size).toString();
     String _plus = ((("Jugador: " + this.nombre) + " Denuncias: ") + _string);
     String _plus_1 = (_plus + " ranking: ");
-    Double _ranking = this.ranking();
-    String _string_1 = _ranking.toString();
-    String _plus_2 = (_plus_1 + _string_1);
-    String _plus_3 = (_plus_2 + "=> escalon: ");
-    Integer _escalon = this.escalon();
-    String _string_2 = _escalon.toString();
-    return (_plus_3 + _string_2);
+    int _ranking = this.ranking();
+    String _string_1 = Integer.valueOf(_ranking).toString();
+    return (_plus_1 + _string_1);
   }
+  
+  public Integer ganeYSoyRival(final Personaje p, final String pos, final Integer califi) {
+    EstadisticasPj _apply = this.buscarEst.apply(p);
+    return _apply.ganoComoRival(pos, califi);
+  }
+  
+  public Integer perdiYSoyRival(final Personaje p, final String pos, final Integer califi) {
+    EstadisticasPj _apply = this.buscarEst.apply(p);
+    return _apply.perdioComoRival(pos, califi);
+  }
+  
+  public Integer ganeYSoyRetador(final Personaje p, final String pos, final Integer califi) {
+    EstadisticasPj _apply = this.buscarEst.apply(p);
+    return _apply.ganoComoRetador(pos, califi);
+  }
+  
+  public Integer perdiYSoyRetador(final Personaje p, final String pos, final Integer califi) {
+    EstadisticasPj _apply = this.buscarEst.apply(p);
+    return _apply.perdioComoRetador(pos, califi);
+  }
+  
+  public Integer empate(final Personaje p, final String pos, final Integer califi) {
+    EstadisticasPj _apply = this.buscarEst.apply(p);
+    return _apply.empato();
+  }
+  
+  private final Function1<Personaje, EstadisticasPj> buscarEst = new Function1<Personaje, EstadisticasPj>() {
+    public EstadisticasPj apply(final Personaje p) {
+      final Function1<EstadisticasPj, Boolean> _function = new Function1<EstadisticasPj, Boolean>() {
+        public Boolean apply(final EstadisticasPj estadistica) {
+          String _nombre = estadistica.getNombre();
+          String _nombre_1 = p.getNombre();
+          return Boolean.valueOf(_nombre.equals(_nombre_1));
+        }
+      };
+      EstadisticasPj estad = IterableExtensions.<EstadisticasPj>findFirst(Jugador.this.est, _function);
+      final Function1<EstadisticasPj, Boolean> _function_1 = new Function1<EstadisticasPj, Boolean>() {
+        public Boolean apply(final EstadisticasPj estadistica) {
+          String _nombre = estadistica.getNombre();
+          String _nombre_1 = p.getNombre();
+          return Boolean.valueOf(_nombre.equals(_nombre_1));
+        }
+      };
+      EstadisticasPj _findFirst = IterableExtensions.<EstadisticasPj>findFirst(Jugador.this.est, _function_1);
+      boolean _equals = Objects.equal(_findFirst, null);
+      if (_equals) {
+        String _nombre = p.getNombre();
+        EstadisticasPj _estadisticasPj = new EstadisticasPj(_nombre);
+        estad = _estadisticasPj;
+        Jugador.this.est.add(estad);
+      }
+      return estad;
+    }
+  };
   
   @Pure
   public String getNombre() {
@@ -121,5 +148,10 @@ public class Jugador {
   
   public void setDenuncias(final Collection<Denuncia> denuncias) {
     this.denuncias = denuncias;
+  }
+  
+  @Pure
+  public Function1<Personaje, EstadisticasPj> getBuscarEst() {
+    return this.buscarEst;
   }
 }

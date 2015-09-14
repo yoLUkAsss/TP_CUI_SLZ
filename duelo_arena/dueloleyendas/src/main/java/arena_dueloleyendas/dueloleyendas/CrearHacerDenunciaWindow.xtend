@@ -1,7 +1,7 @@
 package arena_dueloleyendas.dueloleyendas
 
 import org.uqbar.arena.windows.SimpleWindow
-import jugador.DenunciaFacade
+import appModel.DenunciaFacade
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.layout.VerticalLayout
@@ -11,7 +11,7 @@ import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.bindings.PropertyAdapter
-import jugador.Denuncia
+import denuncias.Denuncia
 
 class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 	

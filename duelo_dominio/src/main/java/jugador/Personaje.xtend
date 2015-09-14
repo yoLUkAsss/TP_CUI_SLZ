@@ -15,7 +15,7 @@ class Personaje {
 	new(String nombre) {
 		this.nombre=nombre
 	}
-	
+	 
 	
 	
 }

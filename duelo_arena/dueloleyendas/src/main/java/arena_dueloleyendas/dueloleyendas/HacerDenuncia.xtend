@@ -2,7 +2,7 @@ package arena_dueloleyendas.dueloleyendas
 
 
 import org.uqbar.arena.Application;
-import jugador.DenunciaFacade
+import appModel.DenunciaFacade
 
 class HacerDenuncia extends Application{
 	

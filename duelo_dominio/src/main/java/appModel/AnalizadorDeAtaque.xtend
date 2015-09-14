@@ -31,7 +31,7 @@ class AnalizadorDeAtaque {
 		var estadisticas = jugador.est
 		estadisticas.fold(0 ,[cant , estad | cant+ posicionesUsadas(estad,posicion)])
 	}
-	
+	 
 	//Retorna dada una EstadisticaPj, cuantas veces lo utilizo en la posicion indicada
 	def posicionesUsadas(EstadisticasPj pj, String posicion) {
 		(pj.posicionesUsadas.filter[name | name.equals(posicion)]).size
