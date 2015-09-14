@@ -8,7 +8,7 @@ import denuncias.*
 @Observable
 @Accessors
 class DenunciaFacade {
-	
+	 
 	Jugador from
 	Jugador to
 	Denuncia denuncia

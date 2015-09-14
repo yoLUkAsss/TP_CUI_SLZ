@@ -1,8 +1,12 @@
-package jugador
+package appModel
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Random
 import java.util.List
+import jugador.Jugador
+import jugador.Personaje
+import jugador.MRX
+import excepciones.NoHayRivalException
 
 @Accessors
 
@@ -79,7 +83,7 @@ class Duelo {
 		
 	}
 	
-	def puedeJugar(Double calificacion) {
+	def puedeJugar(Integer calificacion) {
 		
 		calificacion >= retador.ranking()-100 && calificacion <= retador.ranking()+100 
 	}
@@ -156,6 +160,9 @@ class Duelo {
 	
 	def agregarPersonaje(Personaje personaje){
 		personajes.add(personaje)
+	}
+	
+	def determinarPosicionRival() {
 	}
 	
 	}
