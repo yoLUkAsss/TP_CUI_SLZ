@@ -18,7 +18,7 @@ class Duelo {
 	Personaje personajeRetador
 	Personaje personajeRival
 	//tengo las posiciones en el juego 
-	 val col =#["TOP","BOTTON / BOT","MIDDLE / MID","JUNGLE"]
+	 val col =#["TOP","BOTTON","MIDDLE","JUNGLE"]
 	
 	//posiciones	
 	String  posicionRetador
@@ -53,35 +53,36 @@ class Duelo {
 	//elecciones del rival
 	
 	def determinarRival(){
-		if (hayJugadores(rivales())) {
-			rival=rivales().get(0)
+		jugadores.remove(rival)
+		val Jugador res= jugadores.findFirst[jugador|puedeJugar(jugador.ranking())]
+		if (res==null) {
+			throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
 			
 		}
 		else{
-			 throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
+			 rival= res
+			 determinarPersonajeRival()
+			 determinarPosicionRival()
 		}
 	
 		
 	}
 	
-	def hayJugadores(List<Jugador> jugadors) {
-	    !jugadors.empty
-	}
 
 
 	def determinarPersonajeRival(){
 		personajes.remove(personajeRetador)
-		personajeRival= personajes.get(0)
+		personajeRival= personajes.get(new Random().nextInt(personajes.size-1))
 	}
 	 
-	
-	def rivales(){
+	 
+	def determinarPosicionRival() {
 		
-		val rivales= (jugadores.filter[jugador|puedeJugar(jugador.ranking())]) as List<Jugador>
-		rivales
-		
+		posicionRival= col.get(new Random().nextInt(col.size-1))
 		
 	}
+	
+	
 	
 	def puedeJugar(Integer calificacion) {
 		
@@ -91,6 +92,8 @@ class Duelo {
 	def jugarContraMRX(){
 		
 		rival= new MRX("MR-X") 
+		determinarPersonajeRival()
+		determinarPosicionRival()
          
 	}
 	
@@ -115,7 +118,7 @@ class Duelo {
 				retador.empate(personajeRetador,posicionRetador,resultadoRetador)
 				rival.empate(personajeRival,posicionRival,resultadoRival)
 				
-				empate= retador.nombre + " " + rival.nombre
+				empate= "Empataste con " + rival.nombre
 			}
 			else{
 				
@@ -128,33 +131,22 @@ class Duelo {
 		
 	}
 
-	 def  Integer resultados(Jugador jugador,Personaje per,String pos){
+	 def  resultados(Jugador jugador,Personaje per,String pos){
 		
 		analizador.poderDeAtaque(jugador,per,pos)*factorDeSuerte()
 		
 	}
 	
 	
-	 def Integer factorDeSuerte(){
+	 def  factorDeSuerte(){
 	 	
 	 	   new Random().nextInt(1)
 	 }
 	
-	def elegirElementoAlAzar(List<Object>lista){
-		
-		 new Random().nextInt(lista.size()-1)
-	}
 	
 	
 	
-	
-	def getRetador(){
-		
-		retador
-	} 
-	
-	
-	def agregarJugador(Jugador jugador){
+	def agregarJugador(Jugador jugador){ 
 		jugadores.add(jugador)
 	}
 	
@@ -162,7 +154,6 @@ class Duelo {
 		personajes.add(personaje)
 	}
 	
-	def determinarPosicionRival() {
-	}
+	
 	
 	}

@@ -124,16 +124,8 @@ class DueloTest {
  		assertEquals(j1,duelo.rival)
  	}
 
- 	@Test()
- 	def void testHayRivales(){
- 		assertTrue(duelo.hayJugadores(duelo.rivales()))
- 	}
  	
- 	
- 	
- 	
- 	
- 	
+     
 
  	@Test
  	def void testDatosRival(){
