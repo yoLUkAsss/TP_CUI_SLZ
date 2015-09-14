@@ -48,7 +48,7 @@ class DueloTest {
 		d3= new DFeedIntencional("denuncia3")
 		d4= new DAbusoDeLenguaje("denuncia4")
 		
-		
+		 
 		duelo= new Duelo(retador)
 		//jugadores
 		duelo.jugadores.add(retador)
