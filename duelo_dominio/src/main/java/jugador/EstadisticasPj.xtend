@@ -67,4 +67,8 @@ class EstadisticasPj {
 	def empato() {
 		duelosEmpatados++
 	}
+	
+	override toString () {
+		
+	}
 }

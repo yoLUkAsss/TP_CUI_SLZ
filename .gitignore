@@ -1,9 +1,9 @@
 target
 .project
 *.classpath
-/src/main/generated-sources/*
-/src/test/generated-sources/*
+/src/main/generated-sources/xtend/
+/src/test/generated-sources/xtend/
 .settings
 xtend-gen
 xtend-gen/**
-
+**.xtendbin
