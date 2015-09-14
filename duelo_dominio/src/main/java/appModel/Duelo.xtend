@@ -2,11 +2,11 @@ package appModel
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Random
-import java.util.List
 import jugador.Jugador
 import jugador.Personaje
 import jugador.MRX
 import excepciones.NoHayRivalException
+import java.util.ArrayList
 
 @Accessors
 
@@ -24,8 +24,8 @@ class Duelo {
 	String  posicionRetador
 	String  posicionRival
 	//otros
-	List<Jugador>jugadores
-	List<Personaje>personajes 
+	ArrayList<Jugador>jugadores
+	ArrayList<Personaje>personajes 
 	AnalizadorDeAtaque analizador
 	
 	String ganador
@@ -53,7 +53,7 @@ class Duelo {
 	//elecciones del rival
 	
 	def determinarRival(){
-		jugadores.remove(rival)
+		jugadores.remove(retador)
 		val Jugador res= jugadores.findFirst[jugador|puedeJugar(jugador.ranking())]
 		if (res==null) {
 			throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")

@@ -25,7 +25,9 @@ class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 		new Button(mainPanel) => [
 			caption = "Aceptar"
 			setAsDefault
-			onClick [ | modelObject.hacerDenuncia() ]
+			onClick [ | modelObject.hacerDenuncia()
+						new ()
+			]
 	
 			
 			//bindEnabledToProperty("puedeJugar")
