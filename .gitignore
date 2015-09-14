@@ -6,4 +6,4 @@ target
 .settings
 xtend-gen
 xtend-gen/**
-**.xtendbin
+*.xtendbin

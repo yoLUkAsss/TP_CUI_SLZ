@@ -12,6 +12,7 @@ class Jugador {
 	Collection<Denuncia> denuncias
 	
 	new(String nombre){
+		this.nombre = nombre
 		denuncias = newArrayList
 		est = newArrayList
 	}

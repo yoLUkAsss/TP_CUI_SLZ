@@ -23,12 +23,12 @@ class JugadorTest {
 	 @Before 
 	 def void init(){
 	 	
-	 	personaje= new Personaje("personaje")
+	 	personaje= new Personaje("personaje","mid")
 	 	denuncia1= new DAbusoDeHabilidad("denunci1")
 	 	denuncia2= new DFeedIntencional("dencia2")
 	 	denuncia3= new DAbusoDeLenguaje("denunci3")
-	    personaje1=new Personaje("personaje3")
-	 	personaje= new Personaje("personaje1")
+	    personaje1=new Personaje("personaje3","top")
+	 	personaje= new Personaje("personaje1","top")
 	 	jugador= new Jugador("pepita")
 	 	
 	 } 

@@ -39,9 +39,9 @@ class DueloTest {
 	    j1= new Jugador("jose")
 		j2= new Jugador("pepita")
 		j3= new Jugador("pepito")
-		p1= new Personaje("personaje1")
-		p2= new Personaje("personaje2")
-		p3= new Personaje("personaje3")
+		p1= new Personaje("personaje1","top")
+		p2= new Personaje("personaje2","jg")
+		p3= new Personaje("personaje3","mid")
 		
 		d1= new DAbusoDeHabilidad("denuncia1") 
 		d2= new DAbusoDelSisDeDenuncias("denuncia2")

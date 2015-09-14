@@ -12,8 +12,9 @@ class Personaje {
 	//debilidad
 	String posIdeal
 	
-	new(String nombre) {
+	new(String nombre,String pos) {
 		this.nombre=nombre
+		this.posIdeal = pos
 	}
 	 
 	

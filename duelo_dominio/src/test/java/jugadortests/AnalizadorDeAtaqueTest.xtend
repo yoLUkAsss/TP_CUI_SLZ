@@ -40,9 +40,9 @@ class AnalizadorDeAtaqueTest {
 	 	j2= new Jugador("pepita")
 	    j3= new Jugador("jose")
 	    
-	 	p1= new Personaje("personaje1")
-	 	p2=new Personaje ("personaje2")
-	 	p3= new Personaje("Personaje3")
+	 	p1= new Personaje("personaje1","top")
+	 	p2=new Personaje ("personaje2","mid")
+	 	p3= new Personaje("Personaje3","jg")
 	 	analizador= new AnalizadorDeAtaque()
 	 	
 	 	j1.addDenuncia(d1)
