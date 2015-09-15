@@ -7,8 +7,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Personaje { 
 	
-	String nombre
-	//especialidad
+	String nombre  
+	//especialidad 
 	//debilidad
 	String posIdeal
 	

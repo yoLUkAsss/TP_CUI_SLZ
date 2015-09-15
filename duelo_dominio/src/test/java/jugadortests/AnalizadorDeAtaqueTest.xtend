@@ -39,10 +39,10 @@ class AnalizadorDeAtaqueTest {
 	 	j1= new Jugador("pepe")
 	 	j2= new Jugador("pepita")
 	    j3= new Jugador("jose")
-	    
-	 	p1= new Personaje("personaje1","top")
-	 	p2=new Personaje ("personaje2","mid")
-	 	p3= new Personaje("Personaje3","jg")
+	     
+	 	p1= new Personaje("personaje1","TOP")
+	 	p2=new Personaje ("personaje2","JUNGLE")
+	 	p3= new Personaje("Personaje3","JUNGLE")
 	 	analizador= new AnalizadorDeAtaque()
 	 	
 	 	j1.addDenuncia(d1)
@@ -77,9 +77,6 @@ class AnalizadorDeAtaqueTest {
 		assertEquals(60,analizador.poderDeAtaque(j1,p2,"TOP"))
 	}
 	
-	@Test
-	def void testPoderDeAtaqueJugador2(){
-		
-	}
+	
 	
 }
