@@ -5,7 +5,7 @@ import denuncias.DAbusoDeHabilidad;
 import denuncias.DAbusoDeLenguaje;
 import denuncias.DAbusoDelSisDeDenuncias;
 import denuncias.DFeedIntencional;
-import java.util.List;
+import java.util.ArrayList;
 import jugador.Jugador;
 import jugador.Personaje;
 import org.junit.Assert;
@@ -48,11 +48,11 @@ public class DueloTest {
     this.j2 = _jugador_2;
     Jugador _jugador_3 = new Jugador("pepito");
     this.j3 = _jugador_3;
-    Personaje _personaje = new Personaje("personaje1");
+    Personaje _personaje = new Personaje("personaje1", "TOP");
     this.p1 = _personaje;
-    Personaje _personaje_1 = new Personaje("personaje2");
+    Personaje _personaje_1 = new Personaje("personaje2", "JUNGLE");
     this.p2 = _personaje_1;
-    Personaje _personaje_2 = new Personaje("personaje3");
+    Personaje _personaje_2 = new Personaje("personaje3", "TOP");
     this.p3 = _personaje_2;
     DAbusoDeHabilidad _dAbusoDeHabilidad = new DAbusoDeHabilidad("denuncia1");
     this.d1 = _dAbusoDeHabilidad;
@@ -64,19 +64,19 @@ public class DueloTest {
     this.d4 = _dAbusoDeLenguaje;
     Duelo _duelo = new Duelo(this.retador);
     this.duelo = _duelo;
-    List<Jugador> _jugadores = this.duelo.getJugadores();
+    ArrayList<Jugador> _jugadores = this.duelo.getJugadores();
     _jugadores.add(this.retador);
-    List<Jugador> _jugadores_1 = this.duelo.getJugadores();
+    ArrayList<Jugador> _jugadores_1 = this.duelo.getJugadores();
     _jugadores_1.add(this.j1);
-    List<Jugador> _jugadores_2 = this.duelo.getJugadores();
+    ArrayList<Jugador> _jugadores_2 = this.duelo.getJugadores();
     _jugadores_2.add(this.j2);
-    List<Jugador> _jugadores_3 = this.duelo.getJugadores();
+    ArrayList<Jugador> _jugadores_3 = this.duelo.getJugadores();
     _jugadores_3.add(this.j3);
-    List<Personaje> _personajes = this.duelo.getPersonajes();
+    ArrayList<Personaje> _personajes = this.duelo.getPersonajes();
     _personajes.add(this.p1);
-    List<Personaje> _personajes_1 = this.duelo.getPersonajes();
+    ArrayList<Personaje> _personajes_1 = this.duelo.getPersonajes();
     _personajes_1.add(this.p2);
-    List<Personaje> _personajes_2 = this.duelo.getPersonajes();
+    ArrayList<Personaje> _personajes_2 = this.duelo.getPersonajes();
     _personajes_2.add(this.p3);
     this.retador.addDenuncia(this.d1);
     this.retador.addDenuncia(this.d2);
@@ -111,24 +111,10 @@ public class DueloTest {
   }
   
   @Test
-  public void testCantidadJugadores() {
-    List<Jugador> _jugadores = this.duelo.getJugadores();
-    int _size = _jugadores.size();
-    Assert.assertEquals(4, _size);
-  }
-  
-  @Test
-  public void testProximoRivalJugador1() {
+  public void testProximoRival() {
     this.duelo.determinarRival();
     Jugador _rival = this.duelo.getRival();
     Assert.assertEquals(this.j1, _rival);
-  }
-  
-  @Test
-  public void testHayRivales() {
-    List<Jugador> _rivales = this.duelo.rivales();
-    boolean _hayJugadores = this.duelo.hayJugadores(_rivales);
-    Assert.assertTrue(_hayJugadores);
   }
   
   @Test
@@ -136,11 +122,7 @@ public class DueloTest {
     this.duelo.determinarRival();
     this.duelo.determinarPersonajeRival();
     this.duelo.determinarPosicionRival();
-    Jugador _determinarRival = this.duelo.determinarRival();
-    Assert.assertEquals(this.j1, _determinarRival);
-    Personaje _personajeRival = this.duelo.getPersonajeRival();
-    Assert.assertEquals(this.p1, _personajeRival);
-    String _posicionRival = this.duelo.getPosicionRival();
-    Assert.assertEquals("TOP", _posicionRival);
+    Jugador _rival = this.duelo.getRival();
+    Assert.assertEquals(this.j1, _rival);
   }
 }

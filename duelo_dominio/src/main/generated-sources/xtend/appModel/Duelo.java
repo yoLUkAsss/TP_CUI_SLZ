@@ -28,21 +28,21 @@ public class Duelo {
   
   private Personaje personajeRival;
   
-  private final List<String> col = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("TOP", "BOTTON / BOT", "MIDDLE / MID", "JUNGLE"));
+  private final List<String> col = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("TOP", "BOTTON", "MIDDLE", "JUNGLE"));
   
   private String posicionRetador;
   
   private String posicionRival;
   
-  private List<Jugador> jugadores;
+  private ArrayList<Jugador> jugadores;
   
-  private List<Personaje> personajes;
+  private ArrayList<Personaje> personajes;
   
   private AnalizadorDeAtaque analizador;
   
-  private String ganador;
+  private Jugador ganador;
   
-  private String perdedor;
+  private Jugador perdedor;
   
   private String empate;
   
@@ -64,53 +64,60 @@ public class Duelo {
     return this.posicionRetador = posicion;
   }
   
-  public Jugador determinarRival() {
+  public String determinarRival() {
     try {
-      Jugador _xifexpression = null;
-      List<Jugador> _rivales = this.rivales();
-      boolean _hayJugadores = this.hayJugadores(_rivales);
-      if (_hayJugadores) {
-        List<Jugador> _rivales_1 = this.rivales();
-        Jugador _get = _rivales_1.get(0);
-        _xifexpression = this.rival = _get;
-      } else {
-        throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING");
+      String _xblockexpression = null;
+      {
+        this.jugadores.remove(this.retador);
+        final Function1<Jugador, Boolean> _function = new Function1<Jugador, Boolean>() {
+          public Boolean apply(final Jugador jugador) {
+            int _ranking = jugador.ranking();
+            return Boolean.valueOf(Duelo.this.puedeJugar(Integer.valueOf(_ranking)));
+          }
+        };
+        final Jugador res = IterableExtensions.<Jugador>findFirst(this.jugadores, _function);
+        String _xifexpression = null;
+        boolean _equals = Objects.equal(res, null);
+        if (_equals) {
+          throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING");
+        } else {
+          String _xblockexpression_1 = null;
+          {
+            this.rival = res;
+            this.determinarPersonajeRival();
+            _xblockexpression_1 = this.determinarPosicionRival();
+          }
+          _xifexpression = _xblockexpression_1;
+        }
+        _xblockexpression = _xifexpression;
       }
-      return _xifexpression;
+      return _xblockexpression;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
-  }
-  
-  public boolean hayJugadores(final List<Jugador> jugadors) {
-    boolean _isEmpty = jugadors.isEmpty();
-    return (!_isEmpty);
   }
   
   public Personaje determinarPersonajeRival() {
     Personaje _xblockexpression = null;
     {
       this.personajes.remove(this.personajeRetador);
-      Personaje _get = this.personajes.get(0);
+      Random _random = new Random();
+      int _size = this.personajes.size();
+      int _minus = (_size - 1);
+      int _nextInt = _random.nextInt(_minus);
+      Personaje _get = this.personajes.get(_nextInt);
       _xblockexpression = this.personajeRival = _get;
     }
     return _xblockexpression;
   }
   
-  public List<Jugador> rivales() {
-    List<Jugador> _xblockexpression = null;
-    {
-      final Function1<Jugador, Boolean> _function = new Function1<Jugador, Boolean>() {
-        public Boolean apply(final Jugador jugador) {
-          int _ranking = jugador.ranking();
-          return Boolean.valueOf(Duelo.this.puedeJugar(Integer.valueOf(_ranking)));
-        }
-      };
-      Iterable<Jugador> _filter = IterableExtensions.<Jugador>filter(this.jugadores, _function);
-      final List<Jugador> rivales = ((List<Jugador>) _filter);
-      _xblockexpression = rivales;
-    }
-    return _xblockexpression;
+  public String determinarPosicionRival() {
+    Random _random = new Random();
+    int _size = this.col.size();
+    int _minus = (_size - 1);
+    int _nextInt = _random.nextInt(_minus);
+    String _get = this.col.get(_nextInt);
+    return this.posicionRival = _get;
   }
   
   public boolean puedeJugar(final Integer calificacion) {
@@ -129,53 +136,51 @@ public class Duelo {
     return _and;
   }
   
-  public Jugador jugarContraMRX() {
-    MRX _mRX = new MRX("MR-X");
-    return this.rival = _mRX;
-  }
-  
-  public String realizarDuelo() {
+  public String jugarContraMRX() {
     String _xblockexpression = null;
     {
-      final Integer resultadoRetador = this.resultados(this.retador, this.personajeRetador, this.posicionRetador);
-      final Integer resultadoRival = this.resultados(this.rival, this.personajeRival, this.posicionRival);
-      String _xifexpression = null;
-      boolean _greaterThan = (resultadoRetador.compareTo(resultadoRival) > 0);
-      if (_greaterThan) {
-        String _xblockexpression_1 = null;
+      MRX _mRX = new MRX("MR-X");
+      this.rival = _mRX;
+      this.determinarPersonajeRival();
+      _xblockexpression = this.determinarPosicionRival();
+    }
+    return _xblockexpression;
+  }
+  
+  public Object realizarDuelo() {
+    Object _xblockexpression = null;
+    {
+      final int resultadoRetador = this.resultados(this.retador, this.personajeRetador, this.posicionRetador);
+      final int resultadoRival = this.resultados(this.rival, this.personajeRival, this.posicionRival);
+      Object _xifexpression = null;
+      if ((resultadoRetador > resultadoRival)) {
+        Jugador _xblockexpression_1 = null;
         {
-          this.retador.ganeYSoyRetador(this.personajeRetador, this.posicionRetador, resultadoRetador);
-          this.rival.perdiYSoyRival(this.personajeRival, this.posicionRival, resultadoRival);
-          String _nombre = this.retador.getNombre();
-          this.ganador = _nombre;
-          String _nombre_1 = this.rival.getNombre();
-          _xblockexpression_1 = this.perdedor = _nombre_1;
+          this.retador.ganeYSoyRetador(this.personajeRetador, this.posicionRetador, Integer.valueOf(resultadoRetador));
+          this.rival.perdiYSoyRival(this.personajeRival, this.posicionRival, Integer.valueOf(resultadoRival));
+          this.ganador = this.retador;
+          _xblockexpression_1 = this.perdedor = this.rival;
         }
         _xifexpression = _xblockexpression_1;
       } else {
-        String _xifexpression_1 = null;
-        boolean _equals = Objects.equal(resultadoRetador, resultadoRival);
-        if (_equals) {
+        Object _xifexpression_1 = null;
+        if ((resultadoRetador == resultadoRival)) {
           String _xblockexpression_2 = null;
           {
-            this.retador.empate(this.personajeRetador, this.posicionRetador, resultadoRetador);
-            this.rival.empate(this.personajeRival, this.posicionRival, resultadoRival);
-            String _nombre = this.retador.getNombre();
-            String _plus = (_nombre + " ");
-            String _nombre_1 = this.rival.getNombre();
-            String _plus_1 = (_plus + _nombre_1);
-            _xblockexpression_2 = this.empate = _plus_1;
+            this.retador.empate(this.personajeRetador, this.posicionRetador, Integer.valueOf(resultadoRetador));
+            this.rival.empate(this.personajeRival, this.posicionRival, Integer.valueOf(resultadoRival));
+            String _nombre = this.rival.getNombre();
+            String _plus = ("Empataste con " + _nombre);
+            _xblockexpression_2 = this.empate = _plus;
           }
           _xifexpression_1 = _xblockexpression_2;
         } else {
-          String _xblockexpression_3 = null;
+          Jugador _xblockexpression_3 = null;
           {
-            this.rival.ganeYSoyRival(this.personajeRival, this.posicionRival, resultadoRival);
-            this.retador.ganeYSoyRetador(this.personajeRetador, this.posicionRetador, resultadoRetador);
-            String _nombre = this.rival.getNombre();
-            this.ganador = _nombre;
-            String _nombre_1 = this.retador.getNombre();
-            _xblockexpression_3 = this.perdedor = _nombre_1;
+            this.rival.ganeYSoyRival(this.personajeRival, this.posicionRival, Integer.valueOf(resultadoRival));
+            this.retador.perdiYSoyRetador(this.personajeRetador, this.posicionRetador, Integer.valueOf(resultadoRetador));
+            this.ganador = this.rival;
+            _xblockexpression_3 = this.perdedor = this.retador;
           }
           _xifexpression_1 = _xblockexpression_3;
         }
@@ -186,26 +191,15 @@ public class Duelo {
     return _xblockexpression;
   }
   
-  public Integer resultados(final Jugador jugador, final Personaje per, final String pos) {
+  public int resultados(final Jugador jugador, final Personaje per, final String pos) {
     int _poderDeAtaque = this.analizador.poderDeAtaque(jugador, per, pos);
-    Integer _factorDeSuerte = this.factorDeSuerte();
-    return Integer.valueOf((_poderDeAtaque * (_factorDeSuerte).intValue()));
+    int _factorDeSuerte = this.factorDeSuerte();
+    return (_poderDeAtaque * _factorDeSuerte);
   }
   
-  public Integer factorDeSuerte() {
+  public int factorDeSuerte() {
     Random _random = new Random();
-    return Integer.valueOf(_random.nextInt(1));
-  }
-  
-  public int elegirElementoAlAzar(final List<Object> lista) {
-    Random _random = new Random();
-    int _size = lista.size();
-    int _minus = (_size - 1);
-    return _random.nextInt(_minus);
-  }
-  
-  public Jugador getRetador() {
-    return this.retador;
+    return _random.nextInt(1);
   }
   
   public boolean agregarJugador(final Jugador jugador) {
@@ -216,8 +210,9 @@ public class Duelo {
     return this.personajes.add(personaje);
   }
   
-  public Object determinarPosicionRival() {
-    return null;
+  @Pure
+  public Jugador getRetador() {
+    return this.retador;
   }
   
   public void setRetador(final Jugador retador) {
@@ -275,20 +270,20 @@ public class Duelo {
   }
   
   @Pure
-  public List<Jugador> getJugadores() {
+  public ArrayList<Jugador> getJugadores() {
     return this.jugadores;
   }
   
-  public void setJugadores(final List<Jugador> jugadores) {
+  public void setJugadores(final ArrayList<Jugador> jugadores) {
     this.jugadores = jugadores;
   }
   
   @Pure
-  public List<Personaje> getPersonajes() {
+  public ArrayList<Personaje> getPersonajes() {
     return this.personajes;
   }
   
-  public void setPersonajes(final List<Personaje> personajes) {
+  public void setPersonajes(final ArrayList<Personaje> personajes) {
     this.personajes = personajes;
   }
   
@@ -302,20 +297,20 @@ public class Duelo {
   }
   
   @Pure
-  public String getGanador() {
+  public Jugador getGanador() {
     return this.ganador;
   }
   
-  public void setGanador(final String ganador) {
+  public void setGanador(final Jugador ganador) {
     this.ganador = ganador;
   }
   
   @Pure
-  public String getPerdedor() {
+  public Jugador getPerdedor() {
     return this.perdedor;
   }
   
-  public void setPerdedor(final String perdedor) {
+  public void setPerdedor(final Jugador perdedor) {
     this.perdedor = perdedor;
   }
   

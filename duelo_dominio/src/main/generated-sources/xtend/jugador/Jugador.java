@@ -23,6 +23,7 @@ public class Jugador {
   private Collection<Denuncia> denuncias;
   
   public Jugador(final String nombre) {
+    this.nombre = nombre;
     ArrayList<Denuncia> _newArrayList = CollectionLiterals.<Denuncia>newArrayList();
     this.denuncias = _newArrayList;
     ArrayList<EstadisticasPj> _newArrayList_1 = CollectionLiterals.<EstadisticasPj>newArrayList();
@@ -57,16 +58,6 @@ public class Jugador {
   
   public boolean addDenuncia(final Denuncia d) {
     return this.denuncias.add(d);
-  }
-  
-  public String toString() {
-    int _size = this.denuncias.size();
-    String _string = Integer.valueOf(_size).toString();
-    String _plus = ((("Jugador: " + this.nombre) + " Denuncias: ") + _string);
-    String _plus_1 = (_plus + " ranking: ");
-    int _ranking = this.ranking();
-    String _string_1 = Integer.valueOf(_ranking).toString();
-    return (_plus_1 + _string_1);
   }
   
   public Integer ganeYSoyRival(final Personaje p, final String pos, final Integer califi) {

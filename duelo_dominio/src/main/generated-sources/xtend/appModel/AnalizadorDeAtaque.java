@@ -13,7 +13,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class AnalizadorDeAtaque {
-  public int poderDeAtaque(final Jugador jugador, final Personaje personaje, final String posicion) {
+  public int valorDeClasificacion(final Jugador jugador, final Personaje personaje, final String posicion) {
     Random _random = new Random();
     int rand = _random.nextInt(100);
     boolean _and = false;
@@ -108,5 +108,42 @@ public class AnalizadorDeAtaque {
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_posicionesUsadas, _function_1);
     return IterableExtensions.size(_filter);
+  }
+  
+  public int poderDeAtaque(final Jugador jugador, final Personaje personaje, final String string) {
+    int _valorDeClasificacion = this.valorDeClasificacion(jugador, personaje, string);
+    int _estadisticasDelPersonaje = this.estadisticasDelPersonaje(jugador, personaje);
+    return (_valorDeClasificacion + _estadisticasDelPersonaje);
+  }
+  
+  public int estadisticasDelPersonaje(final Jugador jugador, final Personaje personaje) {
+    int _xblockexpression = (int) 0;
+    {
+      Collection<EstadisticasPj> _est = jugador.getEst();
+      final Function1<EstadisticasPj, Boolean> _function = new Function1<EstadisticasPj, Boolean>() {
+        public Boolean apply(final EstadisticasPj esta) {
+          String _nombre = esta.getNombre();
+          String _nombre_1 = personaje.getNombre();
+          return Boolean.valueOf(_nombre.equals(_nombre_1));
+        }
+      };
+      EstadisticasPj estadistica = IterableExtensions.<EstadisticasPj>findFirst(_est, _function);
+      int _xifexpression = (int) 0;
+      boolean _equals = Objects.equal(estadistica, null);
+      if (_equals) {
+        _xifexpression = 0;
+      } else {
+        Integer _duelosGanadosNoIniciados = estadistica.getDuelosGanadosNoIniciados();
+        Integer _duelosEmpatados = estadistica.getDuelosEmpatados();
+        int _plus = ((_duelosGanadosNoIniciados).intValue() + (_duelosEmpatados).intValue());
+        int _divide = (_plus / 2);
+        Integer _derrotasNoIniciadas = estadistica.getDerrotasNoIniciadas();
+        int _minus = (_divide - (_derrotasNoIniciadas).intValue());
+        Integer _duelosIniciados = estadistica.getDuelosIniciados();
+        _xifexpression = (_minus * (_duelosIniciados).intValue());
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
   }
 }

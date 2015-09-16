@@ -29,8 +29,8 @@ class Duelo {
 	ArrayList<Personaje>personajes 
 	AnalizadorDeAtaque analizador
 	
-	String ganador
-	String perdedor 
+	Jugador ganador
+	Jugador perdedor 
 	String empate
 	
 	new(Jugador jugador){
@@ -109,8 +109,8 @@ class Duelo {
 			retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
 			rival.perdiYSoyRival(personajeRival,posicionRival,resultadoRival)
 			
-			ganador= retador.nombre
-			perdedor= rival.nombre
+			ganador= retador
+			perdedor= rival
 		}
 		else
 		{
@@ -125,8 +125,8 @@ class Duelo {
 				
 				rival.ganeYSoyRival(personajeRival,posicionRival,resultadoRival)
 			    retador.perdiYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
-			    ganador= rival.nombre
-			    perdedor=retador.nombre 
+			    ganador= rival
+			    perdedor=retador
 			}
 		}
 		

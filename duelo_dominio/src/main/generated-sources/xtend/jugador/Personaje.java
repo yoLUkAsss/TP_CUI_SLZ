@@ -8,10 +8,15 @@ import org.eclipse.xtext.xbase.lib.Pure;
 public class Personaje {
   private String nombre;
   
+  private String especialidad;
+  
+  private String debilidad;
+  
   private String posIdeal;
   
-  public Personaje(final String nombre) {
+  public Personaje(final String nombre, final String pos) {
     this.nombre = nombre;
+    this.posIdeal = pos;
   }
   
   @Pure
@@ -21,6 +26,24 @@ public class Personaje {
   
   public void setNombre(final String nombre) {
     this.nombre = nombre;
+  }
+  
+  @Pure
+  public String getEspecialidad() {
+    return this.especialidad;
+  }
+  
+  public void setEspecialidad(final String especialidad) {
+    this.especialidad = especialidad;
+  }
+  
+  @Pure
+  public String getDebilidad() {
+    return this.debilidad;
+  }
+  
+  public void setDebilidad(final String debilidad) {
+    this.debilidad = debilidad;
   }
   
   @Pure

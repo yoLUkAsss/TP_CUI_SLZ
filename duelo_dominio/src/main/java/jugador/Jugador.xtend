@@ -36,10 +36,7 @@ class Jugador {
 	
 	
 	
-	override toString(){
-		return "Jugador: " + nombre + " Denuncias: "
-		+ denuncias.size.toString() + " ranking: " + ranking().toString()
-	}
+	
 	
 	
 ///////////////////

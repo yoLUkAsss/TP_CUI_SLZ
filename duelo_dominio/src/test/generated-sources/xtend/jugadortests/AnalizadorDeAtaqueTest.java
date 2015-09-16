@@ -51,12 +51,18 @@ public class AnalizadorDeAtaqueTest {
     this.j2 = _jugador_1;
     Jugador _jugador_2 = new Jugador("jose");
     this.j3 = _jugador_2;
-    Personaje _personaje = new Personaje("personaje1");
+    Personaje _personaje = new Personaje("personaje1", "top");
     this.p1 = _personaje;
-    Personaje _personaje_1 = new Personaje("personaje2");
+    Personaje _personaje_1 = new Personaje("personaje2", "mid");
     this.p2 = _personaje_1;
-    Personaje _personaje_2 = new Personaje("Personaje3");
+    Personaje _personaje_2 = new Personaje("Personaje3", "jg");
     this.p3 = _personaje_2;
+    Personaje _personaje_3 = new Personaje("personaje1", "TOP");
+    this.p1 = _personaje_3;
+    Personaje _personaje_4 = new Personaje("personaje2", "JUNGLE");
+    this.p2 = _personaje_4;
+    Personaje _personaje_5 = new Personaje("Personaje3", "JUNGLE");
+    this.p3 = _personaje_5;
     AnalizadorDeAtaque _analizadorDeAtaque = new AnalizadorDeAtaque();
     this.analizador = _analizadorDeAtaque;
     this.j1.addDenuncia(this.d1);
@@ -78,9 +84,5 @@ public class AnalizadorDeAtaqueTest {
   public void testPoderDeAtaqueJugador1() {
     int _poderDeAtaque = this.analizador.poderDeAtaque(this.j1, this.p2, "TOP");
     Assert.assertEquals(60, _poderDeAtaque);
-  }
-  
-  @Test
-  public void testPoderDeAtaqueJugador2() {
   }
 }

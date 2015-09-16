@@ -27,7 +27,7 @@ public class JugadorTest {
   
   @Before
   public void init() {
-    Personaje _personaje = new Personaje("personaje");
+    Personaje _personaje = new Personaje("personaje", "mid");
     this.personaje = _personaje;
     DAbusoDeHabilidad _dAbusoDeHabilidad = new DAbusoDeHabilidad("denunci1");
     this.denuncia1 = _dAbusoDeHabilidad;
@@ -35,9 +35,9 @@ public class JugadorTest {
     this.denuncia2 = _dFeedIntencional;
     DAbusoDeLenguaje _dAbusoDeLenguaje = new DAbusoDeLenguaje("denunci3");
     this.denuncia3 = _dAbusoDeLenguaje;
-    Personaje _personaje_1 = new Personaje("personaje3");
+    Personaje _personaje_1 = new Personaje("personaje3", "top");
     this.personaje1 = _personaje_1;
-    Personaje _personaje_2 = new Personaje("personaje1");
+    Personaje _personaje_2 = new Personaje("personaje1", "top");
     this.personaje = _personaje_2;
     Jugador _jugador = new Jugador("pepita");
     this.jugador = _jugador;

@@ -12,25 +12,28 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.bindings.PropertyAdapter
 import denuncias.Denuncia
+import org.uqbar.arena.bindings.NotNullObservable
+import java.awt.Color
 
 class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 	
 	new(WindowOwner owner, DenunciaFacade d) {
 		super(owner, d)
-		title = "Hacer denuncia"
-		taskDescription = "Hagan sus denuncias!!"
+		title = "Denunciar"
+		taskDescription = "Hacer denuncia"
 	}
 	
 	override protected addActions(Panel mainPanel) {
 		new Button(mainPanel) => [
-			caption = "Aceptar"
-			setAsDefault
-			onClick [ | modelObject.hacerDenuncia()
-						new ()
-			]
-	
+			caption = "Cancelar"
 			
-			//bindEnabledToProperty("puedeJugar")
+			setAsDefault
+			onClick [ | 
+				showInfo(modelObject.hacerDenuncia().getTitle());
+				this.close()	
+			]
+			bindEnabled(new NotNullObservable("denuncia"))
+			bindEnabled(new NotNullObservable("denuncia.descripcion"))
 			disableOnError
 		]
 		
@@ -38,9 +41,6 @@ class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 			caption = "Cancelar"
 			setAsDefault
 			onClick [ | this.close() ]
-	
-			
-			//bindEnabledToProperty("puedeJugar")
 			disableOnError
 		]
 	}
@@ -48,6 +48,11 @@ class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 	override protected createFormPanel(Panel mainPanel) {
 		val editorPanel = new Panel(mainPanel)
 		editorPanel.layout = new VerticalLayout()
+		
+		new Label(editorPanel) => [
+			text = '''Estas queriendo denunciar a: «modelObject.to.nombre»'''
+			foreground = Color.white
+		]
 		
 		val panHor = new Panel(editorPanel)
 		panHor.layout = new HorizontalLayout()
@@ -62,7 +67,7 @@ class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 		panHor2.layout = new HorizontalLayout()
 		new Label(panHor2).setText("Detalles")
 		new TextBox(panHor2) => [
-			val bindingMonto = bindValueToProperty("denuncia.descripcion")
+			bindValueToProperty("denuncia.descripcion")
 			
 			
 		]

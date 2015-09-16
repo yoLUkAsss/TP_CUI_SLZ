@@ -1,5 +1,9 @@
 package appModel;
 
+import appModel.Resultado;
+import appModel.ResultadoNegativo;
+import appModel.ResultadoPositivo;
+import com.google.common.base.Objects;
 import denuncias.DAbusoDeHabilidad;
 import denuncias.DAbusoDeLenguaje;
 import denuncias.DAbusoDelSisDeDenuncias;
@@ -11,10 +15,13 @@ import jugador.Jugador;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Pure;
-import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.model.ObservableUtils;
+import org.uqbar.commons.model.UserException;
+import org.uqbar.commons.utils.TransactionalAndObservable;
 
-@Observable
+@TransactionalAndObservable
 @Accessors
 @SuppressWarnings("all")
 public class DenunciaFacade {
@@ -24,16 +31,51 @@ public class DenunciaFacade {
   
   private Denuncia denuncia;
   
-  public boolean hacerDenuncia() {
-    boolean _xifexpression = false;
-    boolean _denunciaValida = this.denunciaValida();
-    if (_denunciaValida) {
-      _xifexpression = this.to.addDenuncia(this.denuncia);
+  public DenunciaFacade(final Jugador from, final Jugador to) {
+    this.from = from;
+    this.to = to;
+  }
+  
+  public boolean isPuedeJugar() {
+    boolean _and = false;
+    String _motivo = this.denuncia.getMotivo();
+    boolean _notEquals = (!Objects.equal(_motivo, null));
+    if (!_notEquals) {
+      _and = false;
     } else {
-      Denuncia _abusoDelSistema = this.abusoDelSistema();
-      _xifexpression = this.from.addDenuncia(_abusoDelSistema);
+      String _descripcion = this.denuncia.getDescripcion();
+      boolean _equals = _descripcion.equals(" ");
+      boolean _not = (!_equals);
+      _and = _not;
     }
-    return _xifexpression;
+    return _and;
+  }
+  
+  public Resultado hacerDenuncia() {
+    try {
+      boolean _denunciaValida = this.denunciaValida();
+      if (_denunciaValida) {
+        this.to.addDenuncia(this.denuncia);
+        return new ResultadoPositivo(this.to);
+      } else {
+        Denuncia _abusoDelSistema = this.abusoDelSistema();
+        this.from.addDenuncia(_abusoDelSistema);
+        return new ResultadoNegativo(this.from);
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof NullPointerException) {
+        final NullPointerException e = (NullPointerException)_t;
+        throw new UserException("Debe seleccionar un motivo");
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
+  
+  public void setDenuncia(final Denuncia d) {
+    this.denuncia = d;
+    boolean _isPuedeJugar = this.isPuedeJugar();
+    ObservableUtils.firePropertyChanged(this, "puedeJugar", Boolean.valueOf(_isPuedeJugar));
   }
   
   public Denuncia abusoDelSistema() {
@@ -51,8 +93,19 @@ public class DenunciaFacade {
   }
   
   public boolean denunciaValida() {
-    Integer _sizeDescripcion = this.denuncia.sizeDescripcion();
-    return ((_sizeDescripcion).intValue() <= 3);
+    String _descripcion = this.denuncia.getDescripcion();
+    final String[] arr = _descripcion.split(" ");
+    boolean _or = false;
+    int _length = arr.length;
+    boolean _greaterThan = (_length > 3);
+    if (_greaterThan) {
+      _or = true;
+    } else {
+      Integer _sizeDescripcion = this.denuncia.sizeDescripcion();
+      boolean _greaterEqualsThan = ((_sizeDescripcion).intValue() >= 20);
+      _or = _greaterEqualsThan;
+    }
+    return _or;
   }
   
   public List<? extends Denuncia> getMotivosPosibles() {
@@ -83,9 +136,5 @@ public class DenunciaFacade {
   @Pure
   public Denuncia getDenuncia() {
     return this.denuncia;
-  }
-  
-  public void setDenuncia(final Denuncia denuncia) {
-    this.denuncia = denuncia;
   }
 }
