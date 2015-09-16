@@ -13,7 +13,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class AnalizadorDeAtaque {
-  public int poderDeAtaque(final Jugador jugador, final Personaje personaje, final String posicion) {
+  public int valorDeClasificacion(final Jugador jugador, final Personaje personaje, final String posicion) {
     Random _random = new Random();
     int rand = _random.nextInt(100);
     boolean _and = false;
@@ -108,5 +108,69 @@ public class AnalizadorDeAtaque {
     };
     Iterable<String> _filter = IterableExtensions.<String>filter(_posicionesUsadas, _function_1);
     return IterableExtensions.size(_filter);
+  }
+  
+  public int poderDeAtaque(final Jugador jugador, final Personaje personaje, final String string) {
+    int _valorDeClasificacion = this.valorDeClasificacion(jugador, personaje, string);
+    int _estadisticasDelPersonaje = this.estadisticasDelPersonaje(jugador, personaje);
+    return (_valorDeClasificacion + _estadisticasDelPersonaje);
+  }
+  
+  public int estadisticasDelPersonaje(final Jugador jugador, final Personaje personaje) {
+    int _xblockexpression = (int) 0;
+    {
+      Collection<EstadisticasPj> _est = jugador.getEst();
+      final Function1<EstadisticasPj, Boolean> _function = new Function1<EstadisticasPj, Boolean>() {
+        public Boolean apply(final EstadisticasPj esta) {
+          String _nombre = esta.getNombre();
+          String _nombre_1 = personaje.getNombre();
+          return Boolean.valueOf(_nombre.equals(_nombre_1));
+        }
+      };
+      EstadisticasPj estadistica = IterableExtensions.<EstadisticasPj>findFirst(_est, _function);
+      int _xifexpression = (int) 0;
+      boolean _equals = Objects.equal(estadistica, null);
+      if (_equals) {
+        _xifexpression = 0;
+      } else {
+        Integer _duelosGanadosNoIniciados = estadistica.getDuelosGanadosNoIniciados();
+        Integer _duelosEmpatados = estadistica.getDuelosEmpatados();
+        int _plus = ((_duelosGanadosNoIniciados).intValue() + (_duelosEmpatados).intValue());
+        int _divide = (_plus / 2);
+        Integer _derrotasNoIniciadas = estadistica.getDerrotasNoIniciadas();
+        int _minus = (_divide - (_derrotasNoIniciadas).intValue());
+        Integer _duelosIniciados = estadistica.getDuelosIniciados();
+        _xifexpression = (_minus * (_duelosIniciados).intValue());
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
+  
+  public int realizarDuelo(final Jugador retador, final Jugador rival, final Personaje personajeRetador, final Personaje personajeRival, final String posicionRetador, final String posicionRival) {
+    int _poderDeAtaque = this.poderDeAtaque(retador, personajeRetador, posicionRetador);
+    int _factorDeSuerte = this.factorDeSuerte();
+    int resultadoRetador = (_poderDeAtaque * _factorDeSuerte);
+    int _poderDeAtaque_1 = this.poderDeAtaque(rival, personajeRival, posicionRival);
+    int _factorDeSuerte_1 = this.factorDeSuerte();
+    int resultadoRival = (_poderDeAtaque_1 * _factorDeSuerte_1);
+    if ((resultadoRetador > resultadoRival)) {
+      retador.ganeYSoyRetador(personajeRetador, posicionRetador, Integer.valueOf(resultadoRetador));
+      rival.perdiYSoyRival(personajeRival, posicionRival, Integer.valueOf(resultadoRival));
+    } else {
+      if ((resultadoRetador == resultadoRival)) {
+        retador.empate(personajeRetador, posicionRetador, Integer.valueOf(resultadoRetador));
+        rival.empate(personajeRival, posicionRival, Integer.valueOf(resultadoRival));
+      } else {
+        rival.ganeYSoyRival(personajeRival, posicionRival, Integer.valueOf(resultadoRival));
+        retador.perdiYSoyRetador(personajeRetador, posicionRetador, Integer.valueOf(resultadoRetador));
+      }
+    }
+    return resultadoRival;
+  }
+  
+  public int factorDeSuerte() {
+    Random _random = new Random();
+    return _random.nextInt(1);
   }
 }

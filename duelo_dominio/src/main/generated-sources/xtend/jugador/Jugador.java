@@ -23,6 +23,7 @@ public class Jugador {
   private Collection<Denuncia> denuncias;
   
   public Jugador(final String nombre) {
+    this.nombre = nombre;
     ArrayList<Denuncia> _newArrayList = CollectionLiterals.<Denuncia>newArrayList();
     this.denuncias = _newArrayList;
     ArrayList<EstadisticasPj> _newArrayList_1 = CollectionLiterals.<EstadisticasPj>newArrayList();
@@ -57,6 +58,10 @@ public class Jugador {
   
   public boolean addDenuncia(final Denuncia d) {
     return this.denuncias.add(d);
+  }
+  
+  public boolean equals(final Object o) {
+    return true;
   }
   
   public String toString() {

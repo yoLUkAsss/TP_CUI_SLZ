@@ -26,7 +26,6 @@ class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 			caption = "Aceptar"
 			setAsDefault
 			onClick [ | modelObject.hacerDenuncia()
-						new ()
 			]
 	
 			
