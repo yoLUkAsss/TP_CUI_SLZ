@@ -56,7 +56,7 @@ class AnalizadorDeAtaque {
 			0
 		}
 		else{
-			(estadistica.duelosGanadosNoIniciados+(estadistica.duelosEmpatados/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
+			(((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
 		}
 		
 	}
