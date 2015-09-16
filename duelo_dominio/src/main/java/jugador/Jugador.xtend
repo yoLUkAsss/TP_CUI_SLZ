@@ -34,7 +34,9 @@ class Jugador {
 		denuncias.add(d)
 	}
 	
-	
+	override equals(Object o) {
+		true
+	}
 	
 	
 	

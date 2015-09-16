@@ -58,13 +58,34 @@ class AnalizadorDeAtaque {
 		else{
 			(((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
 		}
-		
 	}
 	
+	def realizarDuelo(Jugador retador , Jugador rival ,
+					  Personaje personajeRetador , Personaje personajeRival , 
+					  String posicionRetador , String posicionRival 
+	)
+	{   
+		var resultadoRetador = (this.poderDeAtaque(retador,personajeRetador,posicionRetador)) * factorDeSuerte()
+		var resultadoRival = (this.poderDeAtaque(rival,personajeRival,posicionRival)) * factorDeSuerte()
+		if(resultadoRetador>resultadoRival){	
+			retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
+			rival.perdiYSoyRival(personajeRival,posicionRival,resultadoRival)
+		}
+		else{
+			if (resultadoRetador==resultadoRival){
+				retador.empate(personajeRetador,posicionRetador,resultadoRetador)
+				rival.empate(personajeRival,posicionRival,resultadoRival)
+			}
+			else{
+				rival.ganeYSoyRival(personajeRival,posicionRival,resultadoRival)
+			    retador.perdiYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
+			}
+		}
+		return resultadoRival
+	}
 	
-	
-	
-
-
+	def  factorDeSuerte(){	
+	 	   new Random().nextInt(1)
+	 }
     
 }
