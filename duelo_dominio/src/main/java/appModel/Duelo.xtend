@@ -6,6 +6,7 @@ import jugador.Jugador
 import jugador.Personaje
 import jugador.MRX
 import excepciones.NoHayRivalException
+import java.util.List
 import java.util.ArrayList
 
 @Accessors
@@ -123,7 +124,7 @@ class Duelo {
 			else{
 				
 				rival.ganeYSoyRival(personajeRival,posicionRival,resultadoRival)
-			    retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
+			    retador.perdiYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
 			    ganador= rival.nombre
 			    perdedor=retador.nombre 
 			}
@@ -147,11 +148,11 @@ class Duelo {
 	
 	
 	def agregarJugador(Jugador jugador){ 
-		jugadores.add(jugador)
+	      jugadores.add(jugador)
 	}
 	
 	def agregarPersonaje(Personaje personaje){
-		personajes.add(personaje)
+		personajes.add(personaje) 
 	}
 	
 	

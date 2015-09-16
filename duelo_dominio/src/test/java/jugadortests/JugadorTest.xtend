@@ -22,7 +22,6 @@ class JugadorTest {
 	 
 	 @Before 
 	 def void init(){
-	 	 
 	 	personaje= new Personaje("personaje","mid")
 	 	denuncia1= new DAbusoDeHabilidad("denunci1")
 	 	denuncia2= new DFeedIntencional("dencia2")

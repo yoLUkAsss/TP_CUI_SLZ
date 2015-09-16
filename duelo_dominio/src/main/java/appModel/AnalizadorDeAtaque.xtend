@@ -7,7 +7,7 @@ import jugador.EstadisticasPj
 
 class AnalizadorDeAtaque {
 	
-	def poderDeAtaque(Jugador jugador, Personaje personaje, String posicion) {
+	def valorDeClasificacion(Jugador jugador, Personaje personaje, String posicion) {
 		var rand = new Random().nextInt(100)
 		if (expPreviaIdealPers(jugador,personaje,posicion) > 5 && rand >90)
 			return 100
@@ -44,4 +44,27 @@ class AnalizadorDeAtaque {
 			return 0
 		return (estadistica.posicionesUsadas.filter[name | name.equals(personaje.posIdeal)]).size
 	}
+	
+	def poderDeAtaque(Jugador jugador, Personaje personaje, String string) {
+		
+		valorDeClasificacion(jugador,personaje,string)+estadisticasDelPersonaje(jugador,personaje)
+	}
+	
+	def estadisticasDelPersonaje(Jugador jugador,Personaje personaje){
+		var estadistica= jugador.est.findFirst[esta|esta.nombre.equals(personaje.nombre)]
+		if (estadistica==null){
+			0
+		}
+		else{
+			(estadistica.duelosGanadosNoIniciados+(estadistica.duelosEmpatados/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
+		}
+		
+	}
+	
+	
+	
+	
+
+
+    
 }
