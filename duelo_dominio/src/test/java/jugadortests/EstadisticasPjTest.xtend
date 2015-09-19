@@ -5,6 +5,7 @@ import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
 import jugador.EstadisticasPj
+import jugador.Posicion
 
 class EstadisticasPjTest {
 	
@@ -25,7 +26,7 @@ class EstadisticasPjTest {
 	 	assertEquals(0,est.duelosGanadosNoIniciados)
 	 	assertEquals(0,est.derrotasNoIniciadas)
 	 	assertEquals(0,est.duelosEmpatados)
-	 	assertEquals("SVEN aun no gano un duelo iniciado... NOOB!!!",est.mejorUbicacion)
+	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
 	 	assertTrue(est.posicionesUsadas.empty)
 	 	assertEquals(0,est.puntaje())
 	 }
@@ -33,7 +34,7 @@ class EstadisticasPjTest {
 	  @Test
 	  def void testGanoComoRetador() {
 	  	
-	  	est.ganoComoRetador("TOP",20)
+	  	est.ganoComoRetador(Posicion.TOP,20)
 	  	
 	    assertEquals(1,est.duelosIniciados)
 	 	assertEquals(1,est.duelosGanados)
@@ -49,14 +50,14 @@ class EstadisticasPjTest {
 	  @Test
 	  def void testPerdioComoRetador() {
 	  	
-	  	est.perdioComoRetador("JUNGLE",40) 
+	  	est.perdioComoRetador(Posicion.JUNGLE,40) 
 	    
 	    assertEquals(1,est.duelosIniciados)
 	 	assertEquals(0,est.duelosGanados)
 	 	assertEquals(0,est.duelosGanadosNoIniciados)
 	 	assertEquals(0,est.derrotasNoIniciadas)
 	 	assertEquals(0,est.duelosEmpatados)
-	 	assertEquals("SVEN aun no gano un duelo iniciado... NOOB!!!",est.mejorUbicacion)
+	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
 	 	assertFalse(est.posicionesUsadas.empty)
 	 	assertEquals(40,est.puntaje())
 	  		
@@ -67,14 +68,14 @@ class EstadisticasPjTest {
 	  @Test
 	  def void testGanoComoRival(){
 	  	
-	  	est.ganoComoRival("BOT",70)
+	  	est.ganoComoRival(Posicion.BOT,70)
 	  	
 	  	assertEquals(0,est.duelosIniciados)
 	 	assertEquals(1,est.duelosGanados)
 	 	assertEquals(1,est.duelosGanadosNoIniciados)
 	 	assertEquals(0,est.derrotasNoIniciadas)
 	 	assertEquals(0,est.duelosEmpatados)
-	 	assertEquals("SVEN aun no gano un duelo iniciado... NOOB!!!",est.mejorUbicacion)
+	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
 	 	assertTrue(est.posicionesUsadas.empty)
 	 	assertEquals(0,est.puntaje())
 	  	
@@ -84,14 +85,14 @@ class EstadisticasPjTest {
 	  @Test
 	  def void tesPerdioComoRival(){
 	  	
-	  	est.perdioComoRival("MID",50)
+	  	est.perdioComoRival(Posicion.MID,50)
 	  	
 	  	assertEquals(0,est.duelosIniciados)
 	 	assertEquals(0,est.duelosGanados)
 	 	assertEquals(0,est.duelosGanadosNoIniciados)
 	 	assertEquals(1,est.derrotasNoIniciadas)
 	 	assertEquals(0,est.duelosEmpatados)
-	 	assertEquals("SVEN aun no gano un duelo iniciado... NOOB!!!",est.mejorUbicacion)
+	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
 	 	assertTrue(est.posicionesUsadas.empty)
 	 	assertEquals(0,est.puntaje())
 	  	
@@ -107,7 +108,7 @@ class EstadisticasPjTest {
 	 	assertEquals(0,est.duelosGanadosNoIniciados)
 	 	assertEquals(0,est.derrotasNoIniciadas)
 	 	assertEquals(1,est.duelosEmpatados)
-	 	assertEquals("SVEN aun no gano un duelo iniciado... NOOB!!!",est.mejorUbicacion)
+	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
 	 	assertTrue(est.posicionesUsadas.empty)
 	 	assertEquals(0,est.puntaje())
 	  	

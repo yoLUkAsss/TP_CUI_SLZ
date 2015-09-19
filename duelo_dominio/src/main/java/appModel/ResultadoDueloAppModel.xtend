@@ -44,19 +44,16 @@ class ResultadoDueloAppModel {
 		)
 		
 		var estRetador = retador.jugador.est.findFirst[esta | esta.nombre.equals(retador.pj.nombre)]
-<<<<<<< HEAD
-		
+
 		pjDelGanador = retador.jugador.est.findFirst[each | each.nombre.equals(retador.pj.nombre)]
 		pjRival = rival.jugador.est.findFirst[each | each.nombre.equals(rival.pj.nombre)]
 		
-=======
 		pjDelGanador = retador.jugador.est.findFirst[each | 
 			each.nombre.equals(retador.pj.nombre)
 		]
 		pjRival = rival.jugador.est.findFirst[each | 
 			each.nombre.equals(rival.pj.nombre)
 		]
->>>>>>> c422f60f8f5f1f49a6f8b241266fd3214cc4df6d
 		if (estRetador.calificacion > resultadoRival) {
 			ganador = retador.jugador
 			perdedor = rival.jugador

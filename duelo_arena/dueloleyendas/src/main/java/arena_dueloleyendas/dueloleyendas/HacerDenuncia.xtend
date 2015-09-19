@@ -7,11 +7,12 @@ import jugador.Jugador
 import appModel.ResultadoDueloAppModel
 import jugador.Personaje
 import appModel.DetalleJugadorDueloAppModel
+import jugador.Posicion
 
 class HacerDenuncia extends Application{
 	
 	var j = new Jugador("pedro")
-	var p = new Personaje("hola","top")
+	var p = new Personaje("hola",Posicion.TOP)
 	
 	override createMainWindow() {
 		new CrearResultadoDueloWindow(this, new ResultadoDueloAppModel(

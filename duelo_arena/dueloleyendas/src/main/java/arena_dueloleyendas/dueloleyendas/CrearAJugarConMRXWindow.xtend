@@ -18,7 +18,9 @@ class CrearAJugarConMRXWindow extends SimpleWindow<ResultadoDueloAppModel> {
 	override protected addActions(Panel actionsPanel) {
 		var Button a = new Button(actionsPanel)
 		a.caption = "Retar a MR-X"
-		a.onClick( [| this.close() ])
+		a.onClick( [| 	this.openDialog(new CrearResultadoDueloWindow(this,modelObject));
+						this.close()
+		])
 			
 		var Button b = new Button(actionsPanel) 
 		b.caption = "Descansar en mi gloria"
@@ -32,6 +34,11 @@ class CrearAJugarConMRXWindow extends SimpleWindow<ResultadoDueloAppModel> {
 			Puede optar por retar al bot del nivel y tratar de avanzar de nivel en el ranking o disfrutar en tu gloria y descansar
 			Que quieres hacer???'''
 		]
+	}
+	
+	def openDialog(SimpleWindow<?> sw) {
+		sw.open
+		this.close
 	}
 	
 }

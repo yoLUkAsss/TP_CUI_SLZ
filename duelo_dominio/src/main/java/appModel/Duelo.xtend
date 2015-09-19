@@ -6,6 +6,7 @@ import jugador.Jugador
 import jugador.Personaje
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import jugador.Posicion
 
 @Observable
 @Accessors
@@ -22,10 +23,10 @@ class Duelo {
 	new(Jugador jugador){
 	    this.jugador=jugador
 	    personajesTotales = newArrayList
-	    personajesTotales.add(new Personaje("Amumu","TOP"))
-		personajesTotales.add(new Personaje("Ahri","MID"))
-		personajesTotales.add(new Personaje("Olaf","JUNGLE"))
-		personajesTotales.add(new Personaje("Cait","BOT"))
+	    personajesTotales.add(new Personaje("Amumu",Posicion.TOP))
+		personajesTotales.add(new Personaje("Ahri",Posicion.MID))
+		personajesTotales.add(new Personaje("Olaf",Posicion.JUNGLE))
+		personajesTotales.add(new Personaje("Cait",Posicion.BOT))
 	    this.estadisticas = (new PrepareEstadisticasPjsAppModel(jugador.est,personajesTotales)).estadisticasPreparadas 
 		this.estadisticaSeleccionada = this.estadisticas.get(0)
 		
@@ -33,17 +34,25 @@ class Duelo {
 		
 	}
 	
-	def iniciarDuelo(String pos){
+	@Observable
+	def iniciarDuelo(Posicion pos){
 		retador = new DetalleJugadorDueloAppModel(jugador,estadisticaSeleccionada.pjAsociado,pos)
 		var DetalleJugadorDueloAppModel rival= new SelectorDeRivalAppModel().dameRival(retador)
 			if (rival==null){
-				return rival//throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
+				return null//throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
 		    }
-		return new ResultadoDueloAppModel(rival,retador)
+		return new ResultadoDueloAppModel(retador,rival)
 	}
 	
 	@Observable
-	def setAltoGato (String s) {
+	def iniciarDueloBot(Posicion pos) {
+		retador = new DetalleJugadorDueloAppModel(jugador,estadisticaSeleccionada.pjAsociado,pos)
+		var DetalleJugadorDueloAppModel rival = retador
+		return new ResultadoDueloAppModel(retador,rival)
+	}
+	
+	@Observable
+	def setAltoGato (Posicion s) {
 		estadisticaSeleccionada.estAsociada.mejorUbicacion = s
 	}
 

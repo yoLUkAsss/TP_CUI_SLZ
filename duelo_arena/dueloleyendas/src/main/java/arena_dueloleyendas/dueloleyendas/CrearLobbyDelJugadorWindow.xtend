@@ -18,6 +18,7 @@ import java.awt.Color
 import appModel.ResultadoDueloAppModel
 import appModel.DetalleJugadorDueloAppModel
 import appModel.AnalizadorDeAtaque
+import jugador.Posicion
 
 class CrearLobbyDelJugadorWindow extends SimpleWindow<Duelo> {
 	
@@ -154,22 +155,31 @@ revisar tus stats!'''
 		
 		var boton1 = new Button(buttons)
 		boton1.caption = "TOP"
-		boton1.onClick([|])
+		boton1.onClick([| if (modelObject.iniciarDuelo(Posicion.TOP) == null)
+							this.openDialog(new CrearAJugarConMRXWindow(this,modelObject.iniciarDueloBot(Posicion.TOP)))
+						  else 
+						  	this.openDialog(new CrearResultadoDueloWindow(this,modelObject.iniciarDuelo(Posicion.TOP)))
+		])
 		boton1.width = 100
 		
 		var boton2 = new Button(buttons)
 		boton2.caption = "MID"
-		boton2.onClick([| modelObject.iniciarDuelo("Mid") ])
+		boton2.onClick([| modelObject.iniciarDuelo(Posicion.MID) ])
 		boton2.width = 100
 		
 		var boton3 = new Button(buttons)
 		boton3.caption = "JUNGLE"
-		boton3.onClick([| modelObject.iniciarDuelo("Jungle")])
+		boton3.onClick([| modelObject.iniciarDuelo(Posicion.JUNGLE)])
 		boton3.width = 100
 		
 		var boton4 = new Button(buttons)
 		boton4.caption = "BOT"
-		boton4.onClick([| modelObject.iniciarDuelo("Bot") ])
+		boton4.onClick([| modelObject.iniciarDuelo(Posicion.BOT) ])
 		boton4.width = 100
+	}
+	
+	def openDialog(SimpleWindow<?> sw) {
+		sw.open
+		this.close
 	}
 }

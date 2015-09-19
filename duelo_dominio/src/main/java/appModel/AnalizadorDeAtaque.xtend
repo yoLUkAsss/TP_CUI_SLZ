@@ -4,10 +4,11 @@ import java.util.Random
 import jugador.Jugador
 import jugador.Personaje
 import jugador.EstadisticasPj
+import jugador.Posicion
 
 class AnalizadorDeAtaque {
 	
-	def valorDeCalificacion(Jugador jugador, Personaje personaje, String posicion) {
+	def valorDeCalificacion(Jugador jugador, Personaje personaje, Posicion posicion) {
 		var rand = valorAlAzar()
 		if (expPreviaIdealPers(jugador,personaje,posicion) > 5 && rand >90)
 			return 100
@@ -26,33 +27,33 @@ class AnalizadorDeAtaque {
 	}
 	
 	//Determina si la posicion es la posicion ideal del personaje
-	def mejorPosi(Personaje personaje, String posicion) {
+	def mejorPosi(Personaje personaje, Posicion posicion) {
 		personaje.posIdeal.equals(posicion)	
 	}
 	
 	//Retorna la cantidad de veces que utilizo independientemente del personaje
 	//en la posicion indicada
-	def expPrevPosi(Jugador jugador, String posicion) {
+	def expPrevPosi(Jugador jugador, Posicion posicion) {
 		var estadisticas = jugador.est
 		estadisticas.fold(0 ,[cant , estad | cant+ posicionesUsadas(estad,posicion)])
 	}
 	 
 	//Retorna dada una EstadisticaPj, cuantas veces lo utilizo en la posicion indicada
-	def posicionesUsadas(EstadisticasPj pj, String posicion) {
+	def posicionesUsadas(EstadisticasPj pj, Posicion posicion) {
 		(pj.posicionesUsadas.filter[name | name.equals(posicion)]).size
 	}
 	
 	//Retorna la cantidad de veces que jugo con el personaje, en su pocicion ideal
-	def expPreviaIdealPers(Jugador jugador, Personaje personaje, String posicion) {
+	def expPreviaIdealPers(Jugador jugador, Personaje personaje, Posicion posicion) {
 		var estadistica = jugador.est.findFirst[esta | esta.nombre.equals(personaje.nombre)]
 		if (estadistica == null)
 			return 0
 		return (estadistica.posicionesUsadas.filter[name | name.equals(personaje.posIdeal)]).size
 	}
 	
-	def poderDeAtaque(Jugador jugador, Personaje personaje, String string) {
+	def poderDeAtaque(Jugador jugador, Personaje personaje, Posicion posicion) {
 		
-		valorDeCalificacion(jugador,personaje,string)+estadisticasDelPersonaje(jugador,personaje)
+		valorDeCalificacion(jugador,personaje,posicion)+estadisticasDelPersonaje(jugador,personaje)
 	}
 	
 	def estadisticasDelPersonaje(Jugador jugador,Personaje personaje){
@@ -68,7 +69,7 @@ class AnalizadorDeAtaque {
 	
 	def realizarDuelo(Jugador retador , Jugador rival ,
 					  Personaje personajeRetador , Personaje personajeRival , 
-					  String posicionRetador , String posicionRival 
+					  Posicion posicionRetador , Posicion posicionRival 
 	)
 	{   
 		var resultadoRetador = (this.poderDeAtaque(retador,personajeRetador,posicionRetador)) * factorDeSuerte()

@@ -12,6 +12,7 @@ import denuncias.DAbusoDeHabilidad
 import denuncias.DAbusoDelSisDeDenuncias
 import denuncias.DFeedIntencional
 import denuncias.DAbusoDeLenguaje
+import jugador.Posicion
 
 class SelectorDeRivalAppModelTest {
 	
@@ -44,10 +45,10 @@ class SelectorDeRivalAppModelTest {
 		j3= new Jugador("azul")
 		j4= new Jugador("sol")
 		
-		p1= new Personaje("ELISE","TOP")
-		p2= new Personaje("LIFESTEALER","MID")
-		p3= new Personaje("EVELYNN","BOT")
-		p4= new Personaje ("MEEPO","JUNGLE")
+		p1= new Personaje("ELISE",Posicion.TOP)
+		p2= new Personaje("LIFESTEALER",Posicion.MID)
+		p3= new Personaje("EVELYNN",Posicion.BOT)
+		p4= new Personaje ("MEEPO",Posicion.JUNGLE)
 		
 		
 		d1= new DAbusoDeHabilidad("denuncia1") 
@@ -56,7 +57,7 @@ class SelectorDeRivalAppModelTest {
 		d4= new DAbusoDeLenguaje("denuncia4")
 		
 		
-		detalle= new DetalleJugadorDueloAppModel(j1,p1,"JUNGLE")
+		detalle= new DetalleJugadorDueloAppModel(j1,p1,Posicion.JUNGLE)
 		selector= new SelectorDeRivalAppModel()
 		selector1= new SelectorDeRivalAppModel()
 		
@@ -73,30 +74,30 @@ class SelectorDeRivalAppModelTest {
 		j1.addDenuncia(d1)
 		j1.addDenuncia(d2)
 		
-		j1.ganeYSoyRetador(p1,"TOP",30)
+		j1.ganeYSoyRetador(p1,Posicion.TOP,30)
 		
 			
 		j2.addDenuncia(d1)
 		j2.addDenuncia(d2)
 		
-		j2.ganeYSoyRetador(p1,"TOP",30)
-		j2.empate(p3,"JUNGLE",20)
+		j2.ganeYSoyRetador(p1,Posicion.TOP,30)
+		j2.empate(p3,Posicion.JUNGLE,20)
 		
 		j3.addDenuncia(d3)
 		j3.addDenuncia(d4)
 		
-		j3.empate(p1,"JUNGLE",25)
-		j3.ganeYSoyRetador(p2,"TOP",60)
+		j3.empate(p1,Posicion.JUNGLE,25)
+		j3.ganeYSoyRetador(p2,Posicion.TOP,60)
 		
 		j4.addDenuncia(d2)
 		j4.addDenuncia(d2)
 		j4.addDenuncia(d2)
 		j4.addDenuncia(d2)
 		
-		j4.ganeYSoyRetador(p2,"TOP",50)
-		j4.ganeYSoyRetador(p1,"TOP",200)
-	    j4.ganeYSoyRetador(p1,"TOP",200)
-	    j4.ganeYSoyRetador(p1,"TOP",200)	
+		j4.ganeYSoyRetador(p2,Posicion.TOP,50)
+		j4.ganeYSoyRetador(p1,Posicion.TOP,200)
+	    j4.ganeYSoyRetador(p1,Posicion.TOP,200)
+	    j4.ganeYSoyRetador(p1,Posicion.TOP,200)	
 		
 		
 		

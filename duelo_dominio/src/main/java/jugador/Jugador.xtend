@@ -20,11 +20,10 @@ class Jugador {
 	}
 	
 	def ranking(){
-		totPeso(denuncias)
-		* cantPeleasGanadas(est)
+		totPeso(denuncias)*cantPeleasGanadas(est)
 	}
 	
-	def private totPeso(Collection<Denuncia> denuncias) {
+	def protected totPeso(Collection<Denuncia> denuncias) {
 		denuncias.fold(0,[peso , den | peso +den.peso ])
 	}
 
@@ -32,7 +31,7 @@ class Jugador {
 		est.fold(0 , [wins , pj | wins + pj.duelosGanados ])
 	}
 	
-	def addDenuncia(Denuncia d){
+	def void addDenuncia(Denuncia d){
 		denuncias.add(d)
 	}
 	
@@ -51,23 +50,23 @@ class Jugador {
 //Actualizaciones//
 ///////////////////
 
-	def ganeYSoyRival(Personaje p , String pos , Integer califi) {
+	def ganeYSoyRival(Personaje p , Posicion pos , Integer califi) {
 		buscarEst.apply(p).ganoComoRival(pos,califi)
 	}
 	
-	def perdiYSoyRival(Personaje p , String pos , Integer califi) {
+	def perdiYSoyRival(Personaje p , Posicion pos , Integer califi) {
 		buscarEst.apply(p).perdioComoRival(pos,califi)
 	}
 	
-	def ganeYSoyRetador(Personaje p , String pos , Integer califi) {
+	def ganeYSoyRetador(Personaje p , Posicion pos , Integer califi) {
 		buscarEst.apply(p).ganoComoRetador(pos,califi)
 	}
 	
-	def perdiYSoyRetador(Personaje p , String pos , Integer califi) {
+	def perdiYSoyRetador(Personaje p , Posicion pos , Integer califi) {
 		buscarEst.apply(p).perdioComoRetador(pos,califi)
 	}
 	
-	def empate(Personaje p , String pos , Integer califi) {
+	def empate(Personaje p , Posicion pos , Integer califi) {
 		buscarEst.apply(p).empato()	
 	}
 	

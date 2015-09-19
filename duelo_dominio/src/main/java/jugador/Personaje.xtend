@@ -12,9 +12,9 @@ class Personaje {
 	String nombre
 	String especialidad
 	String debilidad
-	String posIdeal
+	Posicion posIdeal
 	
-	new(String nombre,String pos) {
+	new(String nombre,Posicion pos) {
 		this.nombre=nombre
 		this.posIdeal = pos
 		this.debilidad = "Alto gato"
