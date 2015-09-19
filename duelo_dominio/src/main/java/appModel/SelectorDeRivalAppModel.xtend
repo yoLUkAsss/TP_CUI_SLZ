@@ -12,6 +12,12 @@ class SelectorDeRivalAppModel {
 	Collection<Personaje> personajes
 	
 	
+	new(){
+		jugadores= newArrayList
+		personajes= newArrayList
+	}
+	
+	
 	def dameRival(DetalleJugadorDueloAppModel retador) {
 		val rival= jugadores.findFirst[jugador|puedeJugar(jugador.ranking(),retador.jugador.ranking())&& !jugador.equals(retador.jugador)
 		]
@@ -19,17 +25,28 @@ class SelectorDeRivalAppModel {
 			
 			 return null
 		}
-		else{
-			return new DetalleJugadorDueloAppModel(rival,determinarPersonaje(retador.pj),determinarPersonaje(retador.pj).posIdeal)
+		  else{
+				return new DetalleJugadorDueloAppModel(rival,determinarPersonaje(retador.pj),determinarPersonaje(retador.pj).posIdeal)
 		}
 	}
 	
 	def puedeJugar(int rankingRival, int rankingJugador) {
-		rankingRival >= rankingJugador-100 && rankingJugador <= rankingJugador
+		rankingRival >= rankingJugador-100 && rankingRival<= rankingJugador +100
 	}
 	
 	def determinarPersonaje(Personaje personajeRetador){
-		val personaje= personajes.findFirst[personaje|personaje !=personajeRetador]
+		val personaje= personajes.findFirst[personaje|!personaje.equals(personajeRetador)]
 		personaje
+	}
+	
+	def agregarJugador(Jugador jugador){
+		
+		jugadores.add(jugador)
+	}
+	
+	def agregarPersonaje(Personaje personaje) {
+		
+		personajes.add(personaje)
+		
 	}
 }

@@ -37,7 +37,11 @@ class Jugador {
 	}
 	
 	override equals(Object o) {
-		true
+		if (o != null && o instanceof Jugador){
+			var Jugador p = o as Jugador
+			return p.nombre.equals(this.nombre)
+		}
+		return false
 	}
 	
 	

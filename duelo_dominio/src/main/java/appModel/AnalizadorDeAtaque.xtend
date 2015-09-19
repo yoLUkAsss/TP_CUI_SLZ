@@ -20,8 +20,9 @@ class AnalizadorDeAtaque {
 		return 5
 	}
 	
-	def valorAlAzar() {
-		new Random().nextInt(100)
+	def valorAlAzar(){
+		 
+		 new Random().nextInt(100)
 	}
 	
 	//Determina si la posicion es la posicion ideal del personaje
@@ -56,8 +57,9 @@ class AnalizadorDeAtaque {
 	
 	def estadisticasDelPersonaje(Jugador jugador,Personaje personaje){
 		var estadistica= jugador.est.findFirst[esta|esta.nombre.equals(personaje.nombre)]
-		if (estadistica==null){
-			0
+		if (estadistica == null){
+			
+			  0
 		}
 		else{
 			(((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados

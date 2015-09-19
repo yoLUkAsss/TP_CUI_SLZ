@@ -1,0 +1,7 @@
+package appModelTest
+
+class DenunciaFacadeTest {
+	
+	
+	
+}

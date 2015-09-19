@@ -4,12 +4,21 @@ package arena_dueloleyendas.dueloleyendas
 import org.uqbar.arena.Application;
 import appModel.DenunciaFacade
 import jugador.Jugador
+import appModel.ResultadoDueloAppModel
+import jugador.Personaje
+import appModel.DetalleJugadorDueloAppModel
 
 class HacerDenuncia extends Application{
 	
+	var j = new Jugador("pedro")
+	var p = new Personaje("hola","top")
 	
 	override createMainWindow() {
-		new CrearHacerDenunciaWindow(this, new DenunciaFacade(new Jugador("Juaco"),new Jugador("xPete")))
+		new CrearResultadoDueloWindow(this, new ResultadoDueloAppModel(
+											new DetalleJugadorDueloAppModel(j,p,p.posIdeal),
+											new DetalleJugadorDueloAppModel(j,p,p.posIdeal)
+											
+		))
 	}
 	
 	def static main(String[] args) {
