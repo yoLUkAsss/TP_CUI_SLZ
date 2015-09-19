@@ -25,7 +25,7 @@ class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 	
 	override protected addActions(Panel mainPanel) {
 		new Button(mainPanel) => [
-			caption = "Cancelar"
+			caption = "Denunciar"
 			
 			setAsDefault
 			onClick [ | 
@@ -61,17 +61,12 @@ class CrearHacerDenunciaWindow extends SimpleWindow<DenunciaFacade>{
 			allowNull = false
 			bindItemsToProperty("motivosPosibles").adapter = new PropertyAdapter(Denuncia, "motivo")
 			bindValueToProperty("denuncia")
-			
 		]
 		val panHor2 = new Panel(editorPanel)
 		panHor2.layout = new HorizontalLayout()
 		new Label(panHor2).setText("Detalles")
 		new TextBox(panHor2) => [
-			bindValueToProperty("denuncia.descripcion")
-			
-			
+			bindValueToProperty("denuncia.descripcion")			
 		]
-		
 	}
-	
 }

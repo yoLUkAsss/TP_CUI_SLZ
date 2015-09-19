@@ -3,7 +3,9 @@ package jugador
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Collection
 import denuncias.Denuncia
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class Jugador {
 	

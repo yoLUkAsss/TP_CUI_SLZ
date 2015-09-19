@@ -25,8 +25,6 @@ class SelectorDeRivalAppModel {
 	}
 	
 	def puedeJugar(int rankingRival, int rankingJugador) {
-		
-		
 		rankingRival >= rankingJugador-100 && rankingJugador <= rankingJugador
 	}
 	

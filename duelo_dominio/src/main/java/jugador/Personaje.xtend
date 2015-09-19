@@ -1,9 +1,11 @@
 package jugador
 
 import org.eclipse.xtend.lib.annotations.Accessors
- 
+import org.uqbar.commons.utils.Observable
+
 //firepropertychange()
 
+@Observable
 @Accessors
 class Personaje { 
 	
@@ -15,6 +17,8 @@ class Personaje {
 	new(String nombre,String pos) {
 		this.nombre=nombre
 		this.posIdeal = pos
+		this.debilidad = "Alto gato"
+		this.especialidad = "NO SE"
 	}
 	
 }

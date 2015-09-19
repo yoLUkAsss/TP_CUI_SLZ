@@ -2,7 +2,7 @@ package jugador
 
 class MRX extends Jugador {
 	
-	new(String nombre) {
+	new(String nombre, Jugador jugador) {
 		super(nombre)
 	}
 	

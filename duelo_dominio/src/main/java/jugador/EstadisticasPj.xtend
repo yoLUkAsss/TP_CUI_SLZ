@@ -1,8 +1,10 @@
 package jugador 
  
 import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.ArrayList
+import java.util.Collection
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class EstadisticasPj {
 	
@@ -16,7 +18,7 @@ class EstadisticasPj {
 	Integer duelosEmpatados
 	
 	//Posiciones de los duelos iniciados por el jugador
-	ArrayList<String> posicionesUsadas
+	Collection<String> posicionesUsadas
 	
 	//Posicion de la ultima victoria obtenida en un duelo iniciado
 	String mejorUbicacion
@@ -32,7 +34,7 @@ class EstadisticasPj {
 		duelosGanadosNoIniciados=0
 		derrotasNoIniciadas=0
 		duelosEmpatados=0
-		mejorUbicacion=this.nombre+" aun no gano un duelo iniciado... NOOB!!!";
+		mejorUbicacion=" - ";
 		posicionesUsadas=newArrayList		
 		calificacion=0
 	}
