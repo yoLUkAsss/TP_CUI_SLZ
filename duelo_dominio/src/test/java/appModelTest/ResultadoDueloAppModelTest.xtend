@@ -9,6 +9,7 @@ import jugador.Jugador
 import appModel.DetalleJugadorDueloAppModel
 import jugador.Personaje
 import appModel.AnalizadorDeAtaque
+import jugador.Posicion
 
 class ResultadoDueloAppModelTest {
 	
@@ -31,10 +32,10 @@ class ResultadoDueloAppModelTest {
 	def void init(){
 		j1= new Jugador("pepe")
 		j2= new Jugador("azul")
-		p1= new Personaje("WEAVER","TOP")
-		p2= new Personaje("FIORA","JUNGLE")
-		retador= new DetalleJugadorDueloAppModel(j1,p1,"TOP")
-		rival= new DetalleJugadorDueloAppModel(j2,p2,"MID")
+		p1= new Personaje("WEAVER",Posicion.TOP)
+		p2= new Personaje("FIORA",Posicion.JUNGLE)
+		retador= new DetalleJugadorDueloAppModel(j1,p1,Posicion.TOP)
+		rival= new DetalleJugadorDueloAppModel(j2,p2,Posicion.MID)
 		analizador= new AnalizadorDeAtaque()
 		analizadorSpy= spy(analizador) 
 		resultado= new ResultadoDueloAppModel(retador,rival)

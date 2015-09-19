@@ -18,10 +18,10 @@ class EstadisticasPj {
 	Integer duelosEmpatados
 	
 	//Posiciones de los duelos iniciados por el jugador
-	Collection<String> posicionesUsadas
+	Collection<Posicion> posicionesUsadas
 	
 	//Posicion de la ultima victoria obtenida en un duelo iniciado
-	String mejorUbicacion
+	Posicion mejorUbicacion
 	
 	//Ultima calificacion obtenida en un duelo iniciado por el jugador
 	Integer calificacion
@@ -34,7 +34,7 @@ class EstadisticasPj {
 		duelosGanadosNoIniciados=0
 		derrotasNoIniciadas=0
 		duelosEmpatados=0
-		mejorUbicacion=" - ";
+		mejorUbicacion=Posicion.NONE
 		posicionesUsadas=newArrayList		
 		calificacion=0
 	}
@@ -43,7 +43,7 @@ class EstadisticasPj {
 		calificacion
 	}
 	
-	def ganoComoRetador(String pos , Integer nuevaCalificacion) {
+	def ganoComoRetador(Posicion pos , Integer nuevaCalificacion) {
 		duelosIniciados++
 		duelosGanados++
 		posicionesUsadas.add(pos)
@@ -51,18 +51,18 @@ class EstadisticasPj {
 		calificacion = nuevaCalificacion
 	}
 	
-	def perdioComoRetador(String pos , Integer nuevaCalificacion) {
+	def perdioComoRetador(Posicion pos , Integer nuevaCalificacion) {
 		duelosIniciados++
 		posicionesUsadas.add(pos)
 		calificacion = nuevaCalificacion
 	}
 	
-	def ganoComoRival(String pos , Integer nuevaCalificacion) {
+	def ganoComoRival(Posicion pos , Integer nuevaCalificacion) {
 		duelosGanados++
 		duelosGanadosNoIniciados++
 	}
 	
-	def perdioComoRival(String pos , Integer nuevaCalificacion) {
+	def perdioComoRival(Posicion pos , Integer nuevaCalificacion) {
 		derrotasNoIniciadas++
 	}
 	

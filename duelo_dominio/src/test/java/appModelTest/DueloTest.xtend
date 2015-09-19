@@ -8,6 +8,7 @@ import appModel.Duelo
 import appModel.SelectorDeRivalAppModel
 import jugador.Jugador
 import excepciones.NoHayRivalException
+import jugador.Posicion
 
 class DueloTest {
 	
@@ -26,7 +27,7 @@ class DueloTest {
 	
 	def void testNoHayRival() throws NoHayRivalException{
 		
-		duelo.iniciarDuelo("TOP")
+		duelo.iniciarDuelo(Posicion.TOP)
 		
 	}
 	

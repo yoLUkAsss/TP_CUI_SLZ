@@ -10,6 +10,7 @@ import jugador.Personaje
 import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
+import jugador.Posicion
 
 class JugadorTest {
 	
@@ -29,9 +30,9 @@ class JugadorTest {
 	 	denuncia1= new DAbusoDeHabilidad("denunci1")
 	 	denuncia2= new DFeedIntencional("dencia2")
 	 	denuncia3= new DAbusoDeLenguaje("denunci3")
-	 	personaje1= new Personaje("AHRI ","MID")
-	    personaje2=new Personaje("ALISTAR","TOP")
-	 	personaje3= new Personaje("AMUMU ","JUNGLE")
+	 	personaje1= new Personaje("AHRI",Posicion.MID)
+	    personaje2=new Personaje("ALISTAR",Posicion.TOP)
+	 	personaje3= new Personaje("AMUMU",Posicion.JUNGLE)
 	 	jugador= new Jugador("pepe")
 		
 	}
@@ -44,8 +45,8 @@ class JugadorTest {
 	 	jugador.addDenuncia(denuncia1)
 	 	jugador.addDenuncia(denuncia2)
 	 	jugador.addDenuncia(denuncia3)
-	 	jugador.empate(personaje1,"TOP",70)
-	 	jugador.ganeYSoyRetador(personaje1,"TOP",67)
+	 	jugador.empate(personaje1,Posicion.TOP,70)
+	 	jugador.ganeYSoyRetador(personaje1,Posicion.TOP,67)
 	 	
 	 	var expected = 22
 	 	
@@ -57,8 +58,9 @@ class JugadorTest {
 	 
 	 @Test
 	 def void testTieneUnaSolaEstadisticasDelPersonaje(){
-	 	jugador.ganeYSoyRetador(personaje2,"TOP",100)
-	 	jugador.perdiYSoyRetador(personaje2,"JUNGLE",200)
+	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP,100)
+	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200
+	 	)
 	 	
 	 	assertTrue(jugador.est.size==1)
 	 }
