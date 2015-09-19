@@ -54,6 +54,7 @@ class JugadorTest {
 	 	
 	 }
 	 
+	 
 	 @Test
 	 def void testTieneUnaSolaEstadisticasDelPersonaje(){
 	 	jugador.ganeYSoyRetador(personaje2,"TOP",100)

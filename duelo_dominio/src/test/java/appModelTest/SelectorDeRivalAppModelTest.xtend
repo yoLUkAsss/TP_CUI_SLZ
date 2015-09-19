@@ -34,6 +34,8 @@ class SelectorDeRivalAppModelTest {
     DFeedIntencional d3
     DAbusoDeLenguaje d4
 	
+	Object rival
+	
 	@Before
 	def void init() {
 		
@@ -130,7 +132,17 @@ class SelectorDeRivalAppModelTest {
     	
     }
     
-   
+    @Test
+    def testProximoRival1() { 
+    	 var DetalleJugadorDueloAppModel rival= selector.dameRival(detalle)
+    	
+    	assertEquals(j2,rival.jugador)
+    	assertEquals(p2,rival.pj)
+    	assertEquals("MID",rival.posElegida)
+    	
+    }
+    
+ 
 		
 		
 	

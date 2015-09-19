@@ -124,7 +124,7 @@ class AnalizadorDeAtaqueTest {
     	
     	//el jugador1 no tiene aun ninguna estadadistica de ese personaje
     	assertEquals(0,analizadorSpy.estadisticasDelPersonaje(jugador1,p1))
-        assertEquals(4,analizadorSpy.estadisticasDelPersonaje(jugador2,p2))
+        assertEquals(2,analizadorSpy.estadisticasDelPersonaje(jugador2,p2))
         
     
     	
@@ -146,12 +146,24 @@ class AnalizadorDeAtaqueTest {
     	
     	
     	doReturn(80).when(analizadorSpy).valorAlAzar()
-    	assertEquals(81,analizadorSpy.poderDeAtaque(jugador2,p2,"TOP"))
+    	assertEquals(78,analizadorSpy.poderDeAtaque(jugador2,p2,"TOP"))
     	
     	
     	
     }
     
+    @Test
+    def void testPoderDeAtaqueJugador1(){
+    	
+    	jugador2.ganeYSoyRetador(p2,"TOP",230)
+		
+    	
+    	
+    	doReturn(20).when(analizadorSpy).valorAlAzar()
+    	assertEquals(5,analizadorSpy.poderDeAtaque(jugador2,p2,"TOP"))
+    	
+    	
+    }
     
     
     

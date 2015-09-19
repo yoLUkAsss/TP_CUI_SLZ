@@ -17,4 +17,13 @@ class Personaje {
 		this.posIdeal = pos
 	}
 	
+	override equals(Object o) {
+		if (o != null && o instanceof Personaje){
+			var Personaje p = o as Personaje
+			return p.nombre.equals(this.nombre)
+		}
+		return false
+	}
+	
+	
 }

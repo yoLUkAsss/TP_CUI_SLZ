@@ -13,6 +13,7 @@ import appModel.AnalizadorDeAtaque
 class ResultadoDueloAppModelTest {
 	
 	ResultadoDueloAppModel resultado
+
 	
     DetalleJugadorDueloAppModel retador
 	DetalleJugadorDueloAppModel rival
@@ -38,30 +39,27 @@ class ResultadoDueloAppModelTest {
 		analizadorSpy= spy(analizador) 
 		resultado= new ResultadoDueloAppModel(retador,rival)
 		
+		
+		
+	   
+		
+		
+		
 	}
 	
 	@Test
 	def void testGanadorRetador() {
 		
-		doReturn(100).when(analizadorSpy).poderDeAtaque(j1,p1,"TOP")
-    	doReturn(40).when(analizadorSpy).poderDeAtaque(j2,p2,"JUNGLE")
-    	doReturn(1).when(analizadorSpy).factorDeSuerte()
-		resultado.actualizarDatos()
-		
-		assertEquals(retador,resultado.ganador)
+	    
+    	
+	    resultado.actualizarDatos()
+        
+        assertEquals(j1,resultado.ganador)
+    	
 		
 	}
 	
-	/* 
-	@Test
-	def void testGanadorRival() {
-		
-		
-		resultado.actualizarDatos()
-		
-		assertEquals(rival,resultado.ganador)
-		
-	}
-	*/
 	
+
+
 }

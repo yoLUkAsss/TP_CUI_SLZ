@@ -37,7 +37,7 @@ class SelectorDeRivalAppModel {
 	}
 	
 	def determinarPersonaje(Personaje personajeRetador){
-		val personaje= personajes.findFirst[personaje|personaje !=personajeRetador]
+		val personaje= personajes.findFirst[personaje|!personaje.equals(personajeRetador)]
 		personaje
 	}
 	
