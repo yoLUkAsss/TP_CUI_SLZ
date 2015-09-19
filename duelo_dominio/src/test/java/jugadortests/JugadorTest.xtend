@@ -65,5 +65,18 @@ class JugadorTest {
 	 	assertTrue(jugador.est.size==1)
 	 }
 	 
+	 
+	  @Test
+	   def void testEstadisticas(){
+	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP,100)
+	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200)
+	 	jugador.empate(personaje1,Posicion.MID,60)
+	 	
+	 	assertTrue(jugador.est.size==2)
+	 }
+	 
+	 
+	
+	 
 	
 }

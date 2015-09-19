@@ -42,7 +42,7 @@ class AnalizadorDeAtaqueTest {
 		jugador1.ganeYSoyRetador(p2,Posicion.TOP,230)
 		jugador1.ganeYSoyRetador(p2,Posicion.JUNGLE,200)
 		jugador1.ganeYSoyRetador(p2,Posicion.TOP,150)
-		jugador1.ganeYSoyRetador(p2,Posicion.TOP,50)
+		jugador1.ganeYSoyRetador(p2,Posicion.TOP,50) 
         jugador1.ganeYSoyRetador(p2,Posicion.TOP,70)
         jugador1.ganeYSoyRetador(p2,Posicion.TOP,70)
                 
