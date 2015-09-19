@@ -35,7 +35,7 @@ class ResultadoDueloAppModel {
 	
 		
 	def actualizarDatos () {
-		var analyzer = new AnalizadorDeAtaque()
+		var analyzer = analizador()
 	
 		var resultadoRival = analyzer.realizarDuelo(
 				retador.jugador,rival.jugador,
@@ -63,4 +63,10 @@ class ResultadoDueloAppModel {
 			}
 		}
 	}
+	
+	def analizador(){
+		
+		new AnalizadorDeAtaque()
+	}
+	
 }

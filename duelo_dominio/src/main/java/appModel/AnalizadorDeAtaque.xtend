@@ -7,8 +7,8 @@ import jugador.EstadisticasPj
 
 class AnalizadorDeAtaque {
 	
-	def valorDeClasificacion(Jugador jugador, Personaje personaje, String posicion) {
-		var rand = new Random().nextInt(100)
+	def valorDeCalificacion(Jugador jugador, Personaje personaje, String posicion) {
+		var rand = valorAlAzar()
 		if (expPreviaIdealPers(jugador,personaje,posicion) > 5 && rand >90)
 			return 100
 		if (expPrevPosi(jugador,posicion) > 2 && rand >70)
@@ -18,6 +18,11 @@ class AnalizadorDeAtaque {
 		if (mejorPosi(personaje,posicion) && rand >30)
 			return 15
 		return 5
+	}
+	
+	def valorAlAzar(){
+		 
+		 new Random().nextInt(100)
 	}
 	
 	//Determina si la posicion es la posicion ideal del personaje
@@ -47,16 +52,17 @@ class AnalizadorDeAtaque {
 	
 	def poderDeAtaque(Jugador jugador, Personaje personaje, String string) {
 		
-		valorDeClasificacion(jugador,personaje,string)+estadisticasDelPersonaje(jugador,personaje)
+		valorDeCalificacion(jugador,personaje,string)+estadisticasDelPersonaje(jugador,personaje)
 	}
 	
 	def estadisticasDelPersonaje(Jugador jugador,Personaje personaje){
 		var estadistica= jugador.est.findFirst[esta|esta.nombre.equals(personaje.nombre)]
-		if (estadistica==null){
-			0
+		if (estadistica == null){
+			
+			  0
 		}
 		else{
-			(((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
+			(estadistica.duelosGanadosNoIniciados+(estadistica.duelosEmpatados/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
 		}
 	}
 	
