@@ -4,7 +4,7 @@ package appModelTest
 import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.*
 import appModel.AnalizadorDeAtaque
 import jugador.Jugador
 import jugador.Personaje
@@ -47,6 +47,7 @@ class AnalizadorDeAtaqueTest {
         jugador1.ganeYSoyRetador(p2,Posicion.TOP,70)
                 
         doReturn(97).when(analizadorSpy).valorAlAzar()
+        
 	    
 	    assertEquals(100,analizadorSpy.valorDeCalificacion(jugador1,p2,Posicion.TOP))
 		

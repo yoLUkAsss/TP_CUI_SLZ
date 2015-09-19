@@ -1,24 +1,21 @@
 package arena_dueloleyendas.dueloleyendas
 
-import org.uqbar.arena.windows.SimpleWindow
 import appModel.Duelo
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.widgets.Label
+import appModel.EstadisticasArmadasAppModel
+import arena_dueloleyendas.componentes.EstadisticaFormato
+import java.awt.Color
+import jugador.Posicion
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.widgets.tables.Table
-import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
-import arena_dueloleyendas.componentes.EstadisticaFormato
-import appModel.EstadisticasArmadasAppModel
-import java.awt.Color
-import appModel.ResultadoDueloAppModel
-import appModel.DetalleJugadorDueloAppModel
-import appModel.AnalizadorDeAtaque
-import jugador.Posicion
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 
 class CrearLobbyDelJugadorWindow extends SimpleWindow<Duelo> {
 	

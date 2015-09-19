@@ -22,13 +22,4 @@ class DueloTest {
 		duelo= new Duelo(jugador)
 		
 	}
-	
-	@Test(expected=NoHayRivalException)
-	
-	def void testNoHayRival() throws NoHayRivalException{
-		
-		duelo.iniciarDuelo(Posicion.TOP)
-		
-	}
-	
 }

@@ -37,7 +37,7 @@ class Duelo {
 	@Observable
 	def iniciarDuelo(Posicion pos){
 		retador = new DetalleJugadorDueloAppModel(jugador,estadisticaSeleccionada.pjAsociado,pos)
-		var DetalleJugadorDueloAppModel rival= new SelectorDeRivalAppModel().dameRival(retador)
+		var DetalleJugadorDueloAppModel rival= new SelectorDeRivalAppModel(personajesTotales).dameRival(retador)
 			if (rival==null){
 				return null//throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
 		    }

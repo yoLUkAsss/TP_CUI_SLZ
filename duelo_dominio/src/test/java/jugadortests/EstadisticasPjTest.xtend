@@ -41,7 +41,7 @@ class EstadisticasPjTest {
 	 	assertEquals(0,est.duelosGanadosNoIniciados)
 	 	assertEquals(0,est.derrotasNoIniciadas)
 	 	assertEquals(0,est.duelosEmpatados)
-	 	assertEquals("TOP",est.mejorUbicacion)
+	 	assertEquals(Posicion.TOP,est.mejorUbicacion)
 	 	assertFalse(est.posicionesUsadas.empty)
 	 	assertEquals(20,est.puntaje())
 	  	

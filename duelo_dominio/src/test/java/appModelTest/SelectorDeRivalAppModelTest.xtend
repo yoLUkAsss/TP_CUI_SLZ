@@ -13,6 +13,7 @@ import denuncias.DAbusoDelSisDeDenuncias
 import denuncias.DFeedIntencional
 import denuncias.DAbusoDeLenguaje
 import jugador.Posicion
+import java.util.Collection
 
 class SelectorDeRivalAppModelTest {
 	
@@ -35,8 +36,6 @@ class SelectorDeRivalAppModelTest {
     DFeedIntencional d3
     DAbusoDeLenguaje d4
 	
-	Object rival
-	
 	@Before
 	def void init() {
 		
@@ -56,20 +55,17 @@ class SelectorDeRivalAppModelTest {
 		d3= new DFeedIntencional("denuncia3")
 		d4= new DAbusoDeLenguaje("denuncia4")
 		
+		var Collection<Personaje> col = newArrayList
+		col.add(p1);col.add(p2);col.add(p3);col.add(p4)
 		
 		detalle= new DetalleJugadorDueloAppModel(j1,p1,Posicion.JUNGLE)
-		selector= new SelectorDeRivalAppModel()
-		selector1= new SelectorDeRivalAppModel()
+		selector= new SelectorDeRivalAppModel(col)
+		selector1= new SelectorDeRivalAppModel(col)
 		
 		selector.agregarJugador(j1)
 		selector.agregarJugador(j2)
 		selector.agregarJugador(j3)
 		selector.agregarJugador(j4)
-		
-		selector.agregarPersonaje(p1)
-		selector.agregarPersonaje(p2)
-		selector.agregarPersonaje(p3)
-		selector.agregarPersonaje(p4)
 		
 		j1.addDenuncia(d1)
 		j1.addDenuncia(d2)
@@ -104,24 +100,12 @@ class SelectorDeRivalAppModelTest {
 		
 	}
 	
-	
-	
-	
-	@Test
-	def testNoHayRival() {
-		
-		assertEquals(null,selector1.dameRival(detalle))
-	}
-	
-	
     @Test
     def testPuedeJugar() {
     	
     	assertTrue(selector.puedeJugar(j2.ranking(),j1.ranking()))
     	assertTrue(selector.puedeJugar(j3.ranking(),j1.ranking()))
     	assertFalse(selector.puedeJugar(j4.ranking(),j1.ranking()))
-    
-    	
     }
     
     @Test
@@ -135,11 +119,10 @@ class SelectorDeRivalAppModelTest {
     
     @Test
     def testProximoRival1() { 
-    	 var DetalleJugadorDueloAppModel rival= selector.dameRival(detalle)
+    	var DetalleJugadorDueloAppModel rival= selector.dameRival(detalle)
     	
-    	assertEquals(j2,rival.jugador)
-    	assertEquals(p2,rival.pj)
-    	assertEquals("MID",rival.posElegida)
+    	assertNotEquals(rival.jugador,detalle.jugador)
+    	assertNotEquals(rival.pj,detalle.pj)
     	
     }
     
