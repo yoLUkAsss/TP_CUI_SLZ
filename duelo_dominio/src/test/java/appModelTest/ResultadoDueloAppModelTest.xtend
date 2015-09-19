@@ -13,7 +13,7 @@ import appModel.AnalizadorDeAtaque
 class ResultadoDueloAppModelTest {
 	
 	ResultadoDueloAppModel resultado
-
+    ResultadoDueloAppModel resultadoSpy
 	
     DetalleJugadorDueloAppModel retador
 	DetalleJugadorDueloAppModel rival
@@ -38,6 +38,7 @@ class ResultadoDueloAppModelTest {
 		analizador= new AnalizadorDeAtaque()
 		analizadorSpy= spy(analizador) 
 		resultado= new ResultadoDueloAppModel(retador,rival)
+		resultadoSpy= spy(resultado)
 		
 		
 		
@@ -48,18 +49,54 @@ class ResultadoDueloAppModelTest {
 	}
 	
 	@Test
-	def void testGanadorRetador() {
+	def void testGanadorRival() {
 		
 	    
-    	
-	    resultado.actualizarDatos()
+          j1.ganeYSoyRetador(p1,"TOP",100)
+          j1.empate(p1,"TOP",100)
         
-        assertEquals(j1,resultado.ganador)
-    	
+          j2.ganeYSoyRetador(p2,"TOP",100)
+          j2.empate(p2,"TOP",100)
+          j2.ganeYSoyRetador(p2,"TOP",100)
+          j2.empate(p2,"TOP",100)
+          
+          doReturn(1).when(analizadorSpy).valorAlAzar()
+          doReturn(1).when(analizadorSpy).factorDeSuerte()
+      
+         resultado.actualizarDatos()
+        
+         assertEquals(j2,resultado.ganador)
+         assertEquals(j1,resultado.perdedor)
+        
+     
+      }
+	
+	
 		
-	}
-	
-	
+
+
+    @Test
+	 def void testGanadorRetador() {
+		
+	    
+          j2.ganeYSoyRetador(p1,"TOP",100)
+          j2.empate(p1,"TOP",100)
+        
+          j1.ganeYSoyRetador(p2,"TOP",100)
+          j1.empate(p2,"TOP",100)
+          j1.ganeYSoyRetador(p2,"TOP",100)
+          j1.empate(p2,"TOP",100)
+          
+          doReturn(1).when(analizadorSpy).valorAlAzar()
+          doReturn(1).when(analizadorSpy).factorDeSuerte()
+      
+         resultado.actualizarDatos()
+        
+         assertEquals(j1,resultado.ganador)
+         assertEquals(j2,resultado.perdedor)
+        
+     
+      }
 
 
 }

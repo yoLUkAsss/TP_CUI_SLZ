@@ -56,14 +56,20 @@ class AnalizadorDeAtaque {
 	}
 	
 	def estadisticasDelPersonaje(Jugador jugador,Personaje personaje){
+	
 		var estadistica= jugador.est.findFirst[esta|esta.nombre.equals(personaje.nombre)]
 		if (estadistica == null){
-			
-			  0
+			 
+
+		     0
 		}
 		else{
-			(((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
+			
+			 (((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
 		}
+		
+	  
+		
 	}
 	
 	def realizarDuelo(Jugador retador , Jugador rival ,
