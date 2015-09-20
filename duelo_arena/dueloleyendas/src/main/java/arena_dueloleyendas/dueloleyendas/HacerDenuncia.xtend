@@ -8,7 +8,7 @@ import appModel.ResultadoDueloAppModel
 import jugador.Personaje
 import appModel.DetalleJugadorDueloAppModel
 import jugador.Posicion
- 
+  
 class HacerDenuncia extends Application{
 	
 	var j = new Jugador("pedro")
