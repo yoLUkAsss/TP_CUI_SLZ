@@ -16,6 +16,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import excepciones.NoHayRivalException
 
 class CrearLobbyDelJugadorWindow extends SimpleWindow<Duelo> {
 	
@@ -69,13 +70,13 @@ revisar tus stats!'''
 			text = "Personaje buscado"
 		]
 		new TextBox(busqueda) => [
-			bindValueToProperty("altoGato")
+			bindValueToProperty("filtro")
 			width = 100
 		]
 		
 		var tablaDePersonajes = new Table<EstadisticasArmadasAppModel>(primerPanel , EstadisticasArmadasAppModel)
 		tablaDePersonajes.bindValueToProperty("estadisticaSeleccionada")
-		tablaDePersonajes.bindItemsToProperty("estadisticas")
+		tablaDePersonajes.bindItemsToProperty("estadisticasAMostrar")
 		tablaDePersonajes.height = 200 
 		
 		new Column(tablaDePersonajes) => [
@@ -132,15 +133,52 @@ revisar tus stats!'''
 			text = "Stats"
 			fontSize = 20
 		]
-		new EstadisticaFormato(tercerPanel) => [
-			setLabela = "estadisticaSeleccionada.estAsociada.duelosIniciados"
-			setLabelb = "estadisticaSeleccionada.estAsociada.duelosGanados"
-			setLabelc = "estadisticaSeleccionada.estAsociada.duelosGanadosNoIniciados"
-			setLabeld = "estadisticaSeleccionada.estAsociada.derrotasNoIniciadas"
-			setLabele = "estadisticaSeleccionada.estAsociada.duelosEmpatados"
-			setLabelf = "estadisticaSeleccionada.estAsociada.mejorUbicacion"
-			setLabelg = "estadisticaSeleccionada.estAsociada.calificacion"
+		var Panel est = new Panel(tercerPanel)
+		est.layout = new ColumnLayout(2)
+		
+		new Label(est) => [
+			text = "Jugadas"
 		]
+		new Label(est) => [
+			bindValueToProperty("estadisticaSeleccionada.estAsociada.duelosIniciados")
+		]
+		new Label(est) => [
+			text = "Ganadas"
+		]
+		new Label(est) => [
+			bindValueToProperty("estadisticaSeleccionada.estAsociada.duelosGanados")
+		]
+		new Label(est) => [
+			text = "Kills"
+		]
+		new Label(est) => [
+			bindValueToProperty("estadisticaSeleccionada.estAsociada.duelosGanadosNoIniciados")
+		]
+		new Label(est) => [
+			text = "Deaths"
+		]
+		new Label(est) => [
+			bindValueToProperty("estadisticaSeleccionada.estAsociada.derrotasNoIniciadas")
+		]
+		new Label(est) => [
+			text = "Assists"
+		]
+		new Label(est) => [
+			bindValueToProperty("estadisticaSeleccionada.estAsociada.duelosEmpatados")
+		]
+		new Label(est) => [
+			text = "Mejor Ubicacion"
+		]
+		new Label(est) => [
+			bindValueToProperty("estadisticaSeleccionada.estAsociada.mejorUbicacion")
+		]
+		new Label(est) => [
+			text = "Calificacion"
+		]
+		new Label(est) => [
+			bindValueToProperty("estadisticaSeleccionada.estAsociada.calificacion")
+		]
+		
 		
 		new Label(tercerPanel) => [
 			text = "Jugar"
@@ -152,11 +190,12 @@ revisar tus stats!'''
 		
 		var boton1 = new Button(buttons)
 		boton1.caption = "TOP"
-		boton1.onClick([| if (modelObject.iniciarDuelo(Posicion.TOP) == null)
-							this.openDialog(new CrearAJugarConMRXWindow(this,modelObject.iniciarDueloBot(Posicion.TOP)))
-						  else 
-						  	this.openDialog(new CrearResultadoDueloWindow(this,modelObject.iniciarDuelo(Posicion.TOP)))
-		])
+		boton1.onClick([| try {
+							this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(Posicion.TOP)))
+						  } catch (NoHayRivalException e) {
+						  	this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,Posicion.TOP))
+						  } 
+						  ])
 		boton1.width = 100
 		
 		var boton2 = new Button(buttons)
@@ -177,6 +216,5 @@ revisar tus stats!'''
 	
 	def openDialog(SimpleWindow<?> sw) {
 		sw.open
-		this.close
 	}
 }

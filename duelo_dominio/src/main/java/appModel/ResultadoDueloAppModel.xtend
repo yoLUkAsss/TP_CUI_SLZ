@@ -6,6 +6,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import jugador.EstadisticasPj
 
+import static org.uqbar.commons.model.ObservableUtils.*
+
 @Observable
 @Accessors
 
@@ -17,20 +19,23 @@ class ResultadoDueloAppModel {
 	Jugador perdedor
 	Integer resultadoGanador
 	Integer resultadoPerdedor
-	EstadisticasPj pjDelGanador
+	EstadisticasPj pjRetador
 	EstadisticasPj pjRival
+	Boolean empate = false
 	
-	new (DetalleJugadorDueloAppModel rival,DetalleJugadorDueloAppModel retador){
+	new (DetalleJugadorDueloAppModel retador,DetalleJugadorDueloAppModel rival){
 		this.rival=rival
 		this.retador=retador
 	}
 	
 	def getDescription(){
-		if(retador.equals(perdedor)){
-			return '''Perdiste contra «rival.jugador.nombre»'''
-		}else{
-			return '''Le ganaste a «rival.jugador.nombre»'''
-		}
+		if(empate){
+			return '''Empataste con: «rival.jugador.nombre»'''
+		}	
+		if(ganador.equals(retador.jugador)){
+			return '''Le ganaste a: «rival.jugador.nombre»'''
+		} 
+		return '''Perdiste con: «rival.jugador.nombre»'''
 	}
 	
 	
@@ -40,35 +45,37 @@ class ResultadoDueloAppModel {
 	
 		var resultadoRival = analyzer.realizarDuelo(
 				retador.jugador,rival.jugador,
-				retador.pj,rival.pj,retador.posElegida,rival.posElegida
+				retador.pj,rival.pj,
+				retador.posElegida,rival.posElegida
 		)
-		
-		var estRetador = retador.jugador.est.findFirst[esta | esta.nombre.equals(retador.pj.nombre)]
 
-		pjDelGanador = retador.jugador.est.findFirst[each | each.nombre.equals(retador.pj.nombre)]
+		pjRetador = retador.jugador.est.findFirst[each | each.nombre.equals(retador.pj.nombre)]
 		pjRival = rival.jugador.est.findFirst[each | each.nombre.equals(rival.pj.nombre)]
-		
-		pjDelGanador = retador.jugador.est.findFirst[each | 
-			each.nombre.equals(retador.pj.nombre)
-		]
-		pjRival = rival.jugador.est.findFirst[each | 
-			each.nombre.equals(rival.pj.nombre)
-		]
 
-		if (estRetador.calificacion > resultadoRival) {
+		System.out.println(pjRetador.calificacion)
+		System.out.println(resultadoRival)
+		System.out.println(retador.jugador.equals(rival.jugador))
+
+		if (pjRetador.calificacion > resultadoRival) {
 			ganador = retador.jugador
 			perdedor = rival.jugador
-			resultadoGanador = estRetador.calificacion
+			resultadoGanador = pjRetador.calificacion
 			resultadoPerdedor = resultadoRival
 		} else {
-			if (estRetador.calificacion < resultadoRival) {
+			if (pjRetador.calificacion < resultadoRival) {
 				ganador = rival.jugador
 				perdedor = retador.jugador
-				resultadoPerdedor = estRetador.calificacion
+				resultadoPerdedor = pjRetador.calificacion
 				resultadoGanador = resultadoRival
 			}
+			else 
+				empate = true
+
+		firePropertyChanged(this,"description",description);
+		System.out.println(retador.jugador.equals(rival.jugador))
 		}
 	}
+	
 	 
 	def analizador(){
 		

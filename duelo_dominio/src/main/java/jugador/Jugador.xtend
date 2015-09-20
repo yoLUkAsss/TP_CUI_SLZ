@@ -70,9 +70,13 @@ class Jugador {
 		buscarEst.apply(p).empato()	
 	}
 	
+	def getEstadisticaCon(Personaje p){
+		return est.findFirst[estadistica | estadistica.nombre.equals(p.nombre)]
+	}
+	
 	val buscarEst = [ Personaje p | 
 		var estad = est.findFirst[estadistica | estadistica.nombre.equals(p.nombre)]
-		if ((est.findFirst[estadistica | estadistica.nombre.equals(p.nombre)]) == null) {
+		if (estad == null) {
 			estad = new EstadisticasPj(p.nombre)
 			this.est.add(estad)
 		}

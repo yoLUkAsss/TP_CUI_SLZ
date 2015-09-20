@@ -6,11 +6,16 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import appModel.ResultadoDueloAppModel
+import appModel.Duelo
+import jugador.Posicion
 
-class CrearAJugarConMRXWindow extends SimpleWindow<ResultadoDueloAppModel> {
+class CrearAJugarConMRXWindow extends SimpleWindow<Duelo> {
 	
-	new(WindowOwner parent, ResultadoDueloAppModel model) {
+	Posicion posit
+	
+	new(WindowOwner parent, Duelo model,Posicion p) {
 		super(parent, model)
+		posit =p
 		title = "MR-X"
 		taskDescription = "No tienes rival!!"
 	}
@@ -18,7 +23,7 @@ class CrearAJugarConMRXWindow extends SimpleWindow<ResultadoDueloAppModel> {
 	override protected addActions(Panel actionsPanel) {
 		var Button a = new Button(actionsPanel)
 		a.caption = "Retar a MR-X"
-		a.onClick( [| 	this.openDialog(new CrearResultadoDueloWindow(this,modelObject));
+		a.onClick( [| 	this.openDialog(new CrearResultadoDueloWindow(this,modelObject.iniciarDueloBot(posit)));
 						this.close()
 		])
 			

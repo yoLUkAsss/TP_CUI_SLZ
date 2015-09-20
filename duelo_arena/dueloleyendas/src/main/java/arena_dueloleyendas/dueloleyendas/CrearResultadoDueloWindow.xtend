@@ -13,13 +13,14 @@ import org.uqbar.arena.windows.Dialog
 import appModel.DenunciaFacade
 import org.uqbar.arena.windows.SimpleWindow
 import jugador.Jugador
+import arena_dueloleyendas.componentes.EstadisticaFormato
 
 class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppModel> {
 	
 	new(WindowOwner parent, ResultadoDueloAppModel model) {
 		super(parent, model)
 		title= '''«model.retador.pj.nombre» vs «model.rival.pj.nombre»'''
-	}
+	} 
 	
 	override protected addActions(Panel mainPanel) {
 		new Button(mainPanel) => [
@@ -55,6 +56,24 @@ class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppMod
 		val verLeiaut2 = new Panel(cLt).layout = new VerticalLayout()
 		crearEstadisticasDeJugadorEstatico(verLeiaut1,modelObject.retador.jugador)
 		crearEstadisticasDeJugadorEstatico(verLeiaut2,modelObject.rival.jugador)
+		new EstadisticaFormato(verLeiaut1) => [
+			setLabela = "pjRetador.duelosIniciados"
+			setLabelb = "pjRetador.duelosGanados"
+			setLabelc = "pjRetador.duelosGanadosNoIniciados"
+			setLabeld = "pjRetador.derrotasNoIniciadas"
+			setLabele = "pjRetador.duelosEmpatados"
+			setLabelf = "pjRetador.mejorUbicacion"
+			setLabelg = "pjRetador.calificacion"
+		]
+		new EstadisticaFormato(verLeiaut2) => [
+			setLabela = "pjRival.duelosIniciados"
+			setLabelb = "pjRival.duelosGanados"
+			setLabelc = "pjRival.duelosGanadosNoIniciados"
+			setLabeld = "pjRival.derrotasNoIniciadas"
+			setLabele = "pjRival.duelosEmpatados"
+			setLabelf = "pjRival.mejorUbicacion"
+			setLabelg = "pjRival.calificacion"
+		]
 		
 	}
 	
@@ -64,6 +83,7 @@ class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppMod
 			foreground = Color.WHITE
 			background = Color.BLUE
 		]
+		
 	}
 	
 	def openDialog(SimpleWindow<?> sw) {

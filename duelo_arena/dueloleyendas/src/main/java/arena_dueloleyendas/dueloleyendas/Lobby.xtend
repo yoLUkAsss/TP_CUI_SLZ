@@ -12,6 +12,7 @@ class Lobby extends Application{
 		var Personaje amumu = new Personaje("Amumu",Posicion.TOP)
 		var Jugador pedro = new Jugador("Juaco")
 		pedro.ganeYSoyRetador(amumu,Posicion.TOP,45)
+		
 		new CrearLobbyDelJugadorWindow(this, new Duelo(pedro))
 	}
 	

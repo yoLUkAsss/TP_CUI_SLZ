@@ -62,11 +62,11 @@ class AnalizadorDeAtaque {
 		if (estadistica == null){
 			 
 
-		     0
+		     return 0
 		}
 		else{
 			
-			 (((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
+			 return (((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
 		}
 		
 	  
@@ -78,8 +78,9 @@ class AnalizadorDeAtaque {
 					  Posicion posicionRetador , Posicion posicionRival 
 	)
 	{   
-		var resultadoRetador = (this.poderDeAtaque(retador,personajeRetador,posicionRetador)) * factorDeSuerte()
-		var resultadoRival = (this.poderDeAtaque(rival,personajeRival,posicionRival)) * factorDeSuerte()
+		var resultadoRetador = (this.poderDeAtaque(retador,personajeRetador,posicionRetador) * factorDeSuerte())
+		var resultadoRival = (this.poderDeAtaque(rival,personajeRival,posicionRival) * factorDeSuerte())
+
 		if(resultadoRetador>resultadoRival){	
 			retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
 			rival.perdiYSoyRival(personajeRival,posicionRival,resultadoRival)
@@ -98,7 +99,8 @@ class AnalizadorDeAtaque {
 	}
 	
 	def  factorDeSuerte(){	
-	 	   new Random().nextInt(1)
+		val Random rand = new Random(System.currentTimeMillis());
+	  	return rand.nextInt(2)
 	 }
     
 }

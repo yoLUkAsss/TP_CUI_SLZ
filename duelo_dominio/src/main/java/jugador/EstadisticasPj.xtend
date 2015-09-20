@@ -3,6 +3,7 @@ package jugador
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Collection
 import org.uqbar.commons.utils.Observable
+import static org.uqbar.commons.model.ObservableUtils.*
 
 @Observable
 @Accessors
@@ -44,30 +45,42 @@ class EstadisticasPj {
 	}
 	
 	def ganoComoRetador(Posicion pos , Integer nuevaCalificacion) {
-		duelosIniciados++
-		duelosGanados++
+		duelosIniciados = duelosIniciados +1
+		duelosGanados = duelosGanados + 1
 		posicionesUsadas.add(pos)
 		mejorUbicacion = pos;
 		calificacion = nuevaCalificacion
+		firePropertyChanged(this,"duelosIniciado",duelosIniciados)
+		firePropertyChanged(this,"duelosGanados",duelosGanados)
+		firePropertyChanged(this,"posicionesUsadas",posicionesUsadas)
+		firePropertyChanged(this,"mejorUbicacion",mejorUbicacion)
+		firePropertyChanged(this,"calificacion",calificacion)
 	}
 	
 	def perdioComoRetador(Posicion pos , Integer nuevaCalificacion) {
-		duelosIniciados++
+		duelosIniciados = duelosIniciados +1
 		posicionesUsadas.add(pos)
 		calificacion = nuevaCalificacion
+		firePropertyChanged(this,"duelosIniciados",duelosIniciados)
+		firePropertyChanged(this,"posicionesUsadas",posicionesUsadas)
+		firePropertyChanged(this,"calificacion",calificacion)
 	}
 	
 	def ganoComoRival(Posicion pos , Integer nuevaCalificacion) {
-		duelosGanados++
-		duelosGanadosNoIniciados++
+		duelosGanados = duelosGanados +1
+		duelosGanadosNoIniciados = duelosGanadosNoIniciados +1
+		firePropertyChanged(this,"duelosGanados",duelosGanados)
+		firePropertyChanged(this,"duelosGanadosNoIniciados",duelosGanadosNoIniciados)
 	}
 	
 	def perdioComoRival(Posicion pos , Integer nuevaCalificacion) {
-		derrotasNoIniciadas++
+		derrotasNoIniciadas = derrotasNoIniciadas +1
+		firePropertyChanged(this,"derrotasNoIniciadas",derrotasNoIniciadas)
 	}
 	
 	def empato() {
-		duelosEmpatados++
+		duelosEmpatados = duelosEmpatados + 1
+		firePropertyChanged(this,"duelosEmpatados",duelosEmpatados)
 	}
 
 }
