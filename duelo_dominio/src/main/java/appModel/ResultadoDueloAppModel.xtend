@@ -43,7 +43,7 @@ class ResultadoDueloAppModel {
 	def actualizarDatos () {
 		var analyzer = analizador()
 	
-		var resultadoRival = analyzer.realizarDuelo(
+		var arConRes = analyzer.realizarDuelo(
 				retador.jugador,rival.jugador,
 				retador.pj,rival.pj,
 				retador.posElegida,rival.posElegida
@@ -52,34 +52,48 @@ class ResultadoDueloAppModel {
 		pjRetador = retador.jugador.est.findFirst[each | each.nombre.equals(retador.pj.nombre)]
 		pjRival = rival.jugador.est.findFirst[each | each.nombre.equals(rival.pj.nombre)]
 
-		System.out.println(pjRetador.calificacion)
-		System.out.println(resultadoRival)
+		System.out.println('''este es el pjRetador: ''' + arConRes.get(0).toString())
+		System.out.println("este es el pjRival: "+arConRes.get(1).toString())
 		System.out.println(retador.jugador.equals(rival.jugador))
 
-		if (pjRetador.calificacion > resultadoRival) {
+		if (arConRes.get(0) > arConRes.get(1)) {
 			ganador = retador.jugador
 			perdedor = rival.jugador
-			resultadoGanador = pjRetador.calificacion
-			resultadoPerdedor = resultadoRival
+			resultadoGanador = arConRes.get(0)
+			resultadoPerdedor = arConRes.get(1)
 		} else {
-			if (pjRetador.calificacion < resultadoRival) {
+			if (arConRes.get(0) < arConRes.get(1)) {
 				ganador = rival.jugador
 				perdedor = retador.jugador
-				resultadoPerdedor = pjRetador.calificacion
-				resultadoGanador = resultadoRival
+				resultadoPerdedor = arConRes.get(0) 
+				resultadoGanador = arConRes.get(1) 
 			}
 			else 
 				empate = true
+				resultadoGanador = arConRes.get(0) 
+				resultadoPerdedor = arConRes.get(1) 
 
 		firePropertyChanged(this,"description",description);
-		System.out.println(retador.jugador.equals(rival.jugador))
 		}
 	}
 	
 	 
 	def analizador(){
 		
-		new AnalizadorDeAtaque()
+		return new AnalizadorDeAtaque()
+	}
+	
+	def getVeredict() {
+		if(empate){
+			return "Empate :("
+		}
+		
+			return "Gandor: " + ganador.nombre + "!!!"
+		
+	}
+	
+	def getPuntaje() {
+		return ''' - «resultadoGanador» Puntos contra «resultadoPerdedor»'''
 	}
 	
 }

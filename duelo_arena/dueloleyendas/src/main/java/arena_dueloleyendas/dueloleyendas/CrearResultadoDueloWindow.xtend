@@ -14,6 +14,7 @@ import appModel.DenunciaFacade
 import org.uqbar.arena.windows.SimpleWindow
 import jugador.Jugador
 import arena_dueloleyendas.componentes.EstadisticaFormato
+import org.uqbar.arena.layout.HorizontalLayout
 
 class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppModel> {
 	
@@ -82,8 +83,15 @@ class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppMod
 			setLabelf = "pjRival.mejorUbicacion"
 			setLabelg = "pjRival.calificacion"
 		]
-		new Label(form) => [
-			text = '''Ganador: «modelObject.ganador.nombre»!!!'''
+		
+		val form2 = new Panel(form).layout = new HorizontalLayout()
+		new Label(form2) => [
+			text = modelObject.getVeredict();
+			foreground = Color.GREEN
+			background = Color.YELLOW
+		]
+		new Label(form2) => [
+			text = modelObject.getPuntaje();
 			foreground = Color.GREEN
 			background = Color.YELLOW
 		]

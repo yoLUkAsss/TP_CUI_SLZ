@@ -5,6 +5,7 @@ import jugador.Jugador
 import jugador.Personaje
 import jugador.EstadisticasPj
 import jugador.Posicion
+import java.util.ArrayList
 
 class AnalizadorDeAtaque {
 	
@@ -22,8 +23,8 @@ class AnalizadorDeAtaque {
 	}
 	
 	def valorAlAzar(){
-		 
-		 new Random().nextInt(100)
+		 val Random rand = new Random(System.currentTimeMillis());
+		 return rand.nextInt(120)
 	}
 	
 	//Determina si la posicion es la posicion ideal del personaje
@@ -75,12 +76,10 @@ class AnalizadorDeAtaque {
 	
 	def realizarDuelo(Jugador retador , Jugador rival ,
 					  Personaje personajeRetador , Personaje personajeRival , 
-					  Posicion posicionRetador , Posicion posicionRival 
-	)
-	{   
+					  Posicion posicionRetador , Posicion posicionRival ){   
+					  	
 		var resultadoRetador = (this.poderDeAtaque(retador,personajeRetador,posicionRetador) * factorDeSuerte())
 		var resultadoRival = (this.poderDeAtaque(rival,personajeRival,posicionRival) * factorDeSuerte())
-
 		if(resultadoRetador>resultadoRival){	
 			retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
 			rival.perdiYSoyRival(personajeRival,posicionRival,resultadoRival)
@@ -95,7 +94,10 @@ class AnalizadorDeAtaque {
 			    retador.perdiYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
 			}
 		}
-		return resultadoRival
+		var s =new ArrayList<Integer> 
+		s.add(resultadoRetador)
+		s.add(resultadoRival)
+		return s
 	}
 	
 	def  factorDeSuerte(){	
