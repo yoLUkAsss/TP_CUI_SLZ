@@ -9,6 +9,7 @@ import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.utils.TransactionalAndObservable
 import jugador.Posicion
 import static org.uqbar.commons.model.ObservableUtils.*
+import java.util.List
 
 @Observable
 @Accessors
@@ -17,13 +18,15 @@ class Duelo {
 	Jugador jugador
 	DetalleJugadorDueloAppModel retador
 	Collection<Personaje> personajesTotales 
+	List<Jugador> jgdrs
 
 	Collection<EstadisticasArmadasAppModel> estadisticas = newArrayList
 	Collection<EstadisticasArmadasAppModel> estadisticasAMostrar = newArrayList
 	EstadisticasArmadasAppModel estadisticaSeleccionada
 	String filtro
+	SelectorDeRivalAppModel selectorRival
 	
-	new(Jugador jugador){
+	new(Jugador jugador,List<Jugador> jgdrs){
 	    this.jugador=jugador
 	    personajesTotales = newArrayList
 	    personajesTotales.add(new Personaje("Amumu",Posicion.TOP))
@@ -33,6 +36,7 @@ class Duelo {
 	    this.estadisticas = getEstadisticasAMostrar() 
 		this.estadisticaSeleccionada = this.estadisticas.get(0)
 		estadisticasAMostrar = estadisticas
+		selectorRival = new SelectorDeRivalAppModel(personajesTotales,jgdrs)
 		this.filtro=""
 		
 		//HAY Q SACAR
@@ -42,14 +46,14 @@ class Duelo {
 	@Observable
 	def iniciarDuelo(Posicion pos){
 		retador = new DetalleJugadorDueloAppModel(jugador,estadisticaSeleccionada.pjAsociado,pos)
-		var DetalleJugadorDueloAppModel rival= new SelectorDeRivalAppModel(personajesTotales).dameRival(retador)
+		var DetalleJugadorDueloAppModel rival= selectorRival.dameRival(retador)
 			if (rival==null){
 				return null//throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
 		    }
 		    //firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)
 		val res = new ResultadoDueloAppModel(retador,rival)
 		res.actualizarDatos()
-		estadisticas = (new PrepareEstadisticasPjsAppModel(jugador.est,personajesTotales)).estadisticasPreparadas
+		estadisticas = (new PrepareEstadisticasPjsAppModel(jugador,personajesTotales)).estadisticasPreparadas
 		estadisticasAMostrar = estadisticas
 		estadisticaSeleccionada = estadisticasAMostrar.get(0)
 		firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)
@@ -78,7 +82,7 @@ class Duelo {
 				if (e.pjAsociado.nombre.contains(s))
 					aMostrar.add(e)
 			}
-			estadisticasAMostrar = aMostrar
+			this.estadisticasAMostrar = aMostrar
 			firePropertyChanged(this,"estadisticasAMostrar",estadisticasAMostrar)
 	}
 	
@@ -90,7 +94,7 @@ class Duelo {
 	}
 	
 	def getEstadisticasAMostrar() {
-		return (new PrepareEstadisticasPjsAppModel(jugador.est,personajesTotales)).estadisticasPreparadas
+		return (new PrepareEstadisticasPjsAppModel(jugador,personajesTotales)).estadisticasPreparadas
 	}
 
 }

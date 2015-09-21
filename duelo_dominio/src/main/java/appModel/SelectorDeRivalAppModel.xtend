@@ -4,17 +4,18 @@ import java.util.Collection
 import jugador.Jugador
 import jugador.Personaje
 import appModel.DetalleJugadorDueloAppModel
+import java.util.Collections
+import java.util.List
 
 class SelectorDeRivalAppModel {
 	
 	
-	Collection<Jugador> jugadores
+	List<Jugador> jugadores
 	Collection<Personaje> personajes
 	
 	
-	new(Collection<Personaje> pjs){
-		jugadores= newArrayList
-		jugadores.add(new Jugador("Marquitos"))
+	new(Collection<Personaje> pjs,List<Jugador> jgdrs){
+		jugadores = jgdrs
 		personajes= pjs
 	}
 	
@@ -22,6 +23,7 @@ class SelectorDeRivalAppModel {
 	def dameRival(DetalleJugadorDueloAppModel retador) {
 		val rival= jugadores.findFirst[jugador|puedeJugar(jugador.ranking(),retador.jugador.ranking())&& !jugador.equals(retador.jugador)
 		]
+		Collections.shuffle(jugadores);
 		if (rival!=null)
 			 return new DetalleJugadorDueloAppModel(rival,determinarPersonaje(retador.pj),determinarPersonaje(retador.pj).posIdeal)
 		return null

@@ -56,6 +56,14 @@ class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppMod
 		val verLeiaut2 = new Panel(cLt).layout = new VerticalLayout()
 		crearEstadisticasDeJugadorEstatico(verLeiaut1,modelObject.retador.jugador)
 		crearEstadisticasDeJugadorEstatico(verLeiaut2,modelObject.rival.jugador)
+		new Label(verLeiaut1) => [
+			text = '''Stats - «modelObject.retador.pj.nombre»'''
+			foreground = Color.BLUE
+		]
+		new Label(verLeiaut2) => [
+			text = '''Stats - «modelObject.rival.pj.nombre»'''
+			foreground = Color.BLUE
+		]
 		new EstadisticaFormato(verLeiaut1) => [
 			setLabela = "pjRetador.duelosIniciados"
 			setLabelb = "pjRetador.duelosGanados"
@@ -74,7 +82,11 @@ class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppMod
 			setLabelf = "pjRival.mejorUbicacion"
 			setLabelg = "pjRival.calificacion"
 		]
-		
+		new Label(form) => [
+			text = '''Ganador: «modelObject.ganador.nombre»!!!'''
+			foreground = Color.GREEN
+			background = Color.YELLOW
+		]
 	}
 	
 	def crearEstadisticasDeJugadorEstatico(Panel panel,Jugador j) {

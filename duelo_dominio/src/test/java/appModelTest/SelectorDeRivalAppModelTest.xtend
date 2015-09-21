@@ -14,6 +14,7 @@ import denuncias.DFeedIntencional
 import denuncias.DAbusoDeLenguaje
 import jugador.Posicion
 import java.util.Collection
+import java.util.List
 
 class SelectorDeRivalAppModelTest {
 	
@@ -56,11 +57,13 @@ class SelectorDeRivalAppModelTest {
 		d4= new DAbusoDeLenguaje("denuncia4")
 		
 		var Collection<Personaje> col = newArrayList
+		var List<Jugador> jgdrs = newArrayList
+		var List<Jugador> jgdrs1 = newArrayList
 		col.add(p1);col.add(p2);col.add(p3);col.add(p4)
 		
 		detalle= new DetalleJugadorDueloAppModel(j1,p1,Posicion.JUNGLE)
-		selector= new SelectorDeRivalAppModel(col)
-		selector1= new SelectorDeRivalAppModel(col)
+		selector= new SelectorDeRivalAppModel(col,jgdrs)
+		selector1= new SelectorDeRivalAppModel(col,jgdrs1)
 		
 		selector.agregarJugador(j1)
 		selector.agregarJugador(j2)
