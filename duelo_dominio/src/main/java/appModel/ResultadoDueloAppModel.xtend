@@ -40,13 +40,9 @@ class ResultadoDueloAppModel {
 	}
 			
 	def actualizarDatos () {
-		var analyzer = analizador()
+		
 	
-		var arConRes = analyzer.realizarDuelo(
-				retador.jugador,rival.jugador,
-				retador.pj,rival.pj,
-				retador.posElegida,rival.posElegida
-		)
+		var arConRes = this.resultadoDuelo()
 
 		pjRetador = retador.jugador.est.findFirst[each | each.nombre.equals(retador.pj.nombre)]
 		pjRival = rival.jugador.est.findFirst[each | each.nombre.equals(rival.pj.nombre)]
@@ -101,6 +97,18 @@ class ResultadoDueloAppModel {
 	def setTipoResultado (String s) {
 		tipoResultado = s
 		firePropertyChanged(this,"tipoResultado",tipoResultado)
+	}
+	
+	def resultadoDuelo() {
+		
+		var analyzer = new AnalizadorDeAtaque()
+	
+		var arConRes = analyzer.realizarDuelo(
+				retador.jugador,rival.jugador,
+				retador.pj,rival.pj,
+				retador.posElegida,rival.posElegida)
+		  
+		    arConRes
 	}
 	
 }
