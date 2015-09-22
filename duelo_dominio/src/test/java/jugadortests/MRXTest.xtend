@@ -37,7 +37,7 @@ class MRXTest {
 		jugador.addDenuncia(denuncia1)
 	 	jugador.addDenuncia(denuncia2)
 	 	jugador.addDenuncia(denuncia3)
-	 	jugador.empate(personaje1,Posicion.TOP,70)
+	 	jugador.empateComoRival(personaje1,Posicion.TOP,70)
 	 	jugador.ganeYSoyRetador(personaje1,Posicion.TOP,67)
 	 
 	 	

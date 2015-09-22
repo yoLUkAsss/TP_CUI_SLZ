@@ -78,8 +78,17 @@ class EstadisticasPj {
 		firePropertyChanged(this,"derrotasNoIniciadas",derrotasNoIniciadas)
 	}
 	
-	def empato() {
+	def empatoComoRetador(Posicion pos , Integer nuevaCalificacion) {
+		duelosIniciados = duelosIniciados +1
 		duelosEmpatados = duelosEmpatados + 1
+		calificacion = nuevaCalificacion
+		firePropertyChanged(this,"duelosEmpatados",duelosEmpatados)
+		firePropertyChanged(this,"duelosIniciados",duelosIniciados)
+		firePropertyChanged(this,"calificacion",calificacion)
+	}
+	
+	def empatoComoRival(Posicion pos , Integer nuevaCalificacion) {
+		duelosEmpatados = duelosEmpatados +1
 		firePropertyChanged(this,"duelosEmpatados",duelosEmpatados)
 	}
 

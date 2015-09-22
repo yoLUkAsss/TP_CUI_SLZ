@@ -6,7 +6,6 @@ import jugador.Jugador
 import jugador.Personaje
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.utils.TransactionalAndObservable
 import jugador.Posicion
 import static org.uqbar.commons.model.ObservableUtils.*
 import java.util.List
@@ -17,27 +16,21 @@ class Duelo {
 
 	Jugador jugador
 	DetalleJugadorDueloAppModel retador
-	Collection<Personaje> personajesTotales 
+	List<Personaje> personajesTotales 
 	List<Jugador> jgdrs
 
-	Collection<EstadisticasArmadasAppModel> estadisticas = newArrayList
+	List<EstadisticasArmadasAppModel> estadisticas = newArrayList
 	Collection<EstadisticasArmadasAppModel> estadisticasAMostrar = newArrayList
 	EstadisticasArmadasAppModel estadisticaSeleccionada
-	String filtro
+	String filtrarLista
 	SelectorDeRivalAppModel selectorRival
 	
-	new(Jugador jugador,List<Jugador> jgdrs){
+	new(Jugador jugador,List<Jugador> jgdrs , List<Personaje> pjs){
 	    this.jugador=jugador
-	    personajesTotales = newArrayList
-	    personajesTotales.add(new Personaje("Amumu",Posicion.TOP))
-		personajesTotales.add(new Personaje("Ahri",Posicion.MID))
-		personajesTotales.add(new Personaje("Olaf",Posicion.JUNGLE))
-		personajesTotales.add(new Personaje("Cait",Posicion.BOT))
-	    this.estadisticas = getEstadisticasAMostrar() 
-		this.estadisticaSeleccionada = this.estadisticas.get(0)
-		estadisticasAMostrar = estadisticas
+	    personajesTotales = pjs
+	    actualizarListado
 		selectorRival = new SelectorDeRivalAppModel(personajesTotales,jgdrs)
-		this.filtro=""
+		//this.filtro=""
 		
 		//HAY Q SACAR
 		
@@ -53,10 +46,6 @@ class Duelo {
 		    //firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)
 		val res = new ResultadoDueloAppModel(retador,rival)
 		res.actualizarDatos()
-		estadisticas = (new PrepareEstadisticasPjsAppModel(jugador,personajesTotales)).estadisticasPreparadas
-		estadisticasAMostrar = estadisticas
-		estadisticaSeleccionada = estadisticasAMostrar.get(0)
-		firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)
 		return res
 	}
 	
@@ -66,35 +55,52 @@ class Duelo {
 		var DetalleJugadorDueloAppModel rival = retador
 		val res = new ResultadoDueloAppModel(retador,rival)
 		res.actualizarDatos()
-		firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)
 		return res
 	}
 	
 	@Observable
-	def filtrarLista (String s) {
+	def setFiltrarLista (String s) {
 		if (s.equals("")) {
-			return estadisticasAMostrar
+			estadisticasAMostrar = estadisticas
+		} else {
+			var List<EstadisticasArmadasAppModel> aMostrar = newArrayList
+			
+				for (e : estadisticas) {
+					if (e.pjAsociado.nombre.contains(s))
+						aMostrar.add(e)
+				}
+			estadisticasAMostrar = aMostrar
 		}
-		
-		var Collection<EstadisticasArmadasAppModel> aMostrar = newArrayList
-		
-			for (e : estadisticas) {
-				if (e.pjAsociado.nombre.contains(s))
-					aMostrar.add(e)
-			}
-			this.estadisticasAMostrar = aMostrar
-			firePropertyChanged(this,"estadisticasAMostrar",estadisticasAMostrar)
+		estadisticaSeleccionada = estadisticasAMostrar.get(0)
+		firePropertyChanged(this,"estadisticasAMostrar",estadisticasAMostrar)
+		firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)	
 	}
 	
-	@Observable
-	def setFiltro(String s){
-		filtro=s
-		filtrarLista(s)
-		firePropertyChanged(this,"filtro",filtro)
+	def getFiltrarLista() {
+		return filtrarLista
 	}
+//	@Observable
+//	def setFiltro(String s){
+//		filtro=s
+//		estadisticasAMostrar = filtrarLista(s)
+//		firePropertyChanged(this,"estadisticasAMostrar",estadisticasAMostrar)
+//		firePropertyChanged(this,"filtro",filtro)
+//	}
+//	
+//	def getFiltro() {
+//		return filtro
+//	}
 	
 	def getEstadisticasAMostrar() {
 		return (new PrepareEstadisticasPjsAppModel(jugador,personajesTotales)).estadisticasPreparadas
+	}
+	
+	def actualizarListado() {
+		estadisticas = getEstadisticasAMostrar
+		estadisticasAMostrar = estadisticas
+		estadisticaSeleccionada = estadisticasAMostrar.get(0)
+		firePropertyChanged(this,"estadisticasAMostrar",estadisticasAMostrar)
+		firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)
 	}
 
 }

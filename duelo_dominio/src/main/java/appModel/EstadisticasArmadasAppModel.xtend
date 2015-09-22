@@ -7,7 +7,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Observable
 @Accessors
-class EstadisticasArmadasAppModel {
+class EstadisticasArmadasAppModel implements Comparable{
 	
 	Personaje pjAsociado
 	EstadisticasPj estAsociada
@@ -16,4 +16,10 @@ class EstadisticasArmadasAppModel {
 		this.pjAsociado = p
 		this.estAsociada = e
 	}
+	
+	override compareTo(Object o) {
+		var EstadisticasArmadasAppModel nuevo = o as EstadisticasArmadasAppModel
+		return pjAsociado.nombre.compareTo(nuevo.pjAsociado.nombre)
+	}
+	
 }

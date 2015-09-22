@@ -101,16 +101,16 @@ class EstadisticasPjTest {
 	  @Test
 	  def void testEmpato(){
 	  	
-	  	est.empato()
+	  	est.empatoComoRetador(Posicion.MID,4)
 	  	
-	  	assertEquals(0,est.duelosIniciados)
+	  	assertEquals(1,est.duelosIniciados)
 	 	assertEquals(0,est.duelosGanados)
 	 	assertEquals(0,est.duelosGanadosNoIniciados)
 	 	assertEquals(0,est.derrotasNoIniciadas)
 	 	assertEquals(1,est.duelosEmpatados)
 	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
-	 	assertTrue(est.posicionesUsadas.empty)
-	 	assertEquals(0,est.puntaje())
+	 	assertTrue(!est.posicionesUsadas.empty)
+	 	assertEquals(4,est.puntaje())
 	  	
 	  	
 	  	

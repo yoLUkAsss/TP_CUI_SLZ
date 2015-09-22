@@ -45,7 +45,7 @@ class JugadorTest {
 	 	jugador.addDenuncia(denuncia1)
 	 	jugador.addDenuncia(denuncia2)
 	 	jugador.addDenuncia(denuncia3)
-	 	jugador.empate(personaje1,Posicion.TOP,70)
+	 	jugador.empateComoRetador(personaje1,Posicion.TOP,70)
 	 	jugador.ganeYSoyRetador(personaje1,Posicion.TOP,67)
 	 	
 	 	var expected = 22
@@ -69,7 +69,7 @@ class JugadorTest {
 	   def void testEstadisticas(){
 	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP,100)
 	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200)
-	 	jugador.empate(personaje1,Posicion.MID,60)
+	 	jugador.empateComoRival(personaje1,Posicion.MID,60)
 	 	
 	 	assertTrue(jugador.est.size==2)
 	 }
@@ -78,13 +78,13 @@ class JugadorTest {
 	def void testEstadisticasVarias(){
 	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP,100)
 	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200)
-	 	jugador.empate(personaje1,Posicion.MID,60)
+	 	jugador.empateComoRetador(personaje1,Posicion.MID,60)
 	 	jugador.ganeYSoyRival(personaje2,Posicion.TOP,100)
 	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200)
-	 	jugador.empate(personaje1,Posicion.MID,60)
+	 	jugador.empateComoRival(personaje1,Posicion.MID,60)
 	 	jugador.ganeYSoyRetador(personaje3,Posicion.TOP,100)
 	 	jugador.perdiYSoyRival(personaje3,Posicion.JUNGLE,200)
-	 	jugador.empate(personaje3,Posicion.MID,60)
+	 	jugador.empateComoRetador(personaje3,Posicion.MID,60)
 	 	
 	 	assertTrue(jugador.est.size==3)
 	}

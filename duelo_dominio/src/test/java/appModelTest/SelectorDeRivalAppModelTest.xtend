@@ -56,7 +56,7 @@ class SelectorDeRivalAppModelTest {
 		d3= new DFeedIntencional("denuncia3")
 		d4= new DAbusoDeLenguaje("denuncia4")
 		
-		var Collection<Personaje> col = newArrayList
+		var List<Personaje> col = newArrayList
 		var List<Jugador> jgdrs = newArrayList
 		var List<Jugador> jgdrs1 = newArrayList
 		col.add(p1);col.add(p2);col.add(p3);col.add(p4)
@@ -80,12 +80,12 @@ class SelectorDeRivalAppModelTest {
 		j2.addDenuncia(d2)
 		
 		j2.ganeYSoyRetador(p1,Posicion.TOP,30)
-		j2.empate(p3,Posicion.JUNGLE,20)
+		j2.empateComoRival(p3,Posicion.JUNGLE,20)
 		
 		j3.addDenuncia(d3)
 		j3.addDenuncia(d4)
 		
-		j3.empate(p1,Posicion.JUNGLE,25)
+		j3.empateComoRival(p1,Posicion.JUNGLE,25)
 		j3.ganeYSoyRetador(p2,Posicion.TOP,60)
 		
 		j4.addDenuncia(d2)

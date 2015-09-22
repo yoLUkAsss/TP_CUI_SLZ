@@ -1,9 +1,11 @@
 package appModel
 
 import java.util.Collection
+import java.util.Collections
 import jugador.Personaje
 import jugador.EstadisticasPj
 import jugador.Jugador
+import java.util.List
 
 class PrepareEstadisticasPjsAppModel {
 	
@@ -15,7 +17,7 @@ class PrepareEstadisticasPjsAppModel {
 	}
 	
 	def estadisticasPreparadas() {
-		var Collection<EstadisticasArmadasAppModel> est = newArrayList
+		var List<EstadisticasArmadasAppModel> est = newArrayList
 		for (Personaje p : this.personajes) {
 			var estadistica = this.jugador.est.findFirst[each | each.nombre.equals(p.nombre)]
 			if (estadistica != null)
@@ -27,6 +29,7 @@ class PrepareEstadisticasPjsAppModel {
 				
 				}
 		}
+		Collections.sort(est)
 		return est
 	}
 }

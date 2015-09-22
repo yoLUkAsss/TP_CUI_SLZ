@@ -66,8 +66,12 @@ class Jugador {
 		buscarEst.apply(p).perdioComoRetador(pos,califi)
 	}
 	
-	def empate(Personaje p , Posicion pos , Integer califi) {
-		buscarEst.apply(p).empato()	
+	def empateComoRetador(Personaje p , Posicion pos , Integer califi) {
+		buscarEst.apply(p).empatoComoRetador(pos,califi)	
+	}
+	
+	def empateComoRival(Personaje p , Posicion pos , Integer califi) {
+		buscarEst.apply(p).empatoComoRival(pos,califi)	
 	}
 	
 	def getEstadisticaCon(Personaje p){

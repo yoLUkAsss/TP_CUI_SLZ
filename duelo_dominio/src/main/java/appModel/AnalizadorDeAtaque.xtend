@@ -86,8 +86,8 @@ class AnalizadorDeAtaque {
 		}
 		else{
 			if (resultadoRetador==resultadoRival){
-				retador.empate(personajeRetador,posicionRetador,resultadoRetador)
-				rival.empate(personajeRival,posicionRival,resultadoRival)
+				retador.empateComoRetador(personajeRetador,posicionRetador,resultadoRetador)
+				rival.empateComoRival(personajeRival,posicionRival,resultadoRival)
 			}
 			else{
 				rival.ganeYSoyRival(personajeRival,posicionRival,resultadoRival)

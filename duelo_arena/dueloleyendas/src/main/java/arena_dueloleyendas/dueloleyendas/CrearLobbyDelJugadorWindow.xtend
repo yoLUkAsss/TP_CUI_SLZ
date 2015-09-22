@@ -17,6 +17,7 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import excepciones.NoHayRivalException
+import org.uqbar.arena.bindings.ObservableProperty
 
 class CrearLobbyDelJugadorWindow extends SimpleWindow<Duelo> {
 	
@@ -70,7 +71,7 @@ revisar tus stats!'''
 			text = "Personaje buscado"
 		]
 		new TextBox(busqueda) => [
-			bindValueToProperty("filtro")
+			bindValueToProperty("filtrarLista")
 			width = 100
 		]
 		
@@ -200,17 +201,29 @@ revisar tus stats!'''
 		
 		var boton2 = new Button(buttons)
 		boton2.caption = "MID"
-		boton2.onClick([| modelObject.iniciarDuelo(Posicion.MID) ])
+		boton2.onClick([| try {
+							this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(Posicion.MID)))
+						  } catch (NoHayRivalException e) {
+						  	this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,Posicion.MID))
+						  }])
 		boton2.width = 100
 		
 		var boton3 = new Button(buttons)
 		boton3.caption = "JUNGLE"
-		boton3.onClick([| modelObject.iniciarDuelo(Posicion.JUNGLE)])
+		boton3.onClick([| try {
+							this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(Posicion.JUNGLE)))
+						  } catch (NoHayRivalException e) {
+						  	this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,Posicion.JUNGLE))
+						  }])
 		boton3.width = 100
 		
 		var boton4 = new Button(buttons)
 		boton4.caption = "BOT"
-		boton4.onClick([| modelObject.iniciarDuelo(Posicion.BOT) ])
+		boton4.onClick([| try {
+							this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(Posicion.BOT)))
+						  } catch (NoHayRivalException e) {
+						  	this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,Posicion.BOT))
+						  }])
 		boton4.width = 100
 	}
 	

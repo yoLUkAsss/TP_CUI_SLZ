@@ -25,7 +25,7 @@ class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppMod
 	
 	override protected addActions(Panel mainPanel) {
 		new Button(mainPanel) => [
-			caption = "Aceptar derrota con honor"
+			caption = '''Aceptar «modelObject.tipoResultado» con honor'''
 			
 			setAsDefault
 			onClick [ | this.close()

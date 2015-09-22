@@ -95,7 +95,7 @@ class AnalizadorDeAtaqueTest {
     @Test
     def void testValorDeCalificacionNOOOB(){
     	
-    	jugador2.empate(p2,Posicion.MID,200)
+    	jugador2.empateComoRival(p2,Posicion.MID,200)
     	
     	jugador2.perdiYSoyRival(p2,Posicion.TOP,100)
     	
@@ -112,8 +112,8 @@ class AnalizadorDeAtaqueTest {
     def void testEstadisticasDelPersonaje(){
     	
 		jugador2.ganeYSoyRetador(p2,Posicion.BOT,230)
-		jugador2.empate(p2,Posicion.BOT,200)
-		jugador2.empate(p2,Posicion.MID,200)
+		jugador2.empateComoRetador(p2,Posicion.BOT,200)
+		jugador2.empateComoRival(p2,Posicion.MID,200)
 		jugador2.perdiYSoyRetador(p2,Posicion.TOP,200)
 		jugador2.ganeYSoyRival(p2,Posicion.TOP,150)
 		jugador2.ganeYSoyRival(p2,Posicion.TOP,150)
@@ -135,8 +135,8 @@ class AnalizadorDeAtaqueTest {
     def void testPoderDeAtaque(){
     	
     	jugador2.ganeYSoyRetador(p2,Posicion.TOP,230)
-		jugador2.empate(p2,Posicion.BOT,200)
-		jugador2.empate(p2,Posicion.MID,200)
+		jugador2.empateComoRetador(p2,Posicion.BOT,200)
+		jugador2.empateComoRival(p2,Posicion.MID,200)
 		jugador2.perdiYSoyRetador(p2,Posicion.BOT,200)
 		jugador2.perdiYSoyRetador(p2,Posicion.TOP,100)
 		jugador2.ganeYSoyRival(p2,Posicion.TOP,150)
@@ -145,7 +145,7 @@ class AnalizadorDeAtaqueTest {
     	
     	
     	doReturn(80).when(analizadorSpy).valorAlAzar()
-    	assertEquals(63,analizadorSpy.poderDeAtaque(jugador2,p2,Posicion.TOP))
+    	assertEquals(64,analizadorSpy.poderDeAtaque(jugador2,p2,Posicion.TOP))
     	
     	
     	
@@ -167,16 +167,6 @@ class AnalizadorDeAtaqueTest {
     
     
     
-    @Test
-    def void testRealizarDuelo() {
-    	
-    	doReturn(100).when(analizadorSpy).poderDeAtaque(jugador1,p1,Posicion.TOP)
-    	doReturn(40).when(analizadorSpy).poderDeAtaque(jugador2,p2,Posicion.JUNGLE)
-    	doReturn(1).when(analizadorSpy).factorDeSuerte()
-    	
-    	assertEquals(40,analizadorSpy.realizarDuelo(jugador1,jugador2,p1,p2,Posicion.TOP,Posicion.JUNGLE))
-    	
-    }
     
    
    

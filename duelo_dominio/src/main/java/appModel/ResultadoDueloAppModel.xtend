@@ -22,6 +22,7 @@ class ResultadoDueloAppModel {
 	EstadisticasPj pjRetador
 	EstadisticasPj pjRival
 	Boolean empate = false
+	String tipoResultado = ""
 	
 	new (DetalleJugadorDueloAppModel retador,DetalleJugadorDueloAppModel rival){
 		this.rival=rival
@@ -37,9 +38,7 @@ class ResultadoDueloAppModel {
 		} 
 		return '''Perdiste con: «rival.jugador.nombre»'''
 	}
-	
-	
-		
+			
 	def actualizarDatos () {
 		var analyzer = analizador()
 	
@@ -61,18 +60,21 @@ class ResultadoDueloAppModel {
 			perdedor = rival.jugador
 			resultadoGanador = arConRes.get(0)
 			resultadoPerdedor = arConRes.get(1)
+			setTipoResultado("victoria")
 		} else {
 			if (arConRes.get(0) < arConRes.get(1)) {
 				ganador = rival.jugador
 				perdedor = retador.jugador
 				resultadoPerdedor = arConRes.get(0) 
 				resultadoGanador = arConRes.get(1) 
+				setTipoResultado("derrota")
 			}
-			else 
+			else {
 				empate = true
 				resultadoGanador = arConRes.get(0) 
 				resultadoPerdedor = arConRes.get(1) 
-
+				setTipoResultado("empate")
+			}
 		firePropertyChanged(this,"description",description);
 		}
 	}
@@ -94,6 +96,11 @@ class ResultadoDueloAppModel {
 	
 	def getPuntaje() {
 		return ''' - «resultadoGanador» Puntos contra «resultadoPerdedor»'''
+	}
+	
+	def setTipoResultado (String s) {
+		tipoResultado = s
+		firePropertyChanged(this,"tipoResultado",tipoResultado)
 	}
 	
 }
