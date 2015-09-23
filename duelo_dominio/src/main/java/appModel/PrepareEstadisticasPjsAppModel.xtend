@@ -25,9 +25,8 @@ class PrepareEstadisticasPjsAppModel {
 			else{
 			var estN = new EstadisticasPj(p.nombre)
 				est.add(new EstadisticasArmadasAppModel(p,estN))
-				jugador.est.add(estN)
-				
-				}
+				jugador.est.add(estN)	
+			}
 		}
 		Collections.sort(est)
 		return est

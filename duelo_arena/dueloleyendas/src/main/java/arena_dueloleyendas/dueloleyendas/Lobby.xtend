@@ -23,7 +23,7 @@ class Lobby extends Application{
 		
 		var List<Jugador> jgdrs = newArrayList
 		jgdrs.add(marq);jgdrs.add(xPeke)
-		pedro.ganeYSoyRetador(amumu,Posicion.TOP,45)
+		pedro.ganeYSoyRetador(amumu,Posicion.TOP)
 		
 		new CrearLobbyDelJugadorWindow(this, new Duelo(pedro,jgdrs,pjsPaJugar))
 	}

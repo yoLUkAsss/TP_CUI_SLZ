@@ -6,19 +6,29 @@ import jugador.Personaje
 import jugador.EstadisticasPj
 import jugador.Posicion
 import java.util.ArrayList
+import jugador.TipoCalificacion
 
 class AnalizadorDeAtaque {
 	
 	def valorDeCalificacion(Jugador jugador, Personaje personaje, Posicion posicion) {
 		var rand = valorAlAzar()
-		if (expPreviaIdealPers(jugador,personaje,posicion) > 5 && rand >90)
+		if (expPreviaIdealPers(jugador,personaje,posicion) > 5 && rand >90){
+			jugador.setTipoCalificacion(personaje,TipoCalificacion.RAMPAGE)
 			return 100
-		if (expPrevPosi(jugador,posicion) > 2 && rand >70)
+		}
+		if (expPrevPosi(jugador,posicion) > 2 && rand >70) {
+			jugador.setTipoCalificacion(personaje,TipoCalificacion.DOMINADOR)
 			return 75
-		if (rand >50)
+		}
+		if (rand >50) {
+			jugador.setTipoCalificacion(personaje,TipoCalificacion.KILLINGSPRED)
 			return 60
-		if (mejorPosi(personaje,posicion) && rand >30)
+		}
+		if (mejorPosi(personaje,posicion) && rand >30) {
+			jugador.setTipoCalificacion(personaje,TipoCalificacion.MANCO)
 			return 15
+		}
+		jugador.setTipoCalificacion(personaje,TipoCalificacion.NOOB)
 		return 5
 	}
 	
@@ -81,17 +91,17 @@ class AnalizadorDeAtaque {
 		var resultadoRetador = (this.poderDeAtaque(retador,personajeRetador,posicionRetador) * factorDeSuerte())
 		var resultadoRival = (this.poderDeAtaque(rival,personajeRival,posicionRival) * factorDeSuerte())
 		if(resultadoRetador>resultadoRival){	
-			retador.ganeYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
-			rival.perdiYSoyRival(personajeRival,posicionRival,resultadoRival)
+			retador.ganeYSoyRetador(personajeRetador,posicionRetador)
+			rival.perdiYSoyRival(personajeRival,posicionRival)
 		}
 		else{
 			if (resultadoRetador==resultadoRival){
-				retador.empateComoRetador(personajeRetador,posicionRetador,resultadoRetador)
-				rival.empateComoRival(personajeRival,posicionRival,resultadoRival)
+				retador.empateComoRetador(personajeRetador,posicionRetador)
+				rival.empateComoRival(personajeRival,posicionRival)
 			}
 			else{
-				rival.ganeYSoyRival(personajeRival,posicionRival,resultadoRival)
-			    retador.perdiYSoyRetador(personajeRetador,posicionRetador,resultadoRetador)
+				rival.ganeYSoyRival(personajeRival,posicionRival)
+			    retador.perdiYSoyRetador(personajeRetador,posicionRetador)
 			}
 		}
 		var s =new ArrayList<Integer> 

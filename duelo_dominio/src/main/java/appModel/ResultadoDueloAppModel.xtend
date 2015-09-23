@@ -47,9 +47,7 @@ class ResultadoDueloAppModel {
 		pjRetador = retador.jugador.est.findFirst[each | each.nombre.equals(retador.pj.nombre)]
 		pjRival = rival.jugador.est.findFirst[each | each.nombre.equals(rival.pj.nombre)]
 
-		System.out.println('''este es el pjRetador: ''' + arConRes.get(0).toString())
-		System.out.println("este es el pjRival: "+arConRes.get(1).toString())
-		System.out.println(retador.jugador.equals(rival.jugador))
+
 
 		if (arConRes.get(0) > arConRes.get(1)) {
 			ganador = retador.jugador

@@ -28,19 +28,17 @@ class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppMod
 			caption = '''Aceptar «modelObject.tipoResultado» con honor'''
 			
 			setAsDefault
-			onClick [ | this.close()
-					
+			onClick [ | this.close()		
 			]
-
-			disableOnError
+			width = 300
 		]
 		
 		new Button(mainPanel) => [
 			caption = "Denunciar actitud antideportiva"
 			setAsDefault
 			onClick [ | this.openDialog(new CrearHacerDenunciaWindow(this,new DenunciaFacade(modelObject.retador.jugador,modelObject.rival.jugador)))
-				
 			]
+			width = 300
 		]
 	}
 	

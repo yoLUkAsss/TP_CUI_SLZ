@@ -82,9 +82,5 @@ class ResultadoDueloAppModelTest {
     	assertEquals(j1,resultadoSpy.perdedor)
     	
     }
-    @Test
-    def void testResultadoDuelo() {
-    	
-    	
-    }
+   
 }

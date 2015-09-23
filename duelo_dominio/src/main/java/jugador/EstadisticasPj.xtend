@@ -25,7 +25,7 @@ class EstadisticasPj {
 	Posicion mejorUbicacion
 	
 	//Ultima calificacion obtenida en un duelo iniciado por el jugador
-	Integer calificacion
+	TipoCalificacion calificacion
 	
 	
 	new (String nombre) {
@@ -37,59 +37,61 @@ class EstadisticasPj {
 		duelosEmpatados=0
 		mejorUbicacion=Posicion.NONE
 		posicionesUsadas=newArrayList		
-		calificacion=0
+		calificacion=TipoCalificacion.NOOB
 	}
 		
-	def Integer puntaje(){
-		calificacion
-	}
+
 	
-	def ganoComoRetador(Posicion pos , Integer nuevaCalificacion) {
+	def ganoComoRetador(Posicion pos) {
 		duelosIniciados = duelosIniciados +1
 		duelosGanados = duelosGanados + 1
 		posicionesUsadas.add(pos)
 		mejorUbicacion = pos;
-		calificacion = nuevaCalificacion
 		firePropertyChanged(this,"duelosIniciado",duelosIniciados)
 		firePropertyChanged(this,"duelosGanados",duelosGanados)
 		firePropertyChanged(this,"posicionesUsadas",posicionesUsadas)
 		firePropertyChanged(this,"mejorUbicacion",mejorUbicacion)
-		firePropertyChanged(this,"calificacion",calificacion)
 	}
 	
-	def perdioComoRetador(Posicion pos , Integer nuevaCalificacion) {
+	def perdioComoRetador(Posicion pos) {
 		duelosIniciados = duelosIniciados +1
 		posicionesUsadas.add(pos)
-		calificacion = nuevaCalificacion
+		mejorUbicacion = pos
 		firePropertyChanged(this,"duelosIniciados",duelosIniciados)
 		firePropertyChanged(this,"posicionesUsadas",posicionesUsadas)
-		firePropertyChanged(this,"calificacion",calificacion)
+		firePropertyChanged(this,"mejorUbicacion",mejorUbicacion)
 	}
 	
-	def ganoComoRival(Posicion pos , Integer nuevaCalificacion) {
+	def ganoComoRival(Posicion pos) {
 		duelosGanados = duelosGanados +1
 		duelosGanadosNoIniciados = duelosGanadosNoIniciados +1
 		firePropertyChanged(this,"duelosGanados",duelosGanados)
 		firePropertyChanged(this,"duelosGanadosNoIniciados",duelosGanadosNoIniciados)
 	}
 	
-	def perdioComoRival(Posicion pos , Integer nuevaCalificacion) {
+	def perdioComoRival(Posicion pos) {
 		derrotasNoIniciadas = derrotasNoIniciadas +1
 		firePropertyChanged(this,"derrotasNoIniciadas",derrotasNoIniciadas)
 	}
 	
-	def empatoComoRetador(Posicion pos , Integer nuevaCalificacion) {
+	def empatoComoRetador(Posicion pos) {
 		duelosIniciados = duelosIniciados +1
 		duelosEmpatados = duelosEmpatados + 1
-		calificacion = nuevaCalificacion
+		posicionesUsadas.add(pos)
+		mejorUbicacion = pos
 		firePropertyChanged(this,"duelosEmpatados",duelosEmpatados)
 		firePropertyChanged(this,"duelosIniciados",duelosIniciados)
-		firePropertyChanged(this,"calificacion",calificacion)
+		firePropertyChanged(this,"mejorUbicacion",mejorUbicacion)
 	}
 	
-	def empatoComoRival(Posicion pos , Integer nuevaCalificacion) {
+	def empatoComoRival(Posicion pos)  {
 		duelosEmpatados = duelosEmpatados +1
 		firePropertyChanged(this,"duelosEmpatados",duelosEmpatados)
+	}
+	
+	def setCalificacion (TipoCalificacion t) {
+		this.calificacion = t
+		firePropertyChanged(this,"calificacion",calificacion)
 	}
 
 }

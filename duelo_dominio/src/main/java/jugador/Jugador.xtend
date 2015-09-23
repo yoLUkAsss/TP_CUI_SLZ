@@ -50,28 +50,32 @@ class Jugador {
 //Actualizaciones//
 ///////////////////
 
-	def ganeYSoyRival(Personaje p , Posicion pos , Integer califi) {
-		buscarEst.apply(p).ganoComoRival(pos,califi)
+	def setTipoCalificacion(Personaje p , TipoCalificacion t) {
+		buscarEst.apply(p).calificacion = t
+	}
+
+	def ganeYSoyRival(Personaje p , Posicion pos) {
+		buscarEst.apply(p).ganoComoRival(pos)
 	}
 	
-	def perdiYSoyRival(Personaje p , Posicion pos , Integer califi) {
-		buscarEst.apply(p).perdioComoRival(pos,califi)
+	def perdiYSoyRival(Personaje p , Posicion pos) {
+		buscarEst.apply(p).perdioComoRival(pos)
 	}
 	
-	def ganeYSoyRetador(Personaje p , Posicion pos , Integer califi) {
-		buscarEst.apply(p).ganoComoRetador(pos,califi)
+	def ganeYSoyRetador(Personaje p , Posicion pos) {
+		buscarEst.apply(p).ganoComoRetador(pos)
 	}
 	
-	def perdiYSoyRetador(Personaje p , Posicion pos , Integer califi) {
-		buscarEst.apply(p).perdioComoRetador(pos,califi)
+	def perdiYSoyRetador(Personaje p , Posicion pos) {
+		buscarEst.apply(p).perdioComoRetador(pos)
 	}
 	
-	def empateComoRetador(Personaje p , Posicion pos , Integer califi) {
-		buscarEst.apply(p).empatoComoRetador(pos,califi)	
+	def empateComoRetador(Personaje p , Posicion pos) {
+		buscarEst.apply(p).empatoComoRetador(pos)	
 	}
 	
-	def empateComoRival(Personaje p , Posicion pos , Integer califi) {
-		buscarEst.apply(p).empatoComoRival(pos,califi)	
+	def empateComoRival(Personaje p , Posicion pos) {
+		buscarEst.apply(p).empatoComoRival(pos)	
 	}
 	
 	def getEstadisticaCon(Personaje p){

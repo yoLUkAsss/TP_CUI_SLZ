@@ -73,30 +73,30 @@ class SelectorDeRivalAppModelTest {
 		j1.addDenuncia(d1)
 		j1.addDenuncia(d2)
 		
-		j1.ganeYSoyRetador(p1,Posicion.TOP,30)
+		j1.ganeYSoyRetador(p1,Posicion.TOP)
 		
 			
 		j2.addDenuncia(d1)
 		j2.addDenuncia(d2)
 		
-		j2.ganeYSoyRetador(p1,Posicion.TOP,30)
-		j2.empateComoRival(p3,Posicion.JUNGLE,20)
+		j2.ganeYSoyRetador(p1,Posicion.TOP)
+		j2.empateComoRival(p3,Posicion.JUNGLE)
 		
 		j3.addDenuncia(d3)
 		j3.addDenuncia(d4)
 		
-		j3.empateComoRival(p1,Posicion.JUNGLE,25)
-		j3.ganeYSoyRetador(p2,Posicion.TOP,60)
+		j3.empateComoRival(p1,Posicion.JUNGLE)
+		j3.ganeYSoyRetador(p2,Posicion.TOP)
 		
 		j4.addDenuncia(d2)
 		j4.addDenuncia(d2)
 		j4.addDenuncia(d2)
 		j4.addDenuncia(d2)
 		
-		j4.ganeYSoyRetador(p2,Posicion.TOP,50)
-		j4.ganeYSoyRetador(p1,Posicion.TOP,200)
-	    j4.ganeYSoyRetador(p1,Posicion.TOP,200)
-	    j4.ganeYSoyRetador(p1,Posicion.TOP,200)	
+		j4.ganeYSoyRetador(p2,Posicion.TOP)
+		j4.ganeYSoyRetador(p1,Posicion.TOP)
+	    j4.ganeYSoyRetador(p1,Posicion.TOP)
+	    j4.ganeYSoyRetador(p1,Posicion.TOP)	
 		
 		
 		
@@ -111,15 +111,7 @@ class SelectorDeRivalAppModelTest {
     	assertFalse(selector.puedeJugar(j4.ranking(),j1.ranking()))
     }
     
-    @Test
-    def testDeterminarPersonaje() {
-    	
-    	assertEquals(p1,selector.determinarPersonaje(p2))
-    	assertEquals(p2,selector.determinarPersonaje(p1))
-    	assertEquals(p1,selector.determinarPersonaje(p3))
-    	
-    }
-    
+   
     @Test
     def testProximoRival1() { 
     	var DetalleJugadorDueloAppModel rival= selector.dameRival(detalle)

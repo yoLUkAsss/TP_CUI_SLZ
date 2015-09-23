@@ -45,8 +45,8 @@ class JugadorTest {
 	 	jugador.addDenuncia(denuncia1)
 	 	jugador.addDenuncia(denuncia2)
 	 	jugador.addDenuncia(denuncia3)
-	 	jugador.empateComoRetador(personaje1,Posicion.TOP,70)
-	 	jugador.ganeYSoyRetador(personaje1,Posicion.TOP,67)
+	 	jugador.empateComoRetador(personaje1,Posicion.TOP)
+	 	jugador.ganeYSoyRetador(personaje1,Posicion.TOP)
 	 	
 	 	var expected = 22
 	 	
@@ -58,8 +58,8 @@ class JugadorTest {
 	 
 	 @Test
 	 def void testTieneUnaSolaEstadisticasDelPersonaje(){
-	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP,100)
-	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200)
+	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP)
+	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE)
 	 	
 	 	assertTrue(jugador.est.size==1)
 	 }
@@ -67,24 +67,24 @@ class JugadorTest {
 	 
 	  @Test
 	   def void testEstadisticas(){
-	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP,100)
-	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200)
-	 	jugador.empateComoRival(personaje1,Posicion.MID,60)
+	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP)
+	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE)
+	 	jugador.empateComoRival(personaje1,Posicion.MID)
 	 	
 	 	assertTrue(jugador.est.size==2)
 	 }
 	 
 	@Test
 	def void testEstadisticasVarias(){
-	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP,100)
-	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200)
-	 	jugador.empateComoRetador(personaje1,Posicion.MID,60)
-	 	jugador.ganeYSoyRival(personaje2,Posicion.TOP,100)
-	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE,200)
-	 	jugador.empateComoRival(personaje1,Posicion.MID,60)
-	 	jugador.ganeYSoyRetador(personaje3,Posicion.TOP,100)
-	 	jugador.perdiYSoyRival(personaje3,Posicion.JUNGLE,200)
-	 	jugador.empateComoRetador(personaje3,Posicion.MID,60)
+	 	jugador.ganeYSoyRetador(personaje2,Posicion.TOP)
+	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE)
+	 	jugador.empateComoRetador(personaje1,Posicion.MID)
+	 	jugador.ganeYSoyRival(personaje2,Posicion.TOP)
+	 	jugador.perdiYSoyRetador(personaje2,Posicion.JUNGLE)
+	 	jugador.empateComoRival(personaje1,Posicion.MID)
+	 	jugador.ganeYSoyRetador(personaje3,Posicion.TOP)
+	 	jugador.perdiYSoyRival(personaje3,Posicion.JUNGLE)
+	 	jugador.empateComoRetador(personaje3,Posicion.MID)
 	 	
 	 	assertTrue(jugador.est.size==3)
 	}

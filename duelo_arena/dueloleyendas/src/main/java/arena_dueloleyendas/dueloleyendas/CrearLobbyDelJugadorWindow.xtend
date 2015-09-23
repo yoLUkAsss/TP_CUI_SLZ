@@ -71,7 +71,7 @@ revisar tus stats!'''
 			text = "Personaje buscado"
 		]
 		new TextBox(busqueda) => [
-			bindValueToProperty("filtrarLista")
+			bindValueToProperty("filtro")
 			width = 100
 		]
 		
