@@ -1,18 +1,18 @@
 package appModel
 
-import jugador.EstadisticasPj
 import jugador.Personaje
 import org.uqbar.commons.utils.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
+import jugador.EstadisticaDePersonaje
 
 @Observable
 @Accessors
 class EstadisticasArmadasAppModel implements Comparable{
 	
 	Personaje pjAsociado
-	EstadisticasPj estAsociada
+	EstadisticaDePersonaje estAsociada
 	
-	new (Personaje p,EstadisticasPj e) {
+	new (Personaje p,EstadisticaDePersonaje e) {
 		this.pjAsociado = p
 		this.estAsociada = e
 	}

@@ -2,9 +2,9 @@ package arena_dueloleyendas.componentes
 
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Container
-import jugador.EstadisticasPj
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Label
+import jugador.EstadisticaDePersonaje
 
 class EstadisticaFormato extends Panel {
 	

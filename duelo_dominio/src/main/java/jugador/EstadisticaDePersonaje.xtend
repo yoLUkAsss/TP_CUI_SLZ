@@ -7,7 +7,7 @@ import static org.uqbar.commons.model.ObservableUtils.*
 
 @Observable
 @Accessors
-class EstadisticasPj {
+class EstadisticaDePersonaje {
 	
 	//Nombre del personaje
 	String nombre
@@ -92,6 +92,11 @@ class EstadisticasPj {
 	def setCalificacion (TipoCalificacion t) {
 		this.calificacion = t
 		firePropertyChanged(this,"calificacion",calificacion)
+	}
+	
+	//Retorna cuantas veces lo utilizo en la posicion indicada
+	def posicionesUsadas(Posicion posicion) {
+		(this.posicionesUsadas.filter[each | each.equals(posicion)]).size
 	}
 
 }

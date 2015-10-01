@@ -120,8 +120,8 @@ class AnalizadorDeAtaqueTest {
     
     	
     	//el jugador1 no tiene aun ninguna estadadistica de ese personaje
-    	assertEquals(0,analizadorSpy.estadisticasDelPersonaje(jugador1,p1))
-        assertEquals(3,analizadorSpy.estadisticasDelPersonaje(jugador2,p2))
+    	assertEquals(0,analizadorSpy.valorDeEstadisticasDelJugador(jugador1,p1))
+        assertEquals(3,analizadorSpy.valorDeEstadisticasDelJugador(jugador2,p2))
         
     
     	

@@ -4,19 +4,19 @@ package jugadortests
 import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
-import jugador.EstadisticasPj
 import jugador.Posicion
 import jugador.TipoCalificacion
+import jugador.EstadisticaDePersonaje
 
 class EstadisticasPjTest {
 	
-	EstadisticasPj est
+	EstadisticaDePersonaje est
 	
 	
 	 
 	 @Before 
 	 def void init(){
-	 	est= new EstadisticasPj("SVEN")
+	 	est= new EstadisticaDePersonaje("SVEN")
 	 	
 	 }
 	 

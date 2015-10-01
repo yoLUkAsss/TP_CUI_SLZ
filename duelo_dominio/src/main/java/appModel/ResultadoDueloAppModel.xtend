@@ -4,9 +4,9 @@ package appModel
 import jugador.Jugador
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import jugador.EstadisticasPj
 
 import static org.uqbar.commons.model.ObservableUtils.*
+import jugador.EstadisticaDePersonaje
 
 @Observable
 @Accessors
@@ -19,8 +19,8 @@ class ResultadoDueloAppModel {
 	Jugador perdedor
 	Integer resultadoGanador
 	Integer resultadoPerdedor
-	EstadisticasPj pjRetador
-	EstadisticasPj pjRival
+	EstadisticaDePersonaje pjRetador
+	EstadisticaDePersonaje pjRival
 	Boolean empate = false
 	String tipoResultado = ""
 	
@@ -47,26 +47,24 @@ class ResultadoDueloAppModel {
 		pjRetador = retador.jugador.est.findFirst[each | each.nombre.equals(retador.pj.nombre)]
 		pjRival = rival.jugador.est.findFirst[each | each.nombre.equals(rival.pj.nombre)]
 
-
-
-		if (arConRes.get(0) > arConRes.get(1)) {
+		if (arConRes.key > arConRes.value) {
 			ganador = retador.jugador
 			perdedor = rival.jugador
-			resultadoGanador = arConRes.get(0)
-			resultadoPerdedor = arConRes.get(1)
+			resultadoGanador = arConRes.key
+			resultadoPerdedor = arConRes.value
 			setTipoResultado("victoria")
 		} else {
-			if (arConRes.get(0) < arConRes.get(1)) {
+			if (arConRes.key < arConRes.value) {
 				ganador = rival.jugador
 				perdedor = retador.jugador
-				resultadoPerdedor = arConRes.get(0) 
-				resultadoGanador = arConRes.get(1) 
+				resultadoPerdedor = arConRes.key 
+				resultadoGanador = arConRes.value 
 				setTipoResultado("derrota")
 			}
 			else {
 				empate = true
-				resultadoGanador = arConRes.get(0) 
-				resultadoPerdedor = arConRes.get(1) 
+				resultadoGanador = arConRes.key 
+				resultadoPerdedor = arConRes.value 
 				setTipoResultado("empate")
 			}
 		firePropertyChanged(this,"description",description);

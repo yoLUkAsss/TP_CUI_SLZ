@@ -3,20 +3,20 @@ package appModel
 import java.util.Random
 import jugador.Jugador
 import jugador.Personaje
-import jugador.EstadisticasPj
 import jugador.Posicion
 import java.util.ArrayList
 import jugador.TipoCalificacion
+import jugador.EstadisticaDePersonaje
 
 class AnalizadorDeAtaque {
 	
 	def valorDeCalificacion(Jugador jugador, Personaje personaje, Posicion posicion) {
 		var rand = valorAlAzar()
-		if (expPreviaIdealPers(jugador,personaje,posicion) > 5 && rand >90){
+		if (jugador.experienciaPreviaConElPersonajeEnLaPosicionIdeal(personaje) > 5 && rand >90){
 			jugador.setTipoCalificacion(personaje,TipoCalificacion.RAMPAGE)
 			return 100
 		}
-		if (expPrevPosi(jugador,posicion) > 2 && rand >70) {
+		if (jugador.expPreviaEnPosicion(posicion) > 2 && rand >70) {
 			jugador.setTipoCalificacion(personaje,TipoCalificacion.DOMINADOR)
 			return 75
 		}
@@ -24,7 +24,7 @@ class AnalizadorDeAtaque {
 			jugador.setTipoCalificacion(personaje,TipoCalificacion.KILLINGSPRED)
 			return 60
 		}
-		if (mejorPosi(personaje,posicion) && rand >30) {
+		if (personaje.mejorPosicion(posicion) && rand >30) {
 			jugador.setTipoCalificacion(personaje,TipoCalificacion.MANCO)
 			return 15
 		}
@@ -37,42 +37,17 @@ class AnalizadorDeAtaque {
 		 return rand.nextInt(120)
 	}
 	
-	//Determina si la posicion es la posicion ideal del personaje
-	def mejorPosi(Personaje personaje, Posicion posicion) {
-		personaje.posIdeal.equals(posicion)	
-	}
 	
-	//Retorna la cantidad de veces que utilizo independientemente del personaje
-	//en la posicion indicada
-	def expPrevPosi(Jugador jugador, Posicion posicion) {
-		var estadisticas = jugador.est
-		estadisticas.fold(0 ,[cant , estad | cant+ posicionesUsadas(estad,posicion)])
-	}
-	 
-	//Retorna dada una EstadisticaPj, cuantas veces lo utilizo en la posicion indicada
-	def posicionesUsadas(EstadisticasPj pj, Posicion posicion) {
-		(pj.posicionesUsadas.filter[name | name.equals(posicion)]).size
-	}
-	
-	//Retorna la cantidad de veces que jugo con el personaje, en su pocicion ideal
-	def expPreviaIdealPers(Jugador jugador, Personaje personaje, Posicion posicion) {
-		var estadistica = jugador.est.findFirst[esta | esta.nombre.equals(personaje.nombre)]
-		if (estadistica == null)
-			return 0
-		return (estadistica.posicionesUsadas.filter[name | name.equals(personaje.posIdeal)]).size
-	}
 	
 	def poderDeAtaque(Jugador jugador, Personaje personaje, Posicion posicion) {
 		
-		valorDeCalificacion(jugador,personaje,posicion)+estadisticasDelPersonaje(jugador,personaje)
+		valorDeCalificacion(jugador,personaje,posicion)+valorDeEstadisticasDelJugador(jugador,personaje)
 	}
 	
-	def estadisticasDelPersonaje(Jugador jugador,Personaje personaje){
+	def valorDeEstadisticasDelJugador(Jugador jugador,Personaje personaje){
 	
-		var estadistica= jugador.est.findFirst[esta|esta.nombre.equals(personaje.nombre)]
+		var estadistica= jugador.estadisticaDelPersonaje(personaje)
 		if (estadistica == null){
-			 
-
 		     return 0
 		}
 		else{
@@ -104,9 +79,7 @@ class AnalizadorDeAtaque {
 			    retador.perdiYSoyRetador(personajeRetador,posicionRetador)
 			}
 		}
-		var s =new ArrayList<Integer> 
-		s.add(resultadoRetador)
-		s.add(resultadoRival)
+		var s =new Pair(resultadoRetador,resultadoRival) 
 		return s
 	}
 	

@@ -29,5 +29,10 @@ class Personaje {
 		return false
 	}
 	
+	//Determina si la posicion es la posicion ideal del personaje
+	def mejorPosicion(Posicion posicion) {
+		this.posIdeal.equals(posicion)	
+	}
+	
 	
 }
