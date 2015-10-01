@@ -5,11 +5,12 @@ import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
-import appModel.AnalizadorDeAtaque
+import util.AnalizadorDeAtaque
 import jugador.Jugador
 import jugador.Personaje
 import jugador.Posicion
 import jugador.TipoCalificacion
+
 
 class AnalizadorDeAtaqueTest {
 	

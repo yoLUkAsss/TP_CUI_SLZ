@@ -4,8 +4,7 @@ package appModelTest
 import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
-import appModel.SelectorDeRivalAppModel
-import appModel.DetalleJugadorDueloAppModel
+import util.DetalleJugadorDuelo
 import jugador.Jugador
 import jugador.Personaje
 import denuncias.DAbusoDeHabilidad
@@ -16,11 +15,13 @@ import jugador.Posicion
 import java.util.Collection
 import java.util.List
 
-class SelectorDeRivalAppModelTest {
+import util.SelectorDeRival
+
+class SelectorDeRivalTest {
 	
-	SelectorDeRivalAppModel selector
-	SelectorDeRivalAppModel selector1
-	DetalleJugadorDueloAppModel detalle
+	SelectorDeRival selector
+	SelectorDeRival selector1
+	DetalleJugadorDuelo detalle
 	
 	Jugador j1
 	Jugador j2
@@ -61,9 +62,9 @@ class SelectorDeRivalAppModelTest {
 		var List<Jugador> jgdrs1 = newArrayList
 		col.add(p1);col.add(p2);col.add(p3);col.add(p4)
 		
-		detalle= new DetalleJugadorDueloAppModel(j1,p1,Posicion.JUNGLE)
-		selector= new SelectorDeRivalAppModel(col,jgdrs)
-		selector1= new SelectorDeRivalAppModel(col,jgdrs1)
+		detalle= new DetalleJugadorDuelo(j1,p1,Posicion.JUNGLE)
+		selector= new SelectorDeRival(col,jgdrs)
+		selector1= new SelectorDeRival(col,jgdrs1)
 		
 		selector.agregarJugador(j1)
 		selector.agregarJugador(j2)
@@ -114,7 +115,7 @@ class SelectorDeRivalAppModelTest {
    
     @Test
     def testProximoRival1() { 
-    	var DetalleJugadorDueloAppModel rival= selector.dameRival(detalle)
+    	var DetalleJugadorDuelo rival= selector.dameRival(detalle)
     	
     	assertNotEquals(rival.jugador,detalle.jugador)
     	assertNotEquals(rival.pj,detalle.pj)

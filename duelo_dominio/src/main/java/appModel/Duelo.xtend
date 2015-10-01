@@ -11,13 +11,16 @@ import static org.uqbar.commons.model.ObservableUtils.*
 import java.util.List
 import excepciones.NoHayRivalException
 import jugador.MRX
+import util.DetalleJugadorDuelo
+import util.PrepararEstadisticasPersonajes
+import util.SelectorDeRival
 
 @Observable
 @Accessors
 class Duelo {
 
 	Jugador jugador
-	DetalleJugadorDueloAppModel retador
+	DetalleJugadorDuelo retador
 	List<Personaje> personajesTotales 
 	List<Jugador> jgdrs
 
@@ -25,13 +28,13 @@ class Duelo {
 	List<EstadisticasArmadasAppModel> estadisticasAMostrar = newArrayList
 	EstadisticasArmadasAppModel estadisticaSeleccionada
 	String filtro
-	SelectorDeRivalAppModel selectorRival
+	SelectorDeRival selectorRival
 	
 	new(Jugador jugador,List<Jugador> jgdrs , List<Personaje> pjs){
 	    this.jugador=jugador
 	    personajesTotales = pjs
 	    actualizarListado
-		selectorRival = new SelectorDeRivalAppModel(personajesTotales,jgdrs)
+		selectorRival = new SelectorDeRival(personajesTotales,jgdrs)
 		//this.filtro=""
 		
 		//HAY Q SACAR
@@ -40,8 +43,8 @@ class Duelo {
 	
 	@Observable
 	def iniciarDuelo(Posicion pos){
-		retador = new DetalleJugadorDueloAppModel(jugador,estadisticaSeleccionada.pjAsociado,pos)
-		var DetalleJugadorDueloAppModel rival= selectorRival.dameRival(retador)
+		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.pjAsociado,pos)
+		var DetalleJugadorDuelo rival= selectorRival.dameRival(retador)
 			if (rival==null){
 				throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
 		    }
@@ -54,10 +57,10 @@ class Duelo {
 	
 	@Observable
 	def iniciarDueloBot(Posicion pos) {
-		retador = new DetalleJugadorDueloAppModel(jugador,estadisticaSeleccionada.pjAsociado,pos)
+		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.pjAsociado,pos)
 		var MRX m = new MRX("MRX",jugador)
 		var Personaje p = selectorRival.determinarPersonaje(estadisticaSeleccionada.pjAsociado)
-		var DetalleJugadorDueloAppModel rival = new DetalleJugadorDueloAppModel(m,p,p.posIdeal)
+		var DetalleJugadorDuelo rival = new DetalleJugadorDuelo(m,p,p.posIdeal)
 		val res = new ResultadoDueloAppModel(retador,rival)
 		res.actualizarDatos()
 		actualizarListado
@@ -94,7 +97,7 @@ class Duelo {
 	}
 	
 	def actualizarListado() {
-		estadisticas = (new PrepareEstadisticasPjsAppModel(jugador,personajesTotales)).estadisticasPreparadas
+		estadisticas = (new PrepararEstadisticasPersonajes(jugador,personajesTotales)).estadisticasPreparadas
 		estadisticasAMostrar = estadisticas
 		estadisticaSeleccionada = estadisticasAMostrar.get(0)
 		firePropertyChanged(this,"estadisticasAMostrar",estadisticasAMostrar)

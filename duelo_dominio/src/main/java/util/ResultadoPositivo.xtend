@@ -1,4 +1,4 @@
-package appModel
+package util
 
 import jugador.Jugador
 abstract class Resultado{

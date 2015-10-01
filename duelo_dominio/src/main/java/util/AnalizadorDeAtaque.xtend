@@ -1,4 +1,4 @@
-package appModel
+package util
 
 import java.util.Random
 import jugador.Jugador

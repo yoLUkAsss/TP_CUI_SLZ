@@ -1,4 +1,4 @@
-package appModel
+package util
 
 import java.util.Collection
 import java.util.Collections
@@ -6,8 +6,9 @@ import jugador.Personaje
 import jugador.Jugador
 import java.util.List
 import jugador.EstadisticaDePersonaje
+import appModel.EstadisticasArmadasAppModel
 
-class PrepareEstadisticasPjsAppModel {
+class PrepararEstadisticasPersonajes {
 	
 	Collection<Personaje> personajes
 	Jugador jugador

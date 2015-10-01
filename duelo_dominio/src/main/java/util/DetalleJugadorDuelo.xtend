@@ -1,12 +1,12 @@
-package appModel
+package util
 
 import jugador.Jugador
 import jugador.Personaje
 import org.eclipse.xtend.lib.annotations.Accessors
 import jugador.Posicion
-
+ 
 @Accessors
-class DetalleJugadorDueloAppModel {
+class DetalleJugadorDuelo {
 	
 	
 	Jugador jugador

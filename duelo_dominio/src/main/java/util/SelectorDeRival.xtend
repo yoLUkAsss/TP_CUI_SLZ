@@ -1,13 +1,13 @@
-package appModel
+package util
 
 import java.util.Collection
 import jugador.Jugador
 import jugador.Personaje
-import appModel.DetalleJugadorDueloAppModel
+import util.DetalleJugadorDuelo
 import java.util.Collections
 import java.util.List
 
-class SelectorDeRivalAppModel {
+class SelectorDeRival {
 	
 	
 	List<Jugador> jugadores
@@ -20,13 +20,13 @@ class SelectorDeRivalAppModel {
 	}
 	
 	
-	def dameRival(DetalleJugadorDueloAppModel retador) {
+	def dameRival(DetalleJugadorDuelo retador) {
 		val rival= jugadores.findFirst[jugador|puedeJugar(jugador.ranking(),retador.jugador.ranking())&& !jugador.equals(retador.jugador)
 		]
 		Collections.shuffle(jugadores);
 		if (rival!=null) {
 			var pjElegido = determinarPersonaje(retador.pj) 
-			return new DetalleJugadorDueloAppModel(rival,pjElegido,pjElegido.posIdeal)
+			return new DetalleJugadorDuelo(rival,pjElegido,pjElegido.posIdeal)
 		}
 		return null
 	}

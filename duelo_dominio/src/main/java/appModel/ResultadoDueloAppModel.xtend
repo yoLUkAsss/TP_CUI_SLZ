@@ -4,17 +4,18 @@ package appModel
 import jugador.Jugador
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-
+import util.DetalleJugadorDuelo
 import static org.uqbar.commons.model.ObservableUtils.*
 import jugador.EstadisticaDePersonaje
+import util.AnalizadorDeAtaque
 
 @Observable
 @Accessors
 
 class ResultadoDueloAppModel {
 	
-	DetalleJugadorDueloAppModel rival
-	DetalleJugadorDueloAppModel retador
+	DetalleJugadorDuelo rival
+	DetalleJugadorDuelo retador
 	Jugador ganador
 	Jugador perdedor
 	Integer resultadoGanador
@@ -24,7 +25,7 @@ class ResultadoDueloAppModel {
 	Boolean empate = false
 	String tipoResultado = ""
 	
-	new (DetalleJugadorDueloAppModel retador,DetalleJugadorDueloAppModel rival){
+	new (DetalleJugadorDuelo retador,DetalleJugadorDuelo rival){
 		this.rival=rival
 		this.retador=retador
 	}

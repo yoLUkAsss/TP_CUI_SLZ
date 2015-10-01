@@ -6,7 +6,7 @@ import appModel.DenunciaFacade
 import jugador.Jugador
 import appModel.ResultadoDueloAppModel
 import jugador.Personaje
-import appModel.DetalleJugadorDueloAppModel
+import util.DetalleJugadorDuelo
 import jugador.Posicion
   
 class HacerDenuncia extends Application{
@@ -16,8 +16,8 @@ class HacerDenuncia extends Application{
 	
 	override createMainWindow() {
 		new CrearResultadoDueloWindow(this, new ResultadoDueloAppModel(
-											new DetalleJugadorDueloAppModel(j,p,p.posIdeal),
-											new DetalleJugadorDueloAppModel(j,p,p.posIdeal)
+											new DetalleJugadorDuelo(j,p,p.posIdeal),
+											new DetalleJugadorDuelo(j,p,p.posIdeal)
 											
 		))
 	}

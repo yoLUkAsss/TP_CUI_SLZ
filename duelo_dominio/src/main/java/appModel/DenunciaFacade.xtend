@@ -11,6 +11,8 @@ import org.uqbar.commons.utils.TransactionalAndObservable
 
 import static org.uqbar.commons.model.ObservableUtils.*
 import org.uqbar.commons.model.UserException
+import util.ResultadoPositivo
+import util.ResultadoNegativo
 
 @TransactionalAndObservable
 @Accessors
