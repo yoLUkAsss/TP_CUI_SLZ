@@ -110,5 +110,4 @@ class EstadisticaDePersonaje implements Comparable<EstadisticaDePersonaje> {
 	override compareTo(EstadisticaDePersonaje otraEstadistica) {
 		this.personajeAsociado.compareTo(otraEstadistica.personajeAsociado)
 	}
-	
 }
