@@ -45,8 +45,8 @@ class ResultadoDueloAppModel {
 	
 		var arConRes = this.resultadoDuelo()
 
-		pjRetador = retador.jugador.est.findFirst[each | each.nombre.equals(retador.pj.nombre)]
-		pjRival = rival.jugador.est.findFirst[each | each.nombre.equals(rival.pj.nombre)]
+		pjRetador = retador.jugador.est.findFirst[each | each.esDeEstePersonaje(retador.pj)]
+		pjRival = rival.jugador.est.findFirst[each | each.esDeEstePersonaje(rival.pj)]
 
 		if (arConRes.key > arConRes.value) {
 			ganador = retador.jugador

@@ -1,10 +1,10 @@
 package jugador
- 
-import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.Collection
+
 import denuncias.Denuncia
+import java.util.Collection
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import jugador.EstadisticaDePersonaje
+
 @Observable
 @Accessors
 class Jugador {
@@ -78,14 +78,14 @@ class Jugador {
 		buscarEst.apply(p).empatoComoRival(pos)	
 	}
 	
-	def getEstadisticaCon(Personaje p){
-		return est.findFirst[estadistica | estadistica.nombre.equals(p.nombre)]
+	def getEstadisticaCon(Personaje personaje){
+		return est.findFirst[estadistica | estadistica.esDeEstePersonaje(personaje)]
 	}
 	
-	val buscarEst = [ Personaje p | 
-		var estad = est.findFirst[estadistica | estadistica.nombre.equals(p.nombre)]
+	val buscarEst = [ Personaje personajeABuscar | 
+		var estad = est.findFirst[estadistica | estadistica.esDeEstePersonaje(personajeABuscar)]
 		if (estad == null) {
-			estad = new EstadisticaDePersonaje(p.nombre)
+			estad = new EstadisticaDePersonaje(personajeABuscar)
 			this.est.add(estad)
 		}
 		return estad
@@ -93,7 +93,7 @@ class Jugador {
 	
 	//Retorna la cantidad de veces que jugo con el personaje, en su pocicion ideal
 	def experienciaPreviaConElPersonajeEnLaPosicionIdeal(Personaje personaje) {
-		var estadistica = this.est.findFirst[each | each.nombre.equals(personaje.nombre)]
+		var estadistica = this.est.findFirst[each | each.esDeEstePersonaje(personaje)]
 		if (estadistica == null)
 			return 0
 		return (estadistica.posicionesUsadas.filter[name | name.equals(personaje.posIdeal)]).size
@@ -107,7 +107,7 @@ class Jugador {
 	}
 	
 	def estadisticaDelPersonaje(Personaje personaje) {
-		val estadistica = est.findFirst([each | each.nombre.equals(personaje.nombre)  ])
+		val estadistica = est.findFirst([each | each.esDeEstePersonaje(personaje)  ])
 		if (estadistica == null)
 			return null
 		else

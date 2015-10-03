@@ -7,16 +7,19 @@ import static org.junit.Assert.*
 import jugador.Posicion
 import jugador.TipoCalificacion
 import jugador.EstadisticaDePersonaje
+import jugador.Personaje
 
 class EstadisticasPjTest {
 	
 	EstadisticaDePersonaje est
+	Personaje personajeSven
 	
 	
 	 
 	 @Before 
 	 def void init(){
-	 	est= new EstadisticaDePersonaje("SVEN")
+	 	personajeSven = new Personaje("Sven",Posicion.TOP)
+	 	est= new EstadisticaDePersonaje(personajeSven)
 	 	
 	 }
 	 
