@@ -1,7 +1,5 @@
 package appModel
 
-
-import java.util.Collection
 import jugador.Jugador
 import jugador.Personaje
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -14,19 +12,20 @@ import jugador.MRX
 import util.DetalleJugadorDuelo
 import util.PrepararEstadisticasPersonajes
 import util.SelectorDeRival
+import jugador.EstadisticaDePersonaje
 
 @Observable
 @Accessors
-class Duelo {
+class LobbyAppModel {
 
 	Jugador jugador
 	DetalleJugadorDuelo retador
 	List<Personaje> personajesTotales 
 	List<Jugador> jgdrs
 
-	List<EstadisticasArmadasAppModel> estadisticas = newArrayList
-	List<EstadisticasArmadasAppModel> estadisticasAMostrar = newArrayList
-	EstadisticasArmadasAppModel estadisticaSeleccionada
+	List<EstadisticaDePersonaje> estadisticas = newArrayList
+	List<EstadisticaDePersonaje> estadisticasAMostrar = newArrayList
+	EstadisticaDePersonaje estadisticaSeleccionada
 	String filtro
 	SelectorDeRival selectorRival
 	
@@ -43,7 +42,7 @@ class Duelo {
 	
 	@Observable
 	def iniciarDuelo(Posicion pos){
-		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.pjAsociado,pos)
+		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
 		var DetalleJugadorDuelo rival= selectorRival.dameRival(retador)
 			if (rival==null){
 				throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
@@ -57,9 +56,9 @@ class Duelo {
 	
 	@Observable
 	def iniciarDueloBot(Posicion pos) {
-		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.pjAsociado,pos)
+		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
 		var MRX m = new MRX("MRX",jugador)
-		var Personaje p = selectorRival.determinarPersonaje(estadisticaSeleccionada.pjAsociado)
+		var Personaje p = selectorRival.determinarPersonaje(estadisticaSeleccionada.personajeAsociado)
 		var DetalleJugadorDuelo rival = new DetalleJugadorDuelo(m,p,p.posIdeal)
 		val res = new ResultadoDueloAppModel(retador,rival)
 		res.actualizarDatos()
@@ -77,9 +76,9 @@ class Duelo {
 	}
 	
 	def filtrarLista(String s){
-		var List<EstadisticasArmadasAppModel> ls =  newArrayList
-		for(EstadisticasArmadasAppModel e : estadisticas){
-			if(e.pjAsociado.nombre.contains(s)){
+		var List<EstadisticaDePersonaje> ls =  newArrayList
+		for(EstadisticaDePersonaje e : estadisticas){
+			if(e.nombreDelPersonaje.contains(s)){
 				ls.add(e)
 			}
 		}

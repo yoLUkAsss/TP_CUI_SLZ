@@ -2,10 +2,9 @@ package arena_dueloleyendas.dueloleyendas
 
 import jugador.Jugador
 import jugador.Personaje
-import appModel.Duelo
+import appModel.LobbyAppModel
 import org.uqbar.arena.Application
 import jugador.Posicion
-import java.util.Collection
 import java.util.List
 
 class Lobby extends Application{
@@ -25,7 +24,7 @@ class Lobby extends Application{
 		jgdrs.add(marq);jgdrs.add(xPeke)
 		pedro.ganeYSoyRetador(amumu,Posicion.TOP)
 		
-		new CrearLobbyDelJugadorWindow(this, new Duelo(pedro,jgdrs,pjsPaJugar))
+		new CrearLobbyDelJugadorWindow(this, new LobbyAppModel(pedro,jgdrs,pjsPaJugar))
 	}
 	
 	def static main(String[] args) {

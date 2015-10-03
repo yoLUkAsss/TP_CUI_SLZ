@@ -1,8 +1,6 @@
 package arena_dueloleyendas.dueloleyendas
 
-import appModel.Duelo
-import appModel.EstadisticasArmadasAppModel
-import arena_dueloleyendas.componentes.EstadisticaFormato
+import appModel.LobbyAppModel
 import java.awt.Color
 import jugador.Posicion
 import org.uqbar.arena.layout.ColumnLayout
@@ -17,11 +15,11 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import excepciones.NoHayRivalException
-import org.uqbar.arena.bindings.ObservableProperty
+import jugador.EstadisticaDePersonaje
 
-class CrearLobbyDelJugadorWindow extends SimpleWindow<Duelo> {
+class CrearLobbyDelJugadorWindow extends SimpleWindow<LobbyAppModel> {
 	
-	new(WindowOwner parent, Duelo model) {
+	new(WindowOwner parent, LobbyAppModel model) {
 		super(parent, model)
 		title = "Duelo entre Leyendas"
 	}
@@ -75,18 +73,18 @@ revisar tus stats!'''
 			width = 100
 		]
 		
-		var tablaDePersonajes = new Table<EstadisticasArmadasAppModel>(primerPanel , EstadisticasArmadasAppModel)
+		var tablaDePersonajes = new Table<EstadisticaDePersonaje>(primerPanel , EstadisticaDePersonaje)
 		tablaDePersonajes.bindValueToProperty("estadisticaSeleccionada")
 		tablaDePersonajes.bindItemsToProperty("estadisticasAMostrar")
 		tablaDePersonajes.height = 200 
 		
 		new Column(tablaDePersonajes) => [
 			title = "Personaje:"
-			bindContentsToProperty("pjAsociado.nombre")
+			bindContentsToProperty("nombreDelPersonaje")
 		]	
 		new Column(tablaDePersonajes) => [
 			title = "Calificacion:"
-			bindContentsToProperty("estAsociada.calificacion")
+			bindContentsToProperty("calificacion")
 		]
 	}
 	

@@ -31,32 +31,16 @@ class AnalizadorDeAtaque {
 		jugador.setTipoCalificacion(personaje,TipoCalificacion.NOOB)
 		return 5
 	}
-	
-	def valorAlAzar(){
-		 val Random rand = new Random(System.currentTimeMillis());
-		 return rand.nextInt(120)
-	}
-	
-	
-	
-	def poderDeAtaque(Jugador jugador, Personaje personaje, Posicion posicion) {
 		
+	def poderDeAtaque(Jugador jugador, Personaje personaje, Posicion posicion) {
 		valorDeCalificacion(jugador,personaje,posicion)+valorDeEstadisticasDelJugador(jugador,personaje)
 	}
 	
-	def valorDeEstadisticasDelJugador(Jugador jugador,Personaje personaje){
-	
+	def valorDeEstadisticasDelJugador(Jugador jugador,Personaje personaje){	
 		var estadistica= jugador.estadisticaDelPersonaje(personaje)
-		if (estadistica == null){
+		if (estadistica == null)
 		     return 0
-		}
-		else{
-			
-			 return (((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
-		}
-		
-	  
-		
+		return (((estadistica.duelosGanadosNoIniciados+estadistica.duelosEmpatados)/2)-estadistica.derrotasNoIniciadas)*estadistica.duelosIniciados
 	}
 	
 	def realizarDuelo(Jugador retador , Jugador rival ,
@@ -86,6 +70,11 @@ class AnalizadorDeAtaque {
 	def  factorDeSuerte(){	
 		val Random rand = new Random(System.currentTimeMillis());
 	  	return rand.nextInt(2)
-	 }
+	}
+	
+	def valorAlAzar(){
+		 val Random rand = new Random(System.currentTimeMillis());
+		 return rand.nextInt(120)
+	}
     
 }

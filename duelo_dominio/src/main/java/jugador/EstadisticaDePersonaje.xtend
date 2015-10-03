@@ -7,10 +7,10 @@ import static org.uqbar.commons.model.ObservableUtils.*
 
 @Observable
 @Accessors
-class EstadisticaDePersonaje {
+class EstadisticaDePersonaje implements Comparable<EstadisticaDePersonaje> {
 	
 	//Nombre del personaje
-	String nombre
+	Personaje personajeAsociado
 	 
 	Integer duelosIniciados
 	Integer duelosGanados
@@ -28,8 +28,8 @@ class EstadisticaDePersonaje {
 	TipoCalificacion calificacion
 	
 	
-	new (String nombre) {
-		this.nombre=nombre
+	new (Personaje personaje) {
+		this.personajeAsociado = personaje
 		duelosIniciados=0
 		duelosGanados=0
 		duelosGanadosNoIniciados=0
@@ -99,4 +99,16 @@ class EstadisticaDePersonaje {
 		(this.posicionesUsadas.filter[each | each.equals(posicion)]).size
 	}
 
+	def esDeEstePersonaje (Personaje personajeAEvaluar) {
+		return this.personajeAsociado.equals(personajeAEvaluar)
+	}
+	
+	def getNombreDelPersonaje() {
+		return personajeAsociado.nombre
+	}
+	
+	override compareTo(EstadisticaDePersonaje otraEstadistica) {
+		this.personajeAsociado.compareTo(otraEstadistica.personajeAsociado)
+	}
+	
 }

@@ -5,15 +5,14 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
-import appModel.ResultadoDueloAppModel
-import appModel.Duelo
+import appModel.LobbyAppModel
 import jugador.Posicion
 
-class CrearAJugarConMRXWindow extends SimpleWindow<Duelo> {
+class CrearAJugarConMRXWindow extends SimpleWindow<LobbyAppModel> {
 	
 	Posicion posit
 	
-	new(WindowOwner parent, Duelo model,Posicion p) {
+	new(WindowOwner parent, LobbyAppModel model,Posicion p) {
 		super(parent, model)
 		posit =p
 		title = "MR-X"
