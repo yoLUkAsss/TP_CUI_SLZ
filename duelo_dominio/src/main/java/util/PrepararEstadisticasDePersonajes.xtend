@@ -7,6 +7,14 @@ import jugador.Jugador
 import java.util.List
 import jugador.EstadisticaDePersonaje
 
+/**
+ * Este objeto es utilizado para armar un listado de Estadisticas de Personajes
+ * para ser utilizados en ciertas AppModel.
+ * 
+ * @author Sandoval Lucas
+ * @author Leutwyler Nicolas
+ * @author Zaracho Nicolas
+ */
 class PrepararEstadisticasPersonajes {
 	
 	Collection<Personaje> personajesTotales
@@ -17,6 +25,14 @@ class PrepararEstadisticasPersonajes {
 		this.jugadorActual = elJugador
 	}
 	
+	/**
+	 * De acuerdo a los personajesTotales presentes en el objeto, se arma un listado 
+	 * de estadisticas las cuales incluyen a todas las del jugadorActual, sumado a las estadisticas
+	 * (vacias) de los jugadores existentes en los personajesTotales los cuales aun no fueron
+	 * utilizados por el jugadorActual
+	 * 
+	 * @return Listado de estadisticas por personaje, ordenados por nombre de personaje.
+	 */
 	def estadisticasPreparadas() {
 		var List<EstadisticaDePersonaje> estadisticasARetornar = newArrayList
 		for (Personaje personaje : personajesTotales) {
