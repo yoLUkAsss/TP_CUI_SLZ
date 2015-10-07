@@ -1,14 +1,24 @@
 package util
 
 import jugador.Jugador
+
+/**
+ * Es un objeto encargado de representar la informacion respecto a 
+ * las diferentes posibilidades que se pueden obtener al denunciar a un jugador
+ */
 abstract class Resultado{
-	protected Jugador j
-	new(Jugador j){
-		this.j=j
+	
+	protected Jugador jugador
+	
+	
+	new(Jugador jugador){
+		this.jugador=jugador
 	}
 	
+	/**
+	 * Mensajes a mostrar de acuerdo a cada resultado
+	 */
 	def String getTitle();
-	
 	def String getDescription();
 }
 
@@ -17,12 +27,12 @@ abstract class Resultado{
 class ResultadoPositivo extends Resultado{
 	
 
-	new(Jugador j){
-		super(j)
+	new(Jugador jugador){
+		super(jugador)
 	}
 	
 	override getTitle() {
-		return '''Hemos sancionado a: «j.nombre»'''
+		return '''Hemos sancionado a: «jugador.nombre»'''
 	}
 	
 	override getDescription() {
@@ -35,12 +45,12 @@ class ResultadoPositivo extends Resultado{
 
 class ResultadoNegativo extends Resultado{
 	
-	new(Jugador j) {
-		super(j)
+	new(Jugador jugador) {
+		super(jugador)
 	}
 	
 	override getTitle() {
-		return '''Has sido sancionado: «j.nombre»'''
+		return '''Has sido sancionado: «jugador.nombre»'''
 	}
 	
 	override getDescription() {

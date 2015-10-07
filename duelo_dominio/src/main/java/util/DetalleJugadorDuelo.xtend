@@ -6,6 +6,14 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import jugador.Posicion
  
 @Accessors
+/**
+ * Simple empaquetado de datos para la representacion
+ * de un jugador en un duelo.
+ * 
+ * @author Sandoval Lucas
+ * @author Leutwyler Nicolas
+ * @author Zaracho Nicolas
+ */
 class DetalleJugadorDuelo {
 	
 	
