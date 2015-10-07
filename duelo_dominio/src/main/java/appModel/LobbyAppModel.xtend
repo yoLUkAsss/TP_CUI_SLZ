@@ -59,7 +59,7 @@ class LobbyAppModel {
 		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
 		var MRX m = new MRX("MRX",jugador)
 		var Personaje p = selectorRival.determinarPersonaje(estadisticaSeleccionada.personajeAsociado)
-		var DetalleJugadorDuelo rival = new DetalleJugadorDuelo(m,p,p.posIdeal)
+		var DetalleJugadorDuelo rival = new DetalleJugadorDuelo(m,p,p.getPosicionIdeal)
 		val res = new ResultadoDueloAppModel(retador,rival)
 		res.actualizarDatos()
 		actualizarListado

@@ -16,8 +16,8 @@ class HacerDenuncia extends Application{
 	
 	override createMainWindow() {
 		new CrearResultadoDueloWindow(this, new ResultadoDueloAppModel(
-											new DetalleJugadorDuelo(j,p,p.posIdeal),
-											new DetalleJugadorDuelo(j,p,p.posIdeal)
+											new DetalleJugadorDuelo(j,p,p.getPosicionIdeal),
+											new DetalleJugadorDuelo(j,p,p.getPosicionIdeal)
 											
 		))
 	}

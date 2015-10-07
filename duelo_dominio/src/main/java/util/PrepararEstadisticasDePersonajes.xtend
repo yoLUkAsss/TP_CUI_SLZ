@@ -20,7 +20,7 @@ class PrepararEstadisticasPersonajes {
 	def estadisticasPreparadas() {
 		var List<EstadisticaDePersonaje> estadisticasARetornar = newArrayList
 		for (Personaje personaje : personajesTotales) {
-			var estadisticaBuscada = this.jugadorActual.est.findFirst[each | each.esDeEstePersonaje(personaje)]
+			var estadisticaBuscada = this.jugadorActual.estadisticaDelPersonaje(personaje)
 			if (estadisticaBuscada != null) {
 				estadisticasARetornar.add(estadisticaBuscada)
 			} else {

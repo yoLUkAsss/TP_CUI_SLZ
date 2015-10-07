@@ -12,11 +12,11 @@ class Personaje implements Comparable<Personaje> {
 	String nombre
 	String especialidad
 	String debilidad
-	Posicion posIdeal
+	Posicion posicionIdeal 
 	
 	new(String nombre,Posicion pos) {
 		this.nombre=nombre
-		this.posIdeal = pos
+		this.posicionIdeal = pos
 		this.debilidad = "Alto gato"
 		this.especialidad = "NO SE"
 	}
@@ -31,7 +31,7 @@ class Personaje implements Comparable<Personaje> {
 	
 	//Determina si la posicion es la posicion ideal del personaje
 	def mejorPosicion(Posicion posicion) {
-		this.posIdeal.equals(posicion)	
+		this.posicionIdeal.equals(posicion)	
 	}
 	
 	override compareTo(Personaje otroPersonaje) {

@@ -96,7 +96,7 @@ class Jugador {
 		var estadistica = this.est.findFirst[each | each.esDeEstePersonaje(personaje)]
 		if (estadistica == null)
 			return 0
-		return (estadistica.posicionesUsadas.filter[name | name.equals(personaje.posIdeal)]).size
+		return (estadistica.posicionesUsadas.filter[each | each.equals(personaje.posicionIdeal)]).size
 	}
 	
 	//Retorna la cantidad de veces que utilizo independientemente del personaje

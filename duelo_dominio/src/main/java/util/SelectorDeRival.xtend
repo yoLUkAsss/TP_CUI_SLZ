@@ -26,7 +26,7 @@ class SelectorDeRival {
 		Collections.shuffle(jugadores);
 		if (rival!=null) {
 			var pjElegido = determinarPersonaje(retador.pj) 
-			return new DetalleJugadorDuelo(rival,pjElegido,pjElegido.posIdeal)
+			return new DetalleJugadorDuelo(rival,pjElegido,pjElegido.getPosicionIdeal)
 		}
 		return null
 	}

@@ -16,6 +16,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import excepciones.NoHayRivalException
 import jugador.EstadisticaDePersonaje
+import arena_dueloleyendas.componentes.EstadisticaFormato
 
 class CrearLobbyDelJugadorWindow extends SimpleWindow<LobbyAppModel> {
 	
@@ -95,7 +96,7 @@ revisar tus stats!'''
 		//segundoPanel.width = 200
 		
 		new Label(segundoPanel) => [
-			bindValueToProperty("estadisticaSeleccionada.pjAsociado.nombre")
+			bindValueToProperty("estadisticaSeleccionada.personajeAsociado.nombre")
 			fontSize = 20
 			width = 150
 		]
@@ -104,21 +105,21 @@ revisar tus stats!'''
 			foreground = Color.GREEN
 		]
 		new Label(segundoPanel) => [
-			bindValueToProperty("estadisticaSeleccionada.pjAsociado.especialidad")
+			bindValueToProperty("estadisticaSeleccionada.personajeAsociado.especialidad")
 		]
 		new Label(segundoPanel) => [
 			text = "Debilidades:"
 			foreground = Color.GREEN
 		]
 		new Label(segundoPanel) => [
-			bindValueToProperty("estadisticaSeleccionada.pjAsociado.debilidad")
+			bindValueToProperty("estadisticaSeleccionada.personajeAsociado.debilidad")
 		]
 		new Label(segundoPanel) => [
 			text = "Mejor Posicion:"
 			foreground = Color.GREEN
 		]
 		new Label(segundoPanel) => [
-			bindValueToProperty("estadisticaSeleccionada.pjAsociado.posIdeal")
+			bindValueToProperty("estadisticaSeleccionada.personajeAsociado.posicionIdeal")
 		]	
 	}
 	
@@ -135,48 +136,7 @@ revisar tus stats!'''
 		var Panel est = new Panel(tercerPanel)
 		est.layout = new ColumnLayout(2)
 		
-		new Label(est) => [
-			text = "Jugadas"
-		]
-		new Label(est) => [
-			bindValueToProperty("estadisticaSeleccionada.estAsociada.duelosIniciados")
-		]
-		new Label(est) => [
-			text = "Ganadas"
-		]
-		new Label(est) => [
-			bindValueToProperty("estadisticaSeleccionada.estAsociada.duelosGanados")
-		]
-		new Label(est) => [
-			text = "Kills"
-		]
-		new Label(est) => [
-			bindValueToProperty("estadisticaSeleccionada.estAsociada.duelosGanadosNoIniciados")
-		]
-		new Label(est) => [
-			text = "Deaths"
-		]
-		new Label(est) => [
-			bindValueToProperty("estadisticaSeleccionada.estAsociada.derrotasNoIniciadas")
-		]
-		new Label(est) => [
-			text = "Assists"
-		]
-		new Label(est) => [
-			bindValueToProperty("estadisticaSeleccionada.estAsociada.duelosEmpatados")
-		]
-		new Label(est) => [
-			text = "Mejor Ubicacion"
-		]
-		new Label(est) => [
-			bindValueToProperty("estadisticaSeleccionada.estAsociada.mejorUbicacion")
-		]
-		new Label(est) => [
-			text = "Calificacion"
-		]
-		new Label(est) => [
-			bindValueToProperty("estadisticaSeleccionada.estAsociada.calificacion")
-		]
+		new EstadisticaFormato(est,"estadisticaSeleccionada")
 		
 		
 		new Label(tercerPanel) => [
@@ -189,43 +149,35 @@ revisar tus stats!'''
 		
 		var boton1 = new Button(buttons)
 		boton1.caption = "TOP"
-		boton1.onClick([| try {
-							this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(Posicion.TOP)))
-						  } catch (NoHayRivalException e) {
-						  	this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,Posicion.TOP))
-						  } 
+		boton1.onClick([| jugarEnPosicion(Posicion.TOP)
 						  ])
 		boton1.width = 100
 		
 		var boton2 = new Button(buttons)
 		boton2.caption = "MID"
-		boton2.onClick([| try {
-							this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(Posicion.MID)))
-						  } catch (NoHayRivalException e) {
-						  	this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,Posicion.MID))
-						  }])
+		boton2.onClick([| jugarEnPosicion(Posicion.MID)])
 		boton2.width = 100
 		
 		var boton3 = new Button(buttons)
 		boton3.caption = "JUNGLE"
-		boton3.onClick([| try {
-							this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(Posicion.JUNGLE)))
-						  } catch (NoHayRivalException e) {
-						  	this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,Posicion.JUNGLE))
-						  }])
+		boton3.onClick([| jugarEnPosicion(Posicion.JUNGLE)])
 		boton3.width = 100
 		
 		var boton4 = new Button(buttons)
 		boton4.caption = "BOT"
-		boton4.onClick([| try {
-							this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(Posicion.BOT)))
-						  } catch (NoHayRivalException e) {
-						  	this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,Posicion.BOT))
-						  }])
+		boton4.onClick([| jugarEnPosicion(Posicion.BOT)])
 		boton4.width = 100
 	}
 	
 	def openDialog(SimpleWindow<?> sw) {
 		sw.open
+	}
+	
+	def jugarEnPosicion (Posicion posicionElegida) {
+		try {
+			this.openDialog(new CrearResultadoDueloWindow (this,modelObject.iniciarDuelo(posicionElegida)))
+	  	} catch (NoHayRivalException e) {
+	  		this.openDialog(new CrearAJugarConMRXWindow(this,modelObject,posicionElegida))
+	  	}
 	}
 }
