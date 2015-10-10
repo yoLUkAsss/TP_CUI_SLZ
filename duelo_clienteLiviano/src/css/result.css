@@ -1,0 +1,61 @@
+
+/**
+ * Fuentes agregadas
+ */
+@font-face {
+    font-family:PT Sans-Regular;
+    src: url(fonts/PT_Sans-Web_Regular.ttf);
+}
+
+.bloqueCentral {
+  padding-right: 0px;
+  padding-left: 0px;
+	text-align: center;
+	margin-top: 15%;
+	margin-bottom: 10%;
+}
+
+.bloqueInferior {
+  text-align: center;
+  width: 50%;
+}
+
+.labelFormatLarge {
+  color: red;
+	font-size: 26px;
+	font-family: PT Sans-Regular;
+}
+
+.labelFormatSmall {
+  font-size: 18px;
+  font-family: PT Sans-Regular;
+  font-weight: normal;
+}
+
+.labelFormatSmall.nombreDeJugador {
+  color: green;
+  font-size: 24px;
+}
+
+.backOnPink {
+  background-color: #ffb6c1;
+}
+
+.buttonStyle {
+  color: white;
+  background-color: blue;
+}
+
+.noMarginBot {
+  margin-bottom: 0px;
+}
+
+.font-responsive {
+  font-size: 100%;
+}
+
+body {
+  background-image: url("images/ResultadoDuelo/asheFullSize.jpg");
+  background-size: 100%;
+  height: auto;
+}
