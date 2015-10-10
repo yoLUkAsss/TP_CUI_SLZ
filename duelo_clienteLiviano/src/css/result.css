@@ -11,7 +11,7 @@
   padding-right: 0px;
   padding-left: 0px;
 	text-align: center;
-	margin-top: 10%;
+	margin-top: 15%;
 	margin-bottom: 10%;
 }
 
@@ -50,6 +50,12 @@
   margin-bottom: 0px;
 }
 
+.font-responsive {
+  font-size: 100%;
+}
+
 body {
-  background-image: url("/home/exilio/Escritorio/asheFullSize");
+  background-image: url("images/ResultadoDuelo/asheFullSize.jpg");
+  background-size: 100%;
+  height: auto;
 }
