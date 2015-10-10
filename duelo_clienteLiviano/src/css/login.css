@@ -1,0 +1,45 @@
+.aLaIzquierdaYAbajo{
+  margin-top: 5%;
+}
+
+.center{
+  text-align: center;
+}
+
+.backBlack{
+  background-color: black;
+}
+
+.jumbotron.thin{
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  border-radius: 0px;
+}
+
+.labelBoldandWhite{
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+}
+
+.btn{
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+  background-color: blue;
+  width: 100%;
+  border-radius: 0px;
+}
+
+input{
+  margin-bottom: 1em;
+  border-radius: 0px !important;
+}
+
+body{
+   background: url("images/yiLogin.jpg");
+   background-size: 100%;
+   height: auto;
+}
