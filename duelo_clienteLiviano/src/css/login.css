@@ -2,10 +2,6 @@
   margin-top: 5%;
 }
 
-.center{
-  text-align: center;
-}
-
 .backBlack{
   background-color: black;
 }
@@ -24,14 +20,7 @@
   font-size: 16px;
 }
 
-.btn{
-  font-weight: bold;
-  color: white;
-  font-size: 16px;
-  background-color: blue;
-  width: 100%;
-  border-radius: 0px;
-}
+
 
 input{
   margin-bottom: 1em;
@@ -39,7 +28,7 @@ input{
 }
 
 body{
-   background: url("images/yiLogin.jpg");
+   background: url("images/Login/yiLogin.jpg");
    background-size: 100%;
    height: auto;
 }

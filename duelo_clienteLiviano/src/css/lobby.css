@@ -1,0 +1,8 @@
+.characterSelection{
+  width: 120px;
+  height: 120px;
+}
+
+.imgAhri{
+  background-image: url("images/Lobby/ahri.png");
+}
