@@ -1,20 +1,23 @@
 
+/**
+ * Fuentes agregadas
+ */
 @font-face {
     font-family:PT Sans-Regular;
     src: url(fonts/PT_Sans-Web_Regular.ttf);
 }
 
-.bloqueDerecho {
+.bloqueCentral {
+  padding-right: 0px;
+  padding-left: 0px;
 	text-align: center;
 	margin-top: 10%;
 	margin-bottom: 10%;
 }
 
-.bloqueIzquierdo {
-	margin-top: 55%;
-	margin-bottom: 20%;
-	margin-right: 45%;
-	margin-left: 40%;
+.bloqueInferior {
+  text-align: center;
+  width: 50%;
 }
 
 .labelFormatLarge {
@@ -41,4 +44,12 @@
 .buttonStyle {
   color: white;
   background-color: blue;
+}
+
+.noMarginBot {
+  margin-bottom: 0px;
+}
+
+body {
+  background-image: url("/home/exilio/Escritorio/asheFullSize");
 }
