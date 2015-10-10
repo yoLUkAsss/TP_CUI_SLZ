@@ -1,0 +1,44 @@
+
+@font-face {
+    font-family:PT Sans-Regular;
+    src: url(fonts/PT_Sans-Web_Regular.ttf);
+}
+
+.bloqueDerecho {
+	text-align: center;
+	margin-top: 10%;
+	margin-bottom: 10%;
+}
+
+.bloqueIzquierdo {
+	margin-top: 55%;
+	margin-bottom: 20%;
+	margin-right: 45%;
+	margin-left: 40%;
+}
+
+.labelFormatLarge {
+  color: red;
+	font-size: 26px;
+	font-family: PT Sans-Regular;
+}
+
+.labelFormatSmall {
+  font-size: 18px;
+  font-family: PT Sans-Regular;
+  font-weight: normal;
+}
+
+.labelFormatSmall.nombreDeJugador {
+  color: green;
+  font-size: 24px;
+}
+
+.backOnPink {
+  background-color: #ffb6c1;
+}
+
+.buttonStyle {
+  color: white;
+  background-color: blue;
+}
