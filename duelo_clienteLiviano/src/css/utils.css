@@ -14,3 +14,8 @@
 .btn.fullSize:active{
   background-color: darkblue;
 }
+
+.blackBackgroundAndWhiteFonts{
+  background-color: black;
+  color:white;
+}
