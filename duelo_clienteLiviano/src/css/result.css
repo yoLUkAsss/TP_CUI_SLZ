@@ -13,11 +13,13 @@
 	text-align: center;
 	margin-top: 15%;
 	margin-bottom: 10%;
+  border-radius: 0px;
 }
 
 .bloqueInferior {
   text-align: center;
   width: 50%;
+  border-radius: 0px;
 }
 
 .labelFormatLarge {
@@ -52,6 +54,10 @@
 
 .font-responsive {
   font-size: 100%;
+}
+
+.noBorder {
+  border-radius: 0px;
 }
 
 body {
