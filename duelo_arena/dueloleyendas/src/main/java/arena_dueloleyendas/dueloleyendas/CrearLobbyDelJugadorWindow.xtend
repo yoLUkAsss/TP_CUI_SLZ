@@ -17,6 +17,7 @@ import org.uqbar.arena.windows.WindowOwner
 import excepciones.NoHayRivalException
 import jugador.EstadisticaDePersonaje
 import arena_dueloleyendas.componentes.EstadisticaFormato
+import org.uqbar.arena.widgets.List
 
 class CrearLobbyDelJugadorWindow extends SimpleWindow<LobbyAppModel> {
 	
@@ -104,15 +105,15 @@ revisar tus stats!'''
 			text = "Especialidades:"
 			foreground = Color.GREEN
 		]
-		new Label(segundoPanel) => [
-			bindValueToProperty("estadisticaSeleccionada.personajeAsociado.especialidad")
+		new List(segundoPanel) => [
+			bindItemsToProperty("estadisticaSeleccionada.personajeAsociado.especialidades")
 		]
 		new Label(segundoPanel) => [
 			text = "Debilidades:"
 			foreground = Color.GREEN
 		]
-		new Label(segundoPanel) => [
-			bindValueToProperty("estadisticaSeleccionada.personajeAsociado.debilidad")
+		new List(segundoPanel) => [
+			bindItemsToProperty("estadisticaSeleccionada.personajeAsociado.debilidades")
 		]
 		new Label(segundoPanel) => [
 			text = "Mejor Posicion:"

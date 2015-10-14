@@ -61,7 +61,8 @@
 }
 
 body {
-  background-image: url("images/ResultadoDuelo/asheFullSize.jpg");
+  /* Aca se deberia bindear la imagen correspondiente al personaje elegido del ganador */
+  background-image: url("images/Result/asheFullSize.jpg"); 
   background-size: 100%;
   height: auto;
 }

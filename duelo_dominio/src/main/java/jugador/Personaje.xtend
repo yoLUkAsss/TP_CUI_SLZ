@@ -2,6 +2,7 @@ package jugador
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import java.util.List
 
 //firepropertychange()
 
@@ -10,15 +11,15 @@ import org.uqbar.commons.utils.Observable
 class Personaje implements Comparable<Personaje> { 
 	
 	String nombre
-	String especialidad
-	String debilidad
+	List<String> especialidades
+	List<String> debilidades
 	Posicion posicionIdeal 
 	
 	new(String nombre,Posicion pos) {
 		this.nombre=nombre
 		this.posicionIdeal = pos
-		this.debilidad = "Alto gato"
-		this.especialidad = "NO SE"
+		especialidades = newArrayList
+		debilidades = newArrayList
 	}
 	
 	override equals(Object o) {
@@ -38,5 +39,12 @@ class Personaje implements Comparable<Personaje> {
 		return this.nombre.compareTo(otroPersonaje.nombre)
 	}
 	
+	def agregarNuevaDebilidad (String nuevaDebilidad) {
+		this.debilidades.add(nuevaDebilidad)
+	}
+	
+	def agregarNuevaFortaleza (String nuevaEspecialidad) {
+		this.especialidades.add(nuevaEspecialidad)
+	}
 	
 }

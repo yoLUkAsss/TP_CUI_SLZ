@@ -11,20 +11,41 @@ class Lobby extends Application{
 	
 	override createMainWindow() {
 		var Personaje amumu = new Personaje("Amumu",Posicion.TOP)
-		var Jugador pedro = new Jugador("Juaco")
+		var Personaje ahri = new Personaje("Ahri",Posicion.MID)
+		var Personaje olaf = new Personaje("Olaf",Posicion.JUNGLE)
+		var Personaje cait = new Personaje("Caitlyn",Posicion.BOT)
+		var Jugador jugadorActual = new Jugador("Juaco")
 		var Jugador marq = new Jugador("Marquitos")
 		var Jugador xPeke = new Jugador("xPeke")
-		var List<Personaje> pjsPaJugar = newArrayList
-		pjsPaJugar.add(amumu)
-		pjsPaJugar.add(new Personaje("Ahri",Posicion.MID))
-		pjsPaJugar.add(new Personaje("Olaf",Posicion.JUNGLE))
-		pjsPaJugar.add(new Personaje("Cait",Posicion.BOT))
+		var List<Personaje> personajesUtilizables = newArrayList
 		
-		var List<Jugador> jgdrs = newArrayList
-		jgdrs.add(marq);jgdrs.add(xPeke)
-		pedro.ganeYSoyRetador(amumu,Posicion.TOP)
+		amumu.agregarNuevaFortaleza("Tanque")
+		amumu.agregarNuevaFortaleza("Mago")
+		amumu.agregarNuevaDebilidad("Crowd-Control")
 		
-		new CrearLobbyDelJugadorWindow(this, new LobbyAppModel(pedro,jgdrs,pjsPaJugar))
+		ahri.agregarNuevaFortaleza("Mago")
+		ahri.agregarNuevaFortaleza("Buena Movilidad")
+		ahri.agregarNuevaDebilidad("Amor")
+		
+		olaf.agregarNuevaFortaleza("Tanque")
+		olaf.agregarNuevaFortaleza("Crowd-Control")
+		olaf.agregarNuevaDebilidad("Daño Magico")
+		olaf.agregarNuevaDebilidad("Velocidad")
+		
+		cait.agregarNuevaFortaleza("Rango de ataque")
+		cait.agregarNuevaDebilidad("Crowd-Control")
+		
+		
+		personajesUtilizables.add(amumu)
+		personajesUtilizables.add(ahri)
+		personajesUtilizables.add(olaf)
+		personajesUtilizables.add(cait)
+		
+		var List<Jugador> jugadores = newArrayList
+		jugadores.add(marq);jugadores.add(xPeke)
+		jugadorActual.ganeYSoyRetador(amumu,Posicion.TOP)
+		
+		new CrearLobbyDelJugadorWindow(this, new LobbyAppModel(jugadorActual,jugadores,personajesUtilizables))
 	}
 	
 	def static main(String[] args) {

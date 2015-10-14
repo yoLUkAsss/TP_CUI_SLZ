@@ -76,7 +76,7 @@ class SelectorDeRival {
 	 * 
 	 * @param jugador Jugador a agregar
 	 */
-	def private agregarJugador(Jugador jugador){
+	def agregarJugador(Jugador jugador){
 		jugadores.add(jugador)
 	}
 	
@@ -85,7 +85,7 @@ class SelectorDeRival {
 	 * 
 	 * @param personaje Personaje nuevo a agregar
 	 */
-	def private agregarPersonaje(Personaje personaje) {
+	def agregarPersonaje(Personaje personaje) {
 		personajes.add(personaje)
 	}
 }
