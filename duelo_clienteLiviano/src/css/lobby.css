@@ -24,3 +24,16 @@ button:active{
   height: auto;
   opacity: 0.4;
 }
+
+.grayBorder{
+  border-color: gray;
+  border-style: solid;
+  border-radius: 0px;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 2px;
+    width: 100%;
+}
