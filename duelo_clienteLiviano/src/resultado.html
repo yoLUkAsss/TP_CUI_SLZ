@@ -2,7 +2,7 @@
 <html>
 <head>
 
-		<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css">
 
 		<link rel="stylesheet" type="text/css" href="css/result.css">
 		<link rel="stylesheet" type="text/css" href="css/utils.css">
@@ -23,12 +23,13 @@
 		<!-- Primer bloque Superior Central -->
 		<div class="panel panel-default bloqueCentral">
   		<div class="panel-body backOnPink">
-  			<label class="labelFormatLarge"> Victoria/Derrota </label> <br>
-  			<label class="labelFormatSmall"> puntaje1 a puntaje2 </label> <br>
-  			<label class="labelFormatSmall"> Honores al Ganador: </label> <br>
-  			<label class="labelFormatSmall nombreDeJugador"> Nombre del Rival </label>
+  			<label id="veredicto" class="labelFormatLarge"> {Victoria} </label> <br>
+  			<label id="puntajeRetador" class="labelFormatSmall"> {puntaje1} a 
+  			<label id="puntajeRival" class="labelFormatSmall"> {puntaje2} </label> <br>
+  			<label id="cartelVeredicto" class="labelFormatSmall"> {cartel}: </label> <br>
+  			<label id="nombreGanador" class="labelFormatSmall nombreDeJugador"> {ganador} </label>
   		</div>
-  			<button class="btn fullSize"> Aceptar Derrota </button>
+  			<button id="opcionDelBoton" class="btn fullSize"> {aceptar} </button>
 		</div>
 
 			<!--Comiento de los bloques inferiores-->
@@ -36,18 +37,18 @@
 
 				<!-- Primer Bloque Inferior Izquierdo -->
 				<div class="bloqueInferior col-md-4 col-xs-4 col-sm-4">
-					<div class="panel panel-primary noMarginBot fullSize">Personaje 1</div>
+					<div id="nombrePersonajeRetador" class="panel panel-primary noMarginBot fullSize"> {personajeRetador} </div>
 					<div class="panel panel-default noBorder">
-						<label class="labelFormatSmall"> Estadistica </label> <br>
+						<label id="estadisticaRetador" class="labelFormatSmall"> {Estadistica} </label> <br>
 						<!--HAY QUE PONER ESTADISTICAS-->
 					</div>
 				</div>
 
 				<!-- Segundo Bloque Inferior Derecho-->
 				<div class="bloqueInferior col-md-4 col-xs-4 col-sm-4">
-					<div class="panel panel-primary noMarginBot fullSize">Personaje 2</div>
+					<div id="nombrePersonajeRetador" class="panel panel-primary noMarginBot fullSize"> {personajeRival} </div>
 					<div class="panel panel-default noBorder">
-						<label class="labelFormatSmall"> Estadistica </label> <br>
+						<label id="estadisticaRival" class="labelFormatSmall"> {Estadistica} </label> <br>
 						<!--HAY QUE PONER ESTADISTICAS-->
 					</div>
 				</div>
