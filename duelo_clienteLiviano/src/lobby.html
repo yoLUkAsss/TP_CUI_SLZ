@@ -1,19 +1,20 @@
-<html>
+<html ng-app="LobbyApp">
 <head>
   <title>
     Lobby
   </title>
-  <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="css/lobby.css" rel="stylesheet">
   <link href="css/utils.css" rel="stylesheet">
-  <script src="js/lobby.js"></script>
   <script src="js/jquery.js"></script>
-  <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="lib/angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 
-  <div class="container grayBorder">
+  <div class="container panel" ng-controller="LobbyController">
     <div class="center">
       <h1><span class="label label-default">Bienvenido {Usuario}</span></h1>
     </div>
@@ -22,57 +23,61 @@
     </div>
 
     <div class="row">
-      <div id="columnaIzq" class="col-md-4 col-xs-4 col-lg-4 col-sm-4 center">
-        <div class="row center">
+      <div id="columnaIzq" class="col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
           <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
-            <button class="img-responsive" onClick="changeImgLobby('ahri')"><img class="characterSelection img-circle" src="css/images/Lobby/ahri.png"></button>
+            <button ng-repeat="n in ['ahri', 'amumu', 'viper']" class="img-responsive" ng-click="changeImgLobby(n)"><img class="characterSelection img-thumbnail" src="css/images/Lobby/{{n}}.png"></button>
           </div>
           <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
-            <button class="img-responsive" onClick="changeImgLobby('amumu')"><img class="characterSelection img-circle" src="css/images/Lobby/amumu.png"></button>
+            <button ng-repeat="n in ['olaf', 'witchdoctor', 'pudge']" class="img-responsive" ng-click="changeImgLobby(n)"><img class="characterSelection img-thumbnail" src="css/images/Lobby/{{n}}.png"></button>
           </div>
-        </div>
-        <div class="row center">
-          <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
-            <button class="img-responsive" onClick="changeImgLobby('viper')"><img class="characterSelection img-circle" src="css/images/Lobby/viper.png"></button>
-          </div>
-          <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
-            <button class="img-responsive" onClick="changeImgLobby('witchdoctor')"><img class="characterSelection img-circle" src="css/images/Lobby/witchdoctor.png"></button>
-          </div>
-        </div>
-        <div class="row center">
-          <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
-            <button class="img-responsive" onClick="changeImgLobby('pudge')"><img class="characterSelection img-circle" src="css/images/Lobby/pudge.png"></button>
-          </div>
-          <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
-            <button class="img-responsive" onClick="changeImgLobby('olaf')"><img class="characterSelection img-circle" src="css/images/Lobby/olaf.png"></button>
-          </div>
-        </div>
-      </div>
+      </div><!--Fin columna izquierda-->
 
       <div id="columnaCentro" class="col-md-4 col-xs-4 col-lg-4 col-sm-4">
         <img id='selectedCharacter' class="img-responsive"></img>
-      </div>
+      </div><!--Fin columna centro-->
 
       <div id="columnaDerecha" class="col-md-4 col-xs-4 col-lg-4 col-sm-4">
+
         <div class="container">
 
           <div class="well">
-            <a id="toggler" href="#" data-toggle="collapse" class="active" data-target="#demo">
+            <a id="toggler" href="#" data-toggle="collapse" class="active" data-target="#especialidad">
               <i class="icon-folder-open"></i>
               <i class="icon-folder-close"></i>
-              Especialidad:
+              Especialidades:
             </a>
 
-            <div id="demo" class="collapse in">
-              <ul class="nav nav-list">
+            <div id="especialidad" class="collapse in">
+              <ul id="especialidadInner" class="nav nav-list">
                 <li class="active"><a href="#">{Una Especialidad}</a></li>
                 <li class="active"><a href="#">{Otra Especialidad}</a></li>
-                <li><a href="#">Library</a></li>
               </ul>
             </div>
-      </div>
-    </div> <!-- /container -->
-      </div>
+          </div>
+
+        </div>
+        <div class="container">
+
+          <div class="well">
+            <a id="toggler" href="#" data-toggle="collapse" class="active" data-target="#debilidad">
+              <i class="icon-folder-open"></i>
+              <i class="icon-folder-close"></i>
+              Debilidades:
+            </a>
+
+            <div id="debilidad" class="collapse in">
+              <ul id="debilidadInner" class="nav nav-list">
+                <li class="active"><a href="#">{Una Debilidad}</a></li>
+                <li class="active"><a href="#">{Otra Debilidad}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="center"><span class="label label-primary">Jugar!</span></h2>
+      </div><!--Fin columna derecha-->
+
+
     </div>
 
   </div>

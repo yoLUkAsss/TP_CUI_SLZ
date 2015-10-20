@@ -5,6 +5,10 @@
   height: 100%;
 }
 
+.allImgContainer{
+  height: 360px;
+}
+
 
 button{
   width: 120px;
