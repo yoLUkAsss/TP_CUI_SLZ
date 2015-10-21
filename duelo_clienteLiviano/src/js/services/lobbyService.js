@@ -1,6 +1,6 @@
 angular.module('dueloLeyendasApp')
       .service('AllChampionsService',function(){
-  this.datosDelJuego = function(){
+  this.datosDelJuego = function(idPersonaje){
     return {posicionesDuelos:[
                               {nombre:'TOP'},
                               {nombre:'BOT'},
@@ -8,8 +8,8 @@ angular.module('dueloLeyendasApp')
                               {nombre:'MID'}],
             personajes:[
                               {id:1,
-                               nombre: 'Ahri',
-                               imagenSrc: '../css/images/Lobby/ahri.png',
+                               nombre: 'ahri',
+                               imagenSrc: 'css/images/Lobby/ahri.png',
                                estadisticas: {
                                               jugadas: "2",
                                               ganadas: "8",
@@ -25,8 +25,8 @@ angular.module('dueloLeyendasApp')
                                                     mejorUbicacion: "Jungle"
                                   }},
                                   {id:2,
-                                   nombre: 'Viper',
-                                   imagenSrc: '../css/images/Lobby/viper.png',
+                                   nombre: 'viper',
+                                   imagenSrc: 'css/images/Lobby/viper.png',
                                    estadisticas: {
                                                   jugadas: "2",
                                                   ganadas: "8",
@@ -41,6 +41,78 @@ angular.module('dueloLeyendasApp')
                                                         debilidades:["Poder de Defensa"],
                                                         mejorUbicacion: "Mid"
                                       }},
+
+                                      {id:1,
+                                       nombre: 'olaf',
+                                       imagenSrc: 'css/images/Lobby/olaf.png',
+                                       estadisticas: {
+                                                      jugadas: "2",
+                                                      ganadas: "8",
+                                                      kills: "10",
+                                                      deads: "18",
+                                                      assits: "123",
+                                                      mejorUbicacion: "Jungle",
+                                                      Puntaje: "C"
+                                       },
+                                          caracteristicas: {
+                                                            especialidades:["Poder de Habilidad", "Poder de Defensa"],
+                                                            debilidades:["Poder de Ataque"],
+                                                            mejorUbicacion: "Jungle"
+                                          }},
+
+                                    {id:1,
+                                     nombre: 'amumu',
+                                     imagenSrc: 'css/images/Lobby/amumu.png',
+                                     estadisticas: {
+                                                    jugadas: "2",
+                                                    ganadas: "8",
+                                                    kills: "10",
+                                                    deads: "18",
+                                                    assits: "123",
+                                                    mejorUbicacion: "Jungle",
+                                                    Puntaje: "C"
+                                     },
+                                        caracteristicas: {
+                                                          especialidades:["Poder de Habilidad", "Poder de Defensa"],
+                                                          debilidades:["Poder de Ataque"],
+                                                          mejorUbicacion: "Jungle"
+                                        }},
+
+                                  {id:1,
+                                   nombre: 'pudge',
+                                   imagenSrc: 'css/images/Lobby/pudge.png',
+                                   estadisticas: {
+                                                  jugadas: "2",
+                                                  ganadas: "8",
+                                                  kills: "10",
+                                                  deads: "18",
+                                                  assits: "123",
+                                                  mejorUbicacion: "Jungle",
+                                                  Puntaje: "C"
+                                   },
+                                      caracteristicas: {
+                                                        especialidades:["Poder de Habilidad", "Poder de Defensa"],
+                                                        debilidades:["Poder de Ataque"],
+                                                        mejorUbicacion: "Jungle"
+                                      }},
+                                {id:1,
+                                 nombre: 'witchdoctor',
+                                 imagenSrc: 'css/images/Lobby/witchdoctor.png',
+                                 estadisticas: {
+                                                jugadas: "2",
+                                                ganadas: "8",
+                                                kills: "10",
+                                                deads: "18",
+                                                assits: "123",
+                                                mejorUbicacion: "Jungle",
+                                                Puntaje: "C"
+                                 },
+                                    caracteristicas: {
+                                                      especialidades:["Poder de Habilidad", "Poder de Defensa"],
+                                                      debilidades:["Poder de Ataque"],
+                                                      mejorUbicacion: "Jungle"
+                                    }},
+
                            ]}
   }
 })
