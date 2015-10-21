@@ -22,7 +22,7 @@ angular.module('dueloLeyendasApp')
                                   caracteristicas: {
                                                     especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                     debilidades:["Poder de Ataque"],
-                                                    mejorUbicacion: "Jungle"
+                                                    mejorUbicacion: ["Mid"]
                                   }},
                                   {id:2,
                                    nombre: 'viper',
@@ -39,7 +39,7 @@ angular.module('dueloLeyendasApp')
                                       caracteristicas: {
                                                         especialidades:["ADC", "Poder de Ataque"],
                                                         debilidades:["Poder de Defensa"],
-                                                        mejorUbicacion: "Mid"
+                                                        mejorUbicacion: ["Mid"]
                                       }},
 
                                       {id:1,
@@ -51,13 +51,13 @@ angular.module('dueloLeyendasApp')
                                                       kills: "10",
                                                       deads: "18",
                                                       assits: "123",
-                                                      mejorUbicacion: "Jungle",
+                                                      mejorUbicacion: "Mid",
                                                       Puntaje: "C"
                                        },
                                           caracteristicas: {
                                                             especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                             debilidades:["Poder de Ataque"],
-                                                            mejorUbicacion: "Jungle"
+                                                            mejorUbicacion: ["Top"]
                                           }},
 
                                     {id:1,
@@ -69,13 +69,13 @@ angular.module('dueloLeyendasApp')
                                                     kills: "10",
                                                     deads: "18",
                                                     assits: "123",
-                                                    mejorUbicacion: "Jungle",
+                                                    mejorUbicacion: "Support",
                                                     Puntaje: "C"
                                      },
                                         caracteristicas: {
                                                           especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                           debilidades:["Poder de Ataque"],
-                                                          mejorUbicacion: "Jungle"
+                                                          mejorUbicacion: ["Jungle"]
                                         }},
 
                                   {id:1,
@@ -93,7 +93,7 @@ angular.module('dueloLeyendasApp')
                                       caracteristicas: {
                                                         especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                         debilidades:["Poder de Ataque"],
-                                                        mejorUbicacion: "Jungle"
+                                                        mejorUbicacion: ["Jungle"]
                                       }},
                                 {id:1,
                                  nombre: 'witchdoctor',
@@ -110,7 +110,7 @@ angular.module('dueloLeyendasApp')
                                     caracteristicas: {
                                                       especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                       debilidades:["Poder de Ataque"],
-                                                      mejorUbicacion: "Jungle"
+                                                      mejorUbicacion: ["Jungle"]
                                     }},
 
                            ]}
