@@ -1,1 +1,1 @@
-var appAng = angular.module('LobbyApp', [])
+angular.module('dueloLeyendasApp', [])

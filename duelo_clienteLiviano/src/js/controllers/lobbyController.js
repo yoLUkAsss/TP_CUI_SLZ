@@ -1,9 +1,8 @@
-var moduleL = angular.module('LobbyApp');
-moduleL.controller('LobbyController',function($scope){
+angular.module('dueloLeyendasApp')
+      .controller('LobbyController',function($scope,AllChampionsService){
   $scope.changeImgLobby = function (personaje){
     document.getElementById("selectedCharacter").src = "css/images/Lobby/" + personaje + "Big.jpg";
+    document.getElementById("selectedCharacterlbl").textContent= personaje;
   };
-  $scope.personajes = function(){
-    return serviceAllChamps.allChamps();
-  }
+  $scope.datosDelJuego = AllChampionsService.datosDelJuego();
 })

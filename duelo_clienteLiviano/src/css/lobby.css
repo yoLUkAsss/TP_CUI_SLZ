@@ -8,6 +8,17 @@
 .allImgContainer{
   height: 360px;
 }
+.margTop{
+  margin-top: 30px;
+}
+
+#selectedCharacterlbl{
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: -webkit-linear-gradient(orange, red); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(orange, red); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(orange,red);
+}
 
 
 button{
