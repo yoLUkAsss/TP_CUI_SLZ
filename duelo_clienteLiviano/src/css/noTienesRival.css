@@ -1,0 +1,57 @@
+.titulo {
+
+	text-align: center;
+	color: blue;
+	font-size: 40px; 
+
+}
+
+.botonCuadrado.btn-primary {
+
+	 border-radius: 0;
+	 width: 183px;
+	 background-color: #0000CD;
+
+
+}
+
+.textoColor {
+
+	background-color: #0000CD;
+	color:white;
+}
+
+
+.containerDerecho {
+
+	position: absolute;
+    width: auto;
+    padding: 10px;
+    right: 50px;
+
+
+}
+
+.tamanhoConteinerGeneral {
+    
+
+    width: 400px;
+    height: 100px;
+
+}
+
+
+.containerWithThinMargin{
+	border: thin solid #000000;
+}
+
+
+body{
+   
+ 	background: url("images/NoHayRival/ima.jpg")no-repeat fixed center;
+ 	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+ }
