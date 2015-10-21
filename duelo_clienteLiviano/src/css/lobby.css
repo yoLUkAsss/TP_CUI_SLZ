@@ -20,23 +20,25 @@
   background: -moz-linear-gradient(orange,red);
 }
 
+.square {
+    position: relative;
+    width: 30%;
+    padding-bottom: 30%;
+    margin: 1.66%;
+    overflow: hidden;
+}
 
-button{
-  width: 120px;
-  height: 120px;
+.btn.characerSelect{
   padding: 0;
   border: none;
   background: none;
 }
 
-button:hover{
-  width: auto;
-  height: auto;
+.btn.characerSelect:hover{
+  opacity: 0.8;
 }
 
-button:active{
-  width: auto;
-  height: auto;
+.btn.characerSelect:active{
   opacity: 0.4;
 }
 

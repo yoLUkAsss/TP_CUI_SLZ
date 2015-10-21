@@ -27,14 +27,14 @@
     <div class="row margTop">
       <div id="columnaIzq" class="col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
           <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
-            <button ng-repeat="n in ['ahri', 'amumu', 'viper']" class="img-responsive" ng-click="changeImgLobby(n)"><img class="characterSelection img-thumbnail" src="css/images/Lobby/{{n}}.png"></button>
+            <button ng-repeat="personaje in personajesToTheHalf('left')" class="img-responsive btn characerSelect" ng-click="changeImgLobby(personaje.nombre)"><img class="characterSelection img-thumbnail" ng-src="{{personaje.imagenSrc}}" ng-show="personaje.imagenSrc"></button>
           </div>
           <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6">
-            <button ng-repeat="n in ['olaf', 'witchdoctor', 'pudge']" class="img-responsive" ng-click="changeImgLobby(n)"><img class="characterSelection img-thumbnail" src="css/images/Lobby/{{n}}.png"></button>
+            <button ng-repeat="personaje in personajesToTheHalf('right')" class="img-responsive btn characerSelect" ng-click="changeImgLobby(personaje.nombre)"><img class="characterSelection img-thumbnail" ng-src="{{personaje.imagenSrc}}" ng-show="personaje.imagenSrc"></button>
           </div>
       </div><!--Fin columna izquierda-->
 
-      <div id="columnaCentro" class="col-md-4 col-xs-4 col-lg-4 col-sm-4">
+      <div id="columnaCentro" class="col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
         <div id="selectedCharacterlbl" class="panel fullSize center"></div>
         <img id='selectedCharacter' class="img-responsive"></img>
       </div><!--Fin columna centro-->
