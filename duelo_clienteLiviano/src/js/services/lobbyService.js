@@ -114,7 +114,40 @@ angular.module('dueloLeyendasApp')
                                     }},
 
                            ]}
+
   };
 
+
+
+  this.informacionDelDuelo = function() {
+
+          return {
+            informacionDelRetador: {
+              jugadas: "6",
+              ganadas: "3",
+              kills: "18",
+              deads: "8",
+              assits: "14",
+              mejorUbicacion: "Top",
+              Puntaje: "Killing-Spread"
+            },
+           informacionDelRival: {
+              jugadas: "3",
+              ganadas: "6",
+              kills: "12",
+              deads: "38",
+              assits: "23",
+              mejorUbicacion: "Jungle",
+              Puntaje: "NOOB"
+            },
+            tipoResultado: {
+              veredicto: "Ganaste",
+              valorRetador: "65",
+              valorRival: "32",
+              mensaje: "En hora buena",
+              mensajeDelBoton: "Celebrar Victoria"
+            }
+          }
+        }
 
 })
