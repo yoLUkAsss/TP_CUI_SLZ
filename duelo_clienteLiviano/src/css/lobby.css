@@ -1,4 +1,20 @@
 
+@media (max-width: 768px) {
+.btn-responsive {
+  padding:2px 4px;
+  font-size:80%;
+  line-height: 1;
+  border-radius:3px;
+}
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+.btn-responsive {
+  padding:0px;
+  font-size:90%;
+  line-height: 1.2;
+}
+}
 
 .characterSelection{
   width: 100%;
@@ -12,12 +28,14 @@
   margin-top: 30px;
 }
 
+
+
 #selectedCharacterlbl{
   margin-bottom: 10px;
   border-radius: 8px;
-  background: -webkit-linear-gradient(orange, red); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(orange, red); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(orange,red);
+  background: -webkit-linear-gradient(#337AB7, darkblue); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#337AB7, darkblue); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#337AB7,darkblue);
 }
 
 .square {
@@ -26,6 +44,10 @@
     padding-bottom: 30%;
     margin: 1.66%;
     overflow: hidden;
+}
+
+.btn{
+  width: 100%;
 }
 
 .btn.characerSelect{
@@ -46,6 +68,10 @@
   border-color: gray;
   border-style: solid;
   border-radius: 0px;
+}
+
+.sinPadding{
+  padding: 0px;
 }
 
 .container {
