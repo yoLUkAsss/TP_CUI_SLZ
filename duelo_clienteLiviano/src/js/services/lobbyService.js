@@ -114,12 +114,7 @@ angular.module('dueloLeyendasApp')
                                     }},
 
                            ]}
-  }
+  };
+
+
 })
-
-
-// myApp.service('helloWorldFromService', function() {
-//     this.sayHello = function() {
-//         return "Hello, World!"
-//     };
-// });
