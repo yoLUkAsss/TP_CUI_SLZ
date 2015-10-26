@@ -7,7 +7,7 @@ import jugador.Posicion
 import jugador.TipoCalificacion
 
 /**
- * Este objeto es el encargado de analizar, valga la redundancia, de los jugadores batidos a duelo y 
+ * Este objeto es el encargado de analizar, valga la redundancia, a los jugadores batidos a duelo y 
  * tambien de retornar la informacion necesaria acorde a el resultado final de dicho duelo.
  * 
  * @author Sandoval Lucas
@@ -122,8 +122,8 @@ class AnalizadorDeAtaque {
 			    retador.perdiYSoyRetador(personajeRetador,posicionRetador)
 			}
 		}
-		var s =new Pair(resultadoRetador,resultadoRival) 
-		return s
+
+		return new ResultadoDuelo(retador,resultadoRetador,rival,resultadoRival)
 	}
 	
 	/**

@@ -8,6 +8,7 @@ import util.DetalleJugadorDuelo
 import static org.uqbar.commons.model.ObservableUtils.*
 import jugador.EstadisticaDePersonaje
 import util.AnalizadorDeAtaque
+import util.ResultadoDuelo
 
 @Observable
 @Accessors
@@ -16,13 +17,9 @@ class ResultadoDueloAppModel {
 	
 	DetalleJugadorDuelo rival
 	DetalleJugadorDuelo retador
-	Jugador ganador
-	Jugador perdedor
-	Integer resultadoGanador
-	Integer resultadoPerdedor
 	EstadisticaDePersonaje pjRetador
 	EstadisticaDePersonaje pjRival
-	Boolean empate = false
+	ResultadoDuelo resDuelo
 	String tipoResultado = ""
 	
 	new (DetalleJugadorDuelo retador,DetalleJugadorDuelo rival){
@@ -31,46 +28,34 @@ class ResultadoDueloAppModel {
 	}
 	
 	def getDescription(){
-		if(empate){
-			return '''Empataste con: «rival.jugador.nombre»'''
-		}	
-		if(ganador.equals(retador.jugador)){
-			return '''Le ganaste a: «rival.jugador.nombre»'''
-		} 
-		return '''Perdiste con: «rival.jugador.nombre»'''
+		resDuelo.getDescription()
+	}
+	
+	def getGanador(){
+		resDuelo.ganador
+	}
+	
+	def getPerdedor(){
+		resDuelo.perdedor
 	}
 			
 	def actualizarDatos () {
 		
 	
-		var arConRes = this.resultadoDuelo()
-
-		pjRetador = retador.jugador.est.findFirst[each | each.esDeEstePersonaje(retador.pj)]
-		pjRival = rival.jugador.est.findFirst[each | each.esDeEstePersonaje(rival.pj)]
-
-		if (arConRes.key > arConRes.value) {
-			ganador = retador.jugador
-			perdedor = rival.jugador
-			resultadoGanador = arConRes.key
-			resultadoPerdedor = arConRes.value
-			setTipoResultado("victoria")
-		} else {
-			if (arConRes.key < arConRes.value) {
-				ganador = rival.jugador
-				perdedor = retador.jugador
-				resultadoPerdedor = arConRes.key 
-				resultadoGanador = arConRes.value 
-				setTipoResultado("derrota")
-			}
-			else {
-				empate = true
-				resultadoGanador = arConRes.key 
-				resultadoPerdedor = arConRes.value 
-				setTipoResultado("empate")
-			}
-		firePropertyChanged(this,"description",description);
-		}
+		resDuelo = this.resultadoDuelo()
+		pjRetador = resDuelo.retador.getEstadisticaCon(retador.pj)
+		pjRival = resDuelo.rival.getEstadisticaCon(rival.pj)
+		setTipoResultado(resDuelo.tipoResultado)
+		
+		firePropertyChanged(this,"pjRetador",pjRetador);
+		firePropertyChanged(this,"pjRival",pjRival);
+	
 	}
+	
+	def empate(){
+		resDuelo.empate
+	}
+	
 	
 	 
 	def analizador(){
@@ -79,16 +64,11 @@ class ResultadoDueloAppModel {
 	}
 	
 	def getVeredict() {
-		if(empate){
-			return "Empate :("
-		}
-		
-			return "Gandor: " + ganador.nombre + "!!!"
-		
+		resDuelo.getVeredict()
 	}
 	
 	def getPuntaje() {
-		return ''' - «resultadoGanador» Puntos contra «resultadoPerdedor»'''
+		return resDuelo.puntaje
 	}
 	
 	def setTipoResultado (String s) {
@@ -100,12 +80,12 @@ class ResultadoDueloAppModel {
 		
 		var analyzer = new AnalizadorDeAtaque()
 	
-		var arConRes = analyzer.realizarDuelo(
+		var resultadoDuelo = analyzer.realizarDuelo(
 				retador.jugador,rival.jugador,
 				retador.pj,rival.pj,
 				retador.posElegida,rival.posElegida)
 		  
-		    arConRes
+		resultadoDuelo
 	}
 	
 }
