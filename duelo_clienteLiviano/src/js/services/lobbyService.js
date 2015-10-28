@@ -1,12 +1,12 @@
 angular.module('dueloLeyendasApp')
       .service('AllChampionsService',function(){
-  this.datosDelJuego = function(idPersonaje){
-    return {posicionesDuelos:[
+        this.datosDelJuego = function(idPersonaje){
+          return {posicionesDuelos:[
                               {nombre:'TOP'},
                               {nombre:'BOT'},
                               {nombre:'JUNGLE'},
                               {nombre:'MID'}],
-            personajes:[
+                  personajes:[
                               {id:1,
                                nombre: 'ahri',
                                imagenSrc: 'css/images/Lobby/ahri.png',
@@ -113,11 +113,10 @@ angular.module('dueloLeyendasApp')
                                                       mejorUbicacion: "Jungle"
                                     }},
 
-                           ]}
-  }
+                  ]}
+        };
 
-  this.informacionDelDuelo = function() {
-
+        this.informacionDelDuelo = function(idJugador , idPersonaje , posicionElegida) {
           return {
             informacionDelRetador: {
               jugadas: "6",
@@ -137,15 +136,19 @@ angular.module('dueloLeyendasApp')
               mejorUbicacion: "Jungle",
               Puntaje: "NOOB"
             },
-            tipoResultado: {
+            resultadoDuelo: {
               veredicto: "Ganaste",
               valorRetador: "65",
               valorRival: "32",
+              nombreGanador: "iGzo",
+              personajeRetador: "amumu",
+              personajeRival: "viper", 
               mensaje: "En hora buena",
-              mensajeDelBoton: "Celebrar Victoria"
+              mensajeDelBoton: "Celebrar Victoria",
+              pathImagenVictoriosa: "../css/Result/asheFullSize.jpg"
             } 
           }
-        }
+        };
 
 })
 // myApp.service('helloWorldFromService', function() {
