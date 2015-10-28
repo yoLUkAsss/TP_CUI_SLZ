@@ -22,7 +22,7 @@ angular.module('dueloLeyendasApp')
                                   caracteristicas: {
                                                     especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                     debilidades:["Poder de Ataque"],
-                                                    mejorUbicacion: "Jungle"
+                                                    mejorUbicacion: ["Mid"]
                                   }},
                                   {id:2,
                                    nombre: 'viper',
@@ -39,7 +39,7 @@ angular.module('dueloLeyendasApp')
                                       caracteristicas: {
                                                         especialidades:["ADC", "Poder de Ataque"],
                                                         debilidades:["Poder de Defensa"],
-                                                        mejorUbicacion: "Mid"
+                                                        mejorUbicacion: ["Mid"]
                                       }},
 
                                       {id:1,
@@ -51,13 +51,13 @@ angular.module('dueloLeyendasApp')
                                                       kills: "10",
                                                       deads: "18",
                                                       assits: "123",
-                                                      mejorUbicacion: "Jungle",
+                                                      mejorUbicacion: "Mid",
                                                       Puntaje: "C"
                                        },
                                           caracteristicas: {
                                                             especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                             debilidades:["Poder de Ataque"],
-                                                            mejorUbicacion: "Jungle"
+                                                            mejorUbicacion: ["Top"]
                                           }},
 
                                     {id:1,
@@ -69,13 +69,13 @@ angular.module('dueloLeyendasApp')
                                                     kills: "10",
                                                     deads: "18",
                                                     assits: "123",
-                                                    mejorUbicacion: "Jungle",
+                                                    mejorUbicacion: "Support",
                                                     Puntaje: "C"
                                      },
                                         caracteristicas: {
                                                           especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                           debilidades:["Poder de Ataque"],
-                                                          mejorUbicacion: "Jungle"
+                                                          mejorUbicacion: ["Jungle"]
                                         }},
 
                                   {id:1,
@@ -93,7 +93,7 @@ angular.module('dueloLeyendasApp')
                                       caracteristicas: {
                                                         especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                         debilidades:["Poder de Ataque"],
-                                                        mejorUbicacion: "Jungle"
+                                                        mejorUbicacion: ["Jungle"]
                                       }},
                                 {id:1,
                                  nombre: 'witchdoctor',
@@ -110,30 +110,29 @@ angular.module('dueloLeyendasApp')
                                     caracteristicas: {
                                                       especialidades:["Poder de Habilidad", "Poder de Defensa"],
                                                       debilidades:["Poder de Ataque"],
-                                                      mejorUbicacion: "Jungle"
+                                                      mejorUbicacion: ["Jungle"]
                                     }},
+                           ]}
 
-                  ]}
-        };
-
+  };
         this.informacionDelDuelo = function(idJugador , idPersonaje , posicionElegida) {
           return {
             informacionDelRetador: {
-              jugadas: "6",
-              ganadas: "3",
-              kills: "18",
-              deads: "8",
-              assits: "14",
-              mejorUbicacion: "Top",
+              Jugadas: "6",
+              Ganadas: "3",
+              Kills: "18",
+              Deads: "8",
+              Assits: "14",
+              MejorUbicacion: "Top",
               Puntaje: "Killing-Spread"
             },
            informacionDelRival: {
-              jugadas: "3",
-              ganadas: "6",
-              kills: "12",
-              deads: "38",
-              assits: "23",
-              mejorUbicacion: "Jungle",
+              Jugadas: "3",
+              Ganadas: "6",
+              Kills: "12",
+              Deads: "38",
+              Assits: "23",
+              MejorUbicacion: "Jungle",
               Puntaje: "NOOB"
             },
             resultadoDuelo: {
@@ -141,18 +140,13 @@ angular.module('dueloLeyendasApp')
               valorRetador: "65",
               valorRival: "32",
               nombreGanador: "iGzo",
-              personajeRetador: "amumu",
-              personajeRival: "viper", 
+              personajeRetador: "Amumu",
+              personajeRival: "Viper", 
               mensaje: "En hora buena",
               mensajeDelBoton: "Celebrar Victoria",
-              pathImagenVictoriosa: "../css/Result/asheFullSize.jpg"
+              path: "css/images/Result/asheFullSize.jpg"
             } 
           }
         };
 
-})
-// myApp.service('helloWorldFromService', function() {
-//     this.sayHello = function() {
-//         return "Hello, World!"
-//     };
-// });
+});

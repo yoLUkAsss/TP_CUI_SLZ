@@ -1,0 +1,73 @@
+.fondo {
+
+	background-color: black;
+
+
+
+}
+
+
+.containerDerecho{
+
+
+    position: absolute;
+    width: auto;
+    padding: 10px;
+    right: 50px;
+    top: 100px;
+
+
+}
+
+
+img {
+	 position:relative;
+     left: 130px;
+     top:-40px;
+
+
+    -ms-transform: rotate(75deg); /* IE 9 */
+    -webkit-transform: rotate(75deg); /* Chrome, Safari, Opera */
+    transform: rotate(75deg);
+	
+}
+
+.botonCuadrado.btn-primary {
+
+     border-radius: 0;
+     width: 258px;
+     background-color: #0000CD;
+     font-size: 30px;
+
+
+}
+
+.texto {
+
+    background-color: #0000CD;
+    color:white;
+    font-size: 16px;
+    border: thin solid #0000CD;
+
+}
+
+
+.titulo {
+
+    text-align: center;
+    color: #00BFFF;
+    font-size: 40px; 
+    top:70px;
+
+}
+
+
+.tamanhoContainerDerecho{
+
+    width: 550px;
+    height: 180px;
+
+
+}
+
+

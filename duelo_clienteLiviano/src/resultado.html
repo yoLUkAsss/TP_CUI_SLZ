@@ -18,9 +18,9 @@
 
 	</title>
 </head>
-<body ng-controller = "ResultController">
+<body class="imageBack" ng-controller = "ResultController" ng-style="getImagePath(informacionDelDuelo.resultadoDuelo.path)">
 
-<div>
+<div id="imagenVictoriosa" class="img-responsive imageBack">
 	<div class="row col-md-4 col-md-offset-7 col-xs-6 col-xs-offset-4 col-sm-4 col-sm-offset-7 font-responsive">
 		<!-- Primer bloque Superior Central -->
 		<div class="panel panel-default bloqueCentral">
@@ -31,7 +31,7 @@
 	  			<span id="cartelVeredicto" class="labelFormatSmall"> {{informacionDelDuelo.resultadoDuelo.mensaje}}: </span> <br>
 	  			<span id="nombreGanador" class="labelFormatSmall nombreDeJugador"> {{informacionDelDuelo.resultadoDuelo.nombreGanador}} </span>
 	  		</div>
-	  		<button id="opcionDelBoton" class="btn fullSize"> {{informacionDelDuelo.resultadoDuelo.nombreGanador}} </button>
+	  		<button id="opcionDelBoton" class="btn fullSize"> {{informacionDelDuelo.resultadoDuelo.mensajeDelBoton}} </button>
 		</div>
 
 			<!--Comiento de los bloques inferiores-->
@@ -41,8 +41,12 @@
 			<div class="bloqueInferior col-md-4 col-xs-4 col-sm-4">
 				<div id="nombrePersonajeRetador" class="panel panel-primary noMarginBot fullSize"> {{informacionDelDuelo.resultadoDuelo.personajeRetador}} </div>
 				<div class="panel panel-default noBorder">
-					<label id="estadisticaRetador" class="labelFormatSmall"> {Estadistica} </label> <br>
-					<!--HAY QUE PONER ESTADISTICAS-->
+					<ul class="list-group">
+					  <li class="list-group-item" ng-repeat="(clave,valor) in informacionDelDuelo.informacionDelRetador">
+					    <span class="badge ">{{valor}} </span>
+					    {{clave}}:
+					  </li>
+					</ul>
 				</div>
 			</div>
 
@@ -50,8 +54,12 @@
 			<div class="bloqueInferior col-md-4 col-xs-4 col-sm-4">
 				<div id="nombrePersonajeRetador" class="panel panel-primary noMarginBot fullSize"> {{informacionDelDuelo.resultadoDuelo.personajeRival}} </div>
 				<div class="panel panel-default noBorder">
-					<label class="labelFormatSmall" ng-repeat="value in informacionDelDuelo.informacionDelRival"> {{value}}<br> </label><br>
-					<!--HAY QUE PONER ESTADISTICAS-->
+					<ul class="list-group">
+					  <li class="list-group-item" ng-repeat="(clave,valor) in informacionDelDuelo.informacionDelRival">
+					    <span class="badge">{{valor}} </span>
+					    {{clave}}:
+					  </li>
+					</ul>
 				</div>
 			</div>
 		</div>

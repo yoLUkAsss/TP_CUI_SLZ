@@ -60,9 +60,9 @@
   border-radius: 0px;
 }
 
-body {
-  /* Aca se deberia bindear la imagen correspondiente al personaje elegido del ganador */
-  background-image: url("images/Result/asheFullSize.jpg"); 
-  background-size: 100%;
+.imageBack {
+   /* Aca se deberia bindear la imagen correspondiente al personaje elegido del ganador */
+
+  background-size: 100% !important; 
   height: auto;
 }
