@@ -1,13 +1,5 @@
 
-/**
- * Fuentes agregadas
- */
-@font-face {
-    font-family:PT Sans-Regular;
-    src: url(fonts/PT_Sans-Web_Regular.ttf);
-}
-
-.bloqueCentral {
+.resultado.bloqueCentral {
   padding-right: 0px;
   padding-left: 0px;
 	text-align: center;
@@ -16,53 +8,53 @@
   border-radius: 0px;
 }
 
-.bloqueInferior {
+.resultado.bloqueInferior {
   text-align: center;
   width: 50%;
   border-radius: 0px;
 }
 
-.labelFormatLarge {
+.resultado.labelFormatLarge {
   color: red;
 	font-size: 26px;
 	font-family: PT Sans-Regular;
 }
 
-.labelFormatSmall {
+.resultado.labelFormatSmall {
   font-size: 18px;
   font-family: PT Sans-Regular;
   font-weight: normal;
 }
 
-.labelFormatSmall.nombreDeJugador {
+.resultado.labelFormatSmall.nombreDeJugador {
   color: green;
   font-size: 24px;
 }
 
-.backOnPink {
+.resultado.backOnPink {
   background-color: #ffb6c1;
 }
 
-.buttonStyle {
+.resultado.buttonStyle {
   color: white;
   background-color: blue;
 }
 
-.noMarginBot {
+.resultado.noMarginBot {
   margin-bottom: 0px;
 }
 
-.font-responsive {
+.resultado.font-responsive {
   font-size: 100%;
 }
 
-.noBorder {
+.resultado.noBorder {
   border-radius: 0px;
 }
 
-.imageBack {
+.resultado.imageBack {
    /* Aca se deberia bindear la imagen correspondiente al personaje elegido del ganador */
 
-  background-size: 100% !important; 
+  background-size: 100% !important;
   height: auto;
 }

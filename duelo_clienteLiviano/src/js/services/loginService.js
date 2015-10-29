@@ -1,9 +1,13 @@
 angular.module('dueloLeyendasApp')
-      .service('loginService',function(){
+      .service('LoginService',function(){
   this.login = function(nombreDeUsuario,contrasenia){
     return {
       id:"Juaco",
-      descripcion:"";
+      descripcion:""
     };
-  }
+  };
+  this.usuario = {
+    id:"Juaco",
+    descripcion:""
+  };
 })

@@ -1,0 +1,49 @@
+<div class="container panel">
+  <div class="center">
+    <h1><span ng-model="usuario" class="label label-default">Bienvenido {{usuario.id}}</span></h1>
+  </div>
+  <div class="center">
+    <h3><span class="label label-primary">Seleccione un Personaje:</span></h3>
+  </div>
+
+  <div class="row margTop">
+    <div id="columnaIzq" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
+        <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding">
+          <button ng-repeat="personaje in personajesToTheHalf('left')" class="img-responsive btn characerSelect" ng-click="changeImgLobby(personaje)"><img class="characterSelection img-thumbnail" ng-src="{{personaje.imagenSrc}}" ng-show="personaje.imagenSrc"></button>
+        </div>
+        <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding">
+          <button ng-repeat="personaje in personajesToTheHalf('right')" class="img-responsive btn characerSelect" ng-click="changeImgLobby(personaje)"><img class="characterSelection img-thumbnail" ng-src="{{personaje.imagenSrc}}" ng-show="personaje.imagenSrc"></button>
+        </div>
+    </div><!--Fin columna izquierda-->
+
+    <div id="columnaCentro" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
+      <div id="selectedCharacterlbl" class="panel fullSize center"></div>
+      <img id='selectedCharacter' class="img-responsive"></img>
+    </div><!--Fin columna centro-->
+
+    <div id="columnaDerecha" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
+
+
+      <div class="panel fullSize center">Jugar!</div>
+      <div class="lobby btn-group" role="group" ng-repeat="posicion in datosDelJuego.posicionesDuelos">
+        <button type="button" class="btn btn-primary btn-responsive">{{posicion.nombre}}</button>
+      </div>
+
+      <div class="lobby container">
+          <div ng-repeat="(caracteristica, valor) in personajeSeleccionado.caracteristicas">
+            <div>
+              <ul class="list-group">{{caracteristica}}
+                <li  class="list-group-item" ng-repeat="v in valor">
+                  {{v}}
+                </li>
+              </ul>
+            </div>
+
+          </div>
+      </div>
+    </div><!--Fin columna derecha-->
+
+
+  </div>
+
+</div>

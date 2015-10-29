@@ -1,11 +1,11 @@
 angular.module('dueloLeyendasApp')
-      .controller('LobbyController',function($scope,AllChampionsService){
+      .controller('LobbyController',['$scope','LobbyService','LoginService',function($scope,LobbyService,LoginService){
   $scope.changeImgLobby = function (personaje){
     document.getElementById("selectedCharacter").src = "css/images/Lobby/" + personaje.nombre + "Big.jpg";
     document.getElementById("selectedCharacterlbl").textContent= personaje.nombre;
     $scope.personajeSeleccionado = personaje;
   };
-  $scope.datosDelJuego = AllChampionsService.datosDelJuego();
+  $scope.datosDelJuego = LobbyService.datosDelJuego();
   $scope.personajesToTheHalf = function(leftOrRight){
     var res = [];
     var personajes = $scope.datosDelJuego.personajes
@@ -23,4 +23,6 @@ angular.module('dueloLeyendasApp')
     return res;
 
   };
-})
+  $scope.usuario = LoginService.usuario;
+
+}])

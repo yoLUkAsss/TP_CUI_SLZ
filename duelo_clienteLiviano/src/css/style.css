@@ -1,0 +1,280 @@
+.center{
+  text-align: center;
+}
+
+.fullSize{
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+  background-color: #337AB7;
+  width: 100%;
+  border-radius: 0px;
+}
+
+.btn.fullSize:active{
+  background-color: darkblue;
+}
+
+.blackBackgroundAndWhiteFonts{
+  background-color: black;
+  color:white;
+}
+
+.overflowOnY{
+  overflow-y: auto;
+}
+
+.login.aLaIzquierdaYAbajo{
+  margin-top: 5%;
+}
+
+.login.backBlack{
+  background-color: black;
+}
+
+.login.jumbotron.thin{
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  border-radius: 0px;
+}
+
+.login.labelBoldandWhite{
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+}
+
+
+
+input{
+  margin-bottom: 1em;
+  border-radius: 0px !important;
+}
+
+.fullHeightAndWidth{
+  width: 100%;
+  height: 100%;
+}
+
+.login.background{
+   background: url("images/Login/yiLogin.jpg");
+   background-size: 100%;
+}
+
+.noTienesRival.fondo {
+
+	background-color: black;
+
+
+
+}
+
+
+.noTienesRival.containerDerecho{
+
+
+    position: absolute;
+    width: auto;
+    padding: 10px;
+    right: 50px;
+    top: 100px;
+
+
+}
+
+
+.noTienesRival.imgNoTienesRival {
+	 position:relative;
+     left: 130px;
+     top:-40px;
+
+
+    -ms-transform: rotate(75deg); /* IE 9 */
+    -webkit-transform: rotate(75deg); /* Chrome, Safari, Opera */
+    transform: rotate(75deg);
+
+}
+
+.noTienesRival.botonCuadrado.btn-primary {
+
+     border-radius: 0;
+     width: 258px;
+     background-color: #0000CD;
+     font-size: 30px;
+
+
+}
+
+.noTienesRival.texto {
+
+    background-color: #0000CD;
+    color:white;
+    font-size: 16px;
+    border: thin solid #0000CD;
+
+}
+
+
+.noTienesRival.titulo {
+
+    text-align: center;
+    color: #00BFFF;
+    font-size: 40px;
+    top:70px;
+
+}
+
+
+.noTienesRival.tamanhoContainerDerecho{
+
+    width: 550px;
+    height: 180px;
+
+
+}
+
+/* Agregados por Sandi */
+.resultado.bloqueCentral {
+  padding-right: 0px;
+  padding-left: 0px;
+	text-align: center;
+	margin-top: 15%;
+	margin-bottom: 10%;
+  border-radius: 0px;
+}
+
+.resultado.bloqueInferior {
+  text-align: center;
+  width: 50%;
+  border-radius: 0px;
+}
+
+.resultado.labelFormatLarge {
+  color: red;
+	font-size: 26px;
+	font-family: PT Sans-Regular;
+}
+
+.resultado.labelFormatSmall {
+  font-size: 18px;
+  font-family: PT Sans-Regular;
+  font-weight: normal;
+}
+
+.resultado.labelFormatSmall.nombreDeJugador {
+  color: green;
+  font-size: 24px;
+}
+
+.resultado.backOnPink {
+  background-color: #ffb6c1;
+}
+
+.resultado.buttonStyle {
+  color: white;
+  background-color: blue;
+}
+
+.resultado.noMarginBot {
+  margin-bottom: 0px;
+}
+
+.resultado.font-responsive {
+  font-size: 100%;
+}
+
+.resultado.noBorder {
+  border-radius: 0px;
+}
+
+.resultado.imageBack {
+   /* Aca se deberia bindear la imagen correspondiente al personaje elegido del ganador */
+
+  background-size: 100% !important;
+  height: auto;
+}
+
+
+@media (max-width: 768px) {
+.lobby.btn-responsive {
+  padding:2px 4px;
+  font-size:80%;
+  line-height: 1;
+  border-radius:3px;
+}
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+.lobby.btn-responsive {
+  padding:0px;
+  font-size:90%;
+  line-height: 1.2;
+}
+}
+
+.lobby.characterSelection{
+  width: 100%;
+  height: 100%;
+}
+
+.lobby.allImgContainer{
+  height: 360px;
+}
+.lobby.margTop{
+  margin-top: 30px;
+}
+
+
+
+#selectedCharacterlbl{
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: -webkit-linear-gradient(#337AB7, darkblue); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#337AB7, darkblue); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#337AB7,darkblue);
+}
+
+.lobby.square {
+    position: relative;
+    width: 30%;
+    padding-bottom: 30%;
+    margin: 1.66%;
+    overflow: hidden;
+}
+
+.lobby.btn{
+  width: 100%;
+}
+
+.lobby.btn.characerSelect{
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.lobby.btn.characerSelect:hover{
+  opacity: 0.8;
+}
+
+.lobby.btn.characerSelect:active{
+  opacity: 0.4;
+}
+
+.lobby.grayBorder{
+  border-color: gray;
+  border-style: solid;
+  border-radius: 0px;
+}
+
+.lobby.sinPadding{
+  padding: 0px;
+}
+
+.lobby.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 2px;
+    width: 100%;
+}

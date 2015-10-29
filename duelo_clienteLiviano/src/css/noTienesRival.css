@@ -1,4 +1,4 @@
-.fondo {
+.noTienesRival.fondo {
 
 	background-color: black;
 
@@ -7,7 +7,7 @@
 }
 
 
-.containerDerecho{
+.noTienesRival.containerDerecho{
 
 
     position: absolute;
@@ -20,7 +20,7 @@
 }
 
 
-img {
+.noTienesRival.imgNoTienesRival {
 	 position:relative;
      left: 130px;
      top:-40px;
@@ -29,10 +29,10 @@ img {
     -ms-transform: rotate(75deg); /* IE 9 */
     -webkit-transform: rotate(75deg); /* Chrome, Safari, Opera */
     transform: rotate(75deg);
-	
+
 }
 
-.botonCuadrado.btn-primary {
+.noTienesRival.botonCuadrado.btn-primary {
 
      border-radius: 0;
      width: 258px;
@@ -42,7 +42,7 @@ img {
 
 }
 
-.texto {
+.noTienesRival.texto {
 
     background-color: #0000CD;
     color:white;
@@ -52,22 +52,20 @@ img {
 }
 
 
-.titulo {
+.noTienesRival.titulo {
 
     text-align: center;
     color: #00BFFF;
-    font-size: 40px; 
+    font-size: 40px;
     top:70px;
 
 }
 
 
-.tamanhoContainerDerecho{
+.noTienesRival.tamanhoContainerDerecho{
 
     width: 550px;
     height: 180px;
 
 
 }
-
-
