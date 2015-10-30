@@ -10,6 +10,8 @@ import org.uqbar.commons.utils.Observable
 class Jugador {
 	
 	String nombre
+	String usuario
+	String password
 	Collection<EstadisticaDePersonaje> est
 	Collection<Denuncia> denuncias
 	
@@ -17,7 +19,10 @@ class Jugador {
 		this.nombre = nombre
 		denuncias = newArrayList
 		est = newArrayList
+		this.usuario=""
+		this.password=""
 	}
+	
 	
 	def ranking(){
 		totPeso(denuncias)*cantPeleasGanadas(est)
@@ -112,6 +117,10 @@ class Jugador {
 			return null
 		else
 			return estadistica
+	}
+	
+	def identifies(String usuario, String password) {
+		this.usuario.equals(usuario) && this.password.equals(password)
 	}
 	
 

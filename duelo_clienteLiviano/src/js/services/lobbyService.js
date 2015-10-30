@@ -1,7 +1,7 @@
 angular.module('dueloLeyendasApp')
       .service('LobbyService',function(){
 
-        this.datosDelJuego = function() {
+        this.datosDelJuego = function(idPersonaje) {
           return { posicionesDuelos:[
                               {nombre:'TOP'},
                               {nombre:'BOT'},

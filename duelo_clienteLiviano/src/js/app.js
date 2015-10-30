@@ -7,17 +7,17 @@ angular.module('dueloLeyendasApp', ["ui.router"])
     templateUrl: "./templates/loginTemp.html"
   });
   $stateProvider.state("noTienesRival",{
-    url: "",
+    url: "/noRival",
     controller: "ResultController",
     templateUrl: "./templates/noTienesRivalTemp.html"
   });
   $stateProvider.state("resultado",{
-    url: "",
+    url: "/result",
     controller: "ResultController",
     templateUrl: "./templates/resultTemp.html"
   });
   $stateProvider.state("lobby",{
-    url: "",
+    url: "lobby",
     controller: "LobbyController",
     templateUrl: "./templates/lobbyTemp.html"
   });

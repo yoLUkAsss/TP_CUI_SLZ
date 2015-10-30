@@ -13,42 +13,104 @@ import util.DetalleJugadorDuelo
 import util.PrepararEstadisticasPersonajes
 import util.SelectorDeRival
 import jugador.EstadisticaDePersonaje
+import javax.naming.AuthenticationException
+import util.Login
+import excepciones.NoEstaAutenticadoException
 
 @Observable
 @Accessors
 class LobbyAppModel {
+	private static final LobbyAppModel instance = new LobbyAppModel();
 
 	Jugador jugador
-	DetalleJugadorDuelo retador
 	List<Personaje> personajesTotales 
-	List<Jugador> jgdrs
-
+	List<Jugador> jugadores
+	List<Posicion> posiciones
 	List<EstadisticaDePersonaje> estadisticas = newArrayList
 	List<EstadisticaDePersonaje> estadisticasAMostrar = newArrayList
 	EstadisticaDePersonaje estadisticaSeleccionada
 	String filtro
 	SelectorDeRival selectorRival
 	
-	new(Jugador jugador,List<Jugador> jgdrs , List<Personaje> pjs){
+	new(Jugador jugador,List<Jugador> jugadores , List<Personaje> pjs){
 	    this.jugador=jugador
 	    personajesTotales = pjs
 	    actualizarListado
-		selectorRival = new SelectorDeRival(personajesTotales,jgdrs)
-		//this.filtro=""
-		
-		//HAY Q SACAR
+		selectorRival = new SelectorDeRival(personajesTotales,jugadores)
+		this.jugadores = jugadores
 		
 	}
 	
+	new() {
+		var Personaje amumu = new Personaje("Amumu",Posicion.TOP)
+		var Personaje ahri = new Personaje("Ahri",Posicion.MID)
+		var Personaje olaf = new Personaje("Olaf",Posicion.JUNGLE)
+		var Personaje cait = new Personaje("Caitlyn",Posicion.BOT)
+		var Jugador juaco = new Jugador("Juaco")
+		juaco.setUsuario("latengoverde")
+		juaco.setPassword("1234")
+		var Jugador marq = new Jugador("Marquitos")
+		marq.setUsuario("elMasCapo")
+		marq.setPassword("1234")
+		var Jugador xPeke = new Jugador("xPeke")
+		xPeke.setUsuario("iGzo")
+		xPeke.setPassword("4321")
+		var List<Personaje> personajesUtilizables = newArrayList
+		var List<Posicion> posiciones = newArrayList
+		posiciones.add(Posicion.TOP);posiciones.add(Posicion.BOT)
+		posiciones.add(Posicion.JUNGLE);posiciones.add(Posicion.MID);
+		
+		amumu.agregarNuevaFortaleza("Tanque")
+		amumu.agregarNuevaFortaleza("Mago")
+		amumu.agregarNuevaDebilidad("Crowd-Control")
+		
+		ahri.agregarNuevaFortaleza("Mago")
+		ahri.agregarNuevaFortaleza("Buena Movilidad")
+		ahri.agregarNuevaDebilidad("Amor")
+		
+		olaf.agregarNuevaFortaleza("Tanque")
+		olaf.agregarNuevaFortaleza("Crowd-Control")
+		olaf.agregarNuevaDebilidad("Daño Magico")
+		olaf.agregarNuevaDebilidad("Velocidad")
+		
+		cait.agregarNuevaFortaleza("Rango de ataque")
+		cait.agregarNuevaDebilidad("Crowd-Control")
+		
+		
+		personajesUtilizables.add(amumu)
+		personajesUtilizables.add(ahri)
+		personajesUtilizables.add(olaf)
+		personajesUtilizables.add(cait)
+		
+		var List<Jugador> jugadores = newArrayList
+		jugadores.add(marq);jugadores.add(xPeke);jugadores.add(juaco)
+		juaco.ganeYSoyRetador(amumu,Posicion.TOP)
+		
+		this.setAll(null,jugadores,personajesUtilizables)
+	}
+	
+	def setAll(Jugador jugador,List<Jugador> jugadores , List<Personaje> pjs){
+	    this.jugador=jugador
+	    personajesTotales = pjs
+	    selectorRival = new SelectorDeRival(personajesTotales,jugadores)
+	    this.jugadores = jugadores
+		
+	}
+	def public static LobbyAppModel getInstance(){
+		return instance;
+	}
+		
+	
+	
 	@Observable
 	def iniciarDuelo(Posicion pos){
-		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
-		var DetalleJugadorDuelo rival= selectorRival.dameRival(retador)
+		var detallesParaElDuelo = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
+		var DetalleJugadorDuelo rival= selectorRival.dameRival(detallesParaElDuelo)
 			if (rival==null){
 				throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
 		    }
 		    
-		val res = new ResultadoDueloAppModel(retador,rival)
+		val res = new ResultadoDueloAppModel(detallesParaElDuelo,rival)
 		res.actualizarDatos()
 		actualizarListado
 		return res
@@ -56,11 +118,11 @@ class LobbyAppModel {
 	
 	@Observable
 	def iniciarDueloBot(Posicion pos) {
-		retador = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
+		var detallesParaElDuelo = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
 		var MRX m = new MRX("MRX",jugador)
 		var Personaje p = selectorRival.determinarPersonaje(estadisticaSeleccionada.personajeAsociado)
 		var DetalleJugadorDuelo rival = new DetalleJugadorDuelo(m,p,p.getPosicionIdeal)
-		val res = new ResultadoDueloAppModel(retador,rival)
+		val res = new ResultadoDueloAppModel(detallesParaElDuelo,rival)
 		res.actualizarDatos()
 		actualizarListado
 		return res
@@ -96,11 +158,36 @@ class LobbyAppModel {
 	}
 	
 	def actualizarListado() {
+		
 		estadisticas = (new PrepararEstadisticasPersonajes(jugador,personajesTotales)).estadisticasPreparadas
 		estadisticasAMostrar = estadisticas
 		estadisticaSeleccionada = estadisticasAMostrar.get(0)
 		firePropertyChanged(this,"estadisticasAMostrar",estadisticasAMostrar)
 		firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)
 	}
+	
+	def autentificar(Login log) {
+		var jugadorAuxiliar = this.jugadores.findFirst[each| log.matches(each)]
+		//var jugadorAuxiliar =this.jugadores.findFirst[each | each.identifies(usuario,password)]
+		
+		if(jugadorAuxiliar != null){
+			this.jugadores.remove(jugadorAuxiliar)
+			this.jugador = jugadorAuxiliar
+			this.actualizarListado()
+			jugadorAuxiliar
+		
+		}
+		else
+			throw new AuthenticationException("Usuario o password invalido")
+	}
+	
+	def estaAutenticado(String idUsuario) {
+		this.jugador != null && idUsuario.equals(this.jugador.usuario)
+	}
+	
+//	def datosJuego(String idUsuario) {
+//		if(estaAutenticado(idUsuario)) new DatosPersonajesJson(idUsuario,estadisticas,posiciones)
+//		else throw new NoEstaAutenticadoException("Por favor ingrese antes de entrar")
+//	}
 
 }
