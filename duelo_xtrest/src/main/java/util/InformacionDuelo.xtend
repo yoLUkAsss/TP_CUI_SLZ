@@ -20,7 +20,7 @@ class InformacionDuelo {
 		this.veredicto = resultado.veredict
 		this.valorRetador = datosDelDuelo.resultadoRetador
 		this.valorRival = datosDelDuelo.resultadoRival
-		this.nombreGanador = "Pedro"
+		this.nombreGanador = datosDelDuelo.ganador.nombre
 		this.personajeRetador = resultado.pjRetador.personajeAsociado.nombre
 		this.personajeRival = resultado.pjRival.personajeAsociado.nombre
 		definirMensajes()
