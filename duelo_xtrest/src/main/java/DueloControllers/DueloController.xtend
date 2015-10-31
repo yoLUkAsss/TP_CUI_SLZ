@@ -54,7 +54,7 @@ class DueloController {
 		}
 	}
 	
-	@Get("/resultado/:pos")
+	@Post("/resultado/:pos")
 	def Result informacionDelDuelo(@Body String lobby ) {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
@@ -69,7 +69,7 @@ class DueloController {
 		}
 	}
 	
-	@Get("/resultado/:pos")
+	@Post("/resultado/:pos")
 	def Result informacionDelDueloConElRobot(@Body String lobby){
 	    response.contentType = ContentType.APPLICATION_JSON
 	    var data=lobby.fromJson(SeleccionesDelJugador)
