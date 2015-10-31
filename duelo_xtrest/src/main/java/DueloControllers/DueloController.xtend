@@ -54,11 +54,11 @@ class DueloController {
 		}
 	}
 	
-	@Post("/resultado/:pos")
-	def Result informacionDelDuelo(@Body String lobby ) {
+	@Post("/resultado/")
+	def Result informacionDelDuelo(@Body String seleccionesDelJugador ) {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
-			var data=lobby.fromJson(SeleccionesDelJugador)
+			var data=seleccionesDelJugador.fromJson(SeleccionesDelJugador)
 			var resultado = LobbyAppModel.getInstance().iniciarDuelo(data.posicionJugador)
 			var respuesta = new ResultadoComun(resultado)
 			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador»
@@ -69,10 +69,10 @@ class DueloController {
 		}
 	}
 	
-	@Post("/resultado/:pos")
-	def Result informacionDelDueloConElRobot(@Body String lobby){
+	@Post("/resultado/")
+	def Result informacionDelDueloConElRobot(@Body String seleccionesDelJugador){
 	    response.contentType = ContentType.APPLICATION_JSON
-	    var data=lobby.fromJson(SeleccionesDelJugador)
+	    var data=seleccionesDelJugador.fromJson(SeleccionesDelJugador)
 	    var resultado= LobbyAppModel.getInstance().iniciarDueloBot(data.posicionJugador)
 	    var respuesta = new ResultadoComun(resultado)
 			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador»
