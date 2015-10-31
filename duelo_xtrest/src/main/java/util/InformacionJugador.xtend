@@ -5,21 +5,21 @@ import jugador.Posicion
 import jugador.TipoCalificacion
 
 class InformacionJugador {
-	Integer Jugadas
-	Integer Ganadas
-	Integer Kills
-	Integer Deaths
-	Integer Assists
+	String Jugadas
+	String Ganadas
+	String Kills
+	String Deaths
+	String Assists
 	Posicion MejorUbicacion
 	TipoCalificacion Puntaje
 	
 	
 	new (EstadisticaDePersonaje estadistica){
-		this.Jugadas = estadistica.duelosIniciados
-		this.Ganadas = estadistica.duelosGanados
-		this.Kills = estadistica.duelosGanadosNoIniciados
-		this.Deaths = estadistica.derrotasNoIniciadas
-		this.Assists = estadistica.duelosEmpatados
+		this.Jugadas = estadistica.duelosIniciados.toString
+		this.Ganadas = estadistica.duelosGanados.toString
+		this.Kills = estadistica.duelosGanadosNoIniciados.toString
+		this.Deaths = estadistica.derrotasNoIniciadas.toString
+		this.Assists = estadistica.duelosEmpatados.toString
 		this.MejorUbicacion = estadistica.mejorUbicacion
 		this.Puntaje = estadistica.calificacion
 	}

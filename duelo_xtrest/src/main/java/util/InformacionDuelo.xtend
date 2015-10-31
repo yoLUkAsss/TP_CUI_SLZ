@@ -6,8 +6,8 @@ import jugador.Jugador
 class InformacionDuelo {
 	
 	String veredicto
-	Integer valorRetador
-	Integer valorRival
+	String valorRetador
+	String valorRival
 	String nombreGanador
 	String personajeGanador
 	String personajeRetador
@@ -18,8 +18,8 @@ class InformacionDuelo {
 	new (ResultadoDueloAppModel resultado){
 		var datosDelDuelo = resultado.resDuelo
 		this.veredicto = resultado.veredict
-		this.valorRetador = datosDelDuelo.resultadoRetador
-		this.valorRival = datosDelDuelo.resultadoRival
+		this.valorRetador = datosDelDuelo.resultadoRetador.toString
+		this.valorRival = datosDelDuelo.resultadoRival.toString
 		this.nombreGanador = "Pedro"
 		this.personajeRetador = resultado.pjRetador.personajeAsociado.nombre
 		this.personajeRival = resultado.pjRival.personajeAsociado.nombre

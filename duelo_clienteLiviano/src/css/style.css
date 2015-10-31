@@ -64,24 +64,16 @@ input{
 }
 
 .noTienesRival.fondo {
-
 	background-color: black;
-
-
-
 }
 
 
 .noTienesRival.containerDerecho{
-
-
     position: absolute;
     width: auto;
     padding: 10px;
     right: 50px;
     top: 100px;
-
-
 }
 
 
@@ -98,55 +90,43 @@ input{
 }
 
 .noTienesRival.botonCuadrado.btn-primary {
-
      border-radius: 0;
      width: 258px;
      background-color: #0000CD;
      font-size: 30px;
-
-
 }
 
 .noTienesRival.texto {
-
     background-color: #0000CD;
     color:white;
     font-size: 16px;
     border: thin solid #0000CD;
-
 }
 
 
 .noTienesRival.titulo {
-
     text-align: center;
     color: #00BFFF;
     font-size: 40px;
     top:70px;
-
 }
 
 
 .noTienesRival.tamanhoContainerDerecho{
-
     width: 550px;
     height: 180px;
-
-
 }
 
 /* Agregados por Sandi */
 .resultado.bloqueCentral {
   padding-right: 0px;
   padding-left: 0px;
-	text-align: center;
-	margin-top: 15%;
+	margin-top: 0%;
 	margin-bottom: 10%;
   border-radius: 0px;
 }
 
 .resultado.bloqueInferior {
-  text-align: center;
   width: 50%;
   border-radius: 0px;
 }
@@ -175,6 +155,14 @@ input{
 .resultado.buttonStyle {
   color: white;
   background-color: blue;
+}
+
+.resultado.statDesign {
+  background-color: black;
+  color: white;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-color: black;
 }
 
 .resultado.noMarginBot {
@@ -277,4 +265,16 @@ input{
     padding-left: 15px;
     margin: 2px;
     width: 100%;
+}
+
+
+
+
+
+/* AGREGADOS PARA MANTENER FONT RESPONSIVE */
+body {
+ font-size: 14px !important;
+}
+h1,h2,h3,h4,h5,h6,p {
+ line-height: 1.45;
 }

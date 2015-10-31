@@ -3,8 +3,8 @@ angular.module('dueloLeyendasApp')
 
 	$scope.informacionDelDuelo = ResultService.informacionDelDuelo();
 
-	$scope.getImagePath = function(path){
-		return {'background-image':'url(' + path +')'};
+	$scope.getImagePath = function(nombrePersonaje){
+		return {'background-image':'url(css/images/Result/'+nombrePersonaje+'FullSize.jpg)'};
 	};
 
 	$scope.jugarConRobot = function(){

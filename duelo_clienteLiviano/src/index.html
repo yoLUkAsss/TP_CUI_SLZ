@@ -8,6 +8,8 @@
   <script src="lib/angular.js"></script>
   <script src="lib/angular-ui-router.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/jquery.js" type="text/javascript"></script>
+  <script src="js/flowtype.js" type="text/javascript"></script>
   <script src="js/services/loginService.js"></script>
   <script src="js/services/lobbyService.js"></script>
   <script src="js/services/resultService.js"></script>
@@ -16,11 +18,14 @@
   <script src="js/controllers/resultadoController.js"></script>
   <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
-<body>
-
-
+<body  $('body').flowtype(){
+        minimum   : 500,
+        maximum   : 1200,
+        minFont   : 12,
+        maxFont   : 40,
+        fontRatio : 30>
+      };>
   <ui-view></ui-view>
-
 
 </body>
 </html>

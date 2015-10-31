@@ -1,5 +1,7 @@
-<div class="resultado imageBack" ng-style="getImagePath(informacionDelDuelo.resultadoDuelo.path)">
+<div class="resultado imageBack" ng-style="getImagePath(informacionDelDuelo.resultadoDuelo.personajeGanador)">
 	<div class="img-responsive resultado">
+		<h1 class="noTienesRival titulo" style="color: white !important;">{{informacionDelDuelo.resultadoDuelo.personajeRetador}} vs {{informacionDelDuelo.resultadoDuelo.personajeRival}}</h1>
+
 		<div class="row col-md-4 col-md-offset-7 col-xs-6 col-xs-offset-4 col-sm-4 col-sm-offset-7 resultado font-responsive">
 			<!-- Primer bloque Superior Central -->
 			<div class="panel panel-default resultado bloqueCentral">

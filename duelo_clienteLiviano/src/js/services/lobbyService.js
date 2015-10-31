@@ -9,7 +9,7 @@ angular.module('dueloLeyendasApp')
                               {nombre:'MID'}],
                   personajes:[
                               {id:1,
-                               nombre: 'ahri',
+                               nombre: 'Ahri',
                                imagenSrc: 'css/images/Lobby/ahri.png',
                                estadisticas: {
                                               jugadas: "2",
@@ -26,7 +26,7 @@ angular.module('dueloLeyendasApp')
                                                     mejorUbicacion: ["Mid"]
                                   }},
                                   {id:2,
-                                   nombre: 'viper',
+                                   nombre: 'Viper',
                                    imagenSrc: 'css/images/Lobby/viper.png',
                                    estadisticas: {
                                                   jugadas: "2",
@@ -44,7 +44,7 @@ angular.module('dueloLeyendasApp')
                                       }},
 
                                       {id:1,
-                                       nombre: 'olaf',
+                                       nombre: 'Olaf',
                                        imagenSrc: 'css/images/Lobby/olaf.png',
                                        estadisticas: {
                                                       jugadas: "2",
@@ -62,7 +62,7 @@ angular.module('dueloLeyendasApp')
                                           }},
 
                                     {id:1,
-                                     nombre: 'amumu',
+                                     nombre: 'Amumu',
                                      imagenSrc: 'css/images/Lobby/amumu.png',
                                      estadisticas: {
                                                     jugadas: "2",
@@ -80,7 +80,7 @@ angular.module('dueloLeyendasApp')
                                         }},
 
                                   {id:1,
-                                   nombre: 'pudge',
+                                   nombre: 'Pudge',
                                    imagenSrc: 'css/images/Lobby/pudge.png',
                                    estadisticas: {
                                                   jugadas: "2",
@@ -97,7 +97,7 @@ angular.module('dueloLeyendasApp')
                                                         mejorUbicacion: ["Jungle"]
                                       }},
                                 {id:1,
-                                 nombre: 'witchdoctor',
+                                 nombre: 'WitchDoctor',
                                  imagenSrc: 'css/images/Lobby/witchdoctor.png',
                                  estadisticas: {
                                                 jugadas: "2",

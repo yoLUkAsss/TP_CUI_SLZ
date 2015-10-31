@@ -22,15 +22,15 @@ angular.module('dueloLeyendasApp')
               Puntaje: "NOOB"
             },
             resultadoDuelo: {
-              veredicto: "Ganaste",
+              veredicto: "Perdiste",
               valorRetador: "65",
               valorRival: "32",
-              nombreGanador: "iGzo",
-              personajeRetador: "Amumu",
-              personajeRival: "Viper",
+              nombreGanador: "Silvina",
+              personajeGanador: "Viper",
+              personajeRetador: "Ashe",
+              personajeRival: "Ahri",
               mensaje: "En hora buena",
-              mensajeDelBoton: "Celebrar Victoria",
-              path: "css/images/Result/asheFullSize.jpg"
+              mensajeDelBoton: "Celebrar Derrota",
             }
           }
         };

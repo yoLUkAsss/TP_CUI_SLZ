@@ -54,14 +54,15 @@ class DueloController {
 	
 	@Get("/resultado/:pos")
 	def Result informacionDelDuelo() {
+		
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
 			var resultado = LobbyAppModel.getInstance().iniciarDuelo(Posicion.TOP)
 			var respuesta = new ResultadoComun(resultado)
-			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador»
-			", "informacionDelRival":«respuesta.informacionDelRival»
-			", "resultadoDuelo":«respuesta.resultadoDuelo»"}''')
-		} catch (NoHayRivalException) {
+			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador.toJson»
+			", "informacionDelRival":«respuesta.informacionDelRival.toJson»
+			", "resultadoDuelo":«respuesta.resultadoDuelo.toJson»"}''')
+		} catch (NoHayRivalException e) {
 			badRequest('''{"descripcion":"No Hay Rival"}''')
 		}
 	}
