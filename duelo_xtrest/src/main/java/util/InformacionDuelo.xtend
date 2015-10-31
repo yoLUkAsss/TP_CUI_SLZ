@@ -18,8 +18,8 @@ class InformacionDuelo {
 	new (ResultadoDueloAppModel resultado){
 		var datosDelDuelo = resultado.resDuelo
 		this.veredicto = resultado.veredict
-		this.valorRetador = datosDelDuelo.resultadoRetador
-		this.valorRival = datosDelDuelo.resultadoRival
+		this.valorRetador = datosDelDuelo.resultadoGanador.toString
+		this.valorRival = datosDelDuelo.resultadoRival.toString
 		this.nombreGanador = datosDelDuelo.ganador.nombre
 		this.personajeRetador = resultado.pjRetador.personajeAsociado.nombre
 		this.personajeRival = resultado.pjRival.personajeAsociado.nombre

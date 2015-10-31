@@ -268,13 +268,3 @@ input{
 }
 
 
-
-
-
-/* AGREGADOS PARA MANTENER FONT RESPONSIVE */
-body {
- font-size: 14px !important;
-}
-h1,h2,h3,h4,h5,h6,p {
- line-height: 1.45;
-}
