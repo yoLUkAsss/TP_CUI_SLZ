@@ -15,6 +15,7 @@ import jugador.Posicion
 import jugador.Jugador
 import java.util.List
 import jugador.Personaje
+import excepciones.NoHayRivalException
 import excepciones.NoEstaAutenticadoException
 
 @Controller
@@ -49,7 +50,20 @@ class DueloController {
 		}else{
 			badRequest('''{"descripcion":"No esta autenticado"}''')
 		}
-
+	}
+	
+	@Get("/resultado/:pos")
+	def Result informacionDelDuelo() {
+		response.contentType = ContentType.APPLICATION_JSON
+		try {
+			var resultado = LobbyAppModel.getInstance().iniciarDuelo(Posicion.TOP)
+			var respuesta = new ResultadoComun(resultado)
+			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador»
+			", "informacionDelRival":«respuesta.informacionDelRival»
+			", "resultadoDuelo":«respuesta.resultadoDuelo»"}''')
+		} catch (NoHayRivalException) {
+			badRequest('''{"descripcion":"No Hay Rival"}''')
+		}
 	}
 	
 	def sinLlaves(String string) {

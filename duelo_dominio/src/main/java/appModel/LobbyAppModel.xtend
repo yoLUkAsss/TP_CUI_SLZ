@@ -20,6 +20,7 @@ import excepciones.NoEstaAutenticadoException
 @Observable
 @Accessors
 class LobbyAppModel {
+	
 	private static final LobbyAppModel instance = new LobbyAppModel();
 
 	Jugador jugador
@@ -38,7 +39,6 @@ class LobbyAppModel {
 	    actualizarListado
 		selectorRival = new SelectorDeRival(personajesTotales,jugadores)
 		this.jugadores = jugadores
-		
 	}
 	
 	new() {
@@ -174,8 +174,7 @@ class LobbyAppModel {
 			this.jugadores.remove(jugadorAuxiliar)
 			this.jugador = jugadorAuxiliar
 			this.actualizarListado()
-			jugadorAuxiliar
-		
+			jugadorAuxiliar	
 		}
 		else
 			throw new AuthenticationException("Usuario o password invalido")
