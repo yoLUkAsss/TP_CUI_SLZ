@@ -14,17 +14,15 @@
 // })
 angular.module('dueloLeyendasApp')
       .controller('LoginController',['$scope','$state','LoginService','LobbyService',function($scope,$state,LoginService,LobbyService){
+  $scope.user = {usuario: "", password: ""};
   $scope.login = function (){
-    var idPersonaje = document.getElementById("input").value;
-    var contrasenia = document.getElementById("password").value;
-    var res = LoginService.login(idPersonaje,contrasenia).error(function(error){
-      alert("sos un gato");
-    });
+    LoginService.login($scope.user);
+  };
+  $scope.callback = function(data){
+    alert(data.id);
+  };
+  $scope.erroHandler=function(error){
+    alert(error.descripcion);
 
-    if(res.id){
-      LobbyService.datosDelJuego();
-      return res.id;
-    }
-    return res.descripcion;
   };
 }])

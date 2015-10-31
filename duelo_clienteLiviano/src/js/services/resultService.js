@@ -26,7 +26,7 @@ angular.module('dueloLeyendasApp')
               valorRetador: "65",
               valorRival: "32",
               nombreGanador: "Silvina",
-              personajeGanador: "Viper",
+              personajeGanador: "Ahri",
               personajeRetador: "Ashe",
               personajeRival: "Ahri",
               mensaje: "En hora buena",

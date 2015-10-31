@@ -11,12 +11,14 @@ import org.uqbar.xtrest.api.XTRest
 import util.Login
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.api.annotation.Get
-import jugador.Posicion
+
 import jugador.Jugador
 import java.util.List
 import jugador.Personaje
 import excepciones.NoHayRivalException
 import excepciones.NoEstaAutenticadoException
+
+import util.SeleccionesDelJugador
 
 @Controller
 class DueloController {
@@ -52,12 +54,12 @@ class DueloController {
 		}
 	}
 	
-	@Get("/resultado/:pos")
-	def Result informacionDelDuelo() {
-		
+	@Post("/resultado/")
+	def Result informacionDelDuelo(@Body String seleccionesDelJugador ) {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
-			var resultado = LobbyAppModel.getInstance().iniciarDuelo(Posicion.TOP)
+			var data=seleccionesDelJugador.fromJson(SeleccionesDelJugador)
+			var resultado = LobbyAppModel.getInstance().iniciarDuelo(data.posicionJugador)
 			var respuesta = new ResultadoComun(resultado)
 			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador.toJson»
 			", "informacionDelRival":«respuesta.informacionDelRival.toJson»
@@ -65,6 +67,18 @@ class DueloController {
 		} catch (NoHayRivalException e) {
 			badRequest('''{"descripcion":"No Hay Rival"}''')
 		}
+	}
+	
+	@Post("/resultado/")
+	def Result informacionDelDueloConElRobot(@Body String seleccionesDelJugador){
+	    response.contentType = ContentType.APPLICATION_JSON
+	    var data=seleccionesDelJugador.fromJson(SeleccionesDelJugador)
+	    var resultado= LobbyAppModel.getInstance().iniciarDueloBot(data.posicionJugador)
+	    var respuesta = new ResultadoComun(resultado)
+			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador»
+			", "informacionDelRival":«respuesta.informacionDelRival»
+			", "resultadoDuelo":«respuesta.resultadoDuelo»"}''')
+	    
 	}
 	
 	def sinLlaves(String string) {

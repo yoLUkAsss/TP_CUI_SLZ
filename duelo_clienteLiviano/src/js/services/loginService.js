@@ -1,13 +1,14 @@
 angular.module('dueloLeyendasApp')
       .service('LoginService',['$http',function($http){
-  this.login = function(nombreDeUsuario,contrasenia){
-    return {
-      id:"Juaco",
-      descripcion:""
-    };
-  };
-  this.usuario = {
-    id:"Juaco",
-    descripcion:""
-  };
+  this.login = function(sheison,callback,errorHandler){
+    $http({
+            url: 'http://localhost:9000/login',
+            method: "POST",
+            data: sheison,
+            headers: {'Content-Type': 'application/json'}
+        }).success(callback).error(errorHandler);
+
+  }
+
+    
 }])

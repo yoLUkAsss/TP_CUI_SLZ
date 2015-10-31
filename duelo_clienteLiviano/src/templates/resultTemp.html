@@ -22,25 +22,21 @@
 				<div class="resultado bloqueInferior col-md-4 col-xs-4 col-sm-4">
 					<div id="nombrePersonajeRetador" class="resultado panel panel-primary noMarginBot fullSize"> {{informacionDelDuelo.resultadoDuelo.personajeRetador}} </div>
 					<div class="panel panel-default noBorder resultado ">
-						<ul class="list-group">
-						  <li class="list-group-item" ng-repeat="(clave,valor) in informacionDelDuelo.informacionDelRetador">
-						    <span class="badge ">{{valor}} </span>
-						    {{clave}}:
-						  </li>
-						</ul>
+						<div ng-repeat="(clave,valor) in informacionDelDuelo.informacionDelRival">
+					    	<h7><span style="float:left" >{{clave}}: </span></h7> 
+					    	<h7><span style="float:right" >{{valor}}</span></h7><br>
+					   	</div>
 					</div>
 				</div>
 
 				<!-- Segundo Bloque Inferior Derecho-->
 				<div class="bloqueInferior col-md-4 col-xs-4 col-sm-4 resultado">
 					<div id="nombrePersonajeRetador" class="panel panel-primary noMarginBot fullSize resultado "> {{informacionDelDuelo.resultadoDuelo.personajeRival}} </div>
-					<div class="panel panel-default noBorder resultado ">
-						<ul class="list-group">
-						  <li class="list-group-item" ng-repeat="(clave,valor) in informacionDelDuelo.informacionDelRival">
-						    <span class="badge">{{valor}} </span>
-						    {{clave}}:
-						  </li>
-						</ul>
+					<div class="panel panel-default noBorder resultado statDesign">
+					  	<div ng-repeat="(clave,valor) in informacionDelDuelo.informacionDelRival">
+					    	<h7><span style="float:left" >{{clave}}: </span></h7> 
+					    	<h7><span style="float:right" >{{valor}}</span></h7><br>
+					   	</div>
 					</div>
 				</div>
 			</div>
