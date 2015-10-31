@@ -1,5 +1,5 @@
 angular.module('dueloLeyendasApp')
-      .service('LoginService',function(){
+      .service('LoginService',['$http',function($http){
   this.login = function(nombreDeUsuario,contrasenia){
     return {
       id:"Juaco",
@@ -10,4 +10,4 @@ angular.module('dueloLeyendasApp')
     id:"Juaco",
     descripcion:""
   };
-})
+}])

@@ -63,8 +63,8 @@ class CrearResultadoDueloWindow extends TransactionalDialog<ResultadoDueloAppMod
 			text = '''Stats - «modelObject.rival.pj.nombre»'''
 			foreground = Color.BLUE
 		]
-		new EstadisticaFormato(verLeiaut1,"pjRival")
-		new EstadisticaFormato(verLeiaut2,"pjRetador")
+		new EstadisticaFormato(verLeiaut1,"pjRetador")
+		new EstadisticaFormato(verLeiaut2,"pjRival")
 		
 		val form2 = new Panel(form).layout = new HorizontalLayout()
 		new Label(form2) => [
