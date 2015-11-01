@@ -9,10 +9,10 @@
   <div class="row margTop">
     <div id="columnaIzq" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
         <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding">
-          <button ng-repeat="personaje in personajesToTheHalf('left')" class="img-responsive btn characerSelect" ng-click="changeImgLobby(personaje)"><img class="characterSelection img-thumbnail" ng-src="{{personaje.imagenSrc}}" ng-show="personaje.imagenSrc"></button>
+          <button ng-repeat="estadistica in personajesToTheHalf('left')" class="img-responsive btn characerSelect" ng-click="changeEstadisticaSelecionada(estadistica)"><img class="characterSelection img-thumbnail" ng-src="{{estadistica.personajeAsociado.imagenSrc}}" ng-show="estadistica.personajeAsociado.imagenSrc"></button>
         </div>
         <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding">
-          <button ng-repeat="personaje in personajesToTheHalf('right')" class="img-responsive btn characerSelect" ng-click="changeImgLobby(personaje)"><img class="characterSelection img-thumbnail" ng-src="{{personaje.imagenSrc}}" ng-show="personaje.imagenSrc"></button>
+          <button ng-repeat="estadistica in personajesToTheHalf('right')" class="img-responsive btn characerSelect" ng-click="changeEstadisticaSelecionada(estadistica)"><img class="characterSelection img-thumbnail" ng-src="{{estadistica.personajeAsociado.imagenSrc}}" ng-show="estadistica.personajeAsociado.imagenSrc"></button>
         </div>
     </div><!--Fin columna izquierda-->
 
@@ -26,21 +26,49 @@
 
       <div class="panel fullSize center">Jugar!</div>
       <div class="lobby btn-group" role="group" ng-repeat="posicion in datos.posiciones">
-        <button type="button" class="btn btn-primary btn-responsive" ng-click="jugar()">{{posicion}}</button>
+        <button type="button" class="btn btn-primary btn-responsive" ng-click="jugar(posicion)">{{posicion}}</button>
       </div>
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#caracteristicasModal">Mostrar Caracteristicas:</button>
       <div id="caracteristicasModal" class="lobby container modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header fullSize">
         				<h1>Caracteristicas:</h1>
         			</div>
-              <div class="modal-body" ng-repeat="especialidad in personajeSeleccionado.especialidades">
-                    <p>{{especialidad}}</p>
+              <div class="modal-body">
+                <div class="row">
+                  <h2>Mejor Posición:</h2>
+                  <h3>{{personajeSeleccionado.posicionIdeal}}<h3>
+                    <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding"><h2>Especialidades:</h2>
+                      <h3 ng-repeat="especialidad in personajeSeleccionado.especialidades">{{especialidad}}</h3>
+                    </div>
+                    <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding"><h2>Debilidades:</h2>
+                      <h3 ng-repeat="debilidad in personajeSeleccionado.debilidades">{{debilidad}}</h3>
+                    </div>
+
+                </div>
               </div>
           </div>
           </div>
       </div>
+
+      <div class="row lobby margTop"><!--Estadisticas del Jugador en si-->
+        <div class="resultado col-md-12 col-xs-12 col-sm-12">
+					<div class="resultado panel panel-primary noMarginBot fullSize"> Tus Estadisticas: </div>
+            <ul>
+              <li><h7>Duelos Iniciados<span class="badge">{{estadisticaSeleccionada.duelosIniciados}}</span></h7></li>
+              <li><h7>Duelos Ganados<span class="badge">{{estadisticaSeleccionada.duelosGanados}}</span></h7></li>
+              <li><h7>Duelos Ganados No Iniciados<span class="badge">{{estadisticaSeleccionada.duelosGanadosNoIniciados}}</span></h7></li>
+              <li><h7>Derrotas No Iniciadas<span class="badge">{{estadisticaSeleccionada.derrotasNoIniciadas}}</span></h7></li>
+              <li><h7>Duelos Empatados<span class="badge">{{estadisticaSeleccionada.duelosEmpatados}}</span></h7></li>
+              <li><h7>Mejor Ubicación<span class="badge">{{estadisticaSeleccionada.mejorUbicacion}}</span></h7></li>
+              <li><h7>Calificación<span class="badge">{{estadisticaSeleccionada.calificacion}}</span></h7></li>
+				  </ul>
+        </div>
+
+      </div><!--Fin de Estadisticas del Jugador en si-->
+
+
     </div><!--Fin columna derecha-->
 
 
