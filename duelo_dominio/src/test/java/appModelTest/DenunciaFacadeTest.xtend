@@ -15,23 +15,23 @@ class DenunciaFacadeTest {
 	
 	Jugador from
 	Jugador to 
-	Denuncia den1
+	Denuncia denuncia
 	
-	DenunciaFacade df
+	DenunciaFacade facade
 	
 	@Before
 	def void init() {
 		from = new Jugador("El dipi papa")
 		to = new Jugador ("Daddy Yankee")
-		df = new DenunciaFacade(from,to)
-		den1 = new DAbusoDeLenguaje("Este pibe es muy malo")
+		facade = new DenunciaFacade(from,to)
+		denuncia = new DAbusoDeLenguaje("Este pibe es muy malo")
 	}
 	
 	@Test
 	def void testDenunciaValida() {
-		df.denuncia = den1
+		facade.denuncia = denuncia
 		
-		df.hacerDenuncia
+		facade.hacerDenuncia
 		
 		assertEquals(0,from.denuncias.size)
 		assertEquals(1,to.denuncias.size)
@@ -39,13 +39,13 @@ class DenunciaFacadeTest {
 	
 	@Test (expected = UserException) 
 	def void testDenunciaNoCargada() {
-		df.hacerDenuncia
+		facade.hacerDenuncia
 	}
 	
 	@Test
 	def void testDenunciaInvalida() {
-		df.denuncia = new DFeedIntencional("no valgo")
-		df.hacerDenuncia
+		facade.denuncia = new DFeedIntencional("no valgo")
+		facade.hacerDenuncia
 		
 		assertEquals(1,from.denuncias.size)
 		assertEquals(0,to.denuncias.size)

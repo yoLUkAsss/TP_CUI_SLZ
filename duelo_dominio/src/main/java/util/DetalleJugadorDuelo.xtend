@@ -4,7 +4,9 @@ import jugador.Jugador
 import jugador.Personaje
 import org.eclipse.xtend.lib.annotations.Accessors
 import jugador.Posicion
- 
+import org.uqbar.commons.utils.Observable
+
+@Observable
 @Accessors
 /**
  * Simple empaquetado de datos para la representacion

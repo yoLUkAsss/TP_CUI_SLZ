@@ -4,15 +4,15 @@ import denuncias.Denuncia
 
 class MRX extends Jugador {
 	
-	Jugador j
+	Jugador jugador
 	
 	new(String nombre, Jugador jugador) {
 		super(nombre)
-		this.j=jugador
+		this.jugador=jugador
 	}
 	
 	override ranking(){
-		j.totPeso(denuncias)*j.cantPeleasGanadas(est)
+		jugador.totPeso(denuncias)*jugador.cantPeleasGanadas(est)
 	}
 	
 	override getNombre(){
@@ -23,10 +23,10 @@ class MRX extends Jugador {
 	}
 	
 	override getEst() {
-		return j.est
+		return jugador.est
 	}
 	override getDenuncias() {
-		return j.denuncias
+		return jugador.denuncias
 	}
 	override addDenuncia(Denuncia d) {
 		//Nothing

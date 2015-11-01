@@ -2,7 +2,9 @@ package util
 
 import jugador.Jugador
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class ResultadoDuelo {
 	Jugador retador

@@ -88,4 +88,26 @@ class SelectorDeRival {
 	def agregarPersonaje(Personaje personaje) {
 		personajes.add(personaje)
 	}
+	
+	/**
+	 * Contains un personaje Buscado
+	 * 
+	 * @param personajeBuscado personaje a buscar en el selector
+	 * 
+	 * @return True si se encuentra, false en caso contrario
+	 */
+	def contieneEstePersonaje(Personaje personajeBuscado) {
+		return personajes.contains(personajeBuscado)
+	}
+	
+	/**
+	 * Contains un jugador Buscado
+	 * 
+	 * @param jugadorBuscado jugador a buscar en el selector
+	 * 
+	 * @return True si se encuentra, false en caso contrario
+	 */
+	def contieneEsteJugador(Jugador jugadorBuscado) {
+		return jugadores.contains(jugadorBuscado)
+	}
 }

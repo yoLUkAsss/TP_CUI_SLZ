@@ -18,123 +18,135 @@ class EstadisticasPjTest {
 	 
 	 @Before 
 	 def void init(){
-	 	personajeSven = new Personaje("Sven",Posicion.TOP)
 	 	est= new EstadisticaDePersonaje(personajeSven)
-	 	
 	 }
 	 
 	 @Test
-	 def void testEstadistica() {
+	 def void testEstadistica_nueva_duelos_iniciados() {
 	 	assertEquals(0,est.duelosIniciados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_nueva_duelos_ganados() {
 	 	assertEquals(0,est.duelosGanados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_nueva_duelos_ganados_no_iniciados() {
 	 	assertEquals(0,est.duelosGanadosNoIniciados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_nueva_duelos_derrotas_no_iniciadas() {
 	 	assertEquals(0,est.derrotasNoIniciadas)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_nueva_duelos_empatados() {
 	 	assertEquals(0,est.duelosEmpatados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_nueva_duelos_mejor_ubicacion() {
 	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_nueva_duelos_posiciones_usadas() {
 	 	assertTrue(est.posicionesUsadas.empty)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_nueva_duelos_calificacion() {
 	 	assertEquals(TipoCalificacion.NOOB,est.calificacion)
 	 }
 	 
-	  @Test
-	  def void testGanoComoRetador() {
-	  	
-	  	est.ganoComoRetador(Posicion.TOP)
-	  	
-	    assertEquals(1,est.duelosIniciados)
+	 //SEPARACION DE ESTADISTICA===============================================
+	 
+	 @Test
+	 def void testEstadistica_gano_como_retador_duelos_iniciados() {
+	 	est.ganoComoRetador(Posicion.TOP)
+	 	assertEquals(1,est.duelosIniciados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_gano_como_retador_duelos_ganados() {
+	 	est.ganoComoRetador(Posicion.TOP)
 	 	assertEquals(1,est.duelosGanados)
-	 	assertEquals(0,est.duelosGanadosNoIniciados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_gano_como_retador_duelos_ganados_no_iniciados() {
+	 	est.ganoComoRetador(Posicion.TOP)
+	 	assertEquals(1,est.duelosGanados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_gano_como_retador_duelos_derrotas_no_iniciadas() {
+	 	est.ganoComoRetador(Posicion.TOP)
 	 	assertEquals(0,est.derrotasNoIniciadas)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_gano_como_retador_duelos_empatados() {
+	 	est.ganoComoRetador(Posicion.TOP)
 	 	assertEquals(0,est.duelosEmpatados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_gano_como_retador_duelos_mejor_ubicacion() {
+	 	est.ganoComoRetador(Posicion.TOP)
 	 	assertEquals(Posicion.TOP,est.mejorUbicacion)
-	 	assertFalse(est.posicionesUsadas.empty)
-	
-	  	
-	  }
-	  
-	  @Test
-	  def void testPerdioComoRetador() {
-	  	
-	  	est.perdioComoRetador(Posicion.JUNGLE) 
-	    
-	    assertEquals(1,est.duelosIniciados)
-	 	assertEquals(0,est.duelosGanados)
-	 	assertEquals(0,est.duelosGanadosNoIniciados)
-	 	assertEquals(0,est.derrotasNoIniciadas)
-	 	assertEquals(0,est.duelosEmpatados)
-	 	assertEquals(Posicion.JUNGLE,est.mejorUbicacion)
-	 	assertFalse(est.posicionesUsadas.empty)
-	
-	  		
-	  		
-	  		
-	  	}
-	  	
-	  @Test
-	  def void testGanoComoRival(){
-	  	
-	  	est.ganoComoRival(Posicion.BOT)
-	  	
-	  	assertEquals(0,est.duelosIniciados)
-	 	assertEquals(1,est.duelosGanados)
-	 	assertEquals(1,est.duelosGanadosNoIniciados)
-	 	assertEquals(0,est.derrotasNoIniciadas)
-	 	assertEquals(0,est.duelosEmpatados)
-	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
-	 	assertTrue(est.posicionesUsadas.empty)
-	
-	  	
-	  	
-	  }
-	  
-	  @Test
-	  def void tesPerdioComoRival(){
-	  	
-	  	est.perdioComoRival(Posicion.MID)
-	  	
-	  	assertEquals(0,est.duelosIniciados)
-	 	assertEquals(0,est.duelosGanados)
-	 	assertEquals(0,est.duelosGanadosNoIniciados)
-	 	assertEquals(1,est.derrotasNoIniciadas)
-	 	assertEquals(0,est.duelosEmpatados)
-	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
-	 	assertTrue(est.posicionesUsadas.empty)
+	 }
 	 
-	  	
-	  }
-	  	
-	  @Test
-	  def void testEmpatoComoRetador(){
-	  	
-	  	est.empatoComoRetador(Posicion.MID)
-	  	
-	  	assertEquals(1,est.duelosIniciados)
-	 	assertEquals(0,est.duelosGanados)
-	 	assertEquals(0,est.duelosGanadosNoIniciados)
-	 	assertEquals(0,est.derrotasNoIniciadas)
-	 	assertEquals(1,est.duelosEmpatados)
-	 	assertEquals(Posicion.MID,est.mejorUbicacion)
-	 	assertTrue(!est.posicionesUsadas.empty)
+	 @Test
+	 def void testEstadistica_gano_como_retador_duelos_calificacion() {
+	 	est.ganoComoRetador(Posicion.TOP)
+	 	assertEquals(TipoCalificacion.NOOB,est.calificacion)
+	 }
 	 
-	  	
-	  	
-	  	
-	  }
-	  
-	  @Test
-	  def void testEmpatoComoRival(){
-	  	
-	  		
-	  	est.empatoComoRival(Posicion.JUNGLE)
-	  	
-	  	assertEquals(0,est.duelosIniciados)
-	 	assertEquals(0,est.duelosGanados)
-	 	assertEquals(0,est.duelosGanadosNoIniciados)
-	 	assertEquals(0,est.derrotasNoIniciadas)
-	 	assertEquals(1,est.duelosEmpatados)
-	 	assertEquals(Posicion.NONE,est.mejorUbicacion)
-	 	assertTrue(est.posicionesUsadas.empty)
+	 //SEPARACION DE ESTADISTICA=======================================================
 
-	  	
-	  }
+	
+	@Test	 
+	def void testEstadistica_perdio_como_retador_duelos_iniciados() {
+		est.perdioComoRetador(Posicion.JUNGLE) 
+		assertEquals(1,est.duelosIniciados)
+	}
 	 
+	 @Test
+	 def void testEstadistica_perdio_como_retador_duelos_ganados() {
+	 	est.perdioComoRetador(Posicion.JUNGLE) 
+	 	assertEquals(0,est.duelosGanados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_perdio_como_retador_duelos_ganados_no_iniciados() {
+	 	est.perdioComoRetador(Posicion.JUNGLE) 
+	 	assertEquals(0,est.duelosGanados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_perdio_como_retador_duelos_derrotas_no_iniciadas() {
+	 	est.perdioComoRetador(Posicion.JUNGLE) 
+	 	assertEquals(0,est.derrotasNoIniciadas)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_perdio_como_retador_duelos_empatados() {
+	 	est.perdioComoRetador(Posicion.JUNGLE) 
+	 	assertEquals(0,est.duelosEmpatados)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_perdio_como_retador_duelos_mejor_ubicacion() {
+	 	est.perdioComoRetador(Posicion.JUNGLE) 
+	 	assertEquals(Posicion.JUNGLE,est.mejorUbicacion)
+	 }
+	 
+	 @Test
+	 def void testEstadistica_perdio_como_retador_duelos_calificacion() {
+	 	est.perdioComoRetador(Posicion.JUNGLE) 
+	 	assertEquals(TipoCalificacion.NOOB,est.calificacion)
+	 }
 }
