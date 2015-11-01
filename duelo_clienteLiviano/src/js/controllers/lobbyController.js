@@ -5,24 +5,23 @@ angular.module('dueloLeyendasApp')
     document.getElementById("selectedCharacterlbl").textContent= personaje.nombre;
     $scope.personajeSeleccionado = personaje;
   };
-  $scope.datosDelJuego = LobbyService.datosDelJuego();
   $scope.personajesToTheHalf = function(leftOrRight){
     var res = [];
-    var personajes = $scope.datosDelJuego.personajes
-    var middle = personajes.length / 2;
+    var estadisticaPorPersonaje = LobbyService.getDatos().estadisticaPorPersonajes
+    var middle = estadisticaPorPersonaje.length / 2;
     if(leftOrRight === 'left'){
       for(i = 0; i<middle; i++){
-        res.push(personajes[i]);
+        res.push(estadisticaPorPersonaje[i].personajeAsociado);
       }
     }
     else{
-      for(i = middle; i<personajes.length; i++){
-        res.push(personajes[i]);
+      for(i = middle; i<estadisticaPorPersonaje.length; i++){
+        res.push(estadisticaPorPersonaje[i].personajeAsociado);
       }
     }
     return res;
 
   };
-  $scope.usuario = LoginService.usuario;
+
 
 }])

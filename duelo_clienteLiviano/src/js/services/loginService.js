@@ -1,5 +1,6 @@
 angular.module('dueloLeyendasApp')
       .service('LoginService',function($http){
+  this.usuario = "";
   this.login = function(sheison,callback,errorHandler){
     $http({
             url: 'http://localhost:9000/login',

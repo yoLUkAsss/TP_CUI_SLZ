@@ -45,7 +45,9 @@ class LobbyAppModel {
 		var Personaje amumu = new Personaje("Amumu",Posicion.TOP)
 		var Personaje ahri = new Personaje("Ahri",Posicion.MID)
 		var Personaje olaf = new Personaje("Olaf",Posicion.JUNGLE)
-		var Personaje cait = new Personaje("Caitlyn",Posicion.BOT)
+		var Personaje viper = new Personaje("Viper",Posicion.BOT)
+		var Personaje pudge = new Personaje("pudge",Posicion.BOT)
+		var Personaje witchdoctor = new Personaje("witchdoctor",Posicion.MID)
 		var Jugador juaco = new Jugador("Juaco")
 		juaco.setUsuario("latengoverde")
 		juaco.setPassword("1234")
@@ -73,27 +75,36 @@ class LobbyAppModel {
 		olaf.agregarNuevaDebilidad("Daño Magico")
 		olaf.agregarNuevaDebilidad("Velocidad")
 		
-		cait.agregarNuevaFortaleza("Rango de ataque")
-		cait.agregarNuevaDebilidad("Crowd-Control")
+		viper.agregarNuevaFortaleza("Rango de ataque")
+		viper.agregarNuevaDebilidad("Crowd-Control")
+		
+		pudge.agregarNuevaDebilidad("Daño Magico")
+		pudge.agregarNuevaFortaleza("Taque")
+		
+		witchdoctor.agregarNuevaFortaleza("Daño Magico")
+		witchdoctor.agregarNuevaDebilidad("Taque")
 		
 		
 		personajesUtilizables.add(amumu)
 		personajesUtilizables.add(ahri)
 		personajesUtilizables.add(olaf)
-		personajesUtilizables.add(cait)
+		personajesUtilizables.add(viper)
+		personajesUtilizables.add(witchdoctor)
+		personajesUtilizables.add(pudge)
 		
 		var List<Jugador> jugadores = newArrayList
 		jugadores.add(marq);jugadores.add(xPeke);jugadores.add(juaco)
 		juaco.ganeYSoyRetador(amumu,Posicion.TOP)
 		
-		this.setAll(null,jugadores,personajesUtilizables)
+		this.setAll(null,jugadores,personajesUtilizables,posiciones)
 	}
 	
-	def setAll(Jugador jugador,List<Jugador> jugadores , List<Personaje> pjs){
+	def setAll(Jugador jugador,List<Jugador> jugadores , List<Personaje> pjs,List<Posicion> posiciones){
 	    this.jugador=jugador
 	    personajesTotales = pjs
 	    selectorRival = new SelectorDeRival(personajesTotales,jugadores)
 	    this.jugadores = jugadores
+	    this.posiciones = posiciones
 		
 	}
 	def public static LobbyAppModel getInstance(){
@@ -180,13 +191,10 @@ class LobbyAppModel {
 			throw new AuthenticationException("Usuario o password invalido")
 	}
 	
-	def estaAutenticado(String idUsuario) {
-		this.jugador != null && idUsuario.equals(this.jugador.usuario)
+	def estaAutenticado(String nombreUsuario) {
+		this.jugador != null && nombreUsuario.equals(this.jugador.nombre)
 	}
 	
-//	def datosJuego(String idUsuario) {
-//		if(estaAutenticado(idUsuario)) new DatosPersonajesJson(idUsuario,estadisticas,posiciones)
-//		else throw new NoEstaAutenticadoException("Por favor ingrese antes de entrar")
-//	}
+
 
 }

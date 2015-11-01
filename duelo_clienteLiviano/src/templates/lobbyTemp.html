@@ -1,6 +1,6 @@
 <div class="container panel">
   <div class="center">
-    <h1><span ng-model="usuario" class="label label-default">Bienvenido {{usuario.id}}</span></h1>
+    <h1><span ng-model="usuario" class="label label-default">Bienvenido {{usuario}}</span></h1>
   </div>
   <div class="center">
     <h3><span class="label label-primary">Seleccione un Personaje:</span></h3>
@@ -25,7 +25,7 @@
 
 
       <div class="panel fullSize center">Jugar!</div>
-      <div class="lobby btn-group" role="group" ng-repeat="posicion in datosDelJuego.posicionesDuelos">
+      <div class="lobby btn-group" role="group" ng-repeat="posicion in datos.posicionesDuelos">
         <button type="button" class="btn btn-primary btn-responsive">{{posicion.nombre}}</button>
       </div>
 
