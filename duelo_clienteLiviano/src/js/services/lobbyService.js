@@ -6,16 +6,19 @@ angular.module('dueloLeyendasApp')
         };
         this.setUsr = function(id){
             this.usuario = id;
-            
+
         };
-        
+
         this.setDatos = function(datos){
             this.datos = datos;
         };
-        
+
         this.getDatos = function(){
             return this.datos;
-            
+
+        };
+        this.salir = function(callback,errorHandler){
+          $http.get('http://localhost:9000/logout/'+this.usuario).success(callback).error(errorHandler);
         }
-          
+
       })

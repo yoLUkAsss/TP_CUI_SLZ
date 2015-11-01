@@ -41,6 +41,17 @@ class DueloController {
 		}
 	}
 	
+	@Get("/logout/:idUsuario")
+	def Result logout(){
+		try{
+			var instance = LobbyAppModel.getInstance()
+			instance.salir(idUsuario)
+			ok('''{"descripcion":"Esperamos la haya pasado bien! Vuelva prontos!"}''')
+		}catch(NoEstaAutenticadoException e){
+			badRequest(''' { "descripcion" : "«e.message»" }''')
+		}
+	}
+	
 	@Get("/datosDelJuego/:idUsuario")
 	def Result datosDelJuego(){
 		response.contentType = ContentType.APPLICATION_JSON
@@ -48,7 +59,7 @@ class DueloController {
 		if(instance.estaAutenticado(idUsuario)){
 			var datosJuego = new DatosPersonajesJson(instance.jugador.nombre,instance.estadisticas,instance.posiciones)
 			//ok('''"personajes":«datosJuego.estadisticasDePersonaje.toJson»''')
-			ok('''{"id":"«datosJuego.id»", "personajes":«datosJuego.estadisticasDePersonaje.toJson»,"posiciones":"«datosJuego.posiciones»"}''')
+			ok('''{"id":"«datosJuego.id»", "estadisticaPorPersonajes":«datosJuego.estadisticasDePersonaje.toJson»,"posiciones":«datosJuego.posiciones.toJson»}''')
 		}else{
 			badRequest('''{"descripcion":"No esta autenticado"}''')
 		}
@@ -81,9 +92,6 @@ class DueloController {
 	    
 	}
 	
-	def sinLlaves(String string) {
-		string.substring(1,string.length()-1)
-	}
 	
 	
 	

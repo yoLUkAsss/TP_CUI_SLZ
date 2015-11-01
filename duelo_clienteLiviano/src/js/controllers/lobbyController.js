@@ -1,8 +1,6 @@
 angular.module('dueloLeyendasApp')
-      .controller('LobbyController',['$scope','LobbyService','LoginService',function($scope,LobbyService,LoginService){
+      .controller('LobbyController',['$scope','$state','LobbyService','LoginService',function($scope,$state,LobbyService,LoginService){
   $scope.changeImgLobby = function (personaje){
-    document.getElementById("selectedCharacter").src = "css/images/Lobby/" + personaje.nombre + "Big.jpg";
-    document.getElementById("selectedCharacterlbl").textContent= personaje.nombre;
     $scope.personajeSeleccionado = personaje;
   };
   $scope.personajesToTheHalf = function(leftOrRight){
@@ -12,12 +10,14 @@ angular.module('dueloLeyendasApp')
     if(leftOrRight === 'left'){
       for(i = 0; i<middle; i++){
         estadisticaPorPersonaje[i].personajeAsociado.imagenSrc = $scope.smallSrc(estadisticaPorPersonaje[i].personajeAsociado);
+        estadisticaPorPersonaje[i].personajeAsociado.imagenBigSrc = $scope.bigSrc(estadisticaPorPersonaje[i].personajeAsociado);
         res.push(estadisticaPorPersonaje[i].personajeAsociado);
       }
     }
     else{
       for(i = middle; i<estadisticaPorPersonaje.length; i++){
         estadisticaPorPersonaje[i].personajeAsociado.imagenSrc = $scope.smallSrc(estadisticaPorPersonaje[i].personajeAsociado);
+        estadisticaPorPersonaje[i].personajeAsociado.imagenBigSrc = $scope.bigSrc(estadisticaPorPersonaje[i].personajeAsociado);
         res.push(estadisticaPorPersonaje[i].personajeAsociado);
       }
     }
@@ -27,11 +27,34 @@ angular.module('dueloLeyendasApp')
 
   $scope.datos = LobbyService.getDatos();
 
+  $scope.usuario = LobbyService.usuario;
+
   $scope.smallSrc = function(personaje){
     return "css/images/Lobby/" + personaje.nombre + ".png";
+  };
+
+  $scope.bigSrc = function(personaje){
+    return "css/images/Lobby/" + personaje.nombre + "Big.jpg";
+  };
+
+  $scope.especialidad = true;
+
+  $scope.jugar = function(){
+    $scope.especialidad=false;
   }
 
-  $scope.usuario = LobbyService.usuario;
+  $scope.salir = function(){
+    LobbyService.salir($scope.callback, $scope.errorHandler);
+  };
+
+  $scope.callback = function(data){
+    alert(data.descripcion);
+    $state.go('login');
+  }
+
+  $scope.errorHandler = function(error){
+    alert(error.descripcion);
+  }
 
 
 }])

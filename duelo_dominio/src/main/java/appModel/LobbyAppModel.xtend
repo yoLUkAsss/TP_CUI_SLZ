@@ -195,6 +195,14 @@ class LobbyAppModel {
 		this.jugador != null && nombreUsuario.equals(this.jugador.nombre)
 	}
 	
+	def salir(String nombreDeUsuario){
+		if(estaAutenticado(nombreDeUsuario)){
+			this.jugadores.add(this.jugador);
+			this.jugador=null
+		}
+		else throw new NoEstaAutenticadoException("Deslog incorrecto")
+	}
+	
 
 
 }

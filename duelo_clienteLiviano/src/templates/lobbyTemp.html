@@ -1,4 +1,4 @@
-<div class="container panel">
+<div class="container panel"><button type="button" class="btn btn-primary btn-responsive" ng-click="salir()">Salir</button>
   <div class="center">
     <h1><span ng-model="usuario" class="label label-default">Bienvenido {{usuario}}</span></h1>
   </div>
@@ -16,9 +16,9 @@
         </div>
     </div><!--Fin columna izquierda-->
 
-    <div id="columnaCentro" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
+    <div id="columnaCentro" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY" ng-model="personajeSeleccionado.nombre">
       <div id="selectedCharacterlbl" class="panel fullSize center"></div>
-      <img id='selectedCharacter' class="img-responsive"></img>
+      <img id='selectedCharacter' class="img-responsive" ng-src="{{personajeSeleccionado.imagenBigSrc}}" ng-show="personajeSeleccionado.imagenBigSrc"></img>
     </div><!--Fin columna centro-->
 
     <div id="columnaDerecha" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center overflowOnY">
@@ -26,19 +26,19 @@
 
       <div class="panel fullSize center">Jugar!</div>
       <div class="lobby btn-group" role="group" ng-repeat="posicion in datos.posiciones">
-        <button type="button" class="btn btn-primary btn-responsive">{{posicion}}</button>
+        <button type="button" class="btn btn-primary btn-responsive" ng-click="jugar()">{{posicion}}</button>
       </div>
-
-      <div class="lobby container">
-          <div ng-repeat="(caracteristica, valor) in personajeSeleccionado.caracteristicas">
-            <div>
-              <ul class="list-group">{{caracteristica}}
-                <li  class="list-group-item" ng-repeat="v in valor">
-                  {{v}}
-                </li>
-              </ul>
-            </div>
-
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#caracteristicasModal">Mostrar Caracteristicas:</button>
+      <div id="caracteristicasModal" class="lobby container modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+        				<h1>Caracteristicas:</h1>
+        			</div>
+              <div class="modal-body" ng-repeat="especialidad in personajeSeleccionado.especialidades">
+                    <p>{{especialidad}}</p>
+              </div>
+          </div>
           </div>
       </div>
     </div><!--Fin columna derecha-->
