@@ -13,7 +13,7 @@ class Personaje implements Comparable<Personaje> {
 	String nombre
 	List<String> especialidades
 	List<String> debilidades
-	Posicion posicionIdeal 
+	Posicion posicionIdeal
 	
 	new(String nombre,Posicion pos) {
 		this.nombre=nombre

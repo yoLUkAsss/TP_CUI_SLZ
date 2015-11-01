@@ -42,10 +42,10 @@ class LobbyAppModel {
 	}
 	
 	new() {
-		var Personaje amumu = new Personaje("Amumu",Posicion.TOP)
-		var Personaje ahri = new Personaje("Ahri",Posicion.MID)
-		var Personaje olaf = new Personaje("Olaf",Posicion.JUNGLE)
-		var Personaje viper = new Personaje("Viper",Posicion.BOT)
+		var Personaje amumu = new Personaje("amumu",Posicion.TOP)
+		var Personaje ahri = new Personaje("ahri",Posicion.MID)
+		var Personaje olaf = new Personaje("olaf",Posicion.JUNGLE)
+		var Personaje viper = new Personaje("viper",Posicion.BOT)
 		var Personaje pudge = new Personaje("pudge",Posicion.BOT)
 		var Personaje witchdoctor = new Personaje("witchdoctor",Posicion.MID)
 		var Jugador juaco = new Jugador("Juaco")

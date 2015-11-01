@@ -10,8 +10,7 @@ angular.module('dueloLeyendasApp')
   $scope.callback = function(data){
     var nuevoUser = data.id;
     LobbyService.setUsr(nuevoUser);
-    LobbyService.datosDelJuego($scope.callbackLobby,$scope.errorHandlerLobby)
-    $state.go('lobby');
+    LobbyService.datosDelJuego($scope.callbackLobby,$scope.errorHandlerLobby);
   };
   $scope.errorHandler=function(error){
     $scope.spanLog = error.descripcion
@@ -21,6 +20,7 @@ angular.module('dueloLeyendasApp')
   $scope.callbackLobby = function(data){
     alert("buenCallBack");
     LobbyService.setDatos(data);
+    $state.go('lobby');
   };
   $scope.errorHandlerLobby =function(error){
     alert("malCallback");
