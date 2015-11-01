@@ -1,7 +1,14 @@
 angular.module('dueloLeyendasApp')
       .controller('LobbyController',['$scope','$state','LobbyService','LoginService',function($scope,$state,LobbyService,LoginService){
-  $scope.changeImgLobby = function (personaje){
-    $scope.personajeSeleccionado = personaje;
+
+  $scope.datos = LobbyService.getDatos();
+  $scope.personajeSeleccionado = $scope.datos.estadisticaPorPersonajes[0].personajeAsociado;
+  $scope.estadisticaSeleccionada = $scope.datos.estadisticaPorPersonajes[0];
+  $scope.usuario = LobbyService.usuario;
+
+  $scope.changeEstadisticaSelecionada = function (estadistica){
+    $scope.estadisticaSeleccionada = estadistica;
+    $scope.personajeSeleccionado = estadistica.personajeAsociado;
   };
   $scope.personajesToTheHalf = function(leftOrRight){
     var res = [];
@@ -11,23 +18,21 @@ angular.module('dueloLeyendasApp')
       for(i = 0; i<middle; i++){
         estadisticaPorPersonaje[i].personajeAsociado.imagenSrc = $scope.smallSrc(estadisticaPorPersonaje[i].personajeAsociado);
         estadisticaPorPersonaje[i].personajeAsociado.imagenBigSrc = $scope.bigSrc(estadisticaPorPersonaje[i].personajeAsociado);
-        res.push(estadisticaPorPersonaje[i].personajeAsociado);
+        res.push(estadisticaPorPersonaje[i]);
       }
     }
     else{
       for(i = middle; i<estadisticaPorPersonaje.length; i++){
         estadisticaPorPersonaje[i].personajeAsociado.imagenSrc = $scope.smallSrc(estadisticaPorPersonaje[i].personajeAsociado);
         estadisticaPorPersonaje[i].personajeAsociado.imagenBigSrc = $scope.bigSrc(estadisticaPorPersonaje[i].personajeAsociado);
-        res.push(estadisticaPorPersonaje[i].personajeAsociado);
+        res.push(estadisticaPorPersonaje[i]);
       }
     }
     return res;
 
   };
 
-  $scope.datos = LobbyService.getDatos();
 
-  $scope.usuario = LobbyService.usuario;
 
   $scope.smallSrc = function(personaje){
     return "css/images/Lobby/" + personaje.nombre + ".png";
@@ -39,8 +44,8 @@ angular.module('dueloLeyendasApp')
 
   $scope.especialidad = true;
 
-  $scope.jugar = function(){
-    $scope.especialidad=false;
+  $scope.jugar = function(posicion){
+    //por implementarse
   }
 
   $scope.salir = function(){
@@ -50,11 +55,24 @@ angular.module('dueloLeyendasApp')
   $scope.callback = function(data){
     alert(data.descripcion);
     $state.go('login');
-  }
+  };
 
   $scope.errorHandler = function(error){
     alert(error.descripcion);
-  }
+  };
+
+  $scope.preProcess = function(){
+    var result = {};
+    var indice = 0;
+    angular.forEach($scope.estadisticaSeleccionada, function(value, key) {
+        if(!(indice==0 || indice==6)){
+          result[key]=$scope.estadisticaSeleccionada[key];
+          alert($scope.estadisticaSeleccionada[key]);
+        }
+    });
+    return result;
+
+  };
 
 
 }])
