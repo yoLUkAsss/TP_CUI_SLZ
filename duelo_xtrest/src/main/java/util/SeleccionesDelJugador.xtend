@@ -7,14 +7,14 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class SeleccionesDelJugador {
 	
 	String idJugador
-	String idpersonajeJugador
+	String idPersonajeJugador
 	Posicion posicionJugador
 	
 	
 	new (String idjugador,String idpersonajeJugador, Posicion posicionJugador ){
 		
 		this.idJugador=idjugador
-		this.idpersonajeJugador=idpersonajeJugador
+		this.idPersonajeJugador=idpersonajeJugador
 		this.posicionJugador = posicionJugador
 	}
 	

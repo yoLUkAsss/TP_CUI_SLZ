@@ -134,13 +134,13 @@ input{
 .resultado.labelFormatLarge {
   color: red;
 	font-size: 26px;
-	font-family: PT Sans-Regular;
+  text-align: center !important;
 }
 
 .resultado.labelFormatSmall {
   font-size: 18px;
-  font-family: PT Sans-Regular;
   font-weight: normal;
+  text-align: center !important;
 }
 
 .resultado.labelFormatSmall.nombreDeJugador {
@@ -160,9 +160,8 @@ input{
 .resultado.statDesign {
   background-color: black;
   color: white;
-  padding-right: 20px;
-  padding-left: 20px;
-  border-color: black;
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .resultado.noMarginBot {
@@ -175,13 +174,13 @@ input{
 
 .resultado.noBorder {
   border-radius: 0px;
+  border-color: black;
 }
 
 .resultado.imageBack {
-   /* Aca se deberia bindear la imagen correspondiente al personaje elegido del ganador */
-
   background-size: 100% !important;
-  height: auto;
+  height: 100% !important;
+  background-repeat: no-repeat;
 }
 
 
@@ -265,6 +264,11 @@ input{
     padding-left: 15px;
     margin: 2px;
     width: 100%;
+}
+
+.resultado.container {
+  padding: 0px;
+  width: 100%;
 }
 
 

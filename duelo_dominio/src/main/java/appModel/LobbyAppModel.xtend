@@ -21,6 +21,7 @@ import excepciones.NoEstaAutenticadoException
 @Accessors
 class LobbyAppModel {
 	
+	//UTILIZADO PARA XT-Rest
 	private static final LobbyAppModel instance = new LobbyAppModel();
 
 	Jugador jugador
@@ -40,14 +41,18 @@ class LobbyAppModel {
 		selectorRival = new SelectorDeRival(personajesTotales,jugadores)
 		this.jugadores = jugadores
 	}
-	
+
+
+///////////////////////////////////////
+/////METODOS- DUELO-ClienteLiviano/////
+///////////////////////////////////////
 	new() {
-		var Personaje amumu = new Personaje("amumu",Posicion.TOP)
-		var Personaje ahri = new Personaje("ahri",Posicion.MID)
-		var Personaje olaf = new Personaje("olaf",Posicion.JUNGLE)
-		var Personaje viper = new Personaje("viper",Posicion.BOT)
-		var Personaje pudge = new Personaje("pudge",Posicion.BOT)
-		var Personaje witchdoctor = new Personaje("witchdoctor",Posicion.MID)
+		var Personaje amumu = new Personaje("Amumu",Posicion.TOP)
+		var Personaje ahri = new Personaje("Ahri",Posicion.MID)
+		var Personaje olaf = new Personaje("Olaf",Posicion.JUNGLE)
+		var Personaje viper = new Personaje("Viper",Posicion.BOT)
+		var Personaje pudge = new Personaje("Pudge",Posicion.BOT)
+		var Personaje witchdoctor = new Personaje("WitchDoctor",Posicion.MID)
 		var Jugador juaco = new Jugador("Juaco")
 		juaco.setUsuario("latengoverde")
 		juaco.setPassword("1234")
@@ -110,9 +115,50 @@ class LobbyAppModel {
 	def public static LobbyAppModel getInstance(){
 		return instance;
 	}
+	
+	def autentificar(Login log) {
+		var jugadorAuxiliar = this.jugadores.findFirst[each| log.matches(each)]
+		//var jugadorAuxiliar =this.jugadores.findFirst[each | each.identifies(usuario,password)]
 		
+		if(jugadorAuxiliar != null){
+			this.jugadores.remove(jugadorAuxiliar)
+			this.jugador = jugadorAuxiliar
+			this.actualizarListado()
+			jugadorAuxiliar	
+		}
+		else
+			throw new AuthenticationException("Usuario o password invalido")
+	}
 	
+	def estaAutenticado(String nombreUsuario) {
+		this.jugador != null && nombreUsuario.equals(this.jugador.nombre)
+	}
 	
+	def salir(String nombreDeUsuario){
+		if(estaAutenticado(nombreDeUsuario)){
+			this.jugadores.add(this.jugador);
+			this.jugador=null
+		}
+		else throw new NoEstaAutenticadoException("Deslog incorrecto")
+	}
+	@Observable
+	def iniciarDueloConPersonaje(Posicion pos, String personajeElegido){
+		var personajeBuscado = this.personajesTotales.findFirst[personaje | personaje.nombre.equals(personajeElegido)]
+		var detallesParaElDuelo = new DetalleJugadorDuelo(jugador,personajeBuscado,pos)
+		var DetalleJugadorDuelo rival= selectorRival.dameRival(detallesParaElDuelo)
+			if (rival==null){
+				throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
+		    }
+		    
+		val res = new ResultadoDueloAppModel(detallesParaElDuelo,rival)
+		res.actualizarDatos()
+		actualizarListado
+		return res
+	}
+	
+//////////////////////////////
+/////METODOS- DUELO-ARENA/////
+//////////////////////////////	
 	@Observable
 	def iniciarDuelo(Posicion pos){
 		var detallesParaElDuelo = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
@@ -130,9 +176,9 @@ class LobbyAppModel {
 	@Observable
 	def iniciarDueloBot(Posicion pos) {
 		var detallesParaElDuelo = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)
-		var MRX m = new MRX("MRX",jugador)
-		var Personaje p = selectorRival.determinarPersonaje(estadisticaSeleccionada.personajeAsociado)
-		var DetalleJugadorDuelo rival = new DetalleJugadorDuelo(m,p,p.getPosicionIdeal)
+		var MRX robot = new MRX("MRX",jugador)
+		var Personaje personajeRobot = selectorRival.determinarPersonaje(estadisticaSeleccionada.personajeAsociado)
+		var DetalleJugadorDuelo rival = new DetalleJugadorDuelo(robot,personajeRobot,personajeRobot.getPosicionIdeal)
 		val res = new ResultadoDueloAppModel(detallesParaElDuelo,rival)
 		res.actualizarDatos()
 		actualizarListado
@@ -176,33 +222,5 @@ class LobbyAppModel {
 		firePropertyChanged(this,"estadisticasAMostrar",estadisticasAMostrar)
 		firePropertyChanged(this,"estadisticaSeleccionada",estadisticaSeleccionada)
 	}
-	
-	def autentificar(Login log) {
-		var jugadorAuxiliar = this.jugadores.findFirst[each| log.matches(each)]
-		//var jugadorAuxiliar =this.jugadores.findFirst[each | each.identifies(usuario,password)]
-		
-		if(jugadorAuxiliar != null){
-			this.jugadores.remove(jugadorAuxiliar)
-			this.jugador = jugadorAuxiliar
-			this.actualizarListado()
-			jugadorAuxiliar	
-		}
-		else
-			throw new AuthenticationException("Usuario o password invalido")
-	}
-	
-	def estaAutenticado(String nombreUsuario) {
-		this.jugador != null && nombreUsuario.equals(this.jugador.nombre)
-	}
-	
-	def salir(String nombreDeUsuario){
-		if(estaAutenticado(nombreDeUsuario)){
-			this.jugadores.add(this.jugador);
-			this.jugador=null
-		}
-		else throw new NoEstaAutenticadoException("Deslog incorrecto")
-	}
-	
-
 
 }

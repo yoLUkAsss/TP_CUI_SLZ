@@ -6,7 +6,6 @@ angular.module('dueloLeyendasApp')
         };
         this.setUsr = function(id){
             this.usuario = id;
-
         };
 
         this.setDatos = function(datos){

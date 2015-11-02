@@ -5,9 +5,16 @@ angular.module('dueloLeyendasApp')
         $http({
             url: 'http://localhost:9000/resultado',
             method: "POST",
-            data: sheison,
+            data: datos,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
               }).success(callback).error(errorHandler);
         };
 
+        this.setData = function(data) {
+            this.datos = data;
+        };
+
+        this.getData = function() {
+            return this.datos;
+        };
     })

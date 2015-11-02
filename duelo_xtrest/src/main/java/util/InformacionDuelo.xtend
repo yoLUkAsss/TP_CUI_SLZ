@@ -2,7 +2,11 @@ package util
 
 import appModel.ResultadoDueloAppModel
 import jugador.Jugador
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
+@Observable
+@Accessors
 class InformacionDuelo {
 	
 	String veredicto

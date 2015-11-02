@@ -11,7 +11,7 @@ angular.module('dueloLeyendasApp', ["ui.router"])
     controller: "ResultController",
     templateUrl: "./templates/noTienesRivalTemp.html"
   });
-  $stateProvider.state("resultado",{
+  $stateProvider.state("result",{
     url: "",
     controller: "ResultController",
     templateUrl: "./templates/resultTemp.html"

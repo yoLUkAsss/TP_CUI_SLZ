@@ -58,25 +58,23 @@ class DueloController {
 		var instance = LobbyAppModel.getInstance()
 		if(instance.estaAutenticado(idUsuario)){
 			var datosJuego = new DatosPersonajesJson(instance.jugador.nombre,instance.estadisticas,instance.posiciones)
-			//ok('''"personajes":«datosJuego.estadisticasDePersonaje.toJson»''')
 			ok('''{"id":"«datosJuego.id»", "estadisticaPorPersonajes":«datosJuego.estadisticasDePersonaje.toJson»,"posiciones":«datosJuego.posiciones.toJson»}''')
 		}else{
 			badRequest('''{"descripcion":"No esta autenticado"}''')
 		}
 	}
 	
-	@Post("/resultado/")
+	@Post("/resultado")
 	def Result informacionDelDuelo(@Body String seleccionesDelJugador ) {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
 			var data=seleccionesDelJugador.fromJson(SeleccionesDelJugador)
-			var resultado = LobbyAppModel.getInstance().iniciarDuelo(data.posicionJugador)
+			var resultado = LobbyAppModel.getInstance().iniciarDueloConPersonaje(data.posicionJugador,data.idPersonajeJugador)
 			var respuesta = new ResultadoComun(resultado)
-			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador.toJson»
-			", "informacionDelRival":«respuesta.informacionDelRival.toJson»
-			", "resultadoDuelo":«respuesta.resultadoDuelo.toJson»"}''')
+			ok('''{"informacionDelRetador":«respuesta.informacionDelRetador.toJson»,"informacionDelRival":«respuesta.informacionDelRival.toJson»,"resultadoDuelo":«respuesta.resultadoDuelo.toJson»}''')
 		} catch (NoHayRivalException e) {
-			badRequest('''{"descripcion":"No Hay Rival"}''')
+			print("GATO")
+			badRequest('''{"descripcion":"«e.message»"}''')
 		}
 	}
 	
@@ -87,8 +85,8 @@ class DueloController {
 	    var resultado= LobbyAppModel.getInstance().iniciarDueloBot(data.posicionJugador)
 	    var respuesta = new ResultadoComun(resultado)
 			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador»
-			", "informacionDelRival":«respuesta.informacionDelRival»
-			", "resultadoDuelo":«respuesta.resultadoDuelo»"}''')
+			", "informacionDelRival":"«respuesta.informacionDelRival»
+			", "resultadoDuelo":"«respuesta.resultadoDuelo»"}''')
 	    
 	}
 	

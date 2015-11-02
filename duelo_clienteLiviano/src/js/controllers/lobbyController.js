@@ -1,5 +1,5 @@
 angular.module('dueloLeyendasApp')
-      .controller('LobbyController',['$scope','$state','LobbyService','LoginService',function($scope,$state,LobbyService,LoginService){
+      .controller('LobbyController',['$scope','$state','LobbyService','LoginService','ResultService',function($scope,$state,LobbyService,LoginService,ResultService){
 
   $scope.datos = LobbyService.getDatos();
   $scope.personajeSeleccionado = $scope.datos.estadisticaPorPersonajes[0].personajeAsociado;
@@ -39,14 +39,11 @@ angular.module('dueloLeyendasApp')
   };
 
   $scope.bigSrc = function(personaje){
-    return "css/images/Lobby/" + personaje.nombre + "Big.jpg";
+    //SORRY NICO, LO CAMBIE--- ESPERO TE GUSTE
+    return "css/images/Lobby/" + personaje.nombre + "Medium.jpg";
   };
 
   $scope.especialidad = true;
-
-  $scope.jugar = function(posicion){
-    //por implementarse
-  }
 
   $scope.salir = function(){
     LobbyService.salir($scope.callback, $scope.errorHandler);
@@ -73,6 +70,28 @@ angular.module('dueloLeyendasApp')
     return result;
 
   };
+
+  /* RESPECTO AL ResultService*/
+
+  $scope.jugar = function(posicion){
+    var datos = {
+      idJugador: $scope.usuario.nombre,
+      idPersonajeJugador: $scope.personajeSeleccionado.nombre,
+      posicionJugador: posicion
+    };
+    ResultService.informacionDelDuelo(datos,$scope.callbackResult,$scope.errorHandlerResult);
+  };
+
+  $scope.callbackResult = function(data) {
+    alert("OK");
+    ResultService.setData(data);
+    $state.go('result');
+  };
+
+  $scope.errorHandlerResult = function(error) {
+    alert(error.descripcion);
+  };
+
 
 
 }])

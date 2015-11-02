@@ -1,18 +1,19 @@
-<div class="resultado imageBack" ng-style="getImagePath(informacionDelDuelo.resultadoDuelo.personajeGanador)">
-	<div class="img-responsive resultado">
+<div class="resultado container imageBack img-responsive" ng-style="getImagePath(informacionDelDuelo.resultadoDuelo.personajeGanador)">
+	<div>
 		<h1 class="noTienesRival titulo" style="color: white !important;">{{informacionDelDuelo.resultadoDuelo.personajeRetador}} vs {{informacionDelDuelo.resultadoDuelo.personajeRival}}</h1>
-
+	</div>
+	<div>
 		<div class="row col-md-4 col-md-offset-7 col-xs-6 col-xs-offset-4 col-sm-4 col-sm-offset-7 resultado font-responsive">
 			<!-- Primer bloque Superior Central -->
-			<div class="panel panel-default resultado bloqueCentral">
-		  		<div class="panel-body resultado backOnPink">
-		  			<span class="resultado labelFormatLarge"> {{informacionDelDuelo.resultadoDuelo.veredicto}} </span> <br>
-		  			<span id="puntajeRetador" class="resultado labelFormatSmall"> {{informacionDelDuelo.resultadoDuelo.valorRetador}} a</span>
-		  			<span id="puntajeRival" class="resultado labelFormatSmall"> {{informacionDelDuelo.resultadoDuelo.valorRival}} </span> <br>
-		  			<span id="cartelVeredicto" class="resultado labelFormatSmall"> {{informacionDelDuelo.resultadoDuelo.mensaje}}: </span> <br>
-		  			<span id="nombreGanador" class="resultado labelFormatSmall nombreDeJugador"> {{informacionDelDuelo.resultadoDuelo.nombreGanador}} </span>
+			<div class="panel panel-default resultado bloqueCentral noBorder center">
+		  		<div class="panel-body resultado backOnPink center">
+		  			<span class="resultado labelFormatLarge center"> {{informacionDelDuelo.resultadoDuelo.veredicto}} </span> <br>
+		  			<span id="puntajeRetador" class="resultado labelFormatSmall center"> {{informacionDelDuelo.resultadoDuelo.valorRetador}} a</span>
+		  			<span id="puntajeRival" class="resultado labelFormatSmall center"> {{informacionDelDuelo.resultadoDuelo.valorRival}} </span> <br>
+		  			<span id="cartelVeredicto" class="resultado labelFormatSmall center"> {{informacionDelDuelo.resultadoDuelo.mensaje}}: </span> <br>
+		  			<span id="nombreGanador" class="resultado labelFormatSmall nombreDeJugador center"> {{informacionDelDuelo.resultadoDuelo.nombreGanador}} </span>
 		  		</div>
-		  		<button id="opcionDelBoton" ng-click="goToLobby()" class="resultado btn fullSize"> {{informacionDelDuelo.resultadoDuelo.mensajeDelBoton}} </button>
+		  		<button id="opcionDelBoton" ng-click="irAlLobby()" class="resultado btn fullSize"> {{informacionDelDuelo.resultadoDuelo.mensajeDelBoton}} </button>
 			</div>
 
 				<!--Comiento de los bloques inferiores-->
@@ -20,22 +21,46 @@
 
 				<!-- Primer Bloque Inferior Izquierdo -->
 				<div class="resultado bloqueInferior col-md-4 col-xs-4 col-sm-4">
-					<div id="nombrePersonajeRetador" class="resultado panel panel-primary noMarginBot fullSize"> {{informacionDelDuelo.resultadoDuelo.personajeRetador}} </div>
-					<div class="panel panel-default noBorder resultado ">
-						<div ng-repeat="(clave,valor) in informacionDelDuelo.informacionDelRival">
-					    	<h7><span style="float:left" >{{clave}}: </span></h7> 
-					    	<h7><span style="float:right" >{{valor}}</span></h7><br>
+					<div id="nombrePersonajeRetador" class="resultado panel panel-primary center noMarginBot fullSize"> {{informacionDelDuelo.resultadoDuelo.personajeRetador}} </div>
+					<div class="panel panel-default noBorder resultado statDesign">
+						<div>
+					    	<h7><span style="float:left" >Jugadas: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.jugadas}}</span></h7><br>
+					    	<h7><span style="float:left" >Ganadas: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.ganadas}}</span></h7><br>
+					    	<h7><span style="float:left" >Kills: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.kills}}</span></h7><br>
+					    	<h7><span style="float:left" >Deaths: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.deaths}}</span></h7><br>
+					    	<h7><span style="float:left" >Assists: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.assists}}</span></h7><br>
+					    	<h7><span style="float:left" >Mejor Ubicacion: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.mejorUbicacion}}</span></h7><br>
+					    	<h7><span style="float:left" >Puntaje: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.puntaje}}</span></h7><br>
 					   	</div>
 					</div>
 				</div>
 
 				<!-- Segundo Bloque Inferior Derecho-->
 				<div class="bloqueInferior col-md-4 col-xs-4 col-sm-4 resultado">
-					<div id="nombrePersonajeRetador" class="panel panel-primary noMarginBot fullSize resultado "> {{informacionDelDuelo.resultadoDuelo.personajeRival}} </div>
+					<div id="nombrePersonajeRetador" class="panel panel-primary noMarginBot center fullSize resultado "> {{informacionDelDuelo.resultadoDuelo.personajeRival}} </div>
 					<div class="panel panel-default noBorder resultado statDesign">
-					  	<div ng-repeat="(clave,valor) in informacionDelDuelo.informacionDelRival">
-					    	<h7><span style="float:left" >{{clave}}: </span></h7> 
-					    	<h7><span style="float:right" >{{valor}}</span></h7><br>
+					  	<div>
+					    	<h7><span style="float:left" >Jugadas: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.jugadas}}</span></h7><br>
+					    	<h7><span style="float:left" >Ganadas: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.ganadas}}</span></h7><br>
+					    	<h7><span style="float:left" >Kills: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.kills}}</span></h7><br>
+					    	<h7><span style="float:left" >Deaths: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.deaths}}</span></h7><br>
+					    	<h7><span style="float:left" >Assists: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.assists}}</span></h7><br>
+					    	<h7><span style="float:left" >Mejor Ubicacion: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.mejorUbicacion}}</span></h7><br>
+					    	<h7><span style="float:left" >Puntaje: </span></h7> 
+					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.puntaje}}</span></h7><br>
 					   	</div>
 					</div>
 				</div>
