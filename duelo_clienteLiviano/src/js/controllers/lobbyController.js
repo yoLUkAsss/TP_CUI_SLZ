@@ -61,18 +61,6 @@ angular.module('dueloLeyendasApp')
     alert(error.descripcion);
   };
 
-  $scope.preProcess = function(){
-    var result = {};
-    var indice = 0;
-    angular.forEach($scope.estadisticaSeleccionada, function(value, key) {
-        if(!(indice==0 || indice==6)){
-          result[key]=$scope.estadisticaSeleccionada[key];
-          alert($scope.estadisticaSeleccionada[key]);
-        }
-    });
-    return result;
-
-  };
 
 
 }])
