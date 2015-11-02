@@ -78,7 +78,7 @@ class ResultadoDueloAppModel {
 	
 	def resultadoDuelo() {
 		
-		var analyzer = new AnalizadorDeAtaque()
+		var analyzer = analizador 
 	
 		var resultadoDuelo = analyzer.realizarDuelo(
 				retador.jugador,rival.jugador,

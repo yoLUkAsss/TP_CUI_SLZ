@@ -8,7 +8,9 @@ import jugador.Posicion
 import appModel.ResultadoDueloAppModel
 import util.InformacionJugador
 import util.InformacionDuelo
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class ResultadoComun {
 	InformacionJugador informacionDelRetador

@@ -3,15 +3,19 @@ package util
 import jugador.EstadisticaDePersonaje
 import jugador.Posicion
 import jugador.TipoCalificacion
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
+@Observable
+@Accessors
 class InformacionJugador {
 	String Jugadas
 	String Ganadas
 	String Kills
 	String Deaths
 	String Assists
-	Posicion MejorUbicacion
-	TipoCalificacion Puntaje
+	String MejorUbicacion
+	String Puntaje
 	
 	
 	new (EstadisticaDePersonaje estadistica){
@@ -20,7 +24,7 @@ class InformacionJugador {
 		this.Kills = estadistica.duelosGanadosNoIniciados.toString
 		this.Deaths = estadistica.derrotasNoIniciadas.toString
 		this.Assists = estadistica.duelosEmpatados.toString
-		this.MejorUbicacion = estadistica.mejorUbicacion
-		this.Puntaje = estadistica.calificacion
+		this.MejorUbicacion = estadistica.mejorUbicacion.toString
+		this.Puntaje = estadistica.calificacion.toString
 	}
 }

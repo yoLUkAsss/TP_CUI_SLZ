@@ -4,9 +4,12 @@ import java.util.List
 import jugador.EstadisticaDePersonaje
 import jugador.Posicion
 import org.eclipse.xtend.lib.annotations.Accessors
+import util.InformacionEstadisticas
+import util.InformacionEstadistica
+import java.io.Serializable
 
 @Accessors
-class DatosPersonajesJson {
+class DatosPersonajesJson implements Serializable{
 	String id
 	List<EstadisticaDePersonaje> estadisticasDePersonaje
 	List<String> posiciones
@@ -25,4 +28,5 @@ class DatosPersonajesJson {
 		return res
 	}
 	
+
 }

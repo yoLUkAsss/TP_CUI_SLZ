@@ -11,16 +11,17 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
+import util.ResultadoDuelo
 
 class ResultadoDueloAppModelTest {
     
     
     DetalleJugadorDuelo retador
     DetalleJugadorDuelo rival       
-    Jugador j1
-	Jugador j2
-	Personaje p1
-	Personaje p2
+    Jugador jugadorNumero1
+	Jugador jugadorNumero2
+	Personaje personaje1
+	Personaje personaje2
     ResultadoDueloAppModel resultado  
     ResultadoDueloAppModel resultadoSpy 	
     
@@ -30,12 +31,12 @@ class ResultadoDueloAppModelTest {
     @Before
     def void init(){
     	
-    	j1=new Jugador("juan")
-    	j2=new Jugador("maria")
-    	p1=new Personaje("Silencer",Posicion.JUNGLE)
-    	p2=new Personaje("FIZZ",Posicion.TOP)
-    	retador= new DetalleJugadorDuelo(j1,p1,Posicion.JUNGLE)
-    	rival=new DetalleJugadorDuelo(j2,p2,Posicion.TOP)
+    	jugadorNumero1=new Jugador("juan")
+    	jugadorNumero2=new Jugador("maria")
+    	personaje1=new Personaje("Silencer",Posicion.JUNGLE)
+    	personaje2=new Personaje("FIZZ",Posicion.TOP)
+    	retador= new DetalleJugadorDuelo(jugadorNumero1,personaje1,Posicion.JUNGLE)
+    	rival=new DetalleJugadorDuelo(jugadorNumero2,personaje2,Posicion.TOP)
     	
     	resultado= new ResultadoDueloAppModel(retador,rival)
     	resultadoSpy= spy(resultado)
@@ -44,42 +45,31 @@ class ResultadoDueloAppModelTest {
     
     
     @Test
-    def void testDueloEmpatado(){
-    	
-        var s =new ArrayList<Integer> 
-		s.add(100)
-		s.add(100)
-		doReturn(s).when(resultadoSpy).resultadoDuelo()
+    def void testDueloEmpatado(){	
+        var nuevoResultado = new ResultadoDuelo(jugadorNumero1,45,jugadorNumero2,45)
+		doReturn(nuevoResultado).when(resultadoSpy).resultadoDuelo()
 		resultadoSpy.actualizarDatos()
-		assertTrue(resultadoSpy.empate)
-    	
+		
+		assertTrue(resultadoSpy.empate)	
     }
     
     @Test
     def void testDueloGanadorRetador(){
     	
-    	var s =new ArrayList<Integer> 
-		s.add(100)
-		s.add(60)
-		doReturn(s).when(resultadoSpy).resultadoDuelo()
+    	var nuevoResultado = new ResultadoDuelo(jugadorNumero1,100,jugadorNumero2,45)
+		doReturn(nuevoResultado).when(resultadoSpy).resultadoDuelo()
 		resultadoSpy.actualizarDatos()
 		
-		assertEquals(j1,resultadoSpy.ganador)
-		assertEquals(j2,resultadoSpy.perdedor)
+		assertEquals(jugadorNumero1,resultadoSpy.ganador)
     }
   
     @Test
     def void testDueloGanadorRival(){
-    	
-    	var s =new ArrayList<Integer> 
-		s.add(100)
-		s.add(200)
-		doReturn(s).when(resultadoSpy).resultadoDuelo()
+    	var nuevoResultado = new ResultadoDuelo(jugadorNumero1,100,jugadorNumero2,156)
+		doReturn(nuevoResultado).when(resultadoSpy).resultadoDuelo()
 		resultadoSpy.actualizarDatos()
 		
-		assertEquals(j2,resultadoSpy.ganador)
-    	assertEquals(j1,resultadoSpy.perdedor)
-    	
+		assertEquals(jugadorNumero2,resultadoSpy.ganador)  	
     }
    
 }

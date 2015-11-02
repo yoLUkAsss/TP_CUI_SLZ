@@ -55,15 +55,34 @@
       <div class="row lobby margTop"><!--Estadisticas del Jugador en si-->
         <div class="resultado col-md-12 col-xs-12 col-sm-12">
 					<div class="resultado panel panel-primary noMarginBot fullSize"> Tus Estadisticas: </div>
+            <div>
+                <h7><span style="float:left" >Jugadas: </span></h7> 
+                <h7><span style="float:right" >{{estadisticaSeleccionada.duelosIniciados}}</span></h7><br>
+                <h7><span style="float:left" >Ganadas: </span></h7> 
+                <h7><span style="float:right" >{{estadisticaSeleccionada.duelosGanados}}</span></h7><br>
+                <h7><span style="float:left" >Kills: </span></h7> 
+                <h7><span style="float:right" >{{estadisticaSeleccionada.duelosGanadosNoIniciados}}</span></h7><br>
+                <h7><span style="float:left" >Deaths: </span></h7> 
+                <h7><span style="float:right" >{{estadisticaSeleccionada.derrotasNoIniciadas}}</span></h7><br>
+                <h7><span style="float:left" >Assists: </span></h7> 
+                <h7><span style="float:right" >{{estadisticaSeleccionada.duelosEmpatados}}</span></h7><br>
+                <h7><span style="float:left" >Mejor Ubicacion: </span></h7> 
+                <h7><span style="float:right" >{{estadisticaSeleccionada.mejorUbicacion}}</span></h7><br>
+                <h7><span style="float:left" >Puntaje: </span></h7> 
+                <h7><span style="float:right" >{{estadisticaSeleccionada.calificacion}}</span></h7><br>
+              </div>
+            <!-- Cualquier cosa volve a poner el tuyo devuelta... 
+                  Teoricamente esta parte deberia ser 2 columnas...
             <ul>
-              <li><h7>Duelos Iniciados<span class="badge">{{estadisticaSeleccionada.duelosIniciados}}</span></h7></li>
-              <li><h7>Duelos Ganados<span class="badge">{{estadisticaSeleccionada.duelosGanados}}</span></h7></li>
-              <li><h7>Duelos Ganados No Iniciados<span class="badge">{{estadisticaSeleccionada.duelosGanadosNoIniciados}}</span></h7></li>
-              <li><h7>Derrotas No Iniciadas<span class="badge">{{estadisticaSeleccionada.derrotasNoIniciadas}}</span></h7></li>
-              <li><h7>Duelos Empatados<span class="badge">{{estadisticaSeleccionada.duelosEmpatados}}</span></h7></li>
-              <li><h7>Mejor Ubicación<span class="badge">{{estadisticaSeleccionada.mejorUbicacion}}</span></h7></li>
-              <li><h7>Calificación<span class="badge">{{estadisticaSeleccionada.calificacion}}</span></h7></li>
+              <li><h7><span style="float:left">Jugadas: </span><span class="badge">{{estadisticaSeleccionada.duelosIniciados}}</span></h7></li>
+              <li><h7><span style="float:left">Ganadas: </span><span class="badge">{{estadisticaSeleccionada.duelosGanados}}</span></h7></li>
+              <li><h7><span style="float:left">Kills: </span><span class="badge">{{estadisticaSeleccionada.duelosGanadosNoIniciados}}</span></h7></li>
+              <li><h7><span style="float:left">Deaths: </span><span class="badge">{{estadisticaSeleccionada.derrotasNoIniciadas}}</span></h7></li>
+              <li><h7><span style="float:left">Assists: </span><span class="badge">{{estadisticaSeleccionada.duelosEmpatados}}</span></h7></li>
+              <li><h7><span style="float:left">Mejor Ubicación</span><span class="badge">{{estadisticaSeleccionada.mejorUbicacion}}</span></h7></li>
+              <h7><span style="float:left">Calificación</span><span class="badge">{{estadisticaSeleccionada.calificacion}}</span></h7></li>
 				  </ul>
+            -->
         </div>
 
       </div><!--Fin de Estadisticas del Jugador en si-->
