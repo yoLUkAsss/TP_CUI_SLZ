@@ -21,30 +21,30 @@ class InformacionDuelo {
 	
 	new (ResultadoDueloAppModel resultado){
 		var datosDelDuelo = resultado.resDuelo
-		this.veredicto = resultado.veredict
+		this.personajeRetador = resultado.pjRetador.personajeAsociado.nombre
+		this.personajeRival = resultado.pjRival.personajeAsociado.nombre
+		this.veredicto = resultado.description
+		definirMensajes(datosDelDuelo.resultadoRetador,datosDelDuelo.resultadoRival)
 		this.valorRetador = datosDelDuelo.resultadoRetador.toString
 		this.valorRival = datosDelDuelo.resultadoRival.toString
 		this.nombreGanador = datosDelDuelo.ganador.nombre
-		this.personajeRetador = resultado.pjRetador.personajeAsociado.nombre
-		this.personajeRival = resultado.pjRival.personajeAsociado.nombre
-		definirMensajes()
 	}
 	
-	def private definirMensajes() {
-		if (this.valorRetador > this.valorRival){
+	def private definirMensajes(Integer resultadoRetador, Integer resultadoRival) {
+		if (resultadoRetador > resultadoRival){
 			this.personajeGanador = this.personajeRetador
-			this.mensaje = "En Hora Buena!"
+			this.mensaje = "Enhorabuena!"
 			this.mensajeDelBoton = "Celebrar Victoria"
 		} else {
-			if (this.valorRetador < this.valorRival) {
+			if (resultadoRetador < resultadoRival) {
 				this.personajeGanador = this.personajeRival
 				this.mensaje = "Honores Al Ganador:"
 				this.mensajeDelBoton = "Aceptar Derrota"
 			}
 			else {//ESTO ES EN CASO DE EMPATE
-				this.personajeGanador = this.personajeRetador //Decision de los desarrolladores
-				this.mensaje = "Empataste gatin"
-				this.mensajeDelBoton = "Salir con verguenza"
+				this.personajeGanador = this.personajeRetador
+				this.mensaje = "Empataste"
+				this.mensajeDelBoton = "Salir del Empate"
 			}
 		}
 	}

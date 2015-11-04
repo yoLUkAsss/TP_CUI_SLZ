@@ -72,14 +72,13 @@ angular.module('dueloLeyendasApp')
   };
 
   $scope.callbackResult = function(data) {
-    alert("OK");
     ResultService.setData(data);
     $state.go('result');
   };
 
   $scope.errorHandlerResult = function(error) {
     alert(error.descripcion);
-    $state.go('noTienesRival')
+    $state.go('noTienesRival');
   };
 
 

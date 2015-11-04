@@ -11,12 +11,14 @@ angular.module('dueloLeyendasApp')
         };
 
         this.informacionDelDueloBot = function(callback,errorHandler){
+          alert("llegue al principio del metodo");
         $http({
             url: 'http://localhost:9000/noRival',
             method: "POST",
             data: this.eleccion,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
               }).success(callback).error(errorHandler);
+              alert("llegue al final del metodo");
         };
 
 

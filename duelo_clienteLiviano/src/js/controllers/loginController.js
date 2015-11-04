@@ -18,11 +18,10 @@ angular.module('dueloLeyendasApp')
   };
 
   $scope.callbackLobby = function(data){
-    alert("buenCallBack");
     LobbyService.setDatos(data);
     $state.go('lobby');
   };
   $scope.errorHandlerLobby =function(error){
-    alert("malCallback");
+    alert(error.descripcion);
   };
 }])

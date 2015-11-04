@@ -53,8 +53,17 @@ class LobbyAppModel {
 		var Personaje viper = new Personaje("Viper",Posicion.BOT)
 		var Personaje pudge = new Personaje("Pudge",Posicion.BOT)
 		var Personaje witchdoctor = new Personaje("WitchDoctor",Posicion.MID)
+		var Jugador nico = new Jugador("Nico")
+		nico.setUsuario("nicoLawl")
+		nico.setPassword("1234")
+		var Jugador rosali = new Jugador("Rosali")
+		rosali.setUsuario("rosaliLawl")
+		rosali.setPassword("1234")
+		var Jugador lucas = new Jugador("Lucas")
+		lucas.setUsuario("lucasLawl")
+		lucas.setPassword("1234")
 		var Jugador juaco = new Jugador("Juaco")
-		juaco.setUsuario("latengoverde")
+		juaco.setUsuario("juacoGrox")
 		juaco.setPassword("1234")
 		var Jugador marq = new Jugador("Marquitos")
 		marq.setUsuario("elMasCapo")
@@ -98,8 +107,9 @@ class LobbyAppModel {
 		personajesUtilizables.add(pudge)
 		
 		var List<Jugador> jugadores = newArrayList
-		jugadores.add(marq);//jugadores.add(xPeke);jugadores.add(juaco)
-		//juaco.ganeYSoyRetador(amumu,Posicion.TOP)
+		jugadores.add(marq);jugadores.add(xPeke);jugadores.add(juaco)
+		jugadores.add(nico);jugadores.add(lucas);jugadores.add(rosali)
+		juaco.ganeYSoyRetador(amumu,Posicion.TOP)
 		
 		this.setAll(null,jugadores,personajesUtilizables,posiciones)
 	}
@@ -107,7 +117,6 @@ class LobbyAppModel {
 	def setAll(Jugador jugador,List<Jugador> jugadores , List<Personaje> pjs,List<Posicion> posiciones){
 	    this.jugador=jugador
 	    personajesTotales = pjs
-	    selectorRival = new SelectorDeRival(personajesTotales,jugadores)
 	    this.jugadores = jugadores
 	    this.posiciones = posiciones
 		
@@ -118,11 +127,11 @@ class LobbyAppModel {
 	
 	def autentificar(Login log) {
 		var jugadorAuxiliar = this.jugadores.findFirst[each| log.matches(each)]
-		//var jugadorAuxiliar =this.jugadores.findFirst[each | each.identifies(usuario,password)]
 		
 		if(jugadorAuxiliar != null){
 			this.jugadores.remove(jugadorAuxiliar)
 			this.jugador = jugadorAuxiliar
+			selectorRival = new SelectorDeRival(personajesTotales,jugadores)
 			this.actualizarListado()
 			jugadorAuxiliar	
 		}
@@ -154,11 +163,11 @@ class LobbyAppModel {
 	@Observable
 	def iniciarDueloBotConPersonaje(Posicion pos, String personajeElegido){
 		var personajeBuscado = this.personajesTotales.findFirst[personaje | personaje.nombre.equals(personajeElegido)]
-		var detallesParaElDuelo  = new DetalleJugadorDuelo(jugador,personajeBuscado,pos)
+		var detallesParaElDueloRetador  = new DetalleJugadorDuelo(jugador,personajeBuscado,pos)
 		var MRX robot = new MRX("MR-X",jugador)
 		var Personaje personajeRobot = selectorRival.determinarPersonaje(personajeBuscado)
-		var rival =  new DetalleJugadorDuelo(robot,personajeRobot,personajeRobot.getPosicionIdeal)
-		this.iniciarDuelo(detallesParaElDuelo,rival)
+		var detallesParaElDueloRival =  new DetalleJugadorDuelo(robot,personajeRobot,personajeRobot.getPosicionIdeal)
+		this.iniciarDuelo(detallesParaElDueloRetador,detallesParaElDueloRival)
 	}
 	
 	@Observable
@@ -173,15 +182,14 @@ class LobbyAppModel {
 	}
 	
 	@Observable
-	def iniciarDuelo(DetalleJugadorDuelo rival , DetalleJugadorDuelo retador){
-		val res = new ResultadoDueloAppModel(retador,rival)
+	def iniciarDuelo(DetalleJugadorDuelo detallesParaElDueloRetador , DetalleJugadorDuelo detallesParaElDueloRival){
+		val res = new ResultadoDueloAppModel(detallesParaElDueloRetador,detallesParaElDueloRival)
 		res.actualizarDatos()
 		actualizarListado
 		return res
 	}
-//////////////////////////////
-/////METODOS- DUELO-ARENA/////
-//////////////////////////////	
+
+
 	@Observable
 	def iniciarDuelo(Posicion pos){
 		var detallesParaElDuelo = new DetalleJugadorDuelo(jugador,estadisticaSeleccionada.personajeAsociado,pos)

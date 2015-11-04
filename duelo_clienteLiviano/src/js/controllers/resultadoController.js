@@ -14,11 +14,10 @@ angular.module('dueloLeyendasApp')
 	};
 
 	$scope.jugarConRobot = function(){
-    	ResultService.informacionDelDueloBot($scope.datos,$scope.callbackNoRival,$scope.errorHandlerNoRival);
+    	ResultService.informacionDelDueloBot($scope.callbackNoRival,$scope.errorHandlerNoRival);
 	};
 
 	$scope.callbackNoRival = function(data) {
-	  alert("OK");
 	  ResultService.setData(data);
 	  $state.go('result');
 	};
