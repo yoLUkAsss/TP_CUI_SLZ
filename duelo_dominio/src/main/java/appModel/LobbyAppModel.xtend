@@ -98,8 +98,8 @@ class LobbyAppModel {
 		personajesUtilizables.add(pudge)
 		
 		var List<Jugador> jugadores = newArrayList
-		jugadores.add(marq);jugadores.add(xPeke);jugadores.add(juaco)
-		juaco.ganeYSoyRetador(amumu,Posicion.TOP)
+		jugadores.add(marq);//jugadores.add(xPeke);jugadores.add(juaco)
+		//juaco.ganeYSoyRetador(amumu,Posicion.TOP)
 		
 		this.setAll(null,jugadores,personajesUtilizables,posiciones)
 	}
@@ -141,21 +141,44 @@ class LobbyAppModel {
 		}
 		else throw new NoEstaAutenticadoException("Deslog incorrecto")
 	}
+	
 	@Observable
 	def iniciarDueloConPersonaje(Posicion pos, String personajeElegido){
 		var personajeBuscado = this.personajesTotales.findFirst[personaje | personaje.nombre.equals(personajeElegido)]
-		var detallesParaElDuelo = new DetalleJugadorDuelo(jugador,personajeBuscado,pos)
-		var DetalleJugadorDuelo rival= selectorRival.dameRival(detallesParaElDuelo)
+		var detallesParaElDuelo  = new DetalleJugadorDuelo(jugador,personajeBuscado,pos)
+		var rival = selectorRival.dameRival(detallesParaElDuelo)
+			if (rival==null) throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
+		this.iniciarDuelo(detallesParaElDuelo,rival)
+	}
+	
+	@Observable
+	def iniciarDueloBotConPersonaje(Posicion pos, String personajeElegido){
+		var personajeBuscado = this.personajesTotales.findFirst[personaje | personaje.nombre.equals(personajeElegido)]
+		var detallesParaElDuelo  = new DetalleJugadorDuelo(jugador,personajeBuscado,pos)
+		var MRX robot = new MRX("MR-X",jugador)
+		var Personaje personajeRobot = selectorRival.determinarPersonaje(personajeBuscado)
+		var rival =  new DetalleJugadorDuelo(robot,personajeRobot,personajeRobot.getPosicionIdeal)
+		this.iniciarDuelo(detallesParaElDuelo,rival)
+	}
+	
+	@Observable
+	def obtenerRival(Personaje personajeExistente , DetalleJugadorDuelo retador) {
+		var rival = selectorRival.dameRival(retador)
 			if (rival==null){
-				throw new NoHayRivalException("NO HAY QUIEN SE LE ANIME EN SU ACTUAL RANKING")
+				var MRX robot = new MRX("MR-X",jugador)
+				var Personaje personajeRobot = selectorRival.determinarPersonaje(personajeExistente)
+				return new DetalleJugadorDuelo(robot,personajeRobot,personajeRobot.getPosicionIdeal)
 		    }
-		    
-		val res = new ResultadoDueloAppModel(detallesParaElDuelo,rival)
+		return rival
+	}
+	
+	@Observable
+	def iniciarDuelo(DetalleJugadorDuelo rival , DetalleJugadorDuelo retador){
+		val res = new ResultadoDueloAppModel(retador,rival)
 		res.actualizarDatos()
 		actualizarListado
 		return res
 	}
-	
 //////////////////////////////
 /////METODOS- DUELO-ARENA/////
 //////////////////////////////	

@@ -1,14 +1,10 @@
 package DueloControllers
 
-import java.util.List
-import jugador.EstadisticaDePersonaje
-import org.eclipse.xtend.lib.annotations.Accessors
-import util.ResultadoDuelo
-import jugador.Posicion
 import appModel.ResultadoDueloAppModel
-import util.InformacionJugador
+import org.eclipse.xtend.lib.annotations.Accessors
 import util.InformacionDuelo
 import org.uqbar.commons.utils.Observable
+import util.InformacionJugador
 
 @Observable
 @Accessors

@@ -3,7 +3,7 @@ angular.module('dueloLeyendasApp')
       .controller('LoginController',['$scope','$state','LoginService','LobbyService',function($scope,$state,LoginService,LobbyService){
   $scope.user = {usuario: "", password: ""};
   $scope.loginFailure=false;
-  $scope.spanLog=""
+  $scope.spanLog="";
   $scope.login = function (){
     LoginService.login($scope.user,$scope.callback,$scope.errorHandler);
   };
@@ -13,7 +13,7 @@ angular.module('dueloLeyendasApp')
     LobbyService.datosDelJuego($scope.callbackLobby,$scope.errorHandlerLobby);
   };
   $scope.errorHandler=function(error){
-    $scope.spanLog = error.descripcion
+    $scope.spanLog = error.descripcion;
     $scope.loginFailure=true;
   };
 
