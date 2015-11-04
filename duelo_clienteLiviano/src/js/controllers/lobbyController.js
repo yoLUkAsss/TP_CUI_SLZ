@@ -12,7 +12,7 @@ angular.module('dueloLeyendasApp')
   };
   $scope.personajesToTheHalf = function(leftOrRight){
     var res = [];
-    var estadisticaPorPersonaje = $scope.datos.estadisticaPorPersonajes
+    var estadisticaPorPersonaje = $scope.datos.estadisticaPorPersonajes;
     var middle = estadisticaPorPersonaje.length / 2;
     if(leftOrRight === 'left'){
       for(i = 0; i<middle; i++){
@@ -67,7 +67,8 @@ angular.module('dueloLeyendasApp')
       idPersonajeJugador: $scope.personajeSeleccionado.nombre,
       posicionJugador: posicion
     };
-    ResultService.informacionDelDuelo(datos,$scope.callbackResult,$scope.errorHandlerResult);
+    ResultService.guardarEleccionJugador(datos)
+    ResultService.informacionDelDuelo($scope.callbackResult,$scope.errorHandlerResult);
   };
 
   $scope.callbackResult = function(data) {
@@ -78,6 +79,7 @@ angular.module('dueloLeyendasApp')
 
   $scope.errorHandlerResult = function(error) {
     alert(error.descripcion);
+    $state.go('noTienesRival')
   };
 
 

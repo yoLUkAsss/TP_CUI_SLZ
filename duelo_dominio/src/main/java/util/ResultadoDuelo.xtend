@@ -36,7 +36,7 @@ class ResultadoDuelo {
 			return "Empate :("
 		}
 		
-			return "Gandor: " + ganador().nombre + "!!!"
+			return "Ganador: " + ganador().nombre + "!!!"
 		
 	}
 	def resultadoGanador(){

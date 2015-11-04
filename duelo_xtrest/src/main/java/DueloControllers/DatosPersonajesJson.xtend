@@ -4,10 +4,10 @@ import java.util.List
 import jugador.EstadisticaDePersonaje
 import jugador.Posicion
 import org.eclipse.xtend.lib.annotations.Accessors
-import util.InformacionEstadisticas
-import util.InformacionEstadistica
 import java.io.Serializable
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class DatosPersonajesJson implements Serializable{
 	String id
@@ -27,6 +27,4 @@ class DatosPersonajesJson implements Serializable{
 		}
 		return res
 	}
-	
-
 }

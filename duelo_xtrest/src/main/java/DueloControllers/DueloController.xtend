@@ -73,21 +73,22 @@ class DueloController {
 			var respuesta = new ResultadoComun(resultado)
 			ok('''{"informacionDelRetador":«respuesta.informacionDelRetador.toJson»,"informacionDelRival":«respuesta.informacionDelRival.toJson»,"resultadoDuelo":«respuesta.resultadoDuelo.toJson»}''')
 		} catch (NoHayRivalException e) {
-			print("GATO")
 			badRequest('''{"descripcion":"«e.message»"}''')
 		}
 	}
 	
-	@Post("/resultado/")
-	def Result informacionDelDueloConElRobot(@Body String seleccionesDelJugador){
+	@Post("/noRival")
+	def Result informacionDelDueloBot(@Body String seleccionesDelJugador){
 	    response.contentType = ContentType.APPLICATION_JSON
-	    var data=seleccionesDelJugador.fromJson(SeleccionesDelJugador)
-	    var resultado= LobbyAppModel.getInstance().iniciarDueloBot(data.posicionJugador)
-	    var respuesta = new ResultadoComun(resultado)
-			ok('''{"informacionDelRetador":"«respuesta.informacionDelRetador»
-			", "informacionDelRival":"«respuesta.informacionDelRival»
-			", "resultadoDuelo":"«respuesta.resultadoDuelo»"}''')
-	    
+	    try {
+		    var data=seleccionesDelJugador.fromJson(SeleccionesDelJugador)
+		    var resultado= LobbyAppModel.getInstance().iniciarDueloBotConPersonaje(data.posicionJugador,data.idPersonajeJugador)
+		    var respuesta = new ResultadoComun(resultado)
+			ok('''{"informacionDelRetador":«respuesta.informacionDelRetador.toJson», "informacionDelRival":«respuesta.informacionDelRival.toJson», "resultadoDuelo":«respuesta.resultadoDuelo.toJson»}''')
+	    } catch (Exception e){
+	    	e.printStackTrace
+	    	badRequest('''{"descripcion":"«e.message»"}''')
+	    }
 	}
 	
 	

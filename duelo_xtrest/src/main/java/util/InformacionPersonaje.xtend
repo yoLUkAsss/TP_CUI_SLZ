@@ -2,7 +2,11 @@ package util
 
 import jugador.Personaje
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
+@Observable
+@Accessors
 class InformacionPersonaje {
 	String nombre
 	String posIdeal
