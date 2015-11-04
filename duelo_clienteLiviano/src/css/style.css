@@ -105,10 +105,13 @@ input{
 
 
 .noTienesRival.titulo {
-    text-align: center;
     color: #00BFFF;
-    font-size: 40px;
-    top:70px;
+}
+
+.titulo {
+  font-size: 40px;
+  top:70px;
+  text-align: center;
 }
 
 
@@ -131,8 +134,14 @@ input{
   border-radius: 0px;
 }
 
-.resultado.labelFormatLarge {
+.resultado.labelFormatLargeRed {
   color: red;
+	font-size: 26px;
+  text-align: center !important;
+}
+
+.resultado.labelFormatLargeGreen {
+  color: green;
 	font-size: 26px;
   text-align: center !important;
 }
@@ -148,8 +157,23 @@ input{
   font-size: 24px;
 }
 
+.resultado.titulo {
+  color: white;
+}
+
+.resultado.floatIquierda {
+  float: left;
+}
+
+.resultado.floatDerecha {
+  float: right;
+}
+
 .resultado.backOnPink {
   background-color: #ffb6c1;
+}
+.resultado.backOnGreen {
+  background-color: lightgreen;
 }
 
 .resultado.buttonStyle {
@@ -177,7 +201,7 @@ input{
   border-color: black;
 }
 
-.resultado.imageBack {
+.imageBack {
   background-size: 100% !important;
   height: 100% !important;
   background-repeat: no-repeat;
@@ -215,9 +239,7 @@ input{
 
 
 
-#selectedCharacterlbl{
-  margin-bottom: 10px;
-  border-radius: 8px;
+.backGradient{
   background: -webkit-linear-gradient(#337AB7, darkblue); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#337AB7, darkblue); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#337AB7,darkblue);
@@ -270,5 +292,3 @@ input{
   padding: 0px;
   width: 100%;
 }
-
-

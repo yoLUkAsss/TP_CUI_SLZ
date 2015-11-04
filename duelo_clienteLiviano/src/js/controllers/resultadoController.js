@@ -1,5 +1,5 @@
 angular.module('dueloLeyendasApp')
-.controller('ResultController',['$scope','$state','ResultService',function($scope,$state,ResultService){
+.controller('ResultController',['$scope','$state','ResultService','LobbyService',function($scope,$state,ResultService,LobbyService){
 
 	$scope.informacionDelDuelo = ResultService.getData();
 
@@ -27,8 +27,39 @@ angular.module('dueloLeyendasApp')
 	  $state.go('noTienesRival');
 	};
 
+	$scope.callbackLobby = function(data){
+    LobbyService.setDatos(data);
+    $state.go('lobby');
+  };
+  $scope.errorHandlerLobby =function(error){
+    alert(error.descripcion);
+  };
+
 	$scope.irAlLobby = function(){
-		$state.go('lobby');
+		LobbyService.datosDelJuego($scope.callbackLobby,$scope.errorHandlerLobby);
 	};
+
+	$scope.colorVeredicto = {
+		'color': 'red',
+		'font-size': '26px',
+		'text-align': 'center !important',
+	};
+
+	$scope.colorFondo ={
+	  'background-color': '#ffb6c1'
+	};
+
+	$scope.colorearResultado = function(){
+		if($scope.informacionDelDuelo.resultadoDuelo.veredicto.indexOf("ganaste") > -1){
+			$scope.colorVeredicto= {
+			  'color': 'green',
+				'font-size': '26px',
+			  'text-align': 'center !important',
+			};
+			$scope.colorFondo= {
+			  'background-color': 'lightgreen'
+			};
+		}
+	}
 
 }]);

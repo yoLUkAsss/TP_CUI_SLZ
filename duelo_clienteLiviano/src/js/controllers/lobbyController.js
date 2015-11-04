@@ -32,6 +32,9 @@ angular.module('dueloLeyendasApp')
 
   };
 
+  $scope.ponerColorFondo = function(){
+    return {'background-color':'red'}
+  }
 
 
   $scope.smallSrc = function(personaje){
@@ -39,7 +42,6 @@ angular.module('dueloLeyendasApp')
   };
 
   $scope.bigSrc = function(personaje){
-    //SORRY NICO, LO CAMBIE--- ESPERO TE GUSTE
     return "css/images/Lobby/" + personaje.nombre + "Medium.jpg";
   };
 

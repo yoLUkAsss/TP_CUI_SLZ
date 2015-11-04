@@ -1,13 +1,13 @@
 <div class="resultado container imageBack img-responsive" ng-style="getImagePath(informacionDelDuelo.resultadoDuelo.personajeGanador)">
 	<div>
-		<h1 class="noTienesRival titulo" style="color: white !important;">{{informacionDelDuelo.resultadoDuelo.personajeRetador}} vs {{informacionDelDuelo.resultadoDuelo.personajeRival}}</h1>
+		<h1 class="noTienesRival titulo">{{informacionDelDuelo.resultadoDuelo.personajeRetador}} vs {{informacionDelDuelo.resultadoDuelo.personajeRival}}</h1>
 	</div>
 	<div>
 		<div class="row col-md-4 col-md-offset-7 col-xs-6 col-xs-offset-4 col-sm-4 col-sm-offset-7 resultado font-responsive">
 			<!-- Primer bloque Superior Central -->
 			<div class="panel panel-default resultado bloqueCentral noBorder center">
-		  		<div class="panel-body resultado backOnPink center">
-		  			<span class="resultado labelFormatLarge center"> {{informacionDelDuelo.resultadoDuelo.veredicto}} </span> <br>
+		  		<div class="panel-body resultado center" data-ng-init="colorearResultado()" ng-style="colorFondo">
+		  			<span class="resultado center" ng-style="colorVeredicto"> {{informacionDelDuelo.resultadoDuelo.veredicto}} </span> <br>
 		  			<span id="puntajeRetador" class="resultado labelFormatSmall center"> {{informacionDelDuelo.resultadoDuelo.valorRetador}} a</span>
 		  			<span id="puntajeRival" class="resultado labelFormatSmall center"> {{informacionDelDuelo.resultadoDuelo.valorRival}} </span> <br>
 		  			<span id="cartelVeredicto" class="resultado labelFormatSmall center"> {{informacionDelDuelo.resultadoDuelo.mensaje}}: </span> <br>
@@ -24,20 +24,20 @@
 					<div id="nombrePersonajeRetador" class="resultado panel panel-primary center noMarginBot fullSize"> {{informacionDelDuelo.resultadoDuelo.personajeRetador}} </div>
 					<div class="panel panel-default noBorder resultado statDesign">
 						<div>
-					    	<h7><span style="float:left" >Jugadas: </span></h7> 
-					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.jugadas}}</span></h7><br>
-					    	<h7><span style="float:left" >Ganadas: </span></h7> 
-					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.ganadas}}</span></h7><br>
-					    	<h7><span style="float:left" >Kills: </span></h7> 
-					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.kills}}</span></h7><br>
-					    	<h7><span style="float:left" >Deaths: </span></h7> 
-					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.deaths}}</span></h7><br>
-					    	<h7><span style="float:left" >Assists: </span></h7> 
-					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.assists}}</span></h7><br>
-					    	<h7><span style="float:left" >Mejor Ubicacion: </span></h7> 
-					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.mejorUbicacion}}</span></h7><br>
-					    	<h7><span style="float:left" >Puntaje: </span></h7> 
-					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRetador.puntaje}}</span></h7><br>
+					    	<h7><span class="resultado floatIquierda" >Jugadas: </span></h7>
+					    	<h7><span class="resultado floatDerecha" >{{informacionDelDuelo.informacionDelRetador.jugadas}}</span></h7><br>
+					    	<h7><span class="resultado floatIquierda" >Ganadas: </span></h7>
+					    	<h7><span class="resultado floatDerecha" >{{informacionDelDuelo.informacionDelRetador.ganadas}}</span></h7><br>
+					    	<h7><span class="resultado floatIquierda" >Kills: </span></h7>
+					    	<h7><span class="resultado floatDerecha" >{{informacionDelDuelo.informacionDelRetador.kills}}</span></h7><br>
+					    	<h7><span class="resultado floatIquierda" >Deaths: </span></h7>
+					    	<h7><span class="resultado floatDerecha" >{{informacionDelDuelo.informacionDelRetador.deaths}}</span></h7><br>
+					    	<h7><span class="resultado floatIquierda" >Assists: </span></h7>
+					    	<h7><span class="resultado floatDerecha" >{{informacionDelDuelo.informacionDelRetador.assists}}</span></h7><br>
+					    	<h7><span class="resultado floatIquierda" >Mejor Ubicacion: </span></h7>
+					    	<h7><span class="resultado floatDerecha" >{{informacionDelDuelo.informacionDelRetador.mejorUbicacion}}</span></h7><br>
+					    	<h7><span class="resultado floatIquierda" >Puntaje: </span></h7>
+					    	<h7><span class="resultado floatDerecha" >{{informacionDelDuelo.informacionDelRetador.puntaje}}</span></h7><br>
 					   	</div>
 					</div>
 				</div>
@@ -47,19 +47,19 @@
 					<div id="nombrePersonajeRetador" class="panel panel-primary noMarginBot center fullSize resultado "> {{informacionDelDuelo.resultadoDuelo.personajeRival}} </div>
 					<div class="panel panel-default noBorder resultado statDesign">
 					  	<div>
-					    	<h7><span style="float:left" >Jugadas: </span></h7> 
+					    	<h7><span style="float:left" >Jugadas: </span></h7>
 					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.jugadas}}</span></h7><br>
-					    	<h7><span style="float:left" >Ganadas: </span></h7> 
+					    	<h7><span style="float:left" >Ganadas: </span></h7>
 					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.ganadas}}</span></h7><br>
-					    	<h7><span style="float:left" >Kills: </span></h7> 
+					    	<h7><span style="float:left" >Kills: </span></h7>
 					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.kills}}</span></h7><br>
-					    	<h7><span style="float:left" >Deaths: </span></h7> 
+					    	<h7><span style="float:left" >Deaths: </span></h7>
 					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.deaths}}</span></h7><br>
-					    	<h7><span style="float:left" >Assists: </span></h7> 
+					    	<h7><span style="float:left" >Assists: </span></h7>
 					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.assists}}</span></h7><br>
-					    	<h7><span style="float:left" >Mejor Ubicacion: </span></h7> 
+					    	<h7><span style="float:left" >Mejor Ubicacion: </span></h7>
 					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.mejorUbicacion}}</span></h7><br>
-					    	<h7><span style="float:left" >Puntaje: </span></h7> 
+					    	<h7><span style="float:left" >Puntaje: </span></h7>
 					    	<h7><span style="float:right" >{{informacionDelDuelo.informacionDelRival.puntaje}}</span></h7><br>
 					   	</div>
 					</div>
