@@ -19,6 +19,8 @@ import excepciones.NoHayRivalException
 import excepciones.NoEstaAutenticadoException
 
 import util.SeleccionesDelJugador
+import util.DatosPersonajesJson
+import util.ResultadoComun
 
 @Controller
 class DueloController {

@@ -69,7 +69,7 @@ angular.module('dueloLeyendasApp')
       idPersonajeJugador: $scope.personajeSeleccionado.nombre,
       posicionJugador: posicion
     };
-    ResultService.guardarEleccionJugador(datos)
+    ResultService.guardarEleccionJugador(datos);
     ResultService.informacionDelDuelo($scope.callbackResult,$scope.errorHandlerResult);
   };
 

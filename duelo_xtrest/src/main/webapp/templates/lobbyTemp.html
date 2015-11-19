@@ -1,0 +1,80 @@
+<div class="imageBack ">
+  <div class="container"><button type="button" class="btn btn-primary btn-responsive" ng-click="salir()">Salir</button>
+    <div class="center">
+      <h1><span ng-model="usuario" class="label label-default">Bienvenido {{usuario}}</span></h1>
+    </div>
+    <div class="center">
+      <h3><span class="label label-primary">Seleccione un Personaje:</span></h3>
+    </div>
+
+    <div class="row margTop">
+      <div id="columnaIzq" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center ">
+          <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding">
+            <button ng-repeat="estadistica in personajesToTheHalf('left')" class="img-responsive btn characerSelect" ng-click="changeEstadisticaSelecionada(estadistica)"><img class="characterSelection img-thumbnail" ng-src="{{estadistica.personajeAsociado.imagenSrc}}" ng-show="estadistica.personajeAsociado.imagenSrc"></button>
+          </div>
+          <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding">
+            <button ng-repeat="estadistica in personajesToTheHalf('right')" class="img-responsive btn characerSelect" ng-click="changeEstadisticaSelecionada(estadistica)"><img class="characterSelection img-thumbnail" ng-src="{{estadistica.personajeAsociado.imagenSrc}}" ng-show="estadistica.personajeAsociado.imagenSrc"></button>
+          </div>
+      </div><!--Fin columna izquierda-->
+
+      <div id="columnaCentro" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center " ng-model="personajeSeleccionado.nombre">
+        <div id="selectedCharacterlbl" class="panel fullSize center backGradient">{{personajeSeleccionado.nombre}}</div>
+        <img id='selectedCharacter' class="img-responsive" ng-src="{{personajeSeleccionado.imagenBigSrc}}" ng-show="personajeSeleccionado.imagenBigSrc"></img>
+      </div><!--Fin columna centro-->
+
+      <div id="columnaDerecha" class="lobby col-md-4 col-xs-4 col-lg-4 col-sm-4 allImgContainer center ">
+
+
+        <div class="panel fullSize center">Jugar!</div>
+        <div class="lobby btn-group" role="group" ng-repeat="posicion in datos.posiciones">
+          <button type="button" class="btn btn-primary btn-responsive" ng-click="jugar(posicion)">{{posicion}}</button>
+        </div>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#caracteristicasModal">Mostrar Caracteristicas:</button>
+        <div id="caracteristicasModal" class="lobby container modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header fullSize">
+          				<h1>{{personajeSeleccionado.nombre}}</h1>
+          			</div>
+                <div class="modal-body">
+                  <div class="row">
+                    <h2>Mejor Posición:</h2>
+                    <h3>{{personajeSeleccionado.posicionIdeal}}<h3>
+                      <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding"><h2>Especialidades:</h2>
+                        <h3 ng-repeat="especialidad in personajeSeleccionado.especialidades">{{especialidad}}</h3>
+                      </div>
+                      <div class="lobby col-md-6 col-xs-6 col-lg-6 col-sm-6 sinPadding"><h2>Debilidades:</h2>
+                        <h3 ng-repeat="debilidad in personajeSeleccionado.debilidades">{{debilidad}}</h3>
+                      </div>
+
+                  </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="row lobby margTop"><!--Estadisticas del Jugador en si-->
+          <div class="resultado col-md-12 col-xs-12 col-sm-12">
+  					<div class="resultado panel panel-primary noMarginBot fullSize"> Tus Estadisticas: </div>
+              <div>
+                  <h7><span style="float:left" >Jugadas: </span></h7>
+                  <h7><span style="float:right" >{{estadisticaSeleccionada.duelosIniciados}}</span></h7><br>
+                  <h7><span style="float:left" >Ganadas: </span></h7>
+                  <h7><span style="float:right" >{{estadisticaSeleccionada.duelosGanados}}</span></h7><br>
+                  <h7><span style="float:left" >Kills: </span></h7>
+                  <h7><span style="float:right" >{{estadisticaSeleccionada.duelosGanadosNoIniciados}}</span></h7><br>
+                  <h7><span style="float:left" >Deaths: </span></h7>
+                  <h7><span style="float:right" >{{estadisticaSeleccionada.derrotasNoIniciadas}}</span></h7><br>
+                  <h7><span style="float:left" >Assists: </span></h7>
+                  <h7><span style="float:right" >{{estadisticaSeleccionada.duelosEmpatados}}</span></h7><br>
+                  <h7><span style="float:left" >Mejor Ubicacion: </span></h7>
+                  <h7><span style="float:right" >{{estadisticaSeleccionada.mejorUbicacion}}</span></h7><br>
+                  <h7><span style="float:left" >Puntaje: </span></h7>
+                  <h7><span style="float:right" >{{estadisticaSeleccionada.calificacion}}</span></h7><br>
+                </div>
+          </div>
+        </div><!--Fin de Estadisticas del Jugador en si-->
+      </div><!--Fin columna derecha-->
+    </div>
+  </div>
+</div>

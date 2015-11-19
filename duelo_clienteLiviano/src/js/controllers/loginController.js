@@ -5,7 +5,7 @@ angular.module('dueloLeyendasApp')
   $scope.loginFailure=false;
   $scope.spanLog="";
   $scope.login = function (){
-    LoginService.login($scope.user,$scope.callback,$scope.errorHandler);
+    LoginService.login($scope.user,callback,errorHandler);
   };
   $scope.callback = function(data){
     var nuevoUser = data.id;

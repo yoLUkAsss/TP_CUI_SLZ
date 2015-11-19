@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Duelo_android</string>
+    <string name="title_personaje_detail">Personaje Detail</string>
+    <string name="title_Login">DUELO DE LEYENDAS</string>
+    <string name="Login_username">Username:</string>
+    <string name="Login_password">Password:</string>
+    <string name="Login_Button">Join</string>
+    <string name="General_Welcome">Bienvenido!</string>
+    <string name="General_Duelo">Duelo</string>
+    <string name="General_Character">Personaje</string>
+    <string name="General_Search">Buscar</string>
+</resources>
