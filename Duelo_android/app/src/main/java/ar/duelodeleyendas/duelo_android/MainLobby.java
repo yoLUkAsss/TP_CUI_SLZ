@@ -11,7 +11,7 @@ public class MainLobby extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lobby_activity_actual);
+        setContentView(R.layout.actual_lobby_activity);
     }
 
 }

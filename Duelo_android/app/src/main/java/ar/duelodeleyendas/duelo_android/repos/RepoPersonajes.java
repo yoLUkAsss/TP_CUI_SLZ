@@ -1,6 +1,7 @@
 package ar.duelodeleyendas.duelo_android.repos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import ar.duelodeleyendas.duelo_android.domain.Personaje;
@@ -35,6 +36,14 @@ public class RepoPersonajes {
     }
 
 
+    public Personaje getPersonajePorId(Long id) {
+        for (Personaje personaje : this.personajes) {
+            if (personaje.getId().equals(id)) {
+                return personaje;
+            }
+        }
+        return null;
+    }
 
 
 
@@ -52,4 +61,20 @@ public class RepoPersonajes {
     }
 
     public void agregarPersonaje(Personaje personaje) {this.personajes.add(personaje);}
+
+    public List<Personaje> todosLosPersonajes() {return getInstance().todosLosPersonajes(null,MAX_RESULTS);}
+
+    public List<Personaje> todosLosPersonajes(String nombre, int max) {
+        Iterator<Personaje> it = personajes.iterator();
+        List<Personaje> result = new ArrayList<Personaje>();
+        while (it.hasNext() && max > 0) {
+            Personaje personaje = it.next();
+            max--;
+            if (nombre == null || personaje.toString().toUpperCase().contains(nombre.toUpperCase())) {
+                result.add(personaje);
+            }
+        }
+        return result;
+    }
+
 }
