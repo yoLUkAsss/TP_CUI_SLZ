@@ -12,7 +12,8 @@
         android:name="ar.duelodeleyendas.duelo_android.MainLobbyFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/actual_lobby_fragment" />
+        tools:layout="@layout/actual_lobby_fragment"
+        class="ar.duelodeleyendas.duelo_android.MainLobbyFragment"/>
 
 
 </LinearLayout>

@@ -9,4 +9,5 @@
     <string name="General_Duelo">Duelo</string>
     <string name="General_Character">Personaje</string>
     <string name="General_Search">Buscar</string>
+    <string name="NombreDelPersonaje">Nombre:</string>
 </resources>

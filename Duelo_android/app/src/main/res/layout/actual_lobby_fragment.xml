@@ -7,8 +7,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Nombre"
+        android:inputType="textFilter"
+        android:hint="Nombre"
         android:ems="10"
         android:id="@+id/id_nombre_buscado" />
 
@@ -23,7 +23,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@android:id/list"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

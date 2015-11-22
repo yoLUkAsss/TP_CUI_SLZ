@@ -1,9 +1,7 @@
 package ar.duelodeleyendas.duelo_android;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +16,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personaje_activity_actual);
+        setContentView(R.layout.lobby_activity);
 
         Button boton = (Button) findViewById(R.id.id_ingresar_button);
 
@@ -30,7 +28,7 @@ public class Login extends AppCompatActivity {
 
                 if (username.equals("admin") && password.equals("admin")) {
 
-                    Intent mainLobby = new Intent(Login.this , MainLobby.class);
+                    Intent mainLobby = new Intent(Login.this , MainLobbyActivity.class);
                     startActivity(mainLobby);
 
                 } else {

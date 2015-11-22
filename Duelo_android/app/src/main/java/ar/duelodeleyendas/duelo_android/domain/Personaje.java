@@ -1,12 +1,13 @@
 package ar.duelodeleyendas.duelo_android.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by lucas on 20/11/2015.
  */
-public class Personaje {
+public class Personaje implements Serializable{
     Long id;
     String nombre;
     List<String> especialidades;

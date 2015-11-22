@@ -60,7 +60,14 @@ public class RepoPersonajes {
         RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Zed","MID"));
     }
 
-    public void agregarPersonaje(Personaje personaje) {this.personajes.add(personaje);}
+    public void agregarPersonaje(Personaje personaje) {
+        personaje.setId(getMaximoId());
+        personajes.add(personaje);
+    }
+
+    public Long getMaximoId() {
+        return new Long(personajes.size());
+    }
 
     public List<Personaje> todosLosPersonajes() {return getInstance().todosLosPersonajes(null,MAX_RESULTS);}
 
