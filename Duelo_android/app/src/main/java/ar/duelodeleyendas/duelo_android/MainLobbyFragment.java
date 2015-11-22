@@ -13,6 +13,8 @@ import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.Locale;
+
 import javax.security.auth.callback.Callback;
 
 import ar.duelodeleyendas.duelo_android.adapters.PersonajeAdapter;
@@ -29,6 +31,7 @@ public class MainLobbyFragment extends ListFragment {
      * activated item position. Only used on tablets.
      */
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
+    private static boolean listenerActive = false;
 
     /**
      * The current activated item position. Only used on tablets.
@@ -50,7 +53,7 @@ public class MainLobbyFragment extends ListFragment {
                 getActivity(),
                 RepoPersonajes.getInstance().todosLosPersonajes(null, 10));
         setListAdapter(miAdapter);
-        editText = (EditText) getActivity().findViewById(R.id.id_nombre_buscado);
+
 
 
     }
@@ -58,6 +61,23 @@ public class MainLobbyFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        editText = (EditText) getView().findViewById(R.id.id_nombre_buscado);
+        if(!listenerActive) {
+            editText.addTextChangedListener(new TextWatcher() {
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String text = editText.getText().toString().toLowerCase(Locale.getDefault());
+                    miAdapter.filter(text);
+                }
+
+                public void afterTextChanged(Editable s) {
+                }
+            });
+            listenerActive = true;
+        }
     }
 
     @Override
@@ -69,7 +89,10 @@ public class MainLobbyFragment extends ListFragment {
                 && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
             setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
         }
+
+
     }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -97,7 +120,7 @@ public class MainLobbyFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        Personaje personaje = RepoPersonajes.getInstance().getPersonajePorId(id);
+        Personaje personaje = miAdapter.getItem(position);
         mainLobbyFragmentCallback.onItemSelected(personaje);
     }
 
@@ -151,17 +174,5 @@ public class MainLobbyFragment extends ListFragment {
         mActivatedPosition = position;
     }
 
-    public final TextWatcher listWatcher = new TextWatcher() {
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            miAdapter.getFilter().filter(s.toString());
-        }
-
-        public void afterTextChanged(Editable s) {
-        }
-    };
 
 }

@@ -7,18 +7,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textFilter"
-        android:hint="Nombre"
+        android:inputType="textNoSuggestions"
+        android:hint="Buscar"
         android:ems="10"
         android:id="@+id/id_nombre_buscado" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Buscar"
-        android:id="@+id/id_buscar_button"
-        android:layout_gravity="center_horizontal" />
 
     <ListView
         android:layout_width="match_parent"

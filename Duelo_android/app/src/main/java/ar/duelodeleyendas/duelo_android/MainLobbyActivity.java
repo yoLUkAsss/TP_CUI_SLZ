@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.Locale;
+
 import ar.duelodeleyendas.duelo_android.domain.Personaje;
 
 /**
@@ -51,6 +53,7 @@ public class MainLobbyActivity extends AppCompatActivity implements MainLobbyFra
             startActivity(detailIntent);
 //        }
     }
+
 
 
 
