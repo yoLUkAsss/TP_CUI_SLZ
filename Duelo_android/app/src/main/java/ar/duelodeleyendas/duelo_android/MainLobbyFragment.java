@@ -5,17 +5,13 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.Locale;
-
-import javax.security.auth.callback.Callback;
 
 import ar.duelodeleyendas.duelo_android.adapters.PersonajeAdapter;
 import ar.duelodeleyendas.duelo_android.domain.Personaje;
@@ -147,7 +143,7 @@ public class MainLobbyFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.actual_lobby_fragment, container, false);
+        return inflater.inflate(R.layout.personaje_list_fragment, container, false);
     }
 
 
