@@ -29,29 +29,43 @@ public class MainLobbyActivity extends AppCompatActivity implements MainLobbyFra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actual_lobby_activity);
 
+        if (findViewById(R.id.personaje_detail_container) != null) {
+            // The detail container view will be present only in the
+            // large-screen layouts (res/values-large and
+            // res/values-sw600dp). If this view is present, then the
+            // activity should be in two-pane mode.
+            mTwoPane = true;
+
+            // In two-pane mode, list items should be given the
+            // 'activated' state when touched.
+            ((MainLobbyFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.personaje_list))
+                    .setActivateOnItemClick(true);
+        }
+
     }
 
     @Override
     public void onItemSelected(Personaje personaje) {
-//        if (mTwoPane) {
-//            // In two-pane mode, show the detail view in this activity by
-//            // adding or replacing the detail fragment using a
-//            // fragment transaction.
-//            Bundle arguments = new Bundle();
-//            arguments.putSerializable(PeliculaDetailFragment.ARG_ITEM_ID, pelicula);
-//            PeliculaDetailFragment fragment = new PeliculaDetailFragment();
-//            fragment.setArguments(arguments);
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.pelicula_detail_container, fragment)
-//                    .commit();
+        if (mTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            Bundle arguments = new Bundle();
+            arguments.putSerializable(PersonajeDetalleFragment.ARG_ITEM_ID, personaje);
+            PersonajeDetalleFragment fragment = new PersonajeDetalleFragment();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.personaje_detail_container, fragment)
+                    .commit();
 
-//        } else {
-            // In single-pane mode, simply start the detail activity
-            // for the selected item ID.
+        } else {
+//             In single-pane mode, simply start the detail activity
+//             for the selected item ID.
             Intent detailIntent = new Intent(MainLobbyActivity.this, PersonajeDetalleActivity.class);
             detailIntent.putExtra(PersonajeDetalleFragment.ARG_ITEM_ID , personaje);
             startActivity(detailIntent);
-//        }
+        }
     }
 
 

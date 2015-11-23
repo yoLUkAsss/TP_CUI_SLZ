@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import ar.duelodeleyendas.duelo_android.adapters.PersonajeAdapter;
@@ -33,15 +37,20 @@ public class PersonajeDetalleFragment extends Fragment{
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
             personaje = (Personaje) getArguments().get(ARG_ITEM_ID);
-
-            Activity activity = this.getActivity();
-            TextView txt = (TextView) activity.findViewById(R.id.nombre_del_personaje);
-            if (txt != null) {
-                txt.setText(personaje.getNombre());
-            } else {
-                activity.setTitle(personaje.getNombre());
-            }
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.personaje_detail_fragment, container, false);
+
+        if (personaje != null) {
+            ((TextView) rootView.findViewById(R.id.nombre_del_personaje)).setText(personaje.getNombre());
+            ((TextView) rootView.findViewById(R.id.posicion_del_personaje)).setText(personaje.getPosicionIdeal());
+        }
+
+        return rootView;
     }
 
     @Override

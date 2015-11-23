@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Duelo_android</string>
+    <string name="app_name">Duelo de Leyendas</string>
     <string name="title_personaje_detail">Personaje Detail</string>
     <string name="title_Login">DUELO DE LEYENDAS</string>
     <string name="Login_username">Username:</string>
@@ -9,5 +9,6 @@
     <string name="General_Duelo">Duelo</string>
     <string name="General_Character">Personaje</string>
     <string name="General_Search">Buscar</string>
+    <string name="General_Estadistica">Estadisticas</string>
     <string name="NombreDelPersonaje">Nombre:</string>
 </resources>
