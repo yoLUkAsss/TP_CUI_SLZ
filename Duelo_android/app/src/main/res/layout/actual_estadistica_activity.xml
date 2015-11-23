@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="ar.duelodeleyendas.duelo_android.BarraDeNombreFragment"
+        android:id="@+id/barra_del_nombre_fragment"
+        tools:layout="@layout/barra_de_nombre_fragment"
+        class="ar.duelodeleyendas.duelo_android.BarraDeNombreFragment"/>
+
+    <fragment
+        android:name="ar.duelodeleyendas.duelo_android.EstadisticaPersonajeFragment"
+        android:id="@+id/estadistica_personaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/actual_estadistica_fragment"
+        class="ar.duelodeleyendas.duelo_android.EstadisticaPersonajeFragment"/>
+
+
+</LinearLayout>
