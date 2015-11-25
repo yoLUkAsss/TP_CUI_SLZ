@@ -21,6 +21,7 @@ import excepciones.NoEstaAutenticadoException
 import util.SeleccionesDelJugador
 import util.DatosPersonajesJson
 import util.ResultadoComun
+import util.mobile.UltimaEstadisticaMobile
 
 @Controller
 class DueloController {
@@ -94,7 +95,47 @@ class DueloController {
 	}
 	
 	
+	/////////////////
+	//DUELO ANDROID//
+	/////////////////
 	
+	@Get("/datosDelJuegoMobile/:idUsuario")
+	def Result datosDelJuegoMobile(){
+		response.contentType = ContentType.APPLICATION_JSON
+		var instance = LobbyAppModel.getInstance()
+		if(instance.estaAutenticado(idUsuario)){
+			var datosJuego = instance.personajesTotales.map[each | each.toString]
+			ok('''{"personajesTotales":«datosJuego.toJson»}''')
+		}else{
+			badRequest('''{"descripcion":"No esta autenticado"}''')
+		}
+	}
+	
+	@Get("/detallePersonajeMobile/:idPersonaje")
+	def Result detallePersonajeMobile(){
+		response.contentType = ContentType.APPLICATION_JSON
+		var instance = LobbyAppModel.getInstance()
+		var personajeAEnviar = instance.personajesTotales.findFirst[personaje | personaje.nombre.equals(idPersonaje)]
+		if (personajeAEnviar != null)	
+			ok('''{"personaje":«personajeAEnviar»}''')
+		else
+			badRequest('''{"descripcion":"Personaje No Valido"}''')
+	}
+	
+	@Get("/estadisticaPersonajeMobile/:idPersonaje")
+	def Result estadisticaPersonajeMobile(){
+		response.contentType = ContentType.APPLICATION_JSON
+		var instance = LobbyAppModel.getInstance()
+		try {
+			var estadistica = instance.estadisticas.findFirst[each | each.personajeAsociado.nombre.equals(idPersonaje)]
+			var datosAEnviar = new UltimaEstadisticaMobile(estadistica)
+			ok('''{"personaje":«datosAEnviar»}''')
+		}
+		catch (Exception e) {
+			e.printStackTrace
+			badRequest('''{"descripcion":«e.message»}''')	
+		}
+	}
 	
 	def static void main(String[] args) {
 		XTRest.start(DueloController, 9000)

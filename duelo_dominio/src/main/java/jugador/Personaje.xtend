@@ -47,4 +47,8 @@ class Personaje implements Comparable<Personaje> {
 		this.especialidades.add(nuevaEspecialidad)
 	}
 	
+	override toString() {
+		return this.nombre
+	}
+	
 }
