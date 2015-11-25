@@ -44,15 +44,6 @@ public class RepoPersonajes {
     }
 
 
-    public Personaje getPersonajePorId(Long id) {
-        for (Personaje personaje : this.personajes) {
-            if (personaje.getId().equals(id)) {
-                return personaje;
-            }
-        }
-        return null;
-    }
-
     public void setUsuarioLogeado(String idUsuario){
         this.idUsuario = idUsuario;
     }
@@ -64,20 +55,9 @@ public class RepoPersonajes {
 
 
     private void cargarPersonajes() {
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Amumu","TOP"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Vyper", "BOT"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Ahri", "MID"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Olaf", "JUNGLE"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Pudge", "BOT"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Ashe", "MID"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Dr. Mundo", "TOP"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Fiddlestick", "JUNGLE"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Shen", "BOT"));
-        RepoPersonajes.getInstance().agregarPersonaje(new Personaje("Zed","MID"));
     }
 
     public void agregarPersonaje(Personaje personaje) {
-        personaje.setId(getMaximoId());
         personajes.add(personaje);
     }
 

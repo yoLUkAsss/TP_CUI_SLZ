@@ -40,7 +40,6 @@ public class Login extends AppCompatActivity {
                 logear(username, password);
 
 
-
             }
         });
     }

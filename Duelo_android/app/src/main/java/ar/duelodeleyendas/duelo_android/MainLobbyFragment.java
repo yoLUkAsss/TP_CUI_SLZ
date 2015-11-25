@@ -17,8 +17,10 @@ import java.util.List;
 import java.util.Locale;
 
 import ar.duelodeleyendas.duelo_android.adapters.PersonajeAdapter;
+import ar.duelodeleyendas.duelo_android.domain.DatosDelJuegoMobile;
 import ar.duelodeleyendas.duelo_android.domain.LoginResponse;
 import ar.duelodeleyendas.duelo_android.domain.Personaje;
+import ar.duelodeleyendas.duelo_android.domain.PersonajeResopnse;
 import ar.duelodeleyendas.duelo_android.repos.RepoPersonajes;
 import ar.duelodeleyendas.duelo_android.service.DueloService;
 import retrofit.Callback;
@@ -55,18 +57,19 @@ public class MainLobbyFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         DueloService dueloService = RepoPersonajes.getInstance().getDueloService();
         dueloService.datosDelJuego(RepoPersonajes.getInstance().getUsuarioLogeado(),
-                new Callback<List<String>>() {
+                new Callback<DatosDelJuegoMobile>() {
                     @Override
-                    public void success(List<String> nombresDePersonajes, Response response) {
+                    public void success(DatosDelJuegoMobile nombresDePersonajes, Response response) {
                         miAdapter = new PersonajeAdapter(
                                 getActivity(),
-                                nombresDePersonajes);
+                                nombresDePersonajes.getPersonajesTotales());
                         setListAdapter(miAdapter);
 
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
+                        Toast.makeText(getActivity().getApplicationContext(), "No se toy re loco", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -138,10 +141,10 @@ public class MainLobbyFragment extends ListFragment {
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
         RepoPersonajes.getInstance().getDueloService().getPersonaje(miAdapter.getItem(position),
-                new Callback<Personaje>() {
+                new Callback<PersonajeResopnse>() {
                     @Override
-                    public void success(Personaje personaje, Response response) {
-                        mainLobbyFragmentCallback.onItemSelected(personaje);
+                    public void success(PersonajeResopnse personaje, Response response) {
+                        mainLobbyFragmentCallback.onItemSelected(personaje.getPersonaje());
                     }
 
                     @Override
