@@ -17,19 +17,19 @@ import java.util.Locale;
 /**
  * Created by lucas on 21/11/2015.
  */
-public class PersonajeAdapter extends ArrayAdapter<Personaje> {
+public class PersonajeAdapter extends ArrayAdapter<String> {
 
     Context mContext;
     LayoutInflater inflater;
-    private List<Personaje> personajesAMostrar = null;
-    private ArrayList<Personaje> arraylist;
+    private List<String> personajesAMostrar = null;
+    private ArrayList<String> arraylist;
 
-    public PersonajeAdapter(Context context, List<Personaje> personajes) {
+    public PersonajeAdapter(Context context, List<String> personajes) {
         super(context, R.layout.row_layout, personajes);
         this.mContext = context;
         this.personajesAMostrar = personajes;
         this.inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<Personaje>();
+        this.arraylist = new ArrayList<String>();
         this.arraylist.addAll(personajes);
 
     }
@@ -40,7 +40,7 @@ public class PersonajeAdapter extends ArrayAdapter<Personaje> {
     }
 
     @Override
-    public Personaje getItem(int position) {
+    public String getItem(int position) {
         return personajesAMostrar.get(position);
     }
 
@@ -57,10 +57,10 @@ public class PersonajeAdapter extends ArrayAdapter<Personaje> {
             convertView = inflater.inflate(R.layout.row_layout, null);
 
 
-            final Personaje personaje = getItem(position);
+            final String personaje = getItem(position);
 
             TextView personajeText = (TextView) convertView.findViewById(R.id.id_nombre_personaje);
-            personajeText.setText(personaje.toString());
+            personajeText.setText(personaje);
 
         return convertView;
     }
@@ -74,9 +74,9 @@ public class PersonajeAdapter extends ArrayAdapter<Personaje> {
         }
         else
         {
-            for (Personaje wp : arraylist)
+            for (String wp : arraylist)
             {
-                if (wp.getNombre().toLowerCase(Locale.getDefault()).contains(charText))
+                if (wp.contains(charText))
                 {
                     personajesAMostrar.add(wp);
                 }

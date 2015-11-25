@@ -1,6 +1,7 @@
 package ar.duelodeleyendas.duelo_android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
@@ -10,12 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.util.List;
 import java.util.Locale;
 
 import ar.duelodeleyendas.duelo_android.adapters.PersonajeAdapter;
+import ar.duelodeleyendas.duelo_android.domain.LoginResponse;
 import ar.duelodeleyendas.duelo_android.domain.Personaje;
 import ar.duelodeleyendas.duelo_android.repos.RepoPersonajes;
+import ar.duelodeleyendas.duelo_android.service.DueloService;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by lucas on 21/11/2015.
@@ -45,10 +53,23 @@ public class MainLobbyFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        miAdapter = new PersonajeAdapter(
-                getActivity(),
-                RepoPersonajes.getInstance().todosLosPersonajes(null, 10));
-        setListAdapter(miAdapter);
+        DueloService dueloService = RepoPersonajes.getInstance().getDueloService();
+        dueloService.datosDelJuego(RepoPersonajes.getInstance().getUsuarioLogeado(),
+                new Callback<List<String>>() {
+                    @Override
+                    public void success(List<String> nombresDePersonajes, Response response) {
+                        miAdapter = new PersonajeAdapter(
+                                getActivity(),
+                                nombresDePersonajes);
+                        setListAdapter(miAdapter);
+
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                    }
+                });
+
 
 
 
@@ -116,8 +137,19 @@ public class MainLobbyFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        Personaje personaje = miAdapter.getItem(position);
-        mainLobbyFragmentCallback.onItemSelected(personaje);
+        RepoPersonajes.getInstance().getDueloService().getPersonaje(miAdapter.getItem(position),
+                new Callback<Personaje>() {
+                    @Override
+                    public void success(Personaje personaje, Response response) {
+                        mainLobbyFragmentCallback.onItemSelected(personaje);
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getActivity().getApplicationContext(), "Lo sentimos, hubo un error al cargar el personaje", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 
     @Override
