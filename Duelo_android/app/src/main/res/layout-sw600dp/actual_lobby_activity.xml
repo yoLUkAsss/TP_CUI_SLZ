@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_weight="3"
         android:layout_height="match_parent"
-        tools:layout="@layout/actual_lobby_fragment"
+        tools:layout="@layout/personaje_list_fragment"
         class="ar.duelodeleyendas.duelo_android.MainLobbyFragment"/>
 
     <FrameLayout android:id="@+id/personaje_detail_container" android:layout_width="0dp"

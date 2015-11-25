@@ -11,4 +11,12 @@
     <string name="General_Search">Buscar</string>
     <string name="General_Estadistica">Estadisticas</string>
     <string name="NombreDelPersonaje">Nombre:</string>
+    <string name="titulo_estadistica">Estadisticas</string>
+    <string name="estadistica_jugadas">Jugadas:</string>
+    <string name="estadistica_ganadas">Ganadas:</string>
+    <string name="estadistica_kills">Kills:</string>
+    <string name="estadistica_deaths">Deaths:</string>
+    <string name="estadistica_assists">Assists:</string>
+    <string name="estadistica_mejor_ubicacion">Mejor Ubicacion:</string>
+    <string name="estadistica_puntaje">Puntaje:</string>
 </resources>

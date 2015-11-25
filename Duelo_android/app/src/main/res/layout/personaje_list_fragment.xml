@@ -7,8 +7,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:inputType="textNoSuggestions"
-        android:hint="Buscar"
+        android:hint="@string/General_Search"
         android:ems="10"
         android:id="@+id/id_nombre_buscado" />
 
@@ -17,6 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@android:id/list"
-        android:layout_gravity="center_horizontal" />
+        android:gravity="center" />
 
 </LinearLayout>
