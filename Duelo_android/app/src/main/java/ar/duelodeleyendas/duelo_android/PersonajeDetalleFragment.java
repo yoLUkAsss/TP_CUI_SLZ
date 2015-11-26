@@ -59,7 +59,7 @@ public class PersonajeDetalleFragment extends Fragment{
         if (personaje != null) {
             ((TextView) rootView.findViewById(R.id.nombre_del_personaje)).setText(personaje.getNombre());
 
-            int idDeImagen = getResources().getIdentifier("R.drawable." + personaje.getNombre() + "Icon.jpg" , null, null);
+            int idDeImagen = getResources().getIdentifier((personaje.getNombre()).toLowerCase() + "icon" , "drawable", getActivity().getPackageName());
 
             ((ImageView) rootView.findViewById(R.id.imagen_del_personaje)).setImageResource(idDeImagen);
 

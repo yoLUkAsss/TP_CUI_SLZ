@@ -21,7 +21,7 @@ public class DebilidadesAdapter extends ArrayAdapter<String>  {
     Context mContext;
     LayoutInflater inflater;
     private List<String> debilidadesAMostrar = null;
-    private ArrayList<String> arraylist;
+    private List<String> arraylist;
 
     public DebilidadesAdapter(Context context, List<String> debilidades) {
         super(context, R.layout.row_layout, debilidades);
@@ -54,6 +54,10 @@ public class DebilidadesAdapter extends ArrayAdapter<String>  {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         convertView = inflater.inflate(R.layout.row_debilidad_layout, null);
+        final String debilidad = getItem(position);
+
+        TextView debilidadDePersonaje = (TextView) convertView.findViewById(R.id.id_debilidad_personaje);
+        debilidadDePersonaje.setText(debilidad);
 
         return convertView;
     }
