@@ -76,7 +76,7 @@ public class PersonajeAdapter extends ArrayAdapter<String> {
         {
             for (String wp : arraylist)
             {
-                if (wp.contains(charText))
+                if (wp.toLowerCase().contains(charText))
                 {
                     personajesAMostrar.add(wp);
                 }

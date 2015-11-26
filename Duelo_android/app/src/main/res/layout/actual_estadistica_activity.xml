@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="ar.duelodeleyendas.duelo_android.BarraDeNombreFragment"
-        android:id="@+id/barra_del_nombre_fragment"
-        tools:layout="@layout/barra_de_nombre_fragment"
-        class="ar.duelodeleyendas.duelo_android.BarraDeNombreFragment"/>
 
     <fragment
         android:name="ar.duelodeleyendas.duelo_android.EstadisticaPersonajeFragment"

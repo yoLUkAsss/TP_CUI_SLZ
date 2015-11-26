@@ -25,6 +25,7 @@
             android:layout_weight="4"/>
 
         <Button
+            android:id="@+id/estadisticas_button"
             android:text="@string/General_Estadistica"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
