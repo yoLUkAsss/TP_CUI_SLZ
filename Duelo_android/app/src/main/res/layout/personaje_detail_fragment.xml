@@ -4,7 +4,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
 
     <LinearLayout
@@ -33,22 +34,63 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:id="@+id/imagen_del_personaje"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.31"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textAlignment="center">
+
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:id="@+id/posicion_del_personaje"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:textAlignment="center"/>
+            android:text="@string/especialidades"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp" />
 
+        <ListView
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:id="@+id/lista_especialidades"
+            android:layout_gravity="center_horizontal"/>
 
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/debilidades"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp" />
 
+        <ListView
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:id="@+id/lista_debilidades"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pos_ideal"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/posicion_ideal_personaje"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp" />
 
     </LinearLayout>
+
 
 </LinearLayout>
