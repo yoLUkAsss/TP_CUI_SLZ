@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class DebilidadesAdapter extends AdapterPropio  {
 
-
     public DebilidadesAdapter(Context context, List<String> lista, int layoutALlenar, int idABuscar){
         super(context,lista,layoutALlenar,idABuscar);
     }

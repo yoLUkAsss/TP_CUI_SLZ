@@ -1,11 +1,9 @@
 package ar.duelodeleyendas.duelo_android.service;
 
-import java.util.List;
-
 import ar.duelodeleyendas.duelo_android.domain.DatosDelJuegoMobile;
+import ar.duelodeleyendas.duelo_android.domain.EstadisticaDePersonaje;
 import ar.duelodeleyendas.duelo_android.domain.LoginResponse;
 import ar.duelodeleyendas.duelo_android.domain.Personaje;
-import ar.duelodeleyendas.duelo_android.domain.PersonajeResopnse;
 import ar.duelodeleyendas.duelo_android.domain.User;
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -24,5 +22,8 @@ public interface DueloService {
     void datosDelJuego(@retrofit.http.Path("idUsuario") String id,Callback<DatosDelJuegoMobile> callback);
 
     @GET("/detallePersonajeMobile/{PersonajeId}")
-    void getPersonaje(@retrofit.http.Path("PersonajeId") String id, Callback<PersonajeResopnse> callback);
+    void getPersonaje(@retrofit.http.Path("PersonajeId") String id, Callback<Personaje> callback);
+
+    @GET("/estadisticaPersonajeMobile/{PersonajeId}")
+    void getEstadisticasDePersonaje(@retrofit.http.Path("PersonajeId") String id, Callback<EstadisticaDePersonaje> callback);
 }
