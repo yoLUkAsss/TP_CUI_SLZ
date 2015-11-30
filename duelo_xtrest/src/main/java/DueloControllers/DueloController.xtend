@@ -117,7 +117,7 @@ class DueloController {
 		var instance = LobbyAppModel.getInstance()
 		var personajeAEnviar = instance.personajesTotales.findFirst[personaje | personaje.nombre.equals(idPersonaje)]
 		if (personajeAEnviar != null)	
-			ok('''{"personaje":«personajeAEnviar»}''')
+			ok('''«personajeAEnviar.toJson»''')
 		else
 			badRequest('''{"descripcion":"Personaje No Valido"}''')
 	}
@@ -129,7 +129,7 @@ class DueloController {
 		try {
 			var estadistica = instance.estadisticas.findFirst[each | each.personajeAsociado.nombre.equals(idPersonaje)]
 			var datosAEnviar = new UltimaEstadisticaMobile(estadistica)
-			ok('''{"personaje":«datosAEnviar»}''')
+			ok('''«datosAEnviar.toJson»''')
 		}
 		catch (Exception e) {
 			e.printStackTrace

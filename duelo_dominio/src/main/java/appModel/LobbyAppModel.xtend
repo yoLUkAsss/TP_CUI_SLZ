@@ -107,8 +107,8 @@ class LobbyAppModel {
 		personajesUtilizables.add(pudge)
 		
 		var List<Jugador> jugadores = newArrayList
-		jugadores.add(marq);//jugadores.add(xPeke);jugadores.add(juaco)
-		//jugadores.add(nico);jugadores.add(lucas);jugadores.add(rosali)
+		jugadores.add(marq);jugadores.add(xPeke);jugadores.add(juaco)
+		jugadores.add(nico);jugadores.add(lucas);jugadores.add(rosali)
 		juaco.ganeYSoyRetador(amumu,Posicion.TOP)
 		
 		this.setAll(null,jugadores,personajesUtilizables,posiciones)
