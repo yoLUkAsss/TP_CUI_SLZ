@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    >
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -14,10 +15,10 @@
         android:padding="16dp"
         android:textIsSelectable="true"
         tools:context=".PersonajeDetailFragment"
-        android:background="#fcf6f6"
+        android:background="@drawable/blue_gradient_without_radius"
         android:text="@string/title_Login"
-        android:textSize="40dp"
-        android:textColor="#666666"/>
+        android:textSize="40sp"
+        android:textColor="#fff"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -35,13 +36,25 @@
         android:id="@+id/id_contraseña"
         android:hint="@string/Login_password"/>
 
-    <Button
-        android:layout_width="171dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ingresar"
-        android:id="@+id/id_ingresar_button"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.10"
-        />
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Login_Button"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="50sp"
+            android:shadowRadius="3"
+            android:background="@drawable/blue_button"
+            android:id="@+id/id_ingresar_button"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
 </LinearLayout>

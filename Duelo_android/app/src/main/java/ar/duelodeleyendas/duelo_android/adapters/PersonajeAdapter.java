@@ -32,7 +32,7 @@ public class PersonajeAdapter extends AdapterPropio {
         }
         else {
             for (String wp : arraylist) {
-                if (wp.contains(charText)) {
+                if (wp.toLowerCase().contains(charText)) {
                     listaAMostrar.add(wp);
                 }
             }
