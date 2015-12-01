@@ -58,7 +58,9 @@ public class MainLobbyFragment extends ListFragment {
                     public void success(DatosDelJuegoMobile nombresDePersonajes, Response response) {
                         miAdapter = new PersonajeAdapter(
                                 getActivity(),
-                                nombresDePersonajes.getPersonajesTotales());
+                                nombresDePersonajes.getPersonajesTotales(),
+                                R.layout.row_layout,
+                                R.id.id_nombre_personaje);
                         setListAdapter(miAdapter);
 
                     }

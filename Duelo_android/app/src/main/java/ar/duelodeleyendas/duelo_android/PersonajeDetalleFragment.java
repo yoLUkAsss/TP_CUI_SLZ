@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ar.duelodeleyendas.duelo_android.adapters.AdapterPropio;
 import ar.duelodeleyendas.duelo_android.adapters.DebilidadesAdapter;
 import ar.duelodeleyendas.duelo_android.adapters.FortalezasAdapter;
 import ar.duelodeleyendas.duelo_android.adapters.PersonajeAdapter;
@@ -63,10 +64,10 @@ public class PersonajeDetalleFragment extends Fragment{
 
             ((ImageView) rootView.findViewById(R.id.imagen_del_personaje)).setImageResource(idDeImagen);
 
-            DebilidadesAdapter debilidadesAdapter = new DebilidadesAdapter(getActivity() , personaje.getDebilidades());
+            DebilidadesAdapter debilidadesAdapter = new DebilidadesAdapter(getActivity(),personaje.getDebilidades(),R.layout.row_debilidad_layout,R.id.id_debilidad_personaje);
             ((ListView) rootView.findViewById(R.id.lista_debilidades)).setAdapter(debilidadesAdapter);
 
-            FortalezasAdapter fortalezasAdapter = new FortalezasAdapter(getActivity() , personaje.getEspecialidades());
+            FortalezasAdapter fortalezasAdapter = new FortalezasAdapter(getActivity() , personaje.getEspecialidades(),R.layout.row_fortaleza_layout,R.id.id_especialidad_personaje);
             ((ListView) rootView.findViewById(R.id.lista_especialidades)).setAdapter(fortalezasAdapter);
 
             ((TextView) rootView.findViewById(R.id.posicion_ideal_personaje)).setText(personaje.getPosicionIdeal());
