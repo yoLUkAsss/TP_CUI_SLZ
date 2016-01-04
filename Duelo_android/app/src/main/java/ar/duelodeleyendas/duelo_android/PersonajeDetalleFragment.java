@@ -1,12 +1,18 @@
 package ar.duelodeleyendas.duelo_android;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,6 +43,19 @@ public class PersonajeDetalleFragment extends Fragment{
 
 
     public PersonajeDetalleFragment(){}
+
+    @Override
+    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
+        final int animatorId = (enter) ? R.animator.card_flip_left_in : R.anim.card_flip_left_out;
+        final Animator anim = AnimatorInflater.loadAnimator(getActivity(), animatorId);
+        anim.addListener(new AnimatorListenerAdapter()
+        {
+
+        });
+
+        return anim;
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

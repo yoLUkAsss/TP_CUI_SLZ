@@ -1,8 +1,9 @@
 package ar.duelodeleyendas.duelo_android;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.support.v7.app.AppCompatActivity;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import ar.duelodeleyendas.duelo_android.domain.Personaje;
 public class MainLobbyActivity extends AppCompatActivity implements MainLobbyFragment.Callbacks, PersonajeDetalleFragment.Callbacks{
 
     private boolean isWide;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,13 @@ public class MainLobbyActivity extends AppCompatActivity implements MainLobbyFra
             Bundle arguments = new Bundle();
             arguments.putSerializable(fragmentIdToReplace, serializable);
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
+
+
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.animator.card_flip_right_in, R.animator.card_flip_right_out,
+                            R.animator.card_flip_left_in, R.animator.card_flip_left_out)
                     .replace(R.id.personaje_detail_container, fragment)
+                    .addToBackStack(null)
                     .commit();
         } else {
             Intent detailIntent = new Intent(MainLobbyActivity.this, activityClassToBeOpen);
@@ -61,7 +68,7 @@ public class MainLobbyActivity extends AppCompatActivity implements MainLobbyFra
     private void activateWideMode() {
         isWide = true;
         // In wide mode, list items should be given the 'activated' state when touched.
-        ((MainLobbyFragment) getSupportFragmentManager()
+        ((MainLobbyFragment) getFragmentManager()
                 .findFragmentById(R.id.personaje_list))
                 .setActivateOnItemClick(true);
     }
@@ -69,6 +76,8 @@ public class MainLobbyActivity extends AppCompatActivity implements MainLobbyFra
     private boolean esAncho() {
         return findViewById(R.id.personaje_detail_container) != null;
     }
+
+
 
 
 

@@ -65,20 +65,6 @@ public class RepoPersonajes {
         return new Long(personajes.size());
     }
 
-    public List<Personaje> todosLosPersonajes() {return getInstance().todosLosPersonajes(null,MAX_RESULTS);}
-
-    public List<Personaje> todosLosPersonajes(String nombre, int max) {
-        Iterator<Personaje> it = personajes.iterator();
-        List<Personaje> result = new ArrayList<Personaje>();
-        while (it.hasNext() && max > 0) {
-            Personaje personaje = it.next();
-            max--;
-            if (nombre == null || personaje.toString().toUpperCase().contains(nombre.toUpperCase())) {
-                result.add(personaje);
-            }
-        }
-        return result;
-    }
 
     private void setConnection(){
         SERVER_IP = "10.0.2.2"; //esta ip se usa para comunicarse con mi localhost en el emulador de Android Studio

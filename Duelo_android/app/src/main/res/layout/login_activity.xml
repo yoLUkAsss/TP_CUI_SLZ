@@ -10,7 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/personaje_detail"
         style="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="130dp"
         android:padding="16dp"
         android:textIsSelectable="true"

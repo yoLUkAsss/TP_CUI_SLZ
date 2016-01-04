@@ -86,6 +86,10 @@ class LobbyAppModel {
 		
 		olaf.agregarNuevaFortaleza("Tanque")
 		olaf.agregarNuevaFortaleza("Crowd-Control")
+		olaf.agregarNuevaFortaleza("Crowd-Control")
+		olaf.agregarNuevaFortaleza("Crowd-Control")
+		olaf.agregarNuevaFortaleza("Crowd-Control")
+		olaf.agregarNuevaFortaleza("Crowd-Control")
 		olaf.agregarNuevaDebilidad("Daño Magico")
 		olaf.agregarNuevaDebilidad("Velocidad")
 		
